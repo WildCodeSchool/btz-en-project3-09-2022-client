@@ -60,7 +60,7 @@ function MyAccount() {
             <p className="flex justify-center items-center w-1/2 border rounded-md  h-[40px] bg-white">
               Mon activité
             </p>
-            <p>J`&apos;`ai commenté X truc de machin...</p>
+            <p>J&apos;ai commenté X truc de machin...</p>
             <p>voir plus...</p>
           </div>
         </div>
