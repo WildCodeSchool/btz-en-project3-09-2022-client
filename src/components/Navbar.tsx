@@ -7,8 +7,12 @@ function Navbar() {
   return (
     <div className="h-[64px] bg-bleu flex justify-center">
       <div className="w-[95%]  flex justify-between items-center">
-        <img src={logo.src} alt="enedis-share-logo" className="w-1/3 " />
-        <div className="flex  justify-between w-[30%]">
+        <img
+          src={logo.src}
+          alt="enedis-share-logo"
+          className="max-w-[30%] min-w-[100px]"
+        />
+        <div className="flex justify-between min-w-[100px] ">
           <div className="bg-vert w-[45px] h-[45px] rounded-full flex justify-center items-center">
             <img
               src={pictoSearch.src}
