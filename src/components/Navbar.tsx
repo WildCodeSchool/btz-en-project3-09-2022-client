@@ -35,7 +35,7 @@ function Navbar() {
 
             {isSearchBarOpen && (
               <input
-                className="w-2/3 h-1/2 rounded-full"
+                className="w-2/3 h-1/2 rounded-full text-center"
                 placeholder="recherche.."
               />
             )}
