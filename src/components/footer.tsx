@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import Espace from "./espace";
 
 function Footer() {
   const [openEspace, setOpenEspace] = useState(false);
@@ -17,6 +18,9 @@ function Footer() {
               Mes espaces
             </div>
             <hr className="bg-bleu h-1 w-1/3 rounded-full" />
+            <div>
+              <Espace />
+            </div>
           </div>
         )}
       </div>
