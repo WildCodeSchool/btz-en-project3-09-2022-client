@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { motion } from "framer-motion";
 import { useQuery } from "react-query";
 
 type TSpace = {
@@ -24,7 +23,7 @@ function Espace() {
     return <p>Sorry something went wrong</p>;
   }
   return (
-    <motion.div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center">
       <hr className="bg-vert h-1 w-full top-0" />
       <div className=" w-2/6 text-black font-bold">Mes espaces</div>
       <hr className="bg-bleu h-1 w-1/3 rounded-full" />
@@ -46,7 +45,7 @@ function Espace() {
           </div>
         </div>
       ))}
-    </motion.div>
+    </div>
   );
 }
 
