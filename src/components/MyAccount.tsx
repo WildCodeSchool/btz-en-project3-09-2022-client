@@ -50,7 +50,7 @@ function MyAccount() {
             </button>
           </div>
           <div className="w-full  flex flex-col items-center  mt-14 space-y-3">
-            <p className="flex items-center  w-3/4 border border-bleu rounded-full  h-[32px]  ">
+            <p className="flex items-center  w-3/4 border border-bleu rounded-full  h-[32px] cursor-not-allowed ">
               <Image
                 src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
                 width={25}
@@ -60,7 +60,7 @@ function MyAccount() {
               />{" "}
               Prénom
             </p>
-            <p className="flex items-center  w-3/4 border border-bleu rounded-full  h-[32px]  ">
+            <p className="flex items-center  w-3/4 border border-bleu rounded-full  h-[32px] cursor-not-allowed ">
               <Image
                 src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
                 width={25}
@@ -70,7 +70,7 @@ function MyAccount() {
               />{" "}
               Nom
             </p>
-            <p className="flex items-center  w-3/4 border border-bleu rounded-full  h-[32px]  ">
+            <p className="flex items-center  w-3/4 border border-bleu rounded-full  h-[32px] cursor-not-allowed ">
               <Image
                 src="/assets/picto-birthday 1.png"
                 width={25}
@@ -81,10 +81,10 @@ function MyAccount() {
               XX/XX/XXXX
             </p>
             <div className="flex pt-4  w-3/4 justify-between items-center">
-              <p>Montrer mon anniversaire</p>
+              <p>Montrer ma date de naissance</p>
 
               <label className="switch" htmlFor="showBirthday">
-                <input type="checkbox" />
+                <input type="checkbox" id="showBirthday" />
                 <span className="slider round" />
               </label>
             </div>
@@ -92,7 +92,7 @@ function MyAccount() {
               <p>Montrer mon adresse email</p>
 
               <label className="switch" htmlFor="showEmail">
-                <input type="checkbox" />
+                <input type="checkbox" id="showEmail" />
                 <span className="slider round" />
               </label>
             </div>
@@ -103,7 +103,7 @@ function MyAccount() {
             <p className="text-left w-3/4 ">
               J&apos;utilise l&apos;adresse email :
             </p>
-            <p className="flex items-center  w-3/4 border border-bleu rounded-full h-[32px]  ">
+            <p className="flex items-center  w-3/4 border border-bleu rounded-full h-[32px] cursor-not-allowed ">
               <Image
                 src="/assets/ENEDIS_PICTO_018_Contact_BLEU_RVB_EXE 1.png"
                 width={25}
@@ -137,7 +137,7 @@ function MyAccount() {
           <p className="text-left w-3/4  mb-4">
             Je travaille dans l&apos;équipe :
           </p>
-          <p className="flex items-center  w-3/4 border border-bleu rounded-full h-[32px]  ">
+          <p className="flex items-center  w-3/4 border border-bleu rounded-full h-[32px] cursor-not-allowed ">
             <Image
               src="/assets/ENEDIS_PICTO_029_SerrageMains_BLEU_RVB_EXE 1.png"
               width={25}
