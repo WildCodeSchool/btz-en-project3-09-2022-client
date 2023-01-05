@@ -40,32 +40,32 @@
 
 @font-face {
   font-family: "Enedis";
-  src: url("/public/fonts/Enedis-Regular.woff2") format("woff2"),
-    url("/public/fonts/Enedis-Regular.woff") format("woff");
+  src: url("../public/fonts/Enedis-Black.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Enedis";
-  src: url("/public/fonts/Enedis-Medium.woff2") format("woff2"),
-    url("/public/fonts/Enedis-Medium.woff") format("woff");
+  src: url("../public/fonts/Enedis-Medium.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Enedis";
-  src: url("/public/fonts/Enedis-Bold.woff2") format("woff2"),
-    url("/public/fonts/Enedis-Bold.woff") format("woff");
+  src: url("../public/fonts/Enedis-Bold.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Enedis";
-  src: url("/public/fonts/Enedis-Black.woff2") format("woff2"),
-    url("/public/fonts/Enedis-Black.woff") format("woff");
+  src: url("../public/fonts/Enedis-Black.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
 }
