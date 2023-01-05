@@ -19,14 +19,14 @@ function SignIn() {
   };
 
   return (
-    <div className="bg-[#1423DC] rounded-3xl text-white w-4/5 flex flex-col items-center space-y-8 py-6">
+    <div className="bg-[#1423DC] rounded-3xl text-white w-4/5 flex flex-col items-center space-y-8 py-6 sm:w-2/5 md:w-1/3 md:pb-36">
       <img src={logo.src} alt="logo" className="w-full" />
       <div className="w-4/5 text-center text-sm">
         Bienvenue sur la plateforme collaborative dédiée aux plans de
         communication d&apos;Enedis.
       </div>
       <div className="text-xl font-bold">Je me connecte</div>
-      <div className="">
+      <div>
         <form>
           <div className="flex flex-col space-y-3 text-black text-sm items-center justify-center">
             <div className="flex items-center space-x-3">
@@ -39,7 +39,7 @@ function SignIn() {
               <input
                 {...register("email", { required: true })}
                 placeholder="Mon adresse email"
-                className="rounded-3xl py-[6px] px-4"
+                className="rounded-3xl py-[6px] px-4 md:px-24"
               />
             </div>
             <div className="flex items-center space-x-3">
@@ -52,12 +52,12 @@ function SignIn() {
               <input
                 {...register("password", { required: true })}
                 placeholder="Mon mot de passe"
-                className="rounded-3xl py-[6px] px-4"
+                className="rounded-3xl py-[6px] px-4 md:px-24"
                 type="password"
               />
             </div>
           </div>
-          <div className="pt-3 pb-4 flex space-x-3">
+          <div className="pt-3 pb-4 flex space-x-3 md:justify-center md:py-10">
             <button
               type="button"
               className="border text-[10px] font-semibold rounded-full px-5"
