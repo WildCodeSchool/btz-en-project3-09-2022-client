@@ -1,9 +1,5 @@
-import ConnectionForm from "./ConnectionForm/ConnectionForm";
+import SignInForm from "./SignInForm/SignInForm";
 
 export default function Home() {
-  return (
-    <div>
-      <ConnectionForm />
-    </div>
-  );
+  return <div>HOME PAGE</div>;
 }

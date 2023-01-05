@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import Connection from "../../src/components/Connection/Connection";
+import SignIn from "../../src/components/Auth/SignIn";
 
-function ConnectionForm() {
+function signIn() {
   return (
     <div className="flex flex-col">
       <Image
@@ -12,7 +12,7 @@ function ConnectionForm() {
         alt="an electrican man working in the background"
       />
       <div className="absolute flex justify-center items-center top-28">
-        <Connection />
+        <SignIn />
       </div>
       <Image
         src="/assets/threads.png"
@@ -25,4 +25,4 @@ function ConnectionForm() {
   );
 }
 
-export default ConnectionForm;
+export default signIn;
