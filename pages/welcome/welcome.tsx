@@ -11,15 +11,15 @@ function welcome() {
         height={10}
         quality={100}
         alt="an electrican man working in the background"
-        className="sm:hidden relative"
+        className="md:hidden relative"
       />
       <Image
         src="/assets/photo_bienvenue_desktop.png"
         width={10000}
         height={1}
         quality={100}
-        alt="an electrican man working in the background"
-        className="hidden relative"
+        alt="an man working on a board"
+        className="hidden relative md:flex"
       />
       <div className="absolute top-28">
         <Welcome />
@@ -30,7 +30,7 @@ function welcome() {
         height={300}
         quality={100}
         alt="threads"
-        className="relative flex top-80"
+        className="relative flex top-80 md:top-[450px]"
       />
     </div>
   );
