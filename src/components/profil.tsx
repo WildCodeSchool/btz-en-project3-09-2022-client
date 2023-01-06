@@ -13,7 +13,7 @@ type TUser = {
 
 function Profil() {
   const getUser = async () => {
-    const res = await axios.get("http://localhost:4000/api/v1/users");
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users`);
     return res.data;
   };
   const { isLoading, error, data } = useQuery("getUser", getUser);

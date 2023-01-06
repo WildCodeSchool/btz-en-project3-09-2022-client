@@ -10,7 +10,7 @@ type TSpace = {
 
 function Espace() {
   const getAllSpaces = async () => {
-    const res = await axios.get("http://localhost:4000/api/v1/spaces");
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/spaces`);
     return res.data;
   };
 
