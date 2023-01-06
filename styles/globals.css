@@ -1,3 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #212529;
+    font-size: 16px;
+    line-height: 1.1em;
+    background: white;
+  }
+}
+
+@layer components {
+  .flex-all-center {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .flex-x-center {
+    @apply flex flex-col items-center;
+  }
+
+  .centered-absolute {
+    @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .centered-x-absolute {
+    @apply left-1/2 transform -translate-x-1/2;
+  }
+
+  .centered-y-absolute {
+    @apply top-1/2 transform -translate-y-1/2;
+  }
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Regular.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Medium.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Bold.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Black.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
