@@ -28,7 +28,7 @@ function SignIn() {
       <div className="text-xl font-bold font-publicSans">Je me connecte</div>
       <div>
         <form>
-          <div className="flex flex-col space-y-3 text-black text-sm font-publicSans items-center justify-center">
+          <div className="flex flex-col space-y-3 text-dark-enedis text-sm font-publicSans items-center justify-center">
             <div className="flex items-center space-x-3">
               <Image
                 src="/assets/enedis_picto_femme_blanc.png"
