@@ -37,14 +37,14 @@ function Navbar() {
               <div className=" flex flex-row-reverse  justify-around items-center ">
                 {isSearchBarOpen && width > 380 && (
                   <input
-                    className="absolute right-[65px]   h-[50px] rounded-full text-center w-1/3 placeholder "
+                    className="absolute right-[75px]   h-[45px] rounded-full text-center w-1/3 placeholder "
                     placeholder="Rechercher..."
                   />
                 )}
                 {width > 380 && (
                   <button
                     type="button"
-                    className="bg-green-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
+                    className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
                     onClick={displaySearchBar}
                   >
                     <Image
