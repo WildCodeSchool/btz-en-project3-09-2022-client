@@ -24,7 +24,7 @@ function Espace() {
   }
   return (
     <div className="w-full flex flex-col items-center">
-      <hr className="bg-vert h-1 w-full top-0" />
+      <hr className="bg-vert h-1 w-full top-0 mb-4" />
       <div className=" w-2/6 text-black font-bold">Mes espaces</div>
       <hr className="bg-bleu h-1 w-1/3 rounded-full" />
       {data.map((space: TSpace) => (
