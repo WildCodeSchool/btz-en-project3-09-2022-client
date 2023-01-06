@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 import Image from "next/image";
-
-import profilePicture from "../../public/assets/john-min.JPG";
 import useModal from "./modal/useModal";
 import Modal from "./modal/Modal";
 
@@ -68,8 +66,10 @@ function Navbar() {
               className="rounded-[50%] object-cover"
             /> */}
                 <button type="button" onClick={toggle}>
-                  <img
-                    src={profilePicture.src}
+                  <Image
+                    src="/assets/john-min.JPG"
+                    width={1000}
+                    height={1000}
                     alt="profile"
                     className="rounded-[50%] h-[40px] w-[40px] object-cover"
                   />
