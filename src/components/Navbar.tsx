@@ -75,8 +75,8 @@ function Navbar() {
               </div>
             </div>
           ) : (
-            <div className=" w-full flex justify-around">
-              <div className=" min-w-[50%] flex justify-between items-center relative ">
+            <div className="w-2/3 flex justify-between">
+              <div className="relative  min-w-[50%] flex justify-between items-center  ">
                 {isSearchBarOpen && (
                   <input
                     className="w-[86%] h-[40px] rounded-full text-center "
@@ -98,7 +98,7 @@ function Navbar() {
               </div>
               <button
                 type="button"
-                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px]"
+                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px] absolute right-8 top-4"
               >
                 Je publie
               </button>
@@ -117,13 +117,13 @@ function Navbar() {
         </div>
       </div>
       {width > 768 && (
-        <div className="max-w-[10%] min-w-[180px] m-auto flex justify-between items-center h-[70px]">
+        <div className="px-4 min-w-[180px] m-auto flex justify-between items-center h-[70px]">
           <Image
             src="/assets/john-min.JPG"
             width={1000}
             height={1000}
             alt="profile"
-            className="rounded-[60%] h-[60px] w-[60px] object-cover"
+            className="rounded-[60%] h-[40px] w-[40px] object-cover"
           />
 
           <p className="font-enedis font-bold text-desk-xl(section)">
