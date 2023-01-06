@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 import Image from "next/image";
-import logo from "../../public/assets/logo-enedis-share_blanc.png";
-import pictoSearch from "../../public/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png";
+
 import profilePicture from "../../public/assets/john-min.JPG";
 import useModal from "./modal/useModal";
 import Modal from "./modal/Modal";
@@ -22,11 +21,14 @@ function Navbar() {
   const { isShowing, toggle } = useModal();
 
   return (
-    <div className="w-full flex justify-between items-center">
-      <div className="h-[100px] bg-bleu flex justify-center relative md:w-3/4 md:rounded-r-full  w-full">
-        <div className="w-[95%]  flex justify-between items-center">
-          <img
-            src={logo.src}
+    <div className="w-full flex justify-between ">
+      <div className="h-[70px] bg-blue-enedis flex justify-center relative md:w-5/6 md:rounded-r-full  w-full">
+        <div className="w-[95%] flex justify-between items-center">
+          <Image
+            src="/assets/logo-enedis-share_blanc.png"
+            width={1000}
+            height={1000}
+            quality={100}
             alt="enedis-share-logo"
             className=" max-w-[10%] min-w-[200px] "
           />
@@ -35,25 +37,27 @@ function Navbar() {
               <div className=" flex flex-row-reverse  justify-around items-center ">
                 {isSearchBarOpen && width > 380 && (
                   <input
-                    className="absolute right-[75px] md:right-[85px] lg:right-[95px] xl:right-[105px]  h-[45px] rounded-full text-center w-1/3  "
-                    placeholder="Rechercher sur Enedis Share..."
+                    className="absolute right-[65px]   h-[50px] rounded-full text-center w-1/3 placeholder "
+                    placeholder="Rechercher..."
                   />
                 )}
                 {width > 380 && (
                   <button
                     type="button"
-                    className="bg-vert w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
+                    className="bg-green-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
                     onClick={displaySearchBar}
                   >
-                    <img
-                      src={pictoSearch.src}
+                    <Image
+                      src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
+                      width={1000}
+                      height={1000}
                       alt="search-picto"
                       className="w-[80%] h-[80%]"
                     />
                   </button>
                 )}
               </div>
-              <div className="bg-vert min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
+              <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 {/* <Image
               src="/assets/john-min.JPG"
               width={80}
@@ -81,19 +85,20 @@ function Navbar() {
                 )}
                 <button
                   type="button"
-                  className="absolute right-0   w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
+                  className=" absolute -right-3   w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
                   onClick={displaySearchBar}
                 >
-                  <img
-                    src={pictoSearch.src}
+                  <Image
+                    src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
+                    width={1000}
+                    height={1000}
                     alt="search-picto"
-                    className="w-[80%] h-[80%]"
                   />
                 </button>
               </div>
               <button
                 type="button"
-                className="bg-vert text-white rounded-full w-[200px] h-[60px]"
+                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px]"
               >
                 Je publie
               </button>
@@ -102,24 +107,26 @@ function Navbar() {
         </div>
         <div className="absolute">
           <Modal isShowing={isShowing} hide={toggle}>
-            <div className="space-y-2 ">
-              <p className="text-white">Mon profil</p>
-              <p className="text-white">Paramètres</p>
-              <p className="text-white">Aide</p>
-              <p className="text-white">Me déconnecter</p>
+            <div className="space-y-4 text-left ">
+              <p className="text-white-enedis">Mon profil</p>
+              <p className="text-white-enedis">Paramètres</p>
+              <p className="text-white-enedis">Aide</p>
+              <p className="text-white-enedis">Me déconnecter</p>
             </div>
           </Modal>
         </div>
       </div>
       {width > 768 && (
-        <div className="max-w-[10%] min-w-[160px] m-auto flex justify-between items-center h-[100px]">
-          <img
-            src={profilePicture.src}
+        <div className="max-w-[10%] min-w-[180px] m-auto flex justify-between items-center h-[70px]">
+          <Image
+            src="/assets/john-min.JPG"
+            width={1000}
+            height={1000}
             alt="profile"
             className="rounded-[60%] h-[60px] w-[60px] object-cover"
           />
 
-          <p>
+          <p className="font-enedis font-bold text-desk-xl(section)">
             John <br />
             DOE
           </p>
