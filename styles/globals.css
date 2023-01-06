@@ -36,6 +36,14 @@
   .centered-y-absolute {
     @apply top-1/2 transform -translate-y-1/2;
   }
+
+  h3 {
+    @apply font-enedis font-bold text-mob-xl(headers+titles);
+  }
+
+  button {
+    @apply font-enedis font-bold text-mob-md(CTA+input);
+  }
 }
 
 @font-face {
