@@ -42,19 +42,21 @@ function Navbar() {
                   />
                 )}
                 {width > 380 && (
-                  <button
-                    type="button"
-                    className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
-                    onClick={displaySearchBar}
-                  >
-                    <Image
-                      src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
-                      width={1000}
-                      height={1000}
-                      alt="search-picto"
-                      className="w-[80%] h-[80%]"
-                    />
-                  </button>
+                  <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center">
+                    <button
+                      type="button"
+                      className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
+                      onClick={displaySearchBar}
+                    >
+                      <Image
+                        src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
+                        width={1000}
+                        height={1000}
+                        alt="search-picto"
+                        className="w-[80%] h-[80%]"
+                      />
+                    </button>
+                  </div>
                 )}
               </div>
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
@@ -77,24 +79,18 @@ function Navbar() {
           ) : (
             <div className="w-2/3 flex justify-between">
               <div className="relative  min-w-[50%] flex justify-between items-center  ">
-                {isSearchBarOpen && (
-                  <input
-                    className="w-[86%] h-[40px] rounded-full text-center "
-                    placeholder="Rechercher sur Enedis Share..."
-                  />
-                )}
-                <button
-                  type="button"
-                  className=" absolute -right-3   w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
-                  onClick={displaySearchBar}
-                >
-                  <Image
-                    src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
-                    width={1000}
-                    height={1000}
-                    alt="search-picto"
-                  />
-                </button>
+                <input
+                  className="w-[86%] h-[40px] rounded-full text-center "
+                  placeholder="Rechercher sur Enedis Share..."
+                />
+
+                <Image
+                  src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
+                  width={1000}
+                  height={1000}
+                  alt="search-picto"
+                  className=" absolute -right-3  w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
+                />
               </div>
               <button
                 type="button"
