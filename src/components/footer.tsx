@@ -24,7 +24,7 @@ function Footer() {
               initial={{ y: 280 }}
               animate={{ y: 0 }}
               transition={{ duration: 1 }}
-              className="h-2/3 bg-bleu_leger z-50 flex flex-col justify-center items-center"
+              className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <Espace />
             </motion.div>
@@ -39,7 +39,7 @@ function Footer() {
               initial={{ y: 280 }}
               animate={{ y: 0 }}
               transition={{ duration: 1 }}
-              className="h-2/3 bg-bleu_leger z-50 flex flex-col justify-center items-center"
+              className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <Profil />
             </motion.div>
@@ -47,8 +47,10 @@ function Footer() {
         </AnimatePresence>
       </div>
 
-      <hr className={openEspace || openProfil ? "hidden" : "bg-vert h-1"} />
-      <div className="bg-bleu  z-0 relative flex items-center ">
+      <div
+        className={openEspace || openProfil ? "hidden" : "bg-green-enedis h-1"}
+      />
+      <div className="bg-blue-enedis  z-0 relative flex items-center ">
         <div className="flex justify-around w-full">
           {openProfil ? (
             <div className="relative flex justify-center w-1/3">
@@ -60,7 +62,7 @@ function Footer() {
                 className="relative z-20 "
                 onClick={handleClickProfil}
               />
-              <div className="h-10 bg-white w-full absolute top-0 left-1/2 transform -translate-x-1/2 z-10" />
+              <div className="h-10 bg-white-enedis w-full absolute top-0 left-1/2 transform -translate-x-1/2 z-10" />
             </div>
           ) : (
             <Image
@@ -81,7 +83,7 @@ function Footer() {
                 onClick={handleClickEspace}
                 className="relative z-20 "
               />
-              <div className="h-10 bg-white w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 " />
+              <div className="h-10 bg-white-enedis w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 " />
             </div>
           ) : (
             <Image

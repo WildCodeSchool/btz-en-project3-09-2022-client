@@ -24,24 +24,24 @@ function Espace() {
   }
   return (
     <div className="w-full flex flex-col items-center">
-      <hr className="bg-vert h-1 w-full top-0 mb-4" />
+      <div className="bg-green-enedis h-1 w-full top-0 mb-4" />
       <div className=" w-2/6 text-black font-bold">Mes espaces</div>
-      <hr className="bg-bleu h-1 w-1/3 rounded-full" />
+      <div className="bg-blue-enedis h-1 w-1/3 rounded-full" />
       {data.map((space: TSpace) => (
         <div
           key={space.id}
-          className="flex justify-center items-center my-2 w-2/3"
+          className="flex justify-center items-center my-2 w-2/3 "
         >
-          <p className="absolute text-white font-bold text-sm z-20 ">
+          <p className="absolute text-white-enedis font-bold text-sm z-20 ">
             {space.name}
           </p>
-          <div className="w-full relative z-10">
+          <div className="w-full relative z-10 ">
             <img
               src={space.imageUrl}
               alt={`Logo ${space.name}`}
-              className="rounded-lg object-center h-16 w-full "
+              className="rounded-lg object-center h-16 w-full rounded-select-mobile"
             />
-            <div className="bg-bleu h-16 w-full absolute z-20 top-0 left-0 mix-blend-hard-light opacity-[0.85] rounded-lg" />
+            <div className="bg-blue-enedis h-16 w-full absolute z-20 top-0 left-0 mix-blend-hard-light opacity-[0.85] rounded-select-mobile" />
           </div>
         </div>
       ))}
