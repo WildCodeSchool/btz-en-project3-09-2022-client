@@ -40,7 +40,7 @@
 
 @font-face {
   font-family: "Enedis";
-  src: url("../public/fonts/Enedis-Black.woff2") format("woff2"),
+  src: url("../public/fonts/Enedis-Regular.woff2") format("woff2"),
     url("../public/fonts/Enedis-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
