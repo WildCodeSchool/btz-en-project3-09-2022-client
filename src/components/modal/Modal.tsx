@@ -11,7 +11,7 @@ function Modal({ isShowing, hide, ...props }: IProps) {
   return isShowing
     ? ReactDOM.createPortal(
         <div className="  top-0 left-0   w-full h-full overflow-x-hidden overflow-y-auto outline-none">
-          <div className=" absolute right-3 top-28 rounded-xl   h-[150px] w-[168px] bg-bleu p-5 ">
+          <div className=" absolute right-3 top-28 rounded-app-bloc h-[150px] w-[168px] bg-blue-enedis p-5 font-enedis ">
             <div className="flex justify-between  " />
             <div className="modal-body ">{props.children}</div>
           </div>
