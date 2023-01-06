@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Espace from "./espace";
+import Profil from "./profil";
 
 function Footer() {
   const [openEspace, setOpenEspace] = useState(false);
@@ -40,10 +41,7 @@ function Footer() {
               transition={{ duration: 1 }}
               className="h-2/3 bg-bleu_leger z-50 flex flex-col justify-center items-center"
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
-              ipsam tenetur necessitatibus! Iusto ipsum reiciendis adipisci
-              dolore pariatur corrupti sequi! Unde autem earum assumenda debitis
-              libero laboriosam iure excepturi accusamus.
+              <Profil />
             </motion.div>
           )}
         </AnimatePresence>
