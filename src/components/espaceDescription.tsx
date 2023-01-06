@@ -1,6 +1,21 @@
+/* eslint-disable @typescript-eslint/return-await */
 import React from "react";
+import { useQuery } from "react-query";
+import { userFetcher } from "../utils/fetcher";
 
 function EspaceDescription() {
+  const { isLoading, error, data } = useQuery(
+    ["getUser", "c2a3c1e8-c588-4090-8e75-e328b85f5107"],
+    () => userFetcher.getOne("c2a3c1e8-c588-4090-8e75-e328b85f5107")
+  );
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+  if (error) {
+    return <p>Sorry something went wrong</p>;
+  }
+
   return (
     <div className="bg-background-enedis flex-all-center w-full">
       <div className="bg-green-enedis h-1 top-0 w-full mb-6" />
@@ -19,13 +34,13 @@ function EspaceDescription() {
       <div>
         <button
           type="button"
-          className="text-white-enedis bg-green-enedis rounded-full px-2 "
+          className="text-white-enedis bg-green-enedis rounded-full px-2 h-10 w-28 "
         >
           J&apos;ajoute
         </button>
         <button
           type="button"
-          className="text-white-enedis bg-green-enedis rounded-full px-2 "
+          className="text-white-enedis bg-green-enedis rounded-full px-2 h-10 w-28 "
         >
           Je valide
         </button>

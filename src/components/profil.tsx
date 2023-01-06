@@ -2,21 +2,14 @@ import axios from "axios";
 import React from "react";
 import Image from "next/image";
 import { useQuery } from "react-query";
-
-type TUser = {
-  id: string;
-  firstname: string;
-  lastname: string;
-  imageUrl: string;
-  workLocation: string;
-};
+import { TUser } from "../types/main";
 
 function Profil() {
-  const getUser = async () => {
+  const getAllUser = async () => {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/users`);
     return res.data;
   };
-  const { isLoading, error, data } = useQuery("getUser", getUser);
+  const { isLoading, error, data } = useQuery(["getAllUsers"], getAllUser);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
