@@ -85,7 +85,6 @@ function Profil() {
               className="rounded-full h-7 w-fit border-bleu border text-sm px-2 flex justify-center items-center"
             >
               {res.name}
-              {res.name}
             </p>
           ))}
         </div>
