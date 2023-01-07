@@ -23,14 +23,16 @@ function Espace() {
     return <p>Sorry something went wrong</p>;
   }
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mb-3">
       <div className="bg-green-enedis h-1 w-full top-0 mb-4" />
-      <div className=" w-2/6 text-black font-bold">Mes espaces</div>
-      <div className="bg-blue-enedis h-1 w-1/3 rounded-full" />
+      <div className="  text-mob-xl(headers+titles) font-bold mb-1">
+        Mes espaces
+      </div>
+      <div className="bg-blue-enedis h-1 w-2/3 rounded-full mb-3" />
       {data.map((space: TSpace) => (
         <div
           key={space.id}
-          className="flex justify-center items-center my-2 w-2/3 "
+          className="flex justify-center items-center m-1 w-2/3 "
         >
           <p className="absolute text-white-enedis font-bold text-sm z-20 ">
             {space.name}

@@ -11,13 +11,31 @@ function Footer() {
   const [openEspaceDescription, setOpenEspaceDescription] = useState(false);
 
   const handleClickEspace = () => {
-    setOpenEspace(!openEspace);
+    if (openProfil) {
+      setOpenProfil(false);
+    }
+    if (openEspaceDescription) {
+      setOpenEspaceDescription(false);
+    }
+    setTimeout(() => setOpenEspace(!openEspace), 500);
   };
   const handleClickProfil = () => {
-    setOpenProfil(!openProfil);
+    if (openEspaceDescription) {
+      setOpenEspaceDescription(false);
+    }
+    if (openEspace) {
+      setOpenEspace(false);
+    }
+    setTimeout(() => setOpenProfil(!openProfil), 500);
   };
   const handleClickEspaceDescription = () => {
-    setOpenEspaceDescription(!openEspaceDescription);
+    if (openEspace) {
+      setOpenEspace(false);
+    }
+    if (openProfil) {
+      setOpenProfil(false);
+    }
+    setTimeout(() => setOpenEspaceDescription(!openEspaceDescription), 500);
   };
 
   return (
@@ -29,7 +47,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.5 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <Espace />
@@ -44,7 +62,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.5 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <Profil />
@@ -59,7 +77,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.5 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <EspaceDescription />

@@ -34,13 +34,13 @@ function Profil() {
               height={20}
               className="w-20 h-18 rounded-full border object-contain "
             />
-            <div>
+            <div className="flex flex-col items-start space-y-1">
               <p className="font-bold">{user.firstname}</p>
-              <p className="font-bold pb-2">{user.lastname}</p>
+              <p className="font-bold ">{user.lastname}</p>
             </div>
             <button
               type="button"
-              className="text-white-enedis bg-green-enedis rounded-full px-2 w-32 h-14"
+              className="text-white-enedis bg-green-enedis rounded-full px-2 w-32 py-1 text-mob-md(CTA+input) font-bold"
             >
               Voir
               <br /> mon profil
@@ -49,14 +49,18 @@ function Profil() {
 
           <div className="flex justify-between  pt-6 px-2">
             <div className=" w-1/2 flex flex-col items-center">
-              <div className="font-bold">Mon Site</div>
+              <div className="font-bold text-mob-xl(headers+titles) ">
+                Mon Site
+              </div>
               <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
-              <p className="border border-blue-enedis rounded-full h-fit px-2">
+              <p className="border border-blue-enedis rounded-full h-fit px-2 text-mob-sm(multiuse)">
                 {user.workLocation}
               </p>
             </div>
             <div className=" w-1/2 flex flex-col items-center">
-              <div className="font-bold">Mon Equipe</div>
+              <div className="font-bold text-mob-xl(headers+titles)">
+                Mon Equipe
+              </div>
               <div className="bg-blue-enedis h-1  rounded-full w-3/4" />
             </div>
           </div>

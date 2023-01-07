@@ -1,4 +1,4 @@
-import { TUser } from "./../types/main";
+import { TUser } from "../types/main";
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
 
