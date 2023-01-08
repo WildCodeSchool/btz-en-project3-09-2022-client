@@ -21,6 +21,16 @@ function Navbar() {
 
   return (
     <div className="w-full flex justify-between ">
+      {/* Modal component */}
+      <Modal isShowing={isShowing} hide={toggle}>
+        <div className=" space-y-3">
+          <p className="text-white-enedis">Mon profil</p>
+          <p className="text-white-enedis">Paramètres</p>
+          <p className="text-white-enedis">Aide</p>
+          <p className="text-white-enedis">Me déconnecter</p>
+        </div>
+      </Modal>
+
       <div className="h-[70px] bg-blue-enedis flex justify-center relative md:w-5/6 md:rounded-r-full  w-full">
         <div className="w-[95%] flex justify-between items-center">
           <Image
@@ -34,7 +44,7 @@ function Navbar() {
           {width < 768 ? (
             <div className="flex justify-between min-w-[100px] ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
-                {isSearchBarOpen && <SearchBar width={width} />}
+                {isSearchBarOpen && <SearchBar />}
                 {width > 380 && (
                   <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center">
                     <button
@@ -77,16 +87,6 @@ function Navbar() {
               </button>
             </div>
           )}
-        </div>
-        <div className="absolute">
-          <Modal isShowing={isShowing} hide={toggle}>
-            <div className="space-y-4 text-left ">
-              <p className="text-white-enedis">Mon profil</p>
-              <p className="text-white-enedis">Paramètres</p>
-              <p className="text-white-enedis">Aide</p>
-              <p className="text-white-enedis">Me déconnecter</p>
-            </div>
-          </Modal>
         </div>
       </div>
       {width > 768 && (
