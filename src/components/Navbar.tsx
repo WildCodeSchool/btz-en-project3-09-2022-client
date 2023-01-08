@@ -1,15 +1,32 @@
 import React, { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
+import { useQuery } from "react-query";
+import axios from "axios";
 import Image from "next/image";
 import useModal from "./modal/useModal";
 import Modal from "./modal/Modal";
 
+type TUser = {
+  id: string;
+  role: string;
+  firstname: string;
+  lastname: string;
+  birthday: Date;
+  createdAt: Date;
+  email: string;
+  imageUrl: string;
+  isDisabled: boolean;
+  teamId: string;
+  updatedAt: Date;
+  workLocation: string;
+};
 function Navbar() {
   // Window size
   const { width } = useWindowSize();
 
   // display search bar
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("");
 
   const displaySearchBar = () => {
     setIsSearchBarOpen(!isSearchBarOpen);
@@ -17,6 +34,26 @@ function Navbar() {
 
   // Modal
   const { isShowing, toggle } = useModal();
+
+  // Fetch all users
+  const getAllUsers = async () => {
+    try {
+      const user = await axios.get(`http://localhost:4000/api/v1/users`);
+      return user.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const { isLoading, data: users, error } = useQuery("users", getAllUsers);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    <p>Something bad happen</p>;
+  }
 
   return (
     <div className="w-full flex justify-between ">
@@ -34,10 +71,26 @@ function Navbar() {
             <div className="flex justify-between min-w-[100px] ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
                 {isSearchBarOpen && width > 380 && (
-                  <input
-                    className="absolute right-[75px]   h-[45px] rounded-full text-center w-1/3 placeholder "
-                    placeholder="Rechercher..."
-                  />
+                  <>
+                    <input
+                      type="select"
+                      className="absolute right-[75px]   h-[45px] rounded-full text-center w-1/3 placeholder "
+                      placeholder="Rechercher..."
+                      onChange={(e) => setSelectedUser(e.target.value)}
+                    />
+                    <div className="flex bg-green-enedis text-white-enedis rounded-select-mobile z-40 flex-col absolute top-20 right-16 w-1/3 md:w-[252px] md:ml-0 ml-[-30px] h-60 overflow-scroll ">
+                      {users.length > 0 &&
+                        users
+                          .filter((user: TUser) =>
+                            user.lastname.toLowerCase().includes(selectedUser)
+                          )
+                          .map((user: TUser) => (
+                            <span>
+                              {user.firstname} {user.lastname}
+                            </span>
+                          ))}
+                    </div>
+                  </>
                 )}
                 {width > 380 && (
                   <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center">
