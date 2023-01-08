@@ -6,8 +6,8 @@ import { userFetcher } from "../utils/fetcher";
 
 function EspaceDescription() {
   const { isLoading, error, data } = useQuery(
-    ["getUser", "c2a3c1e8-c588-4090-8e75-e328b85f5107"],
-    () => userFetcher.getOne("c2a3c1e8-c588-4090-8e75-e328b85f5107")
+    ["getUser", "1a0f71ea-b5ef-4183-a4db-c976666805e4"],
+    () => userFetcher.getOne("1a0f71ea-b5ef-4183-a4db-c976666805e4")
   );
 
   if (isLoading || !data) {

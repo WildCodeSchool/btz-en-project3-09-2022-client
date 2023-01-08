@@ -5,3 +5,9 @@ export type TUser = {
   imageUrl: string;
   workLocation: string;
 };
+
+export type TSpace = {
+  name: string;
+  imageUrl: string;
+  id: string;
+};
