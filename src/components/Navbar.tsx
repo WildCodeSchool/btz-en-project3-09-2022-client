@@ -1,32 +1,16 @@
 import React, { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
-import { useQuery } from "react-query";
-import axios from "axios";
 import Image from "next/image";
 import useModal from "./modal/useModal";
 import Modal from "./modal/Modal";
+import SearchBar from "./SearchBar";
 
-type TUser = {
-  id: string;
-  role: string;
-  firstname: string;
-  lastname: string;
-  birthday: Date;
-  createdAt: Date;
-  email: string;
-  imageUrl: string;
-  isDisabled: boolean;
-  teamId: string;
-  updatedAt: Date;
-  workLocation: string;
-};
 function Navbar() {
   // Window size
   const { width } = useWindowSize();
 
   // display search bar
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState("");
 
   const displaySearchBar = () => {
     setIsSearchBarOpen(!isSearchBarOpen);
@@ -34,26 +18,6 @@ function Navbar() {
 
   // Modal
   const { isShowing, toggle } = useModal();
-
-  // Fetch all users
-  const getAllUsers = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4000/api/v1/users`);
-      return user.data;
-    } catch (error) {
-      return error;
-    }
-  };
-
-  const { isLoading, data: users, error } = useQuery("users", getAllUsers);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    <p>Something bad happen</p>;
-  }
 
   return (
     <div className="w-full flex justify-between ">
@@ -70,28 +34,7 @@ function Navbar() {
           {width < 768 ? (
             <div className="flex justify-between min-w-[100px] ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
-                {isSearchBarOpen && width > 380 && (
-                  <>
-                    <input
-                      type="select"
-                      className="absolute right-[75px]   h-[45px] rounded-full text-center w-1/3 placeholder "
-                      placeholder="Rechercher..."
-                      onChange={(e) => setSelectedUser(e.target.value)}
-                    />
-                    <div className="flex bg-green-enedis text-white-enedis rounded-select-mobile z-40 flex-col absolute top-20 right-16 w-1/3 md:w-[252px] md:ml-0 ml-[-30px] h-60 overflow-scroll ">
-                      {users.length > 0 &&
-                        users
-                          .filter((user: TUser) =>
-                            user.lastname.toLowerCase().includes(selectedUser)
-                          )
-                          .map((user: TUser) => (
-                            <span>
-                              {user.firstname} {user.lastname}
-                            </span>
-                          ))}
-                    </div>
-                  </>
-                )}
+                {isSearchBarOpen && <SearchBar width={width} />}
                 {width > 380 && (
                   <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center">
                     <button
@@ -111,13 +54,6 @@ function Navbar() {
                 )}
               </div>
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
-                {/* <Image
-              src="/assets/john-min.JPG"
-              width={80}
-              height={80}
-              alt="profile"
-              className="rounded-[50%] object-cover"
-            /> */}
                 <button type="button" onClick={toggle}>
                   <Image
                     src="/assets/john-min.JPG"
@@ -131,20 +67,8 @@ function Navbar() {
             </div>
           ) : (
             <div className="w-2/3 flex justify-between">
-              <div className="relative  min-w-[50%] flex justify-between items-center  ">
-                <input
-                  className="w-[86%] h-[40px] rounded-full text-center "
-                  placeholder="Rechercher sur Enedis Share..."
-                />
+              <SearchBar />
 
-                <Image
-                  src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
-                  width={1000}
-                  height={1000}
-                  alt="search-picto"
-                  className=" absolute -right-3  w-[45px] h-[45px] rounded-full flex justify-center items-center z-10 "
-                />
-              </div>
               <button
                 type="button"
                 className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px] absolute right-8 top-4"
