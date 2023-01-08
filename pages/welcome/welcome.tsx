@@ -30,7 +30,15 @@ function welcome() {
         height={300}
         quality={100}
         alt="threads"
-        className="relative flex top-80 md:top-[450px]"
+        className="relative flex top-80 md:top-[450px] lg:hidden"
+      />
+      <Image
+        src="/assets/bienvenue_threads_desktop.png"
+        width={300}
+        height={300}
+        quality={100}
+        alt="threads"
+        className="relative hidden top-80 lg:flex lg:top-[250px] lg:left-56 xl:top-[150px] xl:left-60"
       />
     </div>
   );
