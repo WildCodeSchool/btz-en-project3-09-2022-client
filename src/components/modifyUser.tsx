@@ -65,34 +65,46 @@ function ModifyUser() {
             />
           </div>
         </div>
-        <div className="flex justify-end w-full ">
-          <div className="flex flex-col">
+        <div className=" w-full">
+          <table className="w-full">
             {Alluser.map((user: TUser) => (
-              <div className="flex flex-row justify-end w-full space-x-4 items-center border border-black">
-                <div className="">
-                  <div className="w-fit flex justify-start items-center overflow-hidden mb-2 mr-2">
-                    <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
-                      <Image
-                        alt={`${user.firstname} ${user.lastname.toUpperCase()}`}
-                        src={user.imageUrl}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis px-4 py-[6px]">
-                      <p className="text-mob-xs(textPost) text-center truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
-                        {user.firstname} {user.lastname.toUpperCase()}
-                      </p>
+              <tr className="">
+                <td className="">
+                  <div className="flex justify-start items-center  w-5/6">
+                    <div className="w-fit flex justify-center items-center overflow-hidden mb-2 mr-2">
+                      <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
+                        <Image
+                          alt={`${
+                            user.firstname
+                          } ${user.lastname.toUpperCase()}`}
+                          src={user.imageUrl}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis bg-blue-enedis px-4 py-[6px]">
+                        <p className="text-mob-xs(textPost) text-white-enedis text-center truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
+                          {user.firstname} {user.lastname.toUpperCase()}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <input type="radio" className="h-4 w-4" />
-                <input type="radio" className="h-4 w-4" />
-                <input type="radio" className="h-4 w-4" />
-                <input type="radio" className="h-4 w-4" />
-              </div>
+                </td>
+                <td>
+                  <input type="radio" className="h-4 w-4 " />
+                </td>
+                <td>
+                  <input type="radio" className="h-4 w-4 ml-3" />
+                </td>
+                <td className="">
+                  <input type="radio" className="h-4 w-4 ml-3" />
+                </td>
+                <td>
+                  <input type="radio" className="h-4 w-4 ml-3" />
+                </td>
+              </tr>
             ))}
-          </div>
+          </table>
         </div>
       </div>
     </div>
