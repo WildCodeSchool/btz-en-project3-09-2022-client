@@ -10,5 +10,5 @@ export const userFetcher = {
 };
 
 export const spaceFetcher = {
-  getAll: async () => (await axiosInstance.get<TSpace>("/spaces")).data,
+  getAll: async () => (await axiosInstance.get<TSpace[]>("/spaces")).data,
 };

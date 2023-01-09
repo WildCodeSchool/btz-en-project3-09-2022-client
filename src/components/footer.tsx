@@ -94,9 +94,9 @@ function Footer() {
         }
       />
       <div className="bg-blue-enedis  z-0 relative flex items-center h-16">
-        <div className="flex justify-around w-full">
+        <div className="flex justify-around w-full h-full">
           {openProfil ? (
-            <div className="relative flex justify-center w-1/3">
+            <div className="relative flex justify-center w-1/6">
               <Image
                 src="/logo_enedis/picto_profil_white.svg"
                 width={32}
@@ -105,7 +105,7 @@ function Footer() {
                 className="relative z-20 "
                 onClick={handleClickProfil}
               />
-              <div className="h-10 bg-white-enedis w-full absolute top-0 left-1/2 transform -translate-x-1/2 z-10" />
+              <div className="h-full bg-background-enedis w-full absolute left-0 z-10" />
             </div>
           ) : (
             <Image
@@ -118,7 +118,7 @@ function Footer() {
           )}
 
           {openEspaceDescription ? (
-            <div className="relative flex justify-center w-1/3">
+            <div className="relative flex justify-center w-1/6">
               <Image
                 src="/logo_enedis/PictoInfoBlue.svg"
                 width={30}
@@ -127,7 +127,7 @@ function Footer() {
                 className="relative z-20 "
                 onClick={handleClickEspaceDescription}
               />
-              <div className="h-10 bg-white-enedis w-full absolute top-0 left-1/2 transform -translate-x-1/2 z-10" />
+              <div className="h-full bg-background-enedis w-full absolute top-0 left-1/2 transform -translate-x-1/2 z-10" />
             </div>
           ) : (
             <Image
@@ -140,7 +140,7 @@ function Footer() {
           )}
 
           {openEspace ? (
-            <div className="relative flex justify-center w-1/3 ">
+            <div className="relative flex justify-center w-1/6">
               <Image
                 src="/logo_enedis/picto_espace_white.svg"
                 width={40}
@@ -149,7 +149,7 @@ function Footer() {
                 onClick={handleClickEspace}
                 className="relative z-20 "
               />
-              <div className="h-10 bg-white-enedis w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 " />
+              <div className="h-full bg-background-enedis w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 " />
             </div>
           ) : (
             <Image
