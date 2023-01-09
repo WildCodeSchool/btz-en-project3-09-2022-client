@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import Image from "next/image";
 
-function MyAccount() {
+function MyAccountMobile() {
   // Get users
   const getOneUser = async () => {
     try {
@@ -161,4 +161,4 @@ function MyAccount() {
   );
 }
 
-export default MyAccount;
+export default MyAccountMobile;
