@@ -19,7 +19,7 @@ function TextTeamMemberCapsuleBlueStroked({
         />
       </div>
       <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis px-4 py-[6px]">
-        <p className="text-mob-xs(textPost) text-center truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
+        <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
           {firstname} {lastname.toUpperCase()}
         </p>
       </div>
