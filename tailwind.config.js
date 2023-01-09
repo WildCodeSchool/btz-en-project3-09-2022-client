@@ -56,6 +56,7 @@ module.exports = {
       "dark-enedis": "#212529",
       "white-enedis": "#FFFFFF",
       "blue-enedis": "#1423DC",
+      "green-enedis": "#96CD32",
     },
     backgroundColor: {
       "background-enedis": "#E5F1FB",
