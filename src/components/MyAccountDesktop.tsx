@@ -28,8 +28,6 @@ function MyAccountDesktop() {
     <p>Something bad happen</p>;
   }
 
-  console.log(user);
-
   return (
     <div>
       <div className="bg-background-enedis w-[45%] m-auto mt-2 pb-10 ">

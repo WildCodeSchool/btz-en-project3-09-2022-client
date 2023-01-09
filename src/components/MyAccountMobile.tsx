@@ -28,8 +28,6 @@ function MyAccountMobile() {
     <p>Something bad happen</p>;
   }
 
-  console.log(user);
-
   return (
     <div className="flex flex-col items-center pb-8">
       <div className="bg-background-enedis w-[95%] m-auto mt-2 pb-10 ">
