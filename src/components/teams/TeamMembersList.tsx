@@ -7,17 +7,19 @@ import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked
 function TeamMembersList() {
   const [isAllMembers, setIsAllMembers] = useState(false);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  // à remplacer par objet utilisateur authentifié
+  const myTeam = "932aa177-9e1d-4cec-a6ab-39ddd1817493";
 
   const getOneTeam5Members = async () => {
     const { data } = await axios.get<[TUser]>(
-      `${baseUrl}/users?team=932aa177-9e1d-4cec-a6ab-39ddd1817493&limit=2`
+      `${baseUrl}/users?team=${myTeam}&limit=2`
     );
     return data;
   };
 
   const getOneTeamAllMembers = async () => {
     const { data } = await axios.get<[TUser]>(
-      `${baseUrl}/users?team=932aa177-9e1d-4cec-a6ab-39ddd1817493`
+      `${baseUrl}/users?team=${myTeam}`
     );
     return data;
   };
@@ -52,6 +54,7 @@ function TeamMembersList() {
         <div className="w-full flex flex-wrap items-center justify-start">
           {dataOneTeamAllMembers.map((member: TUser) => (
             <TextTeamMemberCapsuleBlueStroked
+              key={member.id}
               firstname={member.firstname}
               lastname={member.lastname}
               imageUrl={member.imageUrl}
@@ -62,6 +65,7 @@ function TeamMembersList() {
         <div className="w-full flex flex-wrap items-center justify-start">
           {dataOneTeam5Members.map((member: TUser) => (
             <TextTeamMemberCapsuleBlueStroked
+              key={member.id}
               firstname={member.firstname}
               lastname={member.lastname}
               imageUrl={member.imageUrl}
