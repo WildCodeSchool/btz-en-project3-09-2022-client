@@ -4,7 +4,11 @@ import { useQuery } from "react-query";
 import { userFetcher } from "../utils/fetcher";
 import { TUser } from "../types/main";
 
-function ModifyUser() {
+type HandleOpenModifyUser = {
+  HandleOpenModifyUser: React.MouseEvent;
+};
+
+function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
   const {
     isLoading,
     error,
@@ -17,6 +21,7 @@ function ModifyUser() {
   if (error) {
     return <p>Sorry something went wrong</p>;
   }
+
   return (
     <div className="bg-green-enedis w-screen h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2">
@@ -37,28 +42,28 @@ function ModifyUser() {
           <div className="flex flex-row space-x-2 ">
             <Image
               src="/logo_enedis/logo_vue.svg"
-              alt="rien a branler"
+              alt="logo de vue"
               width={10}
               height={10}
               className="h-6 w-6"
             />
             <Image
               src="/logo_enedis/logo_comment.svg"
-              alt="rien a branler"
+              alt="logo de commentaires"
               width={10}
               height={10}
               className="h-6 w-6"
             />
             <Image
               src="/logo_enedis/logo_publish.svg"
-              alt="rien a branler"
+              alt="logo de publication"
               width={10}
               height={10}
               className="h-6 w-6"
             />
             <Image
               src="/logo_enedis/logo_handle.svg"
-              alt="rien a branler"
+              alt="logo roue cranter"
               width={10}
               height={10}
               className="h-5 w-5"
@@ -91,20 +96,30 @@ function ModifyUser() {
                   </div>
                 </td>
                 <td>
-                  <input type="radio" className="h-4 w-4 " />
+                  <input type="checkbox" className="h-4 w-4 " />
                 </td>
                 <td>
-                  <input type="radio" className="h-4 w-4 ml-3" />
-                </td>
-                <td className="">
-                  <input type="radio" className="h-4 w-4 ml-3" />
+                  <input type="checkbox" className="h-4 w-4 ml-3" />
                 </td>
                 <td>
-                  <input type="radio" className="h-4 w-4 ml-3" />
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 ml-3 bg-blue-enedis"
+                  />
+                </td>
+                <td>
+                  <input type="checkbox" className="h-4 w-4 ml-3 " />
                 </td>
               </tr>
             ))}
           </table>
+          <button
+            onClick={HandleOpenModifyUser}
+            type="button"
+            className="text-white-enedis bg-green-enedis rounded-full px-2 h-10 w-28 text-mob-md(CTA+input) font-bold"
+          >
+            Je valide
+          </button>
         </div>
       </div>
     </div>
