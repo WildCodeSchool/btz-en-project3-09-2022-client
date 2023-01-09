@@ -6,7 +6,7 @@ import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked
 
 function TeamMembersList() {
   const [isAllMembers, setIsAllMembers] = useState(false);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   // à remplacer par objet utilisateur authentifié
   const myTeam = "932aa177-9e1d-4cec-a6ab-39ddd1817493";
 

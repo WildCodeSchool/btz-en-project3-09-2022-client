@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { TSite } from "../../types/main";
 
 function HeaderHP() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const getDataSite = async () => {
     const { data } = await axios.get<TSite>(
       `${baseUrl}/sites/c91e5eee-3ba0-4efb-9352-6c4077e7670c`

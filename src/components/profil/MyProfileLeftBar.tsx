@@ -7,7 +7,7 @@ import { TOneTeam, TUser } from "../../types/main";
 import CTA from "../structure/CTA";
 
 function MyProfileLeftBar() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const getMyProfileData = async () => {
     const { data } = await axios.get<TUser>(
       `${baseUrl}/users/97af665d-3650-49f3-9ecd-df4d47081903`
