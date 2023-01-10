@@ -76,7 +76,7 @@ function TeamMembersList() {
       <button
         type="button"
         onClick={handleAllMembers}
-        className="text-desk-sm(textPost+multiuse) mt-3 md:text-mob-sm(multiuse) md:mt-4"
+        className="text-desk-sm(textPost+multiuse) font-publicSans font-regular mt-3 md:text-mob-sm(multiuse) md:mt-4"
       >
         {isAllMembers ? "Voir moins..." : "Voir plus..."}
       </button>
