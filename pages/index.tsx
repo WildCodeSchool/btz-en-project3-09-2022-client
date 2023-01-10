@@ -1,4 +1,4 @@
-import Footer from "../src/components/footer";
+import Footer from "../src/components/Footer/footer";
 
 import MyAccountMobile from "../src/components/MyAccountMobile";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { TSpace } from "../types/main";
-import { spaceFetcher } from "../utils/fetcher";
+import { TSpace } from "../../types/main";
+import { spaceFetcher } from "../../utils/fetcher";
 
 function Espace() {
   const { isLoading, error, data } = useQuery("getAllSpaces", () =>

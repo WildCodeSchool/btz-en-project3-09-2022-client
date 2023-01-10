@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { useQuery } from "react-query";
-import { userFetcher } from "../utils/fetcher";
-import { TUser } from "../types/main";
+import { userFetcher } from "../../utils/fetcher";
+import { TUser } from "../../types/main";
 
 type HandleOpenModifyUser = {
   HandleOpenModifyUser: () => void;
