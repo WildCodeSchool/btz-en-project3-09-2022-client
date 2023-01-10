@@ -1,3 +1,9 @@
+import Footer from "../src/components/footer";
+
 export default function Home() {
-  return <div>HOME PAGE</div>;
+  return (
+    <div className="flex flex-col justify-end h-screen">
+      <Footer />
+    </div>
+  );
 }
