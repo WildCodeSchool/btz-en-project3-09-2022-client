@@ -32,12 +32,12 @@ function HeaderHP() {
         className="object-cover relative z-10 min-h-full"
       />
       <div className="absolute z-30 centered-absolute w-full font-enedis text-white-enedis">
-        <p className="text-mob-3xl(welcome+name) font-black md:text-desk-4xl(welcome)">
+        <h1 className="text-mob-3xl(welcome+name) font-black md:text-desk-4xl(welcome)">
           Bienvenue
-        </p>
-        <p className="text-mob-xl(headers+titles) font-medium md:text-desk-3xl(header+name)">
+        </h1>
+        <h1 className="text-mob-xl(headers+titles) font-medium md:text-desk-3xl(header+name)">
           sur Enedis Share {dataSite.name} !
-        </p>
+        </h1>
       </div>
     </div>
   );

@@ -1,47 +1,39 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { useAuth } from "../../context/UserContext";
 import { TUser } from "../../types/main";
+import { userFetcher } from "../../utils/fetcher";
 import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked";
 
 function TeamMembersList() {
   const [isAllMembers, setIsAllMembers] = useState(false);
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-  // à remplacer par objet utilisateur authentifié
-  const myTeam = "932aa177-9e1d-4cec-a6ab-39ddd1817493";
-
-  const getOneTeam5Members = async () => {
-    const { data } = await axios.get<[TUser]>(
-      `${baseUrl}/users?team=${myTeam}&limit=2`
-    );
-    return data;
-  };
-
-  const getOneTeamAllMembers = async () => {
-    const { data } = await axios.get<[TUser]>(
-      `${baseUrl}/users?team=${myTeam}`
-    );
-    return data;
-  };
+  const { user } = useAuth();
 
   const handleAllMembers = () => {
-    getOneTeamAllMembers();
-    setIsAllMembers(!isAllMembers);
+    if (user) {
+      userFetcher.getAllMembersOneTeam(user.teamId);
+      setIsAllMembers(!isAllMembers);
+    }
   };
 
   const {
     isLoading: isLoading5Members,
     error: error5Members,
     data: dataOneTeam5Members,
-  } = useQuery("getOneTeam5Members", getOneTeam5Members);
-
+  } = useQuery(
+    ["getOneTeam5Members", user?.teamId],
+    () => user && userFetcher.get5MembersOneTeam(user.teamId)
+  );
   const {
     isLoading: isLoadingAllMembers,
     error: errorAllMembers,
     data: dataOneTeamAllMembers,
-  } = useQuery("getOneTeamAllMembers", getOneTeamAllMembers);
+  } = useQuery(
+    ["getAllMembersOneTeam", user?.teamId],
+    () => user && userFetcher.getAllMembersOneTeam(user.teamId)
+  );
 
-  if (isLoading5Members || !dataOneTeam5Members)
+  if (isLoading5Members || !dataOneTeam5Members || !user)
     return <div>En chargement</div>;
   if (isLoadingAllMembers || !dataOneTeamAllMembers)
     return <div>En chargement</div>;
@@ -52,25 +44,29 @@ function TeamMembersList() {
     <>
       {isAllMembers ? (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataOneTeamAllMembers.map((member: TUser) => (
-            <TextTeamMemberCapsuleBlueStroked
-              key={member.id}
-              firstname={member.firstname}
-              lastname={member.lastname}
-              imageUrl={member.imageUrl}
-            />
-          ))}
+          {dataOneTeamAllMembers
+            .filter((member) => member.id !== user.id)
+            .map((member: TUser) => (
+              <TextTeamMemberCapsuleBlueStroked
+                key={member.id}
+                firstname={member.firstname}
+                lastname={member.lastname}
+                imageUrl={member.imageUrl}
+              />
+            ))}
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataOneTeam5Members.map((member: TUser) => (
-            <TextTeamMemberCapsuleBlueStroked
-              key={member.id}
-              firstname={member.firstname}
-              lastname={member.lastname}
-              imageUrl={member.imageUrl}
-            />
-          ))}
+          {dataOneTeam5Members
+            .filter((member) => member.id !== user.id)
+            .map((member: TUser) => (
+              <TextTeamMemberCapsuleBlueStroked
+                key={member.id}
+                firstname={member.firstname}
+                lastname={member.lastname}
+                imageUrl={member.imageUrl}
+              />
+            ))}
         </div>
       )}
       <button

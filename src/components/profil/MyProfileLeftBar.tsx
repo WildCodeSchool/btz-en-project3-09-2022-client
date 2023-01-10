@@ -1,63 +1,58 @@
 /* eslint-disable no-console */
-import axios from "axios";
 import Image from "next/image";
 import React from "react";
 import { useQuery } from "react-query";
-import { TOneTeam, TUser } from "../../types/main";
+import { useWindowSize } from "usehooks-ts";
+import { useAuth } from "../../context/UserContext";
+import { teamFetcher } from "../../utils/fetcher";
 import CTA from "../structure/CTA";
 
 function MyProfileLeftBar() {
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-  const getMyProfileData = async () => {
-    const { data } = await axios.get<TUser>(
-      `${baseUrl}/users/97af665d-3650-49f3-9ecd-df4d47081903`
-    );
-    return data;
-  };
+  const { user } = useAuth();
+  const { width } = useWindowSize();
 
   const {
-    isLoading: isLoadingMyProfile,
-    error: errorMyProfile,
-    data: myProfileData,
-  } = useQuery("getMyProfileData", getMyProfileData);
+    isLoading,
+    error,
+    data: myTeam,
+  } = useQuery(
+    ["getTeam", user?.teamId],
+    () => user && teamFetcher.getOne(user.teamId)
+  );
 
-  if (isLoadingMyProfile || !myProfileData) return <div>En chargement</div>;
-
-  const getMyTeamData = async () => {
-    const { data } = await axios.get<TOneTeam>(
-      `${baseUrl}/teams/${myProfileData.teamId}`
-    );
-    return data;
-  };
-
-  const {
-    isLoading: isLoadingMyTeamData,
-    error: errorMyTeamData,
-    data: myTeamData,
-  } = useQuery("getMyTeamData", getMyTeamData);
-
-  if (isLoadingMyTeamData || !myTeamData) return <div>En chargement</div>;
-  if (errorMyTeamData || errorMyProfile)
-    return <div>Une erreur s&apos;est produite</div>;
+  if (isLoading || !myTeam || !user) return <div>En chargement</div>;
+  if (error) return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div className="w-full h-fit mt-[52px] bg-blue-enedis">
-      <div className="flex">
-        <div className="w-[86px] h-[86px] relative overflow-hidden rounded-full">
+    <div className="w-full h-fit mt-[52px] mb-14">
+      <div className="flex mb-6">
+        <div className="w-[80px] h-[80px] min-w-[80px] relative overflow-hidden rounded-full">
           <Image
-            alt={`${myProfileData.firstname} ${myProfileData.lastname}`}
-            src={myProfileData.imageUrl}
+            alt={`${user.firstname} ${user.lastname.toUpperCase()}`}
+            src={user.imageUrl}
             fill
             className="object-cover"
           />
         </div>
-        <div>
-          <p>{myProfileData.firstname}</p>
-          <p>{myProfileData.lastname}</p>
-          <p>Équipe {myTeamData.name}</p>
+        <div className="text-start ml-4 max-w-[calc(100%-104px)] break-words">
+          <p className="font-enedis font-bold text-mob-xl(headers+titles) md:text-desk-xl(section)">
+            {user.firstname}
+            <br />
+            {user.lastname.toUpperCase()}
+          </p>
+          <p className="text-mob-sm(multiuse) break-words mt-3 md:text-desk-sm(textPost+multiuse)">
+            Équipe {myTeam.name.toLowerCase()}
+          </p>
         </div>
+        {width < 768 && (
+          <div className="ml-3">
+            <CTA text="Voir mon profil" action={() => console.log("bonjour")} />
+          </div>
+        )}
       </div>
-      <CTA action={() => console.log("bonjour")} />
+      {width >= 768 && (
+        <CTA text="Voir mon profil" action={() => console.log("bonjour")} />
+      )}
     </div>
   );
 }
