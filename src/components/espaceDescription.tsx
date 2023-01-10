@@ -24,7 +24,6 @@ function EspaceDescription() {
   if (error) {
     return <p>Sorry something went wrong</p>;
   }
-
   return (
     <div className="bg-background-enedis flex-all-center w-full">
       <div className="bg-green-enedis h-1 top-0 w-full mb-6" />
@@ -43,13 +42,13 @@ function EspaceDescription() {
               <AnimatePresence>
                 {modify && (
                   <motion.div
-                    exit={{ y: 280 }}
+                    exit={{ y: -280 }}
                     initial={{ y: 280 }}
                     animate={{ y: 0 }}
                     transition={{ duration: 0.5 }}
                     className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
                   >
-                    <ModifyUser />
+                    <ModifyUser HandleOpenModifyUser={HandleOpenModifyUser} />
                   </motion.div>
                 )}
               </AnimatePresence>
