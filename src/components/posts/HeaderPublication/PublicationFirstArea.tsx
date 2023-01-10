@@ -12,6 +12,7 @@ function PublicationFirstArea() {
         <div className="h-full w-full flex-all-center bg-white-enedis rounded-app-bloc p-4">
           <button
             type="button"
+            // eslint-disable-next-line no-console
             onClick={() => console.log("bonjour")}
             className="w-full h-full text-mob-sm(multiuse) font-publicSans font-regular text-start"
           >
