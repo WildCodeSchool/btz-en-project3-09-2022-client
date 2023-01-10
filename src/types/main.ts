@@ -1,3 +1,8 @@
+export type TSpace = {
+  name: string;
+  imageUrl: string;
+  id: string;
+};
 export type TUser = {
   id: string;
   role: string;

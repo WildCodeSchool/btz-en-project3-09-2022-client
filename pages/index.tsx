@@ -4,6 +4,7 @@ import ListSpaceCardsForHP from "../src/components/spaces/ListSpaceCardsForHP";
 import HeaderHP from "../src/components/structure/HeaderHP";
 import TitleSection from "../src/components/structure/TitleSection";
 import LeftBar from "../src/components/leftBar/leftBar";
+import Footer from "../src/components/footer";
 
 export default function Home() {
   const { width } = useWindowSize();
@@ -17,6 +18,7 @@ export default function Home() {
         <TitleSection titleText="À la Une sur mes espaces" />
         <ListSpaceCardsForHP />
       </div>
+      <Footer />
     </div>
   );
 }
