@@ -14,8 +14,8 @@ function EspaceDescription() {
   };
 
   const { isLoading, error, data } = useQuery(
-    ["getUser", "1a0f71ea-b5ef-4183-a4db-c976666805e4"],
-    () => userFetcher.getOne("1a0f71ea-b5ef-4183-a4db-c976666805e4")
+    ["getUser", "c9446c8c-851b-4f3e-bd0d-7e34d65d18e1"],
+    () => userFetcher.getOne("c9446c8c-851b-4f3e-bd0d-7e34d65d18e1")
   );
 
   if (isLoading || !data) {
