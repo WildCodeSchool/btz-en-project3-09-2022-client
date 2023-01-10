@@ -5,7 +5,7 @@ import { userFetcher } from "../utils/fetcher";
 import { TUser } from "../types/main";
 
 type HandleOpenModifyUser = {
-  HandleOpenModifyUser: React.MouseEvent;
+  HandleOpenModifyUser: () => void;
 };
 
 function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
