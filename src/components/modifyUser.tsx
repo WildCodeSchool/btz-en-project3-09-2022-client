@@ -69,8 +69,8 @@ function ModifyUser() {
           <table className="w-full">
             {Alluser.map((user: TUser) => (
               <tr className="">
-                <td className="">
-                  <div className="flex justify-start items-center  w-5/6">
+                <td className="w-fit max-w-[200px]">
+                  <div className="flex justify-start items-center w-full">
                     <div className="w-fit flex justify-center items-center overflow-hidden mb-2 mr-2">
                       <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
                         <Image
