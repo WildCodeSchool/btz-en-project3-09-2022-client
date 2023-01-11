@@ -1,32 +1,12 @@
 /* eslint-disable no-console */
 
 import React from "react";
-import { useQuery } from "react-query";
-import axios from "axios";
+
 import Image from "next/image";
+import { useAuth } from "../context/UserContext";
 
 function MyAccountMobile() {
-  // Get users
-  const getOneUser = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4000/api/v1/users/`);
-      return user.data;
-    } catch (error) {
-      console.log(error);
-      return "";
-    }
-  };
-
-  // UseQuery
-  const { isLoading, data: user, error } = useQuery("user", getOneUser);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    <p>Something bad happen</p>;
-  }
+  const { user } = useAuth();
 
   console.log(user);
 
@@ -38,7 +18,7 @@ function MyAccountMobile() {
           <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis mb-4" />
           <div className="flex">
             <img
-              src="/assets/john-min.jpg"
+              src={user?.imageUrl}
               alt="profil"
               className="w-[165px] h-[165px] rounded-[50%] my-[5%] object-cover"
             />
@@ -58,7 +38,7 @@ function MyAccountMobile() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              Prénom
+              {user?.firstname}
             </p>
             <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed ">
               <Image
@@ -68,7 +48,7 @@ function MyAccountMobile() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              Nom
+              {user?.lastname}
             </p>
             <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed ">
               <Image
@@ -78,7 +58,7 @@ function MyAccountMobile() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              XX/XX/XXXX
+              {user?.birthday}
             </p>
             <div className="flex pt-4  w-5/6 justify-between items-center ">
               <p className="">Montrer ma date de naissance</p>
@@ -111,7 +91,7 @@ function MyAccountMobile() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              john.doe@enedis.fr
+              {user?.email}
             </p>
             <p className="text-left w-5/6 pt-6 ">
               Je change mon mot de passe :
@@ -147,7 +127,7 @@ function MyAccountMobile() {
               alt="picto enedis"
               className="mx-4"
             />{" "}
-            Marketing
+            {user?.teamId}
           </p>
         </div>
       </div>

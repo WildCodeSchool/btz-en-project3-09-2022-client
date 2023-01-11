@@ -1,3 +1,9 @@
+import MyAccountMobile from "../src/components/MyAccountMobile";
+
 export default function Home() {
-  return <div>HOME PAGE</div>;
+  return (
+    <div>
+      <MyAccountMobile />
+    </div>
+  );
 }
