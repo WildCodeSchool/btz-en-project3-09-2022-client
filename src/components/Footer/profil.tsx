@@ -1,11 +1,11 @@
+import { useRouter } from "next/router";
 import React from "react";
-import Image from "next/image";
-import { useQuery } from "react-query";
-import { userFetcher } from "../../utils/fetcher";
+
 import { useAuth } from "../../context/UserContext";
 
 function Profil() {
   const { user } = useAuth();
+  const router = useRouter();
 
   return (
     <div className="w-full ">
@@ -28,6 +28,7 @@ function Profil() {
             <p className="font-bold ">{user?.lastname}</p>
           </div>
           <button
+            onClick={() => router.push("/myaccount")}
             type="button"
             className="text-white-enedis bg-green-enedis rounded-full px-2 w-32 py-1 text-mob-md(CTA+input) font-bold"
           >

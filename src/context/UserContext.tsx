@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
+import { TSpace } from "../types/main";
 import axiosInstance from "../utils/axiosInstance";
 
 type TUser = {
@@ -18,6 +19,7 @@ type TUser = {
   isDisabled: boolean;
   createdAt: string;
   updatedAt: string;
+  spaces: TSpace[];
 };
 
 interface IUserContext {

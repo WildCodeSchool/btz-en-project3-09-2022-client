@@ -1,19 +1,10 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useAuth } from "../../context/UserContext";
 import { TSpace } from "../../types/main";
-import { spaceFetcher } from "../../utils/fetcher";
 
 function Espace() {
-  const { isLoading, error, data } = useQuery("getAllSpaces", () =>
-    spaceFetcher.getAll()
-  );
-
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
-  if (error || !data) {
-    return <p>Sorry something went wrong</p>;
-  }
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <div className="w-full flex flex-col items-center mb-3 ">
@@ -23,7 +14,7 @@ function Espace() {
       </div>
       <div className="bg-blue-enedis h-1 w-2/3 rounded-full mb-3" />
       <div className="w-full flex-x-center space-y-2 h-56 overflow-auto ">
-        {data.map((space: TSpace) => (
+        {user?.spaces.map((space: TSpace) => (
           <div key={space.id} className=" w-2/3  ">
             <div className="w-full relative z-10 ">
               <img
