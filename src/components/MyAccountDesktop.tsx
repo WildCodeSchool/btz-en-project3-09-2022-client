@@ -7,8 +7,6 @@ import { useAuth } from "../context/UserContext";
 function MyAccountDesktop() {
   const { user } = useAuth();
 
-  console.log(user);
-
   return (
     <div>
       <div className="bg-background-enedis w-[45%] m-auto mt-2 pb-10 ">
