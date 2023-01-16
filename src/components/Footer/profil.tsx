@@ -9,11 +9,10 @@ function Profil() {
   const router = useRouter();
 
   const { data, isLoading } = useQuery(
-    ["teams", `user-${user?.id}`],
-    () => teamFetcher.getAll(),
+    ["teams", `user-${user?.teamId}`],
+    () => teamFetcher.getOne(`${user?.teamId}`),
     {}
   );
-  console.log(data);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
@@ -37,7 +36,8 @@ function Profil() {
           />
           <div className="flex flex-col items-start space-y-1">
             <p className="font-bold">{user?.firstname}</p>
-            <p className="font-bold ">{user?.lastname}</p>
+            <p className="font-bold ">{user?.lastname.toUpperCase()}</p>
+            <p className="text-desk-xxs(mention) pt-2">Equipe {data?.name}</p>
           </div>
           <button
             onClick={() => router.push("/myaccount")}
@@ -63,7 +63,18 @@ function Profil() {
             <div className="font-bold text-mob-xl(headers+titles)">
               Mon Equipe
             </div>
-            <div className="bg-blue-enedis h-1  rounded-full w-3/4" />
+
+            <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
+            <div className="space-y-2">
+              {data.members.map((e: any) => (
+                <p
+                  key={e.id}
+                  className="border border-blue-enedis rounded-full h-fit  w-fit text-mob-sm(multiuse) px-2 "
+                >
+                  {e.firstname} {e.lastname}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </div>

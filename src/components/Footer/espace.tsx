@@ -6,21 +6,16 @@ import { spaceFetcher } from "../../utils/fetcher";
 
 function Espace() {
   const { user } = useAuth();
-  console.log(user);
-
-  if (!user) {
-    return <div>Unauthorized</div>;
-  }
-
   const { data, isLoading } = useQuery(
-    ["spaces", `user-${user.id}`],
+    ["spaces", `user-${user?.id}`],
     () => spaceFetcher.getAll(),
     {}
   );
 
-  console.log(data);
-
-  if (!data) return <div>No spaces</div>;
+  if (!user) {
+    return <div>Unauthorized</div>;
+  }
+  if (isLoading || !data) return <div>No spaces</div>;
 
   return (
     <div className="w-full flex flex-col items-center mb-3 ">

@@ -15,4 +15,6 @@ export const spaceFetcher = {
 
 export const teamFetcher = {
   getAll: async () => (await axiosInstance.get<TTeam>("/teams")).data,
+  getOne: async (id: string) =>
+    (await axiosInstance.get(`/teams/${id}?members=true`)).data,
 };
