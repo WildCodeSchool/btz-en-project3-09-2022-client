@@ -1,4 +1,4 @@
-import { TOneTeam, TSpace, TUser } from "../types/main";
+import { TOneTeam, TSite, TSpace, TUser } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
@@ -26,7 +26,12 @@ export const spaceFetcher = {
 };
 
 export const teamFetcher = {
-  getAll: async () => (await axiosInstance.get("/teams")).data,
+  getAll: async () => (await axiosInstance.get<[TOneTeam]>("/teams")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TOneTeam>(`/teams/${id}`)).data,
+};
+
+export const siteFetcher = {
+  getSitesByMember: async (idMember: string) =>
+    (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
 };

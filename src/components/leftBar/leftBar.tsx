@@ -8,6 +8,10 @@ import TeamMembersList from "../teams/TeamMembersList";
 function LeftBar() {
   const { user } = useAuth();
 
+  // if (!user) {
+  //   return <div>Bonjour</div>;
+  // }
+
   return (
     <div className="w-1/3 min-w-[200px] bg-background-enedis flex-x-center">
       <div className="w-[85%] mb-20">

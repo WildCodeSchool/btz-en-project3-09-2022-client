@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 function PublicationFirstArea() {
@@ -8,17 +10,15 @@ function PublicationFirstArea() {
           Envie de partager à tous ?
         </p>
       </div>
+
       <div className="w-full bg-background-enedis ml-2 p-3">
-        <div className="h-full w-full flex-all-center bg-white-enedis rounded-app-bloc p-4">
-          <button
-            type="button"
-            // eslint-disable-next-line no-console
-            onClick={() => console.log("bonjour")}
-            className="w-full h-full text-mob-sm(multiuse) font-publicSans font-regular text-start"
-          >
-            Dites-en plus...
-          </button>
-        </div>
+        <Link href="/?newpost=newpost" as="/newpost">
+          <div className="h-full w-full flex-all-center bg-white-enedis rounded-app-bloc p-4">
+            <p className="w-full text-mob-sm(multiuse) font-publicSans font-regular text-start">
+              Dites-en plus...
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );
