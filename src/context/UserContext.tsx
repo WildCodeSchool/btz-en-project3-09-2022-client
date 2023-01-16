@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useRouter } from "next/router";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 
 type TUser = {
@@ -39,6 +39,7 @@ type TCredentials = {
 type AuthState = {
   user: TUser | null;
   isAuth: boolean;
+  isLoading: boolean;
 };
 
 const UserContext = createContext<IUserContext | null>(null);
@@ -48,9 +49,14 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
     isAuth: false,
+    isLoading: true,
   });
 
   const signIn = async ({ email, password }: TCredentials) => {
+    setAuthState((state) => ({
+      ...state,
+      isLoading: true,
+    }));
     try {
       const { data, headers } = await axiosInstance.post("/auth/signin", {
         email,
@@ -59,6 +65,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       setAuthState(() => ({
         isAuth: true,
         user: data,
+        isLoading: false,
       }));
       const token = headers["authorization"];
       axiosInstance.defaults.headers.common["authorization"] = token;
@@ -74,11 +81,40 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
     setAuthState({
       user: null,
       isAuth: false,
+      isLoading: false,
     });
     localStorage.removeItem("token");
     axiosInstance.defaults.headers.common["authorization"] = "";
     router.push("/auth/signin");
   };
+
+  const authMe = async () => {
+    setAuthState((state) => ({
+      ...state,
+      isLoading: true,
+    }));
+    await axiosInstance
+      .post("/auth/me")
+      .then((res) => {
+        setAuthState({
+          isAuth: true,
+          user: res.data,
+          isLoading: false,
+        });
+      })
+      .catch((err) => {
+        localStorage.setItem("token", "");
+        setAuthState((state) => ({
+          ...state,
+          isLoading: false,
+        }));
+        router.push("/auth/signin");
+      });
+  };
+
+  useEffect(() => {
+    authMe();
+  }, []);
 
   return (
     <UserContext.Provider
@@ -89,7 +125,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         signOut,
       }}
     >
-      {children}
+      {authState.isLoading ? "Loading ..." : children}
     </UserContext.Provider>
   );
 }
