@@ -8,10 +8,6 @@ import { useAuth } from "../context/UserContext";
 function MyAccountMobile() {
   const { user } = useAuth();
 
-  const userBirthday: any = user?.birthday;
-  const date = new Date(userBirthday);
-  console.log(date.toLocaleDateString());
-
   return (
     <div className="flex flex-col items-center pb-8">
       <div className="bg-background-enedis w-[95%] m-auto mt-2 pb-10 ">
