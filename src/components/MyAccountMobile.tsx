@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 
 import React from "react";
-
 import Image from "next/image";
 import { useAuth } from "../context/UserContext";
+import { formatDate } from "../utils/constants";
 
 function MyAccountMobile() {
   const { user } = useAuth();
@@ -56,7 +56,7 @@ function MyAccountMobile() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              {user?.birthday}
+              {formatDate(user?.birthday)}
             </p>
             <div className="flex pt-4  w-5/6 justify-between items-center ">
               <p className="">Montrer ma date de naissance</p>

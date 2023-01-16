@@ -1,32 +1,11 @@
 /* eslint-disable no-console */
 
 import React from "react";
-import { useQuery } from "react-query";
-import axios from "axios";
 import Image from "next/image";
+import { useAuth } from "../context/UserContext";
 
 function MyAccountDesktop() {
-  // Get users
-  const getOneUser = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4000/api/v1/users/`);
-      return user.data;
-    } catch (error) {
-      console.log(error);
-      return "";
-    }
-  };
-
-  // UseQuery
-  const { isLoading, data: user, error } = useQuery("user", getOneUser);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    <p>Something bad happen</p>;
-  }
+  const { user } = useAuth();
 
   console.log(user);
 
@@ -40,7 +19,7 @@ function MyAccountDesktop() {
         <div className="flex w-[90%] m-auto justify-around mt-5">
           <div className="flex">
             <img
-              src="/assets/john-min.jpg"
+              src={user?.imageUrl}
               alt="profil"
               className="w-[165px] h-[165px] rounded-[50%] my-[5%] object-cover"
             />
@@ -60,7 +39,7 @@ function MyAccountDesktop() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              Prénom
+              {user?.firstname}
             </p>
             <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
               <Image
@@ -70,7 +49,7 @@ function MyAccountDesktop() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              Nom
+              {user?.lastname}
             </p>
             <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input) ">
               <Image
@@ -80,7 +59,7 @@ function MyAccountDesktop() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              XX/XX/XXXX
+              {user?.birthday}
             </p>
             <div className="flex justify-between items-center pt-5">
               <p className="text-desk-sm(textPost+multiuse)">
@@ -125,7 +104,7 @@ function MyAccountDesktop() {
                   alt="picto enedis"
                   className="mx-4"
                 />{" "}
-                john.doe@enedis.fr
+                {user?.email}
               </p>
               <p className="text-left w-5/6 pt-6 text-desk-sm(textPost+multiuse)">
                 Je change mon mot de passe :
@@ -165,7 +144,7 @@ function MyAccountDesktop() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              Marketing
+              {user?.teamId}
             </p>
           </div>
         </div>

@@ -9,7 +9,7 @@ type TUser = {
   id: string;
   role: string;
   imageUrl: string;
-  fistname: string;
+  firstname: string;
   lastname: string;
   teamId: string;
   workLocation: string;
