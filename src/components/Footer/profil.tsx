@@ -1,11 +1,23 @@
 import { useRouter } from "next/router";
 import React from "react";
-
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../context/UserContext";
+import { teamFetcher } from "../../utils/fetcher";
 
 function Profil() {
   const { user } = useAuth();
   const router = useRouter();
+
+  const { data, isLoading } = useQuery(
+    ["teams", `user-${user?.id}`],
+    () => teamFetcher.getAll(),
+    {}
+  );
+  console.log(data);
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <div className="w-full ">
