@@ -8,7 +8,9 @@ import { useAuth } from "../context/UserContext";
 function MyAccountMobile() {
   const { user } = useAuth();
 
-  console.log(user);
+  const userBirthday: any = user?.birthday;
+  const date = new Date(userBirthday);
+  console.log(date.toLocaleDateString());
 
   return (
     <div className="flex flex-col items-center pb-8">
