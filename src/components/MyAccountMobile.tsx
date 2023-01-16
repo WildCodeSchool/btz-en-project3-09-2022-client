@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/UserContext";
@@ -10,12 +10,31 @@ import { userFetcher } from "../utils/fetcher";
 function MyAccountMobile() {
   const { user } = useAuth();
 
+  // fetch user connected data includes team
   if (!user) {
     return <div>loading...</div>;
   }
   const { data, error, isLoading } = useQuery(["user"], () =>
     userFetcher.getOne(user?.id)
   );
+
+  // states
+  const [showBirthday, setShowBirthday] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+  const [useFormState, setFormState] = useState({
+    showBirthday,
+    showEmail,
+  });
+
+  const handleShowBirthday = () => {
+    setShowBirthday(!showBirthday);
+  };
+
+  const handleShowEmail = () => {
+    setShowEmail(!showEmail);
+  };
+
+  console.log(showBirthday, showEmail);
 
   return (
     <div className="flex flex-col items-center pb-8">
@@ -71,7 +90,11 @@ function MyAccountMobile() {
               <p className="">Montrer ma date de naissance</p>
 
               <label className="switch" htmlFor="showBirthday">
-                <input type="checkbox" id="showBirthday" />
+                <input
+                  type="checkbox"
+                  id="showBirthday"
+                  onClick={handleShowBirthday}
+                />
                 <span className="slider round" />
               </label>
             </div>
@@ -79,7 +102,11 @@ function MyAccountMobile() {
               <p>Montrer mon adresse email</p>
 
               <label className="switch" htmlFor="showEmail">
-                <input type="checkbox" id="showEmail" />
+                <input
+                  type="checkbox"
+                  id="showEmail"
+                  onClick={handleShowEmail}
+                />
                 <span className="slider round" />
               </label>
             </div>
