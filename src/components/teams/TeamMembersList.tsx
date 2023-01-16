@@ -11,7 +11,7 @@ function TeamMembersList() {
 
   const handleAllMembers = () => {
     if (user) {
-      userFetcher.getAllMembersOneTeam(user.teamId);
+      userFetcher.getAllMembersOneTeam(user.teamId, user.id);
       setIsAllMembers(!isAllMembers);
     }
   };
@@ -22,7 +22,7 @@ function TeamMembersList() {
     data: dataOneTeam5Members,
   } = useQuery(
     ["getOneTeam5Members", user?.teamId],
-    () => user && userFetcher.get5MembersOneTeam(user.teamId)
+    () => user && userFetcher.get5MembersOneTeam(user.teamId, user.id)
   );
   const {
     isLoading: isLoadingAllMembers,
@@ -30,7 +30,7 @@ function TeamMembersList() {
     data: dataOneTeamAllMembers,
   } = useQuery(
     ["getAllMembersOneTeam", user?.teamId],
-    () => user && userFetcher.getAllMembersOneTeam(user.teamId)
+    () => user && userFetcher.getAllMembersOneTeam(user.teamId, user.id)
   );
 
   if (isLoading5Members || !dataOneTeam5Members || !user)
@@ -44,29 +44,25 @@ function TeamMembersList() {
     <>
       {isAllMembers ? (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataOneTeamAllMembers
-            .filter((member) => member.id !== user.id)
-            .map((member: TUser) => (
-              <TextTeamMemberCapsuleBlueStroked
-                key={member.id}
-                firstname={member.firstname}
-                lastname={member.lastname}
-                imageUrl={member.imageUrl}
-              />
-            ))}
+          {dataOneTeamAllMembers.map((member: TUser) => (
+            <TextTeamMemberCapsuleBlueStroked
+              key={member.id}
+              firstname={member.firstname}
+              lastname={member.lastname}
+              imageUrl={member.imageUrl}
+            />
+          ))}
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataOneTeam5Members
-            .filter((member) => member.id !== user.id)
-            .map((member: TUser) => (
-              <TextTeamMemberCapsuleBlueStroked
-                key={member.id}
-                firstname={member.firstname}
-                lastname={member.lastname}
-                imageUrl={member.imageUrl}
-              />
-            ))}
+          {dataOneTeam5Members.map((member: TUser) => (
+            <TextTeamMemberCapsuleBlueStroked
+              key={member.id}
+              firstname={member.firstname}
+              lastname={member.lastname}
+              imageUrl={member.imageUrl}
+            />
+          ))}
         </div>
       )}
       <button

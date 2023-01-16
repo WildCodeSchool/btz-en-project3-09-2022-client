@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { useQuery } from "react-query";
 import { useWindowSize } from "usehooks-ts";
@@ -8,6 +9,7 @@ import { teamFetcher } from "../../utils/fetcher";
 import CTA from "../structure/CTA";
 
 function MyProfileLeftBar() {
+  const router = useRouter();
   const { user } = useAuth();
   const { width } = useWindowSize();
 
@@ -51,7 +53,7 @@ function MyProfileLeftBar() {
         )}
       </div>
       {width >= 768 && (
-        <CTA text="Voir mon profil" action={() => console.log("bonjour")} />
+        <CTA text="Voir mon profil" action={() => router.push("/myaccount")} />
       )}
     </div>
   );

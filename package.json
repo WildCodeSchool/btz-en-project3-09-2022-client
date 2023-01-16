@@ -11,7 +11,7 @@
     "setup": "npm i && husky install"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.20.9",
+    "@tanstack/react-query": "^4.22.0",
     "@tanstack/react-query-devtools": "^4.20.9",
     "axios": "^1.2.2",
     "framer-motion": "^8.1.8",

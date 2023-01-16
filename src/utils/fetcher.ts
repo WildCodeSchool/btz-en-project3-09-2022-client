@@ -7,10 +7,18 @@ export const userFetcher = {
   getAll: async () => (await axiosInstance.get("/users")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TUser>(`/users/${id}`)).data,
-  getAllMembersOneTeam: async (teamId: string) =>
-    (await axiosInstance.get<[TUser]>(`/users?team=${teamId}`)).data,
-  get5MembersOneTeam: async (teamId: string) =>
-    (await axiosInstance.get<[TUser]>(`/users?team=${teamId}&limit=5`)).data,
+  getAllMembersOneTeam: async (teamId: string, idUserExcluded: string) =>
+    (
+      await axiosInstance.get<[TUser]>(
+        `/users?team=${teamId}&userExcluded=${idUserExcluded}`
+      )
+    ).data,
+  get5MembersOneTeam: async (teamId: string, idUserExcluded: string) =>
+    (
+      await axiosInstance.get<[TUser]>(
+        `/users?team=${teamId}&userExcluded=${idUserExcluded}&limit=5`
+      )
+    ).data,
 };
 
 export const spaceFetcher = {
