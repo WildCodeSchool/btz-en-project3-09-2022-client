@@ -102,10 +102,7 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
                   <input type="checkbox" className="h-4 w-4 ml-3" />
                 </td>
                 <td>
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 ml-3 bg-blue-enedis"
-                  />
+                  <input type="checkbox" className="h-4 w-4 ml-3 " />
                 </td>
                 <td>
                   <input type="checkbox" className="h-4 w-4 ml-3 " />

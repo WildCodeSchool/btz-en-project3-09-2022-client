@@ -3,6 +3,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../context/UserContext";
 import { teamFetcher } from "../../utils/fetcher";
+import { TUser } from "../../types/main";
 
 function Profil() {
   const { user } = useAuth();
@@ -66,12 +67,12 @@ function Profil() {
 
             <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
             <div className="space-y-2">
-              {data.members.map((e: any) => (
+              {data.members.map((userTeam: TUser) => (
                 <p
-                  key={e.id}
+                  key={userTeam.id}
                   className="border border-blue-enedis rounded-full h-fit  w-fit text-mob-sm(multiuse) px-2 "
                 >
-                  {e.firstname} {e.lastname}
+                  {userTeam.firstname} {userTeam.lastname}
                 </p>
               ))}
             </div>

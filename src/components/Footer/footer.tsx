@@ -9,7 +9,6 @@ function Footer() {
   const [openEspace, setOpenEspace] = useState(false);
   const [openProfil, setOpenProfil] = useState(false);
   const [openEspaceDescription, setOpenEspaceDescription] = useState(false);
-
   const handleClickEspace = () => {
     if (openProfil) {
       setOpenProfil(false);
@@ -123,7 +122,7 @@ function Footer() {
                 src="/logo_enedis/PictoInfoBlue.svg"
                 width={30}
                 height={40}
-                alt="logo des notifications"
+                alt="logo des info-espaces"
                 className="relative z-20 "
                 onClick={handleClickEspaceDescription}
               />
@@ -134,7 +133,7 @@ function Footer() {
               src="/logo_enedis/PictoInfoGreen.svg"
               width={30}
               height={40}
-              alt="logo des notifications"
+              alt="logo des info-espaces"
               onClick={handleClickEspaceDescription}
             />
           )}

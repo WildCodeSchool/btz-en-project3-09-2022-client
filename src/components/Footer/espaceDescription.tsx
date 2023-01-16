@@ -4,13 +4,19 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import ModifyUser from "./modifyUser";
 import { useAuth } from "../../context/UserContext";
+import AddUser from "./AddUser";
 
 function EspaceDescription() {
   const { user } = useAuth();
   const [modify, setModify] = useState(false);
+  const [addUser, setAddUser] = useState(false);
 
   const HandleOpenModifyUser = () => {
     setModify(!modify);
+  };
+
+  const HandleOpenAddUser = () => {
+    setAddUser(!addUser);
   };
 
   return (
@@ -27,24 +33,34 @@ function EspaceDescription() {
             aperiam, quas dicta repellendus quaerat earum in minus cumque?
           </p>
           {modify && (
-            <div className="">
-              <AnimatePresence>
-                {modify && (
-                  <motion.div
-                    exit={{ y: -280 }}
-                    initial={{ y: 280 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
-                  >
-                    <ModifyUser HandleOpenModifyUser={HandleOpenModifyUser} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <AnimatePresence>
+              <motion.div
+                exit={{ y: -280 }}
+                initial={{ y: -280 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
+              >
+                <ModifyUser HandleOpenModifyUser={HandleOpenModifyUser} />
+              </motion.div>
+            </AnimatePresence>
           )}
 
-          <div className={modify ? "hidden" : ""}>
+          {addUser && (
+            <AnimatePresence>
+              <motion.div
+                exit={{ y: -280 }}
+                initial={{ y: 280 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
+              >
+                <AddUser HandleOpenAddUser={HandleOpenAddUser} />
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+          <div className={modify || addUser ? "hidden" : ""}>
             <div className="text-mob-xl(headers+titles) font-bold mb-1">
               Membres de l&apos;espace
             </div>
@@ -68,10 +84,13 @@ function EspaceDescription() {
 
       <div
         className={
-          modify ? "hidden" : "flex space-x-6 justify-center w-full m-3"
+          modify || addUser
+            ? "hidden"
+            : "flex space-x-6 justify-center w-full m-3"
         }
       >
         <button
+          onClick={HandleOpenAddUser}
           type="button"
           className="text-white-enedis bg-green-enedis rounded-full px-2 h-10 w-28 text-mob-md(CTA+input) font-bold"
         >
