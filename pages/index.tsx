@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { useQuery } from "@tanstack/react-query";
-import Footer from "../src/components/Footer/footer";
-import Welcome from "../src/components/Welcome";
+import Loader from "../src/components/Loader";
 import { categoryFetcher } from "../src/utils/fetcher";
 
 export default function Home() {
@@ -10,10 +9,7 @@ export default function Home() {
   );
 
   if (isLoading) {
-    setTimeout(() => {
-      console.log("Delayed for 1 second.");
-    }, 100000);
-    return <Welcome />;
+    return <Loader />;
   }
 
   if (isError) {
@@ -23,14 +19,9 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        {data?.map((c) => (
-          <div>{c.name}</div>
-        ))}
-      </div>
-      <div className="flex flex-col justify-end h-screen">
-        <Footer />
-      </div>
+      {data?.map((c) => (
+        <div>{c.name}</div>
+      ))}
     </div>
   );
 }
