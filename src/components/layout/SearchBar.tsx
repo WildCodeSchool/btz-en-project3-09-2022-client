@@ -51,21 +51,6 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
 
       {width < 760 ? (
         <div className="relative  min-w-[50%] flex justify-between items-center mr-6">
-          <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center absolute left-16 ">
-            <button
-              type="button"
-              className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center "
-              onClick={handleSearchBarOpen}
-            >
-              <Image
-                src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
-                width={1000}
-                height={1000}
-                alt="search-picto"
-                className="w-[80%] h-[80%]"
-              />
-            </button>
-          </div>
           <input
             type="select"
             className=" w-full  h-[45px] rounded-full text-center  placeholder "
