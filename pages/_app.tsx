@@ -1,28 +1,29 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import "../styles/globals.css";
+import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { useWindowSize } from "usehooks-ts";
+import { NextPage } from "next";
 import UserContextProvider from "../src/context/UserContext";
-import Footer from "../src/components/footer";
 
 export const reactQueryClient = new QueryClient();
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { width } = useWindowSize();
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <UserContextProvider>
       <QueryClientProvider client={reactQueryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <div className="h-screen w-screen flex-x-center">
-            <Component {...pageProps} />
-          </div>
-
-          {width < 768 && (
-            <div className="absolute bottom-0 w-full">
-              <Footer />
-            </div>
-          )}
+          {getLayout(<Component {...pageProps} />)}
         </Hydrate>
       </QueryClientProvider>
     </UserContextProvider>

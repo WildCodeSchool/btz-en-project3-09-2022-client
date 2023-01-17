@@ -39,7 +39,7 @@ function Footer() {
   };
 
   return (
-    <div>
+    <div className="w-full block md:hidden">
       <div>
         <AnimatePresence>
           {openEspace && (

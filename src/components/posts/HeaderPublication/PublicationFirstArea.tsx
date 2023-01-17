@@ -1,6 +1,7 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
+import Modal from "../../modal/Modal";
+import CreatePost from "../structurePost/CreatePost";
+import CtaTextArea from "./CtaTextArea";
 
 function PublicationFirstArea() {
   return (
@@ -11,14 +12,8 @@ function PublicationFirstArea() {
         </p>
       </div>
 
-      <div className="w-full bg-background-enedis ml-2 p-3">
-        <Link href="/?newpost=newpost" as="/newpost">
-          <div className="h-full w-full flex-all-center bg-white-enedis rounded-app-bloc p-4">
-            <p className="w-full text-mob-sm(multiuse) font-publicSans font-regular text-start">
-              Dites-en plus...
-            </p>
-          </div>
-        </Link>
+      <div className="w-full relative bg-background-enedis ml-2 p-3">
+        <Modal Opener={CtaTextArea} Content={CreatePost} />
       </div>
     </div>
   );
