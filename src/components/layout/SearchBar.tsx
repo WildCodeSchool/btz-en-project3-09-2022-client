@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import { userFetcher } from "../utils/fetcher";
+import { userFetcher } from "../../utils/fetcher";
 
 type TUser = {
   id: string;

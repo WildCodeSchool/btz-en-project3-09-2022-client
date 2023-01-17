@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useWindowSize } from "usehooks-ts";
-import { useAuth } from "../context/UserContext";
+import { useAuth } from "../../context/UserContext";
 
-import useModal from "./modal/useModal";
-import Modal from "./modal/Modal";
+import useModal from "../modal/useModal";
+import Modal from "../modal/Modal";
 import SearchBar from "./SearchBar";
 
 function Navbar() {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import Espace from "./espace";
-import Profil from "./profil";
-import EspaceDescription from "./espaceDescription";
+import Espace from "./Espace";
+import Profil from "./Profil";
+import EspaceDescription from "./EspaceDescription";
 
 function Footer() {
   const [openEspace, setOpenEspace] = useState(false);
@@ -38,7 +38,7 @@ function Footer() {
   };
 
   return (
-    <div>
+    <div className="w-full block md:hidden">
       <div>
         <AnimatePresence>
           {openEspace && (
