@@ -32,8 +32,6 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
 
   const { data, isLoading } = useQuery(["users"], () => userFetcher.getAll());
 
-  console.log(data);
-
   if (isLoading || !data) {
     return <p>Loading...</p>;
   }
