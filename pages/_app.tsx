@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <UserContextProvider>
       <QueryClientProvider client={reactQueryClient}>
-        <Component {...pageProps} />*
+        <Component {...pageProps} />
       </QueryClientProvider>
     </UserContextProvider>
   );
