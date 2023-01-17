@@ -62,7 +62,7 @@ function Footer() {
               initial={{ y: 280 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-background-enedis "
+              className="bg-background-enedis"
             >
               <Profil />
             </motion.div>

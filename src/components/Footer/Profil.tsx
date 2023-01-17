@@ -21,9 +21,9 @@ function Profil() {
 
   return (
     <div className="w-full ">
-      <div className="bg-green-enedis h-1 top-0" />
+      <div className="bg-green-enedis h-1 top-0 " />
 
-      <div>
+      <div className="">
         <div
           key={user?.id}
           className="flex justify-between items-center px-2 pt-6 "
@@ -50,7 +50,7 @@ function Profil() {
           </button>
         </div>
 
-        <div className="flex justify-between  pt-6 px-2">
+        <div className="flex justify-between  pt-6 px-2 pb-5">
           <div className=" w-1/2 flex flex-col items-center">
             <div className="font-bold text-mob-xl(headers+titles) ">
               Mon Site
