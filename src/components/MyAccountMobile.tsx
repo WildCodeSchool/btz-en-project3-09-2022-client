@@ -18,6 +18,10 @@ function MyAccountMobile() {
     userFetcher.getOne(user?.id)
   );
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   // states
   const [showBirthday, setShowBirthday] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
