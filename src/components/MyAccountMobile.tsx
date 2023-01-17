@@ -21,10 +21,6 @@ function MyAccountMobile() {
   // states
   const [showBirthday, setShowBirthday] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
-  const [useFormState, setFormState] = useState({
-    showBirthday,
-    showEmail,
-  });
 
   const handleShowBirthday = () => {
     setShowBirthday(!showBirthday);
