@@ -99,13 +99,26 @@ function myaccount() {
       </div>
       <div className="flex">
         <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
-          <h3 className="mb-2">Ma connexion</h3>
+          <h3 className="mb-2">Mon équipe</h3>
           <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
+          <div>MON EQUIPE</div>
         </div>
+
         <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
           <h3 className="mb-2">Mes catégories</h3>
           <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
+          <div>MES CATEGORIES</div>
         </div>
+      </div>
+      <div className=" flex flex-col items-center pt-4 pb-4a w-full">
+        <h3 className="mb-2">Mon activité</h3>
+        <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
+        <div>MON ACTIVITE</div>
+      </div>
+      <div className=" flex flex-col items-center pt-4 pb-4a w-full">
+        <h3 className="mb-2">Mes dernières publications</h3>
+        <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
+        <div>MES DERNIERES PUBLICATIONS</div>
       </div>
     </div>
   );
