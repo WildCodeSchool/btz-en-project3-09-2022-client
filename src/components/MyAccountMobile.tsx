@@ -5,23 +5,10 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/UserContext";
 import { formatDate } from "../utils/constants";
-import { userFetcher } from "../utils/fetcher";
+import { teamFetcher, userFetcher } from "../utils/fetcher";
 
 function MyAccountMobile() {
   const { user } = useAuth();
-
-  // fetch user connected data includes team
-  if (!user) {
-    return <div>loading...</div>;
-  }
-  const { data, isLoading } = useQuery(["user"], () =>
-    userFetcher.getOne(user?.id)
-  );
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
   // states
   const [showBirthday, setShowBirthday] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
@@ -34,7 +21,19 @@ function MyAccountMobile() {
     setShowEmail(!showEmail);
   };
 
-  console.log(showBirthday, showEmail);
+  // fetch user connected data includes team
+  if (!user) {
+    return <div>loading...</div>;
+  }
+
+  const { data: team, isLoading } = useQuery(
+    ["teams", `user-${user?.teamId}`],
+    () => teamFetcher.getOne(`${user?.teamId}`)
+  );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="flex flex-col items-center pb-8">
@@ -152,7 +151,7 @@ function MyAccountMobile() {
           </div>
           <p className="text-left w-5/6  mb-4">
             Je travaille dans l&apos;équipe :
-          </p>{" "}
+          </p>
           <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed ">
             <Image
               src="/assets/ENEDIS_PICTO_029_SerrageMains_BLEU_RVB_EXE 1.png"
@@ -160,8 +159,8 @@ function MyAccountMobile() {
               height={25}
               alt="picto enedis"
               className="mx-4"
-            />{" "}
-            {data?.team.name}
+            />
+            {team.name}
           </p>
         </div>
       </div>
