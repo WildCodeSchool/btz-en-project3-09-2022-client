@@ -1,4 +1,4 @@
-import { TSpace, TUser } from "../types/main";
+import { TSpace, TTeam, TUser } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
@@ -11,4 +11,10 @@ export const userFetcher = {
 
 export const spaceFetcher = {
   getAll: async () => (await axiosInstance.get<TSpace[]>("/spaces")).data,
+};
+
+export const teamFetcher = {
+  getAll: async () => (await axiosInstance.get<TTeam>("/teams")).data,
+  getOne: async (id: string) =>
+    (await axiosInstance.get(`/teams/${id}?members=true`)).data,
 };

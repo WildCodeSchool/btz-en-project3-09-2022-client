@@ -1,19 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useQuery } from "react-query";
-import { TSpace } from "../types/main";
-import { spaceFetcher } from "../utils/fetcher";
+import { useAuth } from "../../context/UserContext";
+import { TSpace } from "../../types/main";
+import { spaceFetcher } from "../../utils/fetcher";
 
 function Espace() {
-  const { isLoading, error, data } = useQuery("getAllSpaces", () =>
-    spaceFetcher.getAll()
+  const { user } = useAuth();
+  const { data, isLoading } = useQuery(
+    ["spaces", `user-${user?.id}`],
+    () => spaceFetcher.getAll(),
+    {}
   );
 
-  if (isLoading) {
-    return <h2>Loading...</h2>;
+  if (!user) {
+    return <div>Unauthorized</div>;
   }
-  if (error || !data) {
-    return <p>Sorry something went wrong</p>;
-  }
+  if (isLoading || !data) return <div>No spaces</div>;
 
   return (
     <div className="w-full flex flex-col items-center mb-3 ">

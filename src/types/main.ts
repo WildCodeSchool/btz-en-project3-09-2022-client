@@ -11,3 +11,7 @@ export type TSpace = {
   imageUrl: string;
   id: string;
 };
+
+export type TTeam = {
+  name: string;
+};

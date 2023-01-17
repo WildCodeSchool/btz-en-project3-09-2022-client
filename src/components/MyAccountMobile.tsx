@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 
 import React from "react";
-
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import Image from "next/image";
 import { useAuth } from "../context/UserContext";
 

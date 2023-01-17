@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { useQuery } from "react-query";
-import { userFetcher } from "../utils/fetcher";
-import { TUser } from "../types/main";
+import { useQuery } from "@tanstack/react-query";
+import { userFetcher } from "../../utils/fetcher";
+import { TUser } from "../../types/main";
 
 type HandleOpenModifyUser = {
   HandleOpenModifyUser: () => void;
@@ -102,10 +102,7 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
                   <input type="checkbox" className="h-4 w-4 ml-3" />
                 </td>
                 <td>
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 ml-3 bg-blue-enedis"
-                  />
+                  <input type="checkbox" className="h-4 w-4 ml-3 " />
                 </td>
                 <td>
                   <input type="checkbox" className="h-4 w-4 ml-3 " />
