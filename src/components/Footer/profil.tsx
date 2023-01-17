@@ -67,7 +67,7 @@ function Profil() {
 
             <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
             <div className="space-y-2">
-              {data.members.map((userTeam: TUser) => (
+              {data?.members.map((userTeam: TUser) => (
                 <p
                   key={userTeam.id}
                   className="border border-blue-enedis rounded-full h-fit  w-fit text-mob-sm(multiuse) px-2 "
