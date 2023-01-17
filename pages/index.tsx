@@ -7,8 +7,7 @@ import Navbar from "../src/components/Navbar";
 export default function Home() {
   return (
     <div>
-      <MyAccountMobile />
-
+      <Navbar />
       <div className="flex flex-col justify-end h-screen">
         <Footer />
       </div>
