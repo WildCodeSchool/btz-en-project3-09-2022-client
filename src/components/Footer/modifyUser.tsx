@@ -25,21 +25,8 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
   return (
     <div className="bg-green-enedis w-screen h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2">
-        <p className="text-mob-sm(multiuse)">Je veux ajouter un membre : </p>
-        <div className="bg-blue-enedis w-full rounded-full h-10">
-          <div className="flex items-center p-1 h-10">
-            <Image
-              src="/logo_enedis/picto_search_white.svg"
-              alt=" recherche"
-              width={10}
-              height={10}
-              className="w-9 h-8"
-            />
-            <input type="text" className="w-full rounded-full h-8" />
-          </div>
-        </div>
         <div className="flex justify-end w-full">
-          <div className="flex flex-row space-x-2 ">
+          <div className="flex flex-row space-x-4 my-3">
             <Image
               src="/logo_enedis/logo_vue.svg"
               alt="logo de vue"
@@ -99,10 +86,10 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
                   <input type="checkbox" className="h-4 w-4 " />
                 </td>
                 <td>
-                  <input type="checkbox" className="h-4 w-4 ml-3" />
+                  <input type="checkbox" className="h-4 w-4 ml-4" />
                 </td>
                 <td>
-                  <input type="checkbox" className="h-4 w-4 ml-3 " />
+                  <input type="checkbox" className="h-4 w-4 ml-4 " />
                 </td>
                 <td>
                   <input type="checkbox" className="h-4 w-4 ml-3 " />
