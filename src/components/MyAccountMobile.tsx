@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/UserContext";
 import { formatDate } from "../utils/constants";
-import { teamFetcher, userFetcher } from "../utils/fetcher";
+import { teamFetcher } from "../utils/fetcher";
 
 function MyAccountMobile() {
   const { user } = useAuth();
