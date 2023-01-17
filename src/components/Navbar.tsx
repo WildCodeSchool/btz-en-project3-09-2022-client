@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { useWindowSize } from "usehooks-ts";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { useWindowSize } from "usehooks-ts";
+import { useAuth } from "../context/UserContext";
+
 import useModal from "./modal/useModal";
 import Modal from "./modal/Modal";
 import SearchBar from "./SearchBar";
 
 function Navbar() {
+  const { user } = useAuth();
+  const router = useRouter();
   // Window size
   const { width } = useWindowSize();
 
@@ -24,7 +29,13 @@ function Navbar() {
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
         <div className=" space-y-3">
-          <p className="text-white-enedis">Mon profil</p>
+          <button
+            type="button"
+            className="text-white-enedis"
+            onClick={() => router.push("/myaccount")}
+          >
+            Mon profil
+          </button>
           <p className="text-white-enedis">Paramètres</p>
           <p className="text-white-enedis">Aide</p>
           <p className="text-white-enedis">Me déconnecter</p>
@@ -42,17 +53,16 @@ function Navbar() {
             className=" max-w-[10%] min-w-[200px] "
           />
           {width < 768 ? (
-            <div className="flex justify-between min-w-[100px] ">
+            <div className="flex justify-between min-w-[100px]  ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
-                {isSearchBarOpen && (
+                {isSearchBarOpen ? (
                   <SearchBar
                     width={width}
                     isSearchBarOpen={isSearchBarOpen}
                     setIsSearchBarOpen={setIsSearchBarOpen}
                   />
-                )}
-                {width > 300 && !isSearchBarOpen && (
-                  <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center">
+                ) : (
+                  <div className="bg-white-enedis  w-[45px] h-[45px] rounded-full flex justify-center items-center">
                     <button
                       type="button"
                       className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
@@ -68,6 +78,31 @@ function Navbar() {
                     </button>
                   </div>
                 )}
+
+                {/* {isSearchBarOpen && (
+                  <SearchBar
+                    width={width}
+                    isSearchBarOpen={isSearchBarOpen}
+                    setIsSearchBarOpen={setIsSearchBarOpen}
+                  />
+                )}
+                {width > 300 && !isSearchBarOpen && (
+                  <div className="bg-white-enedis  w-[45px] h-[45px] rounded-full flex justify-center items-center">
+                    <button
+                      type="button"
+                      className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
+                      onClick={displaySearchBar}
+                    >
+                      <Image
+                        src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
+                        width={1000}
+                        height={1000}
+                        alt="search-picto"
+                        className="w-[80%] h-[80%]"
+                      />
+                    </button>
+                  </div>
+                )} */}
               </div>
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 <button type="button" onClick={toggle}>
@@ -102,7 +137,7 @@ function Navbar() {
       {width > 768 && (
         <div className="px-4 min-w-[180px] m-auto flex justify-between items-center h-[70px]">
           <Image
-            src="/assets/john-min.JPG"
+            src={user?.imageUrl || "profile image"}
             width={1000}
             height={1000}
             alt="profile"
@@ -110,8 +145,9 @@ function Navbar() {
           />
 
           <p className="font-enedis font-bold text-desk-xl(section)">
-            John <br />
-            DOE
+            {user?.firstname}
+            <br />
+            {user?.lastname}
           </p>
           <button type="button" onClick={toggle}>
             <Image

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import { userFetcher } from "../utils/fetcher";
 
 type TUser = {
   id: string;
@@ -29,23 +29,13 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
 
   // Fetch all users
-  const getAllUsers = async () => {
-    try {
-      const user = await axios.get(`http://localhost:4000/api/v1/users`);
-      return user.data;
-    } catch (error) {
-      return error;
-    }
-  };
 
-  const { isLoading, data: users, error } = useQuery("users", getAllUsers);
+  const { data, isLoading } = useQuery(["users"], () => userFetcher.getAll());
 
-  if (isLoading) {
+  console.log(data);
+
+  if (isLoading || !data) {
     return <p>Loading...</p>;
-  }
-
-  if (error) {
-    <p>Something bad happen</p>;
   }
 
   // handlers
@@ -62,11 +52,11 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
       {/* Mobile */}
 
       {width < 760 ? (
-        <div className="relative  min-w-[50%] flex justify-between items-center ">
-          <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center absolute left-40 ">
+        <div className="relative  min-w-[50%] flex justify-between items-center mr-6">
+          <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center absolute left-16 ">
             <button
               type="button"
-              className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
+              className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center "
               onClick={handleSearchBarOpen}
             >
               <Image
@@ -87,8 +77,8 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
           />
           {isUsersListOpen && (
             <div className="flex flex-col absolute top-14  py-6 border-4 border-green-enedis w-full px-4">
-              {users.length > 0 &&
-                users
+              {data.length > 0 &&
+                data
                   .filter(
                     (user: TUser) =>
                       user.lastname.toLowerCase().includes(selectedUser) ||
@@ -122,8 +112,8 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
           />
           {isUsersListOpen && (
             <div className="flex flex-col absolute top-14 py-6 border-4 border-green-enedis w-full px-4">
-              {users.length > 0 &&
-                users
+              {data.length > 0 &&
+                data
                   .filter(
                     (user: TUser) =>
                       user.lastname.toLowerCase().includes(selectedUser) ||
