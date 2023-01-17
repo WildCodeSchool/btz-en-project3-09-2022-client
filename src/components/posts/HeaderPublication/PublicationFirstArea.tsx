@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../../modal/Modal";
+import ModalPost from "../../modal/ModalPost";
 import CreatePost from "../structurePost/CreatePost";
 import CtaTextArea from "./CtaTextArea";
 
@@ -13,7 +13,7 @@ function PublicationFirstArea() {
       </div>
 
       <div className="w-full relative bg-background-enedis ml-2 p-3">
-        <Modal Opener={CtaTextArea} Content={CreatePost} />
+        <ModalPost Opener={CtaTextArea} Content={CreatePost} />
       </div>
     </div>
   );

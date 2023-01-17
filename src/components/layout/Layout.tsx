@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import Footer from "../footer";
+import Footer from "../Footer/Footer";
+import Navbar from "./Navbar";
 
 interface IProps {
   children: ReactNode;
@@ -9,6 +10,7 @@ interface IProps {
 export default function Layout({ children, sideBar }: IProps) {
   return (
     <div className="h-screen w-screen flex justify-start items-center align-middle flex-col">
+      <Navbar />
       <div className="h-full flex justify-between w-full">
         {sideBar && sideBar}
         {children}

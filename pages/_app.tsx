@@ -2,7 +2,11 @@
 import "../styles/globals.css";
 import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { NextPage } from "next";
 import UserContextProvider from "../src/context/UserContext";
 

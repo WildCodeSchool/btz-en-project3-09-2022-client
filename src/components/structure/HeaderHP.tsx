@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { siteFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
 

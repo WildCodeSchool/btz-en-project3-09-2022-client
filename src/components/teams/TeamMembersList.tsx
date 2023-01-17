@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../context/UserContext";
 import { TUser } from "../../types/main";
 import { userFetcher } from "../../utils/fetcher";

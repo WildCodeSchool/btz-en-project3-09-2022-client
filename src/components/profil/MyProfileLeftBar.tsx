@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useWindowSize } from "usehooks-ts";
 import { useAuth } from "../../context/UserContext";
 import { teamFetcher } from "../../utils/fetcher";
@@ -53,7 +53,10 @@ function MyProfileLeftBar() {
         )}
       </div>
       {width >= 768 && (
-        <CTA text="Voir mon profil" action={() => router.push("/myaccount")} />
+        <CTA
+          text="Voir mon profil"
+          action={() => router.push("/myaccount/settings")}
+        />
       )}
     </div>
   );
