@@ -14,7 +14,7 @@ function MyAccountMobile() {
   if (!user) {
     return <div>loading...</div>;
   }
-  const { data, error, isLoading } = useQuery(["user"], () =>
+  const { data, isLoading } = useQuery(["user"], () =>
     userFetcher.getOne(user?.id)
   );
 
