@@ -137,7 +137,7 @@ function Navbar() {
       {width > 768 && (
         <div className="px-4 min-w-[180px] m-auto flex justify-between items-center h-[70px]">
           <Image
-            src={user?.imageUrl || "profile image"}
+            src={user?.imageUrl || "/profile_image.png"}
             width={1000}
             height={1000}
             alt="profile"
