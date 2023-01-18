@@ -6,6 +6,7 @@ import TitleSection from "../src/components/structure/TitleSection";
 import LeftBar from "../src/components/leftBar/leftBar";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
+import Comments from "../src/components/comments/comments";
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -16,6 +17,7 @@ const Home: NextPageWithLayout = () => {
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />
+          <Comments />
         </div>
       </div>
     </div>

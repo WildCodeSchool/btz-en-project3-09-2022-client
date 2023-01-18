@@ -37,3 +37,7 @@ export const siteFetcher = {
   getSitesByMember: async (idMember: string) =>
     (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
 };
+
+export const commentsFetcher = {
+  getAll: async () => (await axiosInstance.get<any[]>("/comments")).data,
+};
