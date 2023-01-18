@@ -1,16 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
-import { teamFetcher, userFetcher } from "../../src/utils/fetcher";
+import {
+  categoryFetcher,
+  teamFetcher,
+  userFetcher,
+} from "../../src/utils/fetcher";
 
 function myaccount() {
   const { user } = useAuth();
 
-  const { data: team, isLoading } = useQuery(
-    ["teams", `user-${user?.teamId}`],
-    () => teamFetcher.getOne(`${user?.teamId}`)
+  if (!user) {
+    return <p>No user</p>;
+  }
+
+  const {
+    data: team,
+    isLoading,
+    error,
+  } = useQuery(["teams", `user-${user?.teamId}`], () =>
+    teamFetcher.getOne(`${user?.teamId}`)
   );
 
   const { data: usersInMyTeam } = useQuery(
@@ -18,8 +29,17 @@ function myaccount() {
     () => userFetcher.getAllMembersOneTeam(user?.teamId, user?.id)
   );
 
+  const { data: myCategories } = useQuery(
+    ["categories", `user-${user?.teamId}`],
+    () => categoryFetcher.getAllByUser(user?.id)
+  );
+
   if (isLoading) {
     return <p>Loading...</p>;
+  }
+
+  if (error) {
+    <p>No error</p>;
   }
 
   return (
@@ -106,17 +126,17 @@ function myaccount() {
         <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
           <h3 className="mb-2">Mon équipe</h3>
           <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-          <ul>
+          <ul className="mt-5">
             {usersInMyTeam?.map((item) => (
-              <li className="flex items-center">
+              <li className="flex items-center" key={item.id}>
                 <Image
                   src={item.imageUrl || "/image_profile.png"}
                   width={30}
                   height={30}
                   alt="profile"
-                  className="w-[30px] h-[30px] rounded-[50%] my-[5%] object-cover"
+                  className="w-[30px] h-[30px] rounded-[50%] my-[4px] mr-2 object-cover"
                 />
-                <p className="border border-blue-enedis rounded-full h-[30px] px-6">
+                <p className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate ">
                   {item.firstname} {item.lastname}
                 </p>
               </li>
@@ -127,7 +147,35 @@ function myaccount() {
         <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
           <h3 className="mb-2">Mes catégories</h3>
           <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-          <div>MES CATEGORIES</div>
+          <ul className="mt-5 space-y-2">
+            {myCategories?.map((category) =>
+              category.ownerId === user.id ? (
+                <div className="flex ">
+                  <li
+                    className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
+                    key={category.id}
+                  >
+                    {category.name}
+                  </li>
+
+                  <Image
+                    src="/assets/Group 87.png"
+                    width={30}
+                    height={30}
+                    alt="owner"
+                    className="h-[30px] w-[30px] ml-10"
+                  />
+                </div>
+              ) : (
+                <li
+                  className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate "
+                  key={category.id}
+                >
+                  {category.name}
+                </li>
+              )
+            )}
+          </ul>
         </div>
       </div>
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">

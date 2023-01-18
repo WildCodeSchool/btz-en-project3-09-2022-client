@@ -39,3 +39,13 @@ export type TOneTeam = {
 export type TTeam = {
   name: string;
 };
+
+export type TCategory = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  spaceId: string;
+  ownerId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};

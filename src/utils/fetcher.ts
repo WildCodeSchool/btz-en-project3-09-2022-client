@@ -1,3 +1,4 @@
+import { TCategory } from "./../types/main";
 import { TOneTeam, TSite, TSpace, TTeam, TUser } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
@@ -36,4 +37,13 @@ export const teamFetcher = {
 export const siteFetcher = {
   getSitesByMember: async (idMember: string) =>
     (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
+};
+
+export const categoryFetcher = {
+  getAll: async () =>
+    (await axiosInstance.get<[TCategory]>("/categories")).data,
+  getOne: async (id: string) =>
+    (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
+  getAllByUser: async (id: string) =>
+    (await axiosInstance.get<[TCategory]>(`/categories?userId=${id}`)).data,
 };
