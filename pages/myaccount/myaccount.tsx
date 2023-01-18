@@ -22,7 +22,7 @@ function myaccount() {
       <div className="flex ">
         <div className=" w-1/2 m-4">
           <img
-            src={user?.imageUrl}
+            src={user?.imageUrl || "/profile_image.png"}
             alt="profil"
             className="w-[126px] h-[126px] rounded-[50%] my-[5%] object-cover"
           />
@@ -55,7 +55,7 @@ function myaccount() {
               className="mr-4 w-[25px] h-[25px]"
             />
             <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[32px] cursor-not-allowed text-mob-xs(textPost) ">
-              {team.name}
+              {team?.name}
             </p>
           </div>
           <div className="flex ">
@@ -92,7 +92,7 @@ function myaccount() {
             />
 
             <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[32px] cursor-not-allowed text-mob-xs(textPost) ">
-              {formatDate(user?.birthday)}
+              {formatDate(user?.birthday as Date)}
             </p>
           </div>
         </div>
