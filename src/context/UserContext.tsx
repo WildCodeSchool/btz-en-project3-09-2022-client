@@ -70,7 +70,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       const token = headers["authorization"];
       axiosInstance.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("token", token || "");
-      console.log(axiosInstance.defaults.headers.common);
+
       setAuthState(() => ({
         isAuth: true,
         user: data,
@@ -95,7 +95,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
   };
 
   const authMe = async () => {
-    console.log("TOKEN", localtoken);
     setAuthState((state) => ({
       ...state,
       isLoading: true,
@@ -125,7 +124,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
   useEffect(() => {
     authMe();
-    console.log(axiosInstance.defaults.headers.common);
   }, []);
 
   return (
