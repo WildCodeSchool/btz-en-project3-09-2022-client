@@ -85,7 +85,7 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
                   .map((user: TUser) => (
                     <div className="flex ">
                       <Image
-                        src={user.imageUrl}
+                        src={user.imageUrl || "/profile_image.png"}
                         width={100}
                         height={100}
                         alt="profile"
@@ -120,7 +120,7 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
                   .map((user: TUser) => (
                     <div className="flex items-center">
                       <Image
-                        src={user.imageUrl}
+                        src={user.imageUrl || "/profile_image.png"}
                         width={100}
                         height={100}
                         alt="profile"
