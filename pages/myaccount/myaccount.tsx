@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
-import { teamFetcher } from "../../src/utils/fetcher";
+import { teamFetcher, userFetcher } from "../../src/utils/fetcher";
 
 function myaccount() {
   const { user } = useAuth();
@@ -11,6 +11,11 @@ function myaccount() {
   const { data: team, isLoading } = useQuery(
     ["teams", `user-${user?.teamId}`],
     () => teamFetcher.getOne(`${user?.teamId}`)
+  );
+
+  const { data: usersInMyTeam } = useQuery(
+    ["users", `team-${user?.teamId}`],
+    () => userFetcher.getAllMembersOneTeam(user?.teamId, user?.id)
   );
 
   if (isLoading) {
@@ -54,7 +59,7 @@ function myaccount() {
               alt="picto enedis"
               className="mr-4 w-[25px] h-[25px]"
             />
-            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[32px] cursor-not-allowed text-mob-xs(textPost) ">
+            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
               {team?.name}
             </p>
           </div>
@@ -66,7 +71,7 @@ function myaccount() {
               alt="picto enedis"
               className="mr-4 w-[25px] h-[25px]"
             />
-            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[32px] cursor-not-allowed text-mob-xs(textPost) ">
+            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
               {user?.workLocation}
             </p>
           </div>
@@ -78,7 +83,7 @@ function myaccount() {
               alt="picto enedis"
               className="mr-4 w-[25px] h-[25px]"
             />
-            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[32px] cursor-not-allowed text-mob-xs(textPost) ">
+            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
               {user?.email}
             </p>
           </div>
@@ -91,7 +96,7 @@ function myaccount() {
               className="mr-4 w-[25px] h-[25px]"
             />
 
-            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[32px] cursor-not-allowed text-mob-xs(textPost) ">
+            <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
               {formatDate(user?.birthday as Date)}
             </p>
           </div>
@@ -101,7 +106,22 @@ function myaccount() {
         <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
           <h3 className="mb-2">Mon équipe</h3>
           <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-          <div>MON EQUIPE</div>
+          <ul>
+            {usersInMyTeam?.map((item) => (
+              <li className="flex items-center">
+                <Image
+                  src={item.imageUrl || "/image_profile.png"}
+                  width={30}
+                  height={30}
+                  alt="profile"
+                  className="w-[30px] h-[30px] rounded-[50%] my-[5%] object-cover"
+                />
+                <p className="border border-blue-enedis rounded-full h-[30px] px-6">
+                  {item.firstname} {item.lastname}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
@@ -113,7 +133,6 @@ function myaccount() {
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">
         <h3 className="mb-2">Mon activité</h3>
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-        <div>MON ACTIVITE</div>
       </div>
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">
         <h3 className="mb-2">Mes dernières publications</h3>

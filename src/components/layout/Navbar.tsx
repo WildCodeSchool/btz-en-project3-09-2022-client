@@ -82,7 +82,7 @@ function Navbar() {
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 <button type="button" onClick={toggle}>
                   <Image
-                    src={user?.imageUrl}
+                    src={user?.imageUrl || "/profile_picture.png"}
                     width={1000}
                     height={1000}
                     alt="profile"
