@@ -78,31 +78,6 @@ function Navbar() {
                     </button>
                   </div>
                 )}
-
-                {/* {isSearchBarOpen && (
-                  <SearchBar
-                    width={width}
-                    isSearchBarOpen={isSearchBarOpen}
-                    setIsSearchBarOpen={setIsSearchBarOpen}
-                  />
-                )}
-                {width > 300 && !isSearchBarOpen && (
-                  <div className="bg-white-enedis  w-[45px] h-[45px] rounded-full flex justify-center items-center">
-                    <button
-                      type="button"
-                      className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center z-10 "
-                      onClick={displaySearchBar}
-                    >
-                      <Image
-                        src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
-                        width={1000}
-                        height={1000}
-                        alt="search-picto"
-                        className="w-[80%] h-[80%]"
-                      />
-                    </button>
-                  </div>
-                )} */}
               </div>
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 <button type="button" onClick={toggle}>

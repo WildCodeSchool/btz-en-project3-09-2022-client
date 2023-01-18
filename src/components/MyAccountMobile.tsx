@@ -160,7 +160,7 @@ function MyAccountMobile() {
               alt="picto enedis"
               className="mx-4"
             />
-            {team.name}
+            {team?.name}
           </p>
         </div>
       </div>
