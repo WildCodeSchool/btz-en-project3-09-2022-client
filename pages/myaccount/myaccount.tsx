@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
 import {
