@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import Espace from "./Espace";
-import Profil from "./Profil";
-import EspaceDescription from "./EspaceDescription";
+import Espace from "./componentsFooter/Espace";
+import Profil from "./componentsFooter/Profil";
+import EspaceDescription from "./componentsFooter/EspaceDescription";
 
 function Footer() {
   const [openEspace, setOpenEspace] = useState(false);

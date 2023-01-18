@@ -1,11 +1,21 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import { useAuth } from "../../../context/UserContext";
+import { userFetcher } from "../../../utils/fetcher";
 
 type THandleOpenAddUser = {
   HandleOpenAddUser: () => void;
 };
 
+const { data, isLoading } = useQuery(["allUsers", userFetcher.getAll()]);
+
+if (isLoading) {
+  <div>...loading</div>;
+}
+
 function AddUser({ HandleOpenAddUser }: THandleOpenAddUser) {
+  const { user } = useAuth();
   return (
     <div className="bg-green-enedis w-screen h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2">

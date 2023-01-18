@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../../context/UserContext";
-import { teamFetcher } from "../../utils/fetcher";
-import { TUser } from "../../types/main";
+import { useAuth } from "../../../context/UserContext";
+import { teamFetcher, userFetcher } from "../../../utils/fetcher";
+import { TUser } from "../../../types/main";
 
 function Profil() {
   const { user } = useAuth();
@@ -15,7 +15,12 @@ function Profil() {
     {}
   );
 
-  if (isLoading) {
+  const { data: members, isLoading: loadMembers } = useQuery(
+    ["users", user?.teamId],
+    () => user && userFetcher.getAllMembersOneTeam(user.teamId, user.id)
+  );
+
+  if (isLoading || loadMembers) {
     return <h2>Loading...</h2>;
   }
 
@@ -67,7 +72,7 @@ function Profil() {
 
             <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
             <div className="space-y-2">
-              {data?.members.map((userTeam: TUser) => (
+              {members?.map((userTeam: TUser) => (
                 <p
                   key={userTeam.id}
                   className="border border-blue-enedis rounded-full h-fit  w-fit text-mob-sm(multiuse) px-2 "

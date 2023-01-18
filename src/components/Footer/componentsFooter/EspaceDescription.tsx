@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import ModifyUser from "./ModifyUser";
-import { useAuth } from "../../context/UserContext";
+import { useAuth } from "../../../context/UserContext";
 import AddUser from "./AddUser";
 
 function EspaceDescription() {
