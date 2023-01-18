@@ -41,10 +41,6 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
     setIsUSersListOpen(!isUsersListOpen);
   };
 
-  const handleSearchBarOpen = () => {
-    setIsSearchBarOpen(!isSearchBarOpen);
-  };
-
   return (
     <div className="flex items-center w-full ">
       {/* Mobile */}
