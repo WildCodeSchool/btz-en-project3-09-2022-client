@@ -39,5 +39,5 @@ export const siteFetcher = {
 };
 
 export const commentsFetcher = {
-  getAll: async () => (await axiosInstance.get<any[]>("/comments")).data,
+  getAll: async () => (await axiosInstance.get("/comments")).data,
 };

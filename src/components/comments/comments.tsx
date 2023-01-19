@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/UserContext";
-import { commentsFetcher } from "../../utils/fetcher";
 
 interface Comment {
   id: string;
@@ -16,44 +16,49 @@ interface Comment {
 
 function Comments() {
   const { user } = useAuth();
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [newComment, setNewComment] = useState("");
+  const queryClient = useQueryClient();
+  const [comment, setComment] = useState();
 
-  useEffect(() => {
-    // commentsFetcher.getAll();
-    const fetchComments = async () => {
-      try {
-        const res = await axios.get("NEXT_PUBLIC_SERVER_URL/comments");
-        setComments(res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchComments();
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("NEXT_PUBLIC_SERVER_URL/comments")
-      .then((res) => {
-        setComments([...comments, res.data]);
-        setNewComment("");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const getComments = () => {
+    return axios
+      .get("http://localhost:4000/api/v1/comments")
+      .then((res) => res.data);
   };
+
+  const createComment = ({ content }) => {
+    return axios
+      .post("http://localhost:4000/api/v1/comments", {
+        content,
+        postId,
+        authorId,
+        createdAt: Date.now(),
+      })
+      .then((res) => res.data);
+  };
+
+  const commentQuery = useQuery({
+    queryKey: ["comments"],
+    queryFn: () => getComments,
+  });
+
+  const createCommentMutation = useMutation({
+    mutationFn: createComment,
+    onSuccess: (data) => {
+      queryClient.setQueryData(["comments", data.id], data);
+      queryClient.invalidateQueries(["comments"], { exact: true });
+      setComment();
+    },
+  });
 
   return (
     <div className="flex justify-center items-center bg-background-enedis h-52">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={}>
         <div className="flex justify-end relative">
           <input
             type="text"
-            value={newComment}
+            value={}
             placeholder="Mon commentaire à écrire"
-            onChange={(e) => setNewComment(e.target.value)}
+            onChange={}
             className="bg-white-enedis border rounded-app-bloc text-mob-xs(textPost) static"
           />
           <Image
@@ -67,14 +72,14 @@ function Comments() {
         </div>
         <button type="submit">Envoyer</button>
       </form>
-      <div>
+      {/* <div>
         {comments.map((comment) => (
           <div key={comment.id}>
             <p>{comment.content}</p>
             <p>Posté par: {comment.authorId}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
