@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useOnClickOutside from "@jidayyy/useonclickoutside";
-import { forwardRef, ReactNode, useRef, useState } from "react";
+import { forwardRef, ReactNode, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useModalContext } from "../../context/ModalContext";
 
 interface Iprops {
   Opener: ({ onClick }: any) => React.ReactElement;
@@ -27,27 +28,19 @@ const ModalBody = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
 });
 
 export default function ModalPost({ Opener, Content }: Iprops) {
-  const [isOpen, setIsOpen] = useState(false);
+  const modalContext = useModalContext();
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  useOnClickOutside(ref, () => handleClose());
+  useOnClickOutside(ref, () => modalContext?.handleClose());
 
   if (typeof window === "undefined") return null;
 
   return (
     <>
-      <Opener onClick={handleOpen} />
-      {isOpen && (
+      <Opener onClick={modalContext?.handleOpen} />
+      {modalContext?.isOpen && (
         <ModalBody ref={ref}>
-          <Content handleClose={handleClose} />
+          <Content />
         </ModalBody>
       )}
     </>

@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-query";
 import { NextPage } from "next";
 import UserContextProvider from "../src/context/UserContext";
+import { ModalWrapper } from "../src/context/ModalContext";
 
 export const reactQueryClient = new QueryClient();
 
@@ -25,11 +26,13 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <UserContextProvider>
-      <QueryClientProvider client={reactQueryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          {getLayout(<Component {...pageProps} />)}
-        </Hydrate>
-      </QueryClientProvider>
+      <ModalWrapper>
+        <QueryClientProvider client={reactQueryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            {getLayout(<Component {...pageProps} />)}
+          </Hydrate>
+        </QueryClientProvider>
+      </ModalWrapper>
     </UserContextProvider>
   );
 }

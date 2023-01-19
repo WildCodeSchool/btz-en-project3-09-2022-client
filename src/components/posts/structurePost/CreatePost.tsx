@@ -9,11 +9,7 @@ import SubmittedPost from "./SubmittedPost";
 import UploadArea from "./UploadArea";
 import WysiwygTextArea from "./WysiwygTextArea";
 
-interface IProps {
-  handleClose: () => void;
-}
-
-function CreatePost({ handleClose }: IProps) {
+function CreatePost() {
   const { user } = useAuth();
 
   const [categoryChosen, setCategoryChosen] = useState("");
@@ -65,7 +61,7 @@ function CreatePost({ handleClose }: IProps) {
           </div>
         </>
       ) : (
-        <SubmittedPost handleClose={handleClose} />
+        <SubmittedPost />
       )}
     </div>
   );
