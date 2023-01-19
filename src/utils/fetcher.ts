@@ -33,6 +33,10 @@ export const categoryFetcher = {
     (await axiosInstance.get<[TCategory]>(`/categories?userId=${id}`)).data,
 };
 
+export const categoryFetcher = {
+  getAll: async () => (await axiosInstance.get<any[]>("/categories")).data,
+};
+
 export const teamFetcher = {
   getAll: async () => (await axiosInstance.get<TTeam>("/teams")).data,
   getOne: async (id: string) =>

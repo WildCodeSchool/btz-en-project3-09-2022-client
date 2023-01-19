@@ -82,7 +82,7 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
                           alt={`${
                             user.firstname
                           } ${user.lastname.toUpperCase()}`}
-                          src={user.imageUrl}
+                          src={user.imageUrl || "/profile_image.png"}
                           fill
                           className="object-cover"
                         />
