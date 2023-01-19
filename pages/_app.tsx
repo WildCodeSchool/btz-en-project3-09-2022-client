@@ -12,6 +12,7 @@ import {
 import { NextPage } from "next";
 // eslint-disable-next-line import/no-named-as-default
 import UserContextProvider from "../src/context/UserContext";
+import { ModalWrapper } from "../src/context/ModalContext";
 import "nprogress/nprogress.css";
 import Welcome from "../src/components/Welcome";
 
@@ -44,13 +45,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   }, []);
 
   return (
-    <QueryClientProvider client={reactQueryClient}>
-      <UserContextProvider>
-        <Hydrate state={pageProps.dehydratedState}>
-          <Welcome />
-          {getLayout(<Component {...pageProps} />)}
-        </Hydrate>
-      </UserContextProvider>
-    </QueryClientProvider>
+    <UserContextProvider>
+      <ModalWrapper>
+        <QueryClientProvider client={reactQueryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <Welcome />
+            {getLayout(<Component {...pageProps} />)}
+          </Hydrate>
+        </QueryClientProvider>
+      </ModalWrapper>
+    </UserContextProvider>
   );
 }

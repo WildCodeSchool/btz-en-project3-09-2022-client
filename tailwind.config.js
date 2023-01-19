@@ -20,6 +20,7 @@ module.exports = {
     fontWeight: {
       light: "300",
       regular: "400",
+      medium: "500",
       "semi-bold": "600",
       bold: "700",
     },
@@ -56,6 +57,7 @@ module.exports = {
       "white-enedis": "#FFFFFF",
       "blue-enedis": "#1423DC",
       "green-enedis": "#96CD32",
+      "redError-enedis": "#E10028",
     },
     backgroundColor: {
       "background-enedis": "#E5F1FB",
@@ -64,6 +66,7 @@ module.exports = {
       "dark-enedis": "#212529",
       "white-enedis": "#FFFFFF",
       "yellow-enedis": "#FFC328",
+      "redError-enedis": "#E10028",
     },
     extend: {},
   },

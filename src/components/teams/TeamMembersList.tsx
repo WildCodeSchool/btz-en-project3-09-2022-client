@@ -11,40 +11,28 @@ function TeamMembersList() {
 
   const handleAllMembers = () => {
     if (user) {
-      userFetcher.getAllMembersOneTeam(user.teamId, user.id);
+      userFetcher.getAllByTeam(user.teamId);
       setIsAllMembers(!isAllMembers);
     }
   };
 
   const {
-    isLoading: isLoading5Members,
-    error: error5Members,
-    data: dataOneTeam5Members,
+    isLoading,
+    error,
+    data: dataUserByTeam,
   } = useQuery(
-    ["getOneTeam5Members", user?.teamId],
-    () => user && userFetcher.get5MembersOneTeam(user.teamId, user.id)
-  );
-  const {
-    isLoading: isLoadingAllMembers,
-    error: errorAllMembers,
-    data: dataOneTeamAllMembers,
-  } = useQuery(
-    ["getAllMembersOneTeam", user?.teamId],
-    () => user && userFetcher.getAllMembersOneTeam(user.teamId, user.id)
+    ["getAllByTeam", user?.teamId],
+    () => user && userFetcher.getAllByTeam(user.teamId)
   );
 
-  if (isLoading5Members || !dataOneTeam5Members || !user)
-    return <div>En chargement</div>;
-  if (isLoadingAllMembers || !dataOneTeamAllMembers)
-    return <div>En chargement</div>;
-  if (error5Members || errorAllMembers)
-    return <div>Une erreur s&apos;est produite</div>;
+  if (isLoading || !dataUserByTeam || !user) return <div>En chargement</div>;
+  if (error) return <div>Une erreur s&apos;est produite</div>;
 
   return (
     <>
       {isAllMembers ? (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataOneTeamAllMembers.map((member: TUser) => (
+          {dataUserByTeam.map((member) => (
             <TextTeamMemberCapsuleBlueStroked
               key={member.id}
               firstname={member.firstname}
@@ -55,14 +43,16 @@ function TeamMembersList() {
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataOneTeam5Members.map((member: TUser) => (
-            <TextTeamMemberCapsuleBlueStroked
-              key={member.id}
-              firstname={member.firstname}
-              lastname={member.lastname}
-              imageUrl={member.imageUrl}
-            />
-          ))}
+          {dataUserByTeam
+            .filter((_, index: number) => index < 5)
+            .map((member: TUser) => (
+              <TextTeamMemberCapsuleBlueStroked
+                key={member.id}
+                firstname={member.firstname}
+                lastname={member.lastname}
+                imageUrl={member.imageUrl}
+              />
+            ))}
         </div>
       )}
       <button
