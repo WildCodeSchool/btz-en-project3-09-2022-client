@@ -25,6 +25,10 @@ export const spaceFetcher = {
   getAll: async () => (await axiosInstance.get<TSpace[]>("/spaces")).data,
 };
 
+export const categoryFetcher = {
+  getAll: async () => (await axiosInstance.get<any[]>("/categories")).data,
+};
+
 export const teamFetcher = {
   getAll: async () => (await axiosInstance.get<TTeam>("/teams")).data,
   getOne: async (id: string) =>

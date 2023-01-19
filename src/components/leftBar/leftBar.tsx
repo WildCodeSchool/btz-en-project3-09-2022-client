@@ -11,8 +11,8 @@ function LeftBar() {
   return (
     <div className="w-1/3 hidden md:flex-x-center min-w-[200px] bg-background-enedis h-screen sticky flex-x-center mx-auto">
       <div className="w-[85%] mb-20">
-        {/* <MyProfileLeftBar />
-        <TitleSection titleText="Mon site" /> */}
+        <MyProfileLeftBar />
+        <TitleSection titleText="Mon site" />
         <TextCampusCapsuleBlueStroked
           city={user?.workLocation ? user?.workLocation : "Aucun"}
         />
