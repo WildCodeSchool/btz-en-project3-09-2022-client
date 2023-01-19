@@ -20,9 +20,8 @@ module.exports = {
     fontWeight: {
       light: "300",
       regular: "400",
-      medium: "500",
+      "semi-bold": "600",
       bold: "700",
-      black: "900",
     },
     fontSize: {
       "desk-xxs(mention)": ["10px", "12px"],
@@ -56,6 +55,7 @@ module.exports = {
       "dark-enedis": "#212529",
       "white-enedis": "#FFFFFF",
       "blue-enedis": "#1423DC",
+      "green-enedis": "#96CD32",
     },
     backgroundColor: {
       "background-enedis": "#E5F1FB",

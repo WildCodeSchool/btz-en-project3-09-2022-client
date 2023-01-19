@@ -1,16 +1,33 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import "../styles/globals.css";
+import { ReactElement, ReactNode, useEffect } from "react";
 import type { AppProps } from "next/app";
-import { useEffect } from "react";
 import Router from "next/router";
 import NProgress from "nprogress";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { NextPage } from "next";
+// eslint-disable-next-line import/no-named-as-default
 import UserContextProvider from "../src/context/UserContext";
 import "nprogress/nprogress.css";
 import Welcome from "../src/components/Welcome";
 
 export const reactQueryClient = new QueryClient();
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   useEffect(() => {
     const handleRouteStart = () => NProgress.start();
     const handleRouteDone = () => NProgress.done();
@@ -29,8 +46,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={reactQueryClient}>
       <UserContextProvider>
-        <Welcome />
-        <Component {...pageProps} />
+        <Hydrate state={pageProps.dehydratedState}>
+          <Welcome />
+          {getLayout(<Component {...pageProps} />)}
+        </Hydrate>
       </UserContextProvider>
     </QueryClientProvider>
   );

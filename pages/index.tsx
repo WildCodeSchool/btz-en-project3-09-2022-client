@@ -1,27 +1,27 @@
-/* eslint-disable no-console */
-import { useQuery } from "@tanstack/react-query";
-import Loader from "../src/components/Loader";
-import { categoryFetcher } from "../src/utils/fetcher";
+/* eslint-disable react/function-component-definition */
+import PublicationFirstArea from "../src/components/posts/HeaderPublication/PublicationFirstArea";
+import ListSpaceCardsForHP from "../src/components/spaces/ListSpaceCardsForHP";
+import HeaderHP from "../src/components/structure/HeaderHP";
+import TitleSection from "../src/components/structure/TitleSection";
+import LeftBar from "../src/components/leftBar/leftBar";
+import { NextPageWithLayout } from "./_app";
+import Layout from "../src/components/layout/Layout";
 
-export default function Home() {
-  const { isLoading, isError, data, error } = useQuery(["categories"], () =>
-    categoryFetcher.getAll()
-  );
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (isError) {
-    console.error(error);
-    return <h1>An error has occured, please try again later</h1>;
-  }
-
+const Home: NextPageWithLayout = () => {
   return (
-    <div>
-      {data?.map((c) => (
-        <div>{c.name}</div>
-      ))}
+    <div className="w-screen">
+      <div className="w-full flex-x-center">
+        <HeaderHP />
+        <div className="w-[95%] md:w-[91%]">
+          <PublicationFirstArea />
+          <TitleSection titleText="À la Une sur mes espaces" />
+          <ListSpaceCardsForHP />
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+Home.getLayout = (page) => <Layout sideBar={<LeftBar />}>{page}</Layout>;
+
+export default Home;

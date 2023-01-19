@@ -47,6 +47,9 @@ type AuthState = {
 
 const UserContext = createContext<IUserContext | null>(null);
 
+const localtoken =
+  typeof window !== "undefined" && localStorage.getItem("token");
+
 function UserContextProvider({ children }: TUserContextProviderProps) {
   const router = useRouter();
   const [authState, setAuthState] = useState<AuthState>({
@@ -65,14 +68,15 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         email,
         password,
       });
+      const token = headers["authorization"];
+      axiosInstance.defaults.headers.common["Authorization"] = token;
+      localStorage.setItem("token", token || "");
+      console.log(axiosInstance.defaults.headers.common);
       setAuthState(() => ({
         isAuth: true,
         user: data,
         isLoading: false,
       }));
-      const token = headers["authorization"];
-      axiosInstance.defaults.headers.common["authorization"] = token;
-      localStorage.setItem("token", token || "");
 
       router.push("/");
     } catch (error) {
@@ -87,13 +91,21 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       isLoading: false,
     });
     localStorage.removeItem("token");
-    axiosInstance.defaults.headers.common["authorization"] = "";
+    axiosInstance.defaults.headers.common["Authorization"] = "";
     router.push("/auth/signin");
   };
 
   const authMe = async () => {
+    setAuthState((state) => ({
+      ...state,
+      isLoading: true,
+    }));
     await axiosInstance
-      .post("/auth/me")
+      .post("/auth/me", {
+        headers: {
+          Authorization: localtoken,
+        },
+      })
       .then((res) => {
         console.log("PAS AUTH ERROR");
 
@@ -103,8 +115,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
           isLoading: false,
         });
       })
-      .catch((err) => {
-        console.log("AUTH ERROR");
+      .catch(() => {
         localStorage.setItem("token", "");
 
         router.push("/auth/signin");
@@ -118,6 +129,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
   useEffect(() => {
     authMe();
+    console.log(axiosInstance.defaults.headers.common);
   }, []);
 
   return (

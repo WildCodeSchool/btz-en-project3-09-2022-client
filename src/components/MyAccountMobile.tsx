@@ -1,13 +1,39 @@
 /* eslint-disable no-console */
 
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import React, { useState } from "react";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/UserContext";
+import { formatDate } from "../utils/constants";
+import { teamFetcher } from "../utils/fetcher";
 
 function MyAccountMobile() {
   const { user } = useAuth();
+  // states
+  const [showBirthday, setShowBirthday] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+
+  const handleShowBirthday = () => {
+    setShowBirthday(!showBirthday);
+  };
+
+  const handleShowEmail = () => {
+    setShowEmail(!showEmail);
+  };
+
+  // fetch user connected data includes team
+  if (!user) {
+    return <div>loading...</div>;
+  }
+
+  const { data: team, isLoading } = useQuery(
+    ["teams", `user-${user?.teamId}`],
+    () => teamFetcher.getOne(`${user?.teamId}`)
+  );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="flex flex-col items-center pb-8">
@@ -57,13 +83,17 @@ function MyAccountMobile() {
                 alt="picto enedis"
                 className="mx-4"
               />{" "}
-              {user?.birthday}
+              {formatDate(user?.birthday)}
             </p>
             <div className="flex pt-4  w-5/6 justify-between items-center ">
               <p className="">Montrer ma date de naissance</p>
 
               <label className="switch" htmlFor="showBirthday">
-                <input type="checkbox" id="showBirthday" />
+                <input
+                  type="checkbox"
+                  id="showBirthday"
+                  onClick={handleShowBirthday}
+                />
                 <span className="slider round" />
               </label>
             </div>
@@ -71,7 +101,11 @@ function MyAccountMobile() {
               <p>Montrer mon adresse email</p>
 
               <label className="switch" htmlFor="showEmail">
-                <input type="checkbox" id="showEmail" />
+                <input
+                  type="checkbox"
+                  id="showEmail"
+                  onClick={handleShowEmail}
+                />
                 <span className="slider round" />
               </label>
             </div>
@@ -125,8 +159,8 @@ function MyAccountMobile() {
               height={25}
               alt="picto enedis"
               className="mx-4"
-            />{" "}
-            {user?.teamId}
+            />
+            {team?.name}
           </p>
         </div>
       </div>
