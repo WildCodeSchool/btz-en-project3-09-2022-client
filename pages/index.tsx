@@ -12,7 +12,7 @@ const Home: NextPageWithLayout = () => {
   return (
     <div className="w-screen">
       <div className="w-full flex-x-center">
-        {/* <HeaderHP /> */}
+        <HeaderHP />
         <div className="w-[95%] md:w-[91%]">
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
