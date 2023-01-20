@@ -6,7 +6,7 @@ import TitleSection from "../src/components/structure/TitleSection";
 import LeftBar from "../src/components/leftBar/leftBar";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
-import Comments from "../src/components/comments/comments";
+import Comments from "../src/components/comments/createComment";
 
 const Home: NextPageWithLayout = () => {
   return (

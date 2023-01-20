@@ -1,5 +1,6 @@
 import {
   TCategory,
+  TComment,
   TOneTeam,
   TSite,
   TSpace,
@@ -33,10 +34,6 @@ export const categoryFetcher = {
     (await axiosInstance.get<[TCategory]>(`/categories?userId=${id}`)).data,
 };
 
-export const categoryFetcher = {
-  getAll: async () => (await axiosInstance.get<any[]>("/categories")).data,
-};
-
 export const teamFetcher = {
   getAll: async () => (await axiosInstance.get<TTeam>("/teams")).data,
   getOne: async (id: string) =>
@@ -50,6 +47,7 @@ export const siteFetcher = {
     (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
 };
 
-export const commentsFetcher = {
-  getAll: async () => (await axiosInstance.get("/comments")).data,
+export const commentFetcher = {
+  getAllByPostId: async (postId: string) =>
+    (await axiosInstance.get<TComment[]>(`/comments?postId=${postId}`)).data,
 };

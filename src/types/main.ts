@@ -59,3 +59,12 @@ export type TPost = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type TComment = {
+  id: string;
+  content: string;
+  postId: string;
+  authorId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
