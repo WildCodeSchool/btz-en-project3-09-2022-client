@@ -11,7 +11,7 @@ function CreateComment() {
   const [body, setBody] = useState("");
   const [post, setPost] = useState("");
 
-  //setPost : props avec le postId
+  // setPost : props avec le postId
 
   const postComment = {
     post: (content: string, authorId: string, postId: string) =>
@@ -33,20 +33,20 @@ function CreateComment() {
   return (
     <div className="flex justify-center items-center bg-background-enedis h-52">
       <form>
-        <div className="flex justify-end relative">
+        <div className="flex relative">
           <input
             type="text"
             placeholder="Mon commentaire à écrire"
-            className="bg-white-enedis border rounded-app-bloc text-mob-xs(textPost) static"
+            className="bg-white-enedis rounded-app-bloc text-mob-xs(textPost) static px-10 py-4"
             onChange={(e) => setBody(e.target.value)}
           />
           <Image
             src={user?.imageUrl || "/profile_image.png"}
             alt="user picture"
-            width={10}
-            height={10}
+            width={48}
+            height={48}
             quality={100}
-            className="border rounded-full absolute right-0 top-0 bottom-0 mx-auto"
+            className="rounded-full absolute -right-4 top-0 bottom-0 mx-auto"
           />
         </div>
         <button type="submit" onClick={handleSubmit}>
