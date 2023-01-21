@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import "../styles/globals.css";
+import "../styles/quill.snow.css";
 import { ReactElement, ReactNode, useEffect } from "react";
 import type { AppProps } from "next/app";
 import Router from "next/router";

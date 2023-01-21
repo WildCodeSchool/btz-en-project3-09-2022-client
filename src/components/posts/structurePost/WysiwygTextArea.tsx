@@ -1,20 +1,38 @@
+import dynamic from "next/dynamic";
 import React from "react";
 
+const QuillNoSSRWrapper = dynamic(import("react-quill"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
+
+const modules = {
+  toolbar: [
+    [{ size: [] }],
+    ["bold", "italic", "underline"],
+    [{ list: "bullet" }],
+    ["link", "image"],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: true,
+  },
+};
+
 interface IProps {
-  setBody: (body: string) => void;
+  setBody: (content: string) => void;
 }
 
-function WysiwygTextArea({ setBody }: IProps) {
+export default function WysiwygTextArea({ setBody }: IProps) {
   return (
-    <textarea
-      required
-      wrap="soft"
-      onChange={(e) => setBody(e.target.value)}
-      className="w-full min-h-[250px] max-h-[350px] mb-5 outline-none text-mob-sm(multiuse) text-left font-enedis font-regular rounded-app-bloc px-4 py-3
-        bg-white-enedis md:text-desk-md(titlePubli+multiuse) resize-y"
-      placeholder="J’écris mon texte ici..."
-    />
+    <div className="w-full mb-5">
+      <QuillNoSSRWrapper
+        modules={modules}
+        onChange={setBody}
+        theme="snow"
+        placeholder="J’écris mon texte ici..."
+        className="bg-white-enedis min-h-[250px] max-h-[350px] rounded-app-bloc overflow-y-scroll scrollbar-hide"
+      />
+    </div>
   );
 }
-
-export default WysiwygTextArea;
