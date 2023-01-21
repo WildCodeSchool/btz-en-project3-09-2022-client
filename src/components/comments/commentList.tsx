@@ -12,14 +12,14 @@ function CommentList({ postId }: IProps) {
     commentFetcher.getAllByPostId(postId)
   );
 
-  if (!data) return "No comment";
-  if (isLoading) return "Loading ...";
+  // if (!data) return "No comment";
+  // if (isLoading) return "Loading ...";
 
   return (
     <div>
-      {data.map((comment) => (
-        <CommentItem comment={comment} />
-      ))}
+      {isLoading ? "Loading..." : null}
+      {!data ? "No comment" : null}
+      {data && data.map((comment) => <CommentItem comment={comment} />)}
     </div>
   );
 }
