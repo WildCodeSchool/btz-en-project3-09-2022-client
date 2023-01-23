@@ -18,7 +18,7 @@ const Home: NextPageWithLayout = () => {
         <div className="w-[95%] md:w-[91%]">
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
-          <ListSpaceCardsForHP />
+          {/* <ListSpaceCardsForHP /> */}
           <CommentList postId={postId} />
         </div>
       </div>

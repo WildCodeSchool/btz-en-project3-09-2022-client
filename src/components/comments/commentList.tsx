@@ -12,9 +12,6 @@ function CommentList({ postId }: IProps) {
     commentFetcher.getAllByPostId(postId)
   );
 
-  // if (!data) return "No comment";
-  // if (isLoading) return "Loading ...";
-
   return (
     <div>
       {isLoading ? "Loading..." : null}

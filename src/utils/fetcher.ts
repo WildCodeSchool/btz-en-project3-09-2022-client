@@ -16,22 +16,22 @@ export const userFetcher = {
   getOne: async (id: string) =>
     (await axiosInstance.get<TUser>(`/users/${id}`)).data,
   getAllByTeam: async (teamId: string) =>
-    (await axiosInstance.get<[TUser]>(`/users?team=${teamId}`)).data,
+    (await axiosInstance.get<TUser[]>(`/users?team=${teamId}`)).data,
 };
 
 export const spaceFetcher = {
-  getAll: async () => (await axiosInstance.get<[TSpace]>("/spaces")).data,
+  getAll: async () => (await axiosInstance.get<TSpace[]>("/spaces")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TSpace>(`/spaces/${id}`)).data,
 };
 
 export const categoryFetcher = {
   getAll: async () =>
-    (await axiosInstance.get<[TCategory]>("/categories")).data,
+    (await axiosInstance.get<TCategory[]>("/categories")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
   getAllByUser: async (id: string) =>
-    (await axiosInstance.get<[TCategory]>(`/categories?userId=${id}`)).data,
+    (await axiosInstance.get<TCategory[]>(`/categories?userId=${id}`)).data,
 };
 
 export const teamFetcher = {
@@ -44,7 +44,7 @@ export const teamFetcher = {
 
 export const siteFetcher = {
   getSitesByMember: async (idMember: string) =>
-    (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
+    (await axiosInstance.get<TSite[]>(`/sites?members=${idMember}`)).data,
 };
 
 export const commentFetcher = {
