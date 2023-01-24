@@ -7,10 +7,12 @@ import { useAuth } from "../../context/UserContext";
 import useModal from "../modal/useModal";
 import Modal from "../modal/Modal";
 import SearchBar from "./SearchBar";
+import { useModalContext } from "../../context/ModalContext";
 
 function Navbar() {
   const { user } = useAuth();
   const router = useRouter();
+  const modalContext = useModalContext();
   // Window size
   const { width } = useWindowSize();
 
@@ -101,6 +103,7 @@ function Navbar() {
 
               <button
                 type="button"
+                onClick={modalContext?.handleOpen}
                 className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px] absolute right-8 top-4"
               >
                 Je publie
@@ -129,7 +132,8 @@ function Navbar() {
               src="/assets/Polygon10.png"
               width={20}
               height={20}
-              alt="profile"
+              alt="icone triangle"
+              className={`${!isShowing && "rotate-90"}`}
             />
           </button>
         </div>

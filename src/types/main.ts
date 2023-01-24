@@ -39,3 +39,37 @@ export type TOneTeam = {
 export type TTeam = {
   name: string;
 };
+
+export type TCategory = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  spaceId: string;
+  ownerId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type TPost = {
+  id: string;
+  title: string;
+  content: string;
+  categoryId: string;
+  authorId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type TComment = {
+  id: string;
+  content: string;
+  postId: string;
+  authorId: string;
+  author: {
+    firstname: string;
+    lastname: string;
+    imageUrl: string;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+};

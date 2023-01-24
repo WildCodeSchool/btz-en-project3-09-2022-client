@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
+import Loader from "../components/Loader";
 import { TSpace } from "../types/main";
 import axiosInstance from "../utils/axiosInstance";
 
@@ -70,7 +70,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       const token = headers["authorization"];
       axiosInstance.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("token", token || "");
-      console.log(axiosInstance.defaults.headers.common);
+
       setAuthState(() => ({
         isAuth: true,
         user: data,
@@ -95,7 +95,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
   };
 
   const authMe = async () => {
-    console.log("TOKEN", localtoken);
     setAuthState((state) => ({
       ...state,
       isLoading: true,
@@ -107,6 +106,9 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         },
       })
       .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log("PAS AUTH ERROR");
+
         setAuthState({
           isAuth: true,
           user: res.data,
@@ -115,17 +117,18 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       })
       .catch(() => {
         localStorage.setItem("token", "");
+
+        router.push("/auth/signin");
+
         setAuthState((state) => ({
           ...state,
           isLoading: false,
         }));
-        router.push("/auth/signin");
       });
   };
 
   useEffect(() => {
     authMe();
-    console.log(axiosInstance.defaults.headers.common);
   }, []);
 
   return (
@@ -137,7 +140,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         signOut,
       }}
     >
-      {authState.isLoading ? "Loading ..." : children}
+      {authState.isLoading ? <Loader /> : children}
     </UserContext.Provider>
   );
 }
