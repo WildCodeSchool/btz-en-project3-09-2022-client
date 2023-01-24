@@ -17,7 +17,7 @@ function Profil() {
 
   const { data: members, isLoading: loadMembers } = useQuery(
     ["users", user?.teamId],
-    () => user && userFetcher.getAllMembersOneTeam(user.teamId, user.id)
+    () => user && userFetcher.getAllByTeam(user.teamId)
   );
 
   if (isLoading || loadMembers) {
