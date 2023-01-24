@@ -80,6 +80,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
       router.push("/");
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   };

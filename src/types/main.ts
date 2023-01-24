@@ -60,6 +60,20 @@ export type TPost = {
   updatedAt: Date;
 };
 
+export type TComment = {
+  id: string;
+  content: string;
+  postId: string;
+  authorId: string;
+  author: {
+    firstname: string;
+    lastname: string;
+    imageUrl: string;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type TImage = {
   id: string;
   userId: string;

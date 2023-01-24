@@ -47,6 +47,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <UserContextProvider>
+      <title>Enedis Share VDL</title>
       <ModalWrapper>
         <QueryClientProvider client={reactQueryClient}>
           <Hydrate state={pageProps.dehydratedState}>

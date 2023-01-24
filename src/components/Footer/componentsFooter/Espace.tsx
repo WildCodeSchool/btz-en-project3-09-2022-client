@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useAuth } from "../../context/UserContext";
-import { TSpace } from "../../types/main";
-import { spaceFetcher } from "../../utils/fetcher";
+import { useAuth } from "../../../context/UserContext";
+import { TSpace } from "../../../types/main";
+import { spaceFetcher } from "../../../utils/fetcher";
 
 function Espace() {
   const { user } = useAuth();
