@@ -1,14 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
-import { userFetcher } from "../../utils/fetcher";
-import { TUser } from "../../types/main";
+import { useForm, FormProvider } from "react-hook-form";
+import { userFetcher } from "../../../utils/fetcher";
+import { TUser } from "../../../types/main";
+import PermissionsRadio from "./PermissionsRadio";
+
+const inputName = ["read", "write", "publish", "handle"];
 
 type HandleOpenModifyUser = {
   HandleOpenModifyUser: () => void;
 };
 
 function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
+  const methods = useForm();
+
   const {
     isLoading,
     error,
@@ -22,24 +28,16 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
     return <p>Sorry something went wrong</p>;
   }
 
+  const onSubmit = (data: any) => {
+    HandleOpenModifyUser();
+    console.log(data);
+  };
+
   return (
     <div className="bg-green-enedis w-screen h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2">
-        <p className="text-mob-sm(multiuse)">Je veux ajouter un membre : </p>
-        <div className="bg-blue-enedis w-full rounded-full h-10">
-          <div className="flex items-center p-1 h-10">
-            <Image
-              src="/logo_enedis/picto_search_white.svg"
-              alt=" recherche"
-              width={10}
-              height={10}
-              className="w-9 h-8"
-            />
-            <input type="text" className="w-full rounded-full h-8" />
-          </div>
-        </div>
         <div className="flex justify-end w-full">
-          <div className="flex flex-row space-x-2 ">
+          <div className="flex flex-row space-x-4 my-3">
             <Image
               src="/logo_enedis/logo_vue.svg"
               alt="logo de vue"
@@ -70,13 +68,13 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
             />
           </div>
         </div>
-        <div className=" w-full">
-          <table className="w-full">
-            {Alluser.map((user: TUser) => (
-              <tr className="">
-                <td className="w-fit max-w-[200px]">
-                  <div className="flex justify-start items-center w-full">
-                    <div className="w-fit flex justify-center items-center overflow-hidden mb-2 mr-2">
+        <FormProvider {...methods}>
+          <div className=" w-full">
+            <table className="w-full">
+              {Alluser.map((user: TUser) => (
+                <tr className="w-full">
+                  <div className="flex justify-between align-middle items-center w-full">
+                    <div className=" flex justify-center items-center overflow-hidden mb-2 mr-2">
                       <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
                         <Image
                           alt={`${
@@ -93,31 +91,20 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
                         </p>
                       </div>
                     </div>
+                    <PermissionsRadio user={user} inputName={inputName} />
                   </div>
-                </td>
-                <td>
-                  <input type="checkbox" className="h-4 w-4 " />
-                </td>
-                <td>
-                  <input type="checkbox" className="h-4 w-4 ml-3" />
-                </td>
-                <td>
-                  <input type="checkbox" className="h-4 w-4 ml-3 " />
-                </td>
-                <td>
-                  <input type="checkbox" className="h-4 w-4 ml-3 " />
-                </td>
-              </tr>
-            ))}
-          </table>
-          <button
-            onClick={HandleOpenModifyUser}
-            type="button"
-            className="text-white-enedis bg-green-enedis rounded-full px-2 h-10 w-28 text-mob-md(CTA+input) font-bold"
-          >
-            Je valide
-          </button>
-        </div>
+                </tr>
+              ))}
+            </table>
+            <button
+              onClick={methods.handleSubmit(onSubmit)}
+              type="button"
+              className="text-white-enedis bg-green-enedis rounded-full px-2 h-10 w-28 text-mob-md(CTA+input) font-bold"
+            >
+              Je valide
+            </button>
+          </div>
+        </FormProvider>
       </div>
     </div>
   );

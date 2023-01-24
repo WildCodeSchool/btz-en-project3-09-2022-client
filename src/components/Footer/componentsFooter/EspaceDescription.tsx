@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import ModifyUser from "./ModifyUser";
-import { useAuth } from "../../context/UserContext";
+import { useAuth } from "../../../context/UserContext";
 import AddUser from "./AddUser";
 
 function EspaceDescription() {
@@ -32,33 +32,36 @@ function EspaceDescription() {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore ea
             aperiam, quas dicta repellendus quaerat earum in minus cumque?
           </p>
-          {modify && (
-            <AnimatePresence>
-              <motion.div
-                exit={{ y: -280 }}
-                initial={{ y: -280 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.2 }}
-                className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
-              >
-                <ModifyUser HandleOpenModifyUser={HandleOpenModifyUser} />
-              </motion.div>
-            </AnimatePresence>
-          )}
-
-          {addUser && (
-            <AnimatePresence>
-              <motion.div
-                exit={{ y: -280 }}
-                initial={{ y: 280 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
-              >
-                <AddUser HandleOpenAddUser={HandleOpenAddUser} />
-              </motion.div>
-            </AnimatePresence>
-          )}
+          <div>
+            {modify && (
+              <AnimatePresence>
+                <motion.div
+                  exit={{ y: -280 }}
+                  initial={{ y: 280 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
+                >
+                  <ModifyUser HandleOpenModifyUser={HandleOpenModifyUser} />
+                </motion.div>
+              </AnimatePresence>
+            )}
+          </div>
+          <div>
+            {addUser && (
+              <AnimatePresence>
+                <motion.div
+                  exit={{ y: -280 }}
+                  initial={{ y: 280 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
+                >
+                  <AddUser HandleOpenAddUser={HandleOpenAddUser} />
+                </motion.div>
+              </AnimatePresence>
+            )}
+          </div>
 
           <div className={modify || addUser ? "hidden" : ""}>
             <div className="text-mob-xl(headers+titles) font-bold mb-1">

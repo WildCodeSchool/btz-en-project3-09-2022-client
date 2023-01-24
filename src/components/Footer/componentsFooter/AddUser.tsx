@@ -10,7 +10,7 @@ function AddUser({ HandleOpenAddUser }: THandleOpenAddUser) {
     <div className="bg-green-enedis w-screen h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2">
         <p className="text-mob-sm(multiuse)">Je veux ajouter un membre : </p>
-        <div className="bg-blue-enedis w-full rounded-full h-10">
+        <div className="bg-blue-enedis w-full rounded-full h-10 m-5">
           <div className="flex items-center p-1 h-10">
             <Image
               src="/logo_enedis/picto_search_white.svg"
