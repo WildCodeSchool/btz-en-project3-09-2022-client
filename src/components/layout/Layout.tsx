@@ -14,8 +14,8 @@ export default function Layout({ children, sideBar }: IProps) {
   const router = useRouter();
   useEffect(() => {
     if (router.isReady) {
-      // setTimeout à enlever si on veut
-      setTimeout(() => setIsLoading(false), 2000);
+      // setTimeout à moduler si on veut
+      setTimeout(() => setIsLoading(false), 1000);
     }
   }, []);
 
