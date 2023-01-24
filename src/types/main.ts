@@ -59,3 +59,13 @@ export type TPost = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type TImage = {
+  id: string;
+  userId: string;
+  postId: string | null;
+  name: string;
+  url: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
