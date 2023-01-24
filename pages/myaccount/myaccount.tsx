@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Loader from "../../src/components/Loader";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
@@ -12,7 +12,16 @@ import {
 } from "../../src/utils/fetcher";
 
 function myaccount() {
+  const [isAllMembers, setIsAllMembers] = useState(false);
+
   const { user } = useAuth();
+
+  const handleAllMembers = () => {
+    if (user) {
+      userFetcher.getAllByTeam(user.teamId);
+      setIsAllMembers(!isAllMembers);
+    }
+  };
 
   if (!user) {
     return <p>No user</p>;
@@ -43,6 +52,8 @@ function myaccount() {
   if (error) {
     <p>No error</p>;
   }
+
+  console.log(usersInMyTeam.length);
 
   return (
     <div>
@@ -132,21 +143,31 @@ function myaccount() {
             <h3 className="mb-2">Mon équipe</h3>
             <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%]" />
             <ul className="mt-5 ml-5">
-              {usersInMyTeam?.map((item) => (
-                <li className="flex items-center" key={item.id}>
-                  <Image
-                    src={item.imageUrl || "/image_profile.png"}
-                    width={30}
-                    height={30}
-                    alt="profile"
-                    className="w-[30px] h-[30px] rounded-[50%] my-[4px] mr-2 object-cover"
-                  />
-                  <p className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate ">
-                    {item.firstname} {item.lastname}
-                  </p>
-                </li>
-              ))}
+              {usersInMyTeam
+                ?.filter((_, index: number) => index < 5)
+                .map((item) => (
+                  <li className="flex items-center" key={item.id}>
+                    <Image
+                      src={item.imageUrl || "/image_profile.png"}
+                      width={30}
+                      height={30}
+                      alt="profile"
+                      className="w-[30px] h-[30px] rounded-[50%] my-[4px] mr-2 object-cover"
+                    />
+                    <p className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate ">
+                      {item.firstname} {item.lastname}
+                    </p>
+                  </li>
+                ))}
             </ul>
+
+            <button
+              type="button"
+              onClick={handleAllMembers}
+              className="text-desk-sm(textPost+multiuse) font-publicSans font-regular mt-3 md:text-mob-sm(multiuse) md:mt-4"
+            >
+              {isAllMembers ? "Voir moins..." : "Voir plus..."}
+            </button>
           </div>
 
           <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
