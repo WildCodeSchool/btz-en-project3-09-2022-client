@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <title>Enedis Share VDL</title>
         <link
           rel="shortcut icon"
           href="/images/favicon/ENEDIS_Icone_RVB_EXE.png"
