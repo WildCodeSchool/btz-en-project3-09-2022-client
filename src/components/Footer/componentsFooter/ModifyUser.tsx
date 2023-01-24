@@ -30,7 +30,6 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
 
   const onSubmit = (data: any) => {
     HandleOpenModifyUser();
-    console.log(data);
   };
 
   return (
