@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { TUser } from "../../../types/main";
 
 type Props = {

@@ -28,9 +28,8 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
     return <p>Sorry something went wrong</p>;
   }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     HandleOpenModifyUser();
-    console.log(data);
   };
 
   return (
