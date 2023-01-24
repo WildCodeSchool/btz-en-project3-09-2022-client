@@ -46,8 +46,8 @@ function myaccount() {
 
   return (
     <div>
-      <div className="bg-background-enedis w-[95%] m-auto mt-2 pb-10  ">
-        <div className="flex ">
+      <div className="bg-background-enedis w-[95%] m-auto mt-10 pb-10 md:flex md:justify-between md:w-[80%]">
+        <div className="flex md:w-[40%]">
           <div className=" w-1/2 m-4">
             <img
               src={user?.imageUrl || "/profile_image.png"}
@@ -127,11 +127,11 @@ function myaccount() {
             </div>
           </div>
         </div>
-        <div className="flex">
-          <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
+        <div className="flex md:w-[60%]">
+          <div className="w-1/2 flex flex-col items-center pt-4">
             <h3 className="mb-2">Mon équipe</h3>
-            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-            <ul className="mt-5">
+            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%]" />
+            <ul className="mt-5 ml-5">
               {usersInMyTeam?.map((item) => (
                 <li className="flex items-center" key={item.id}>
                   <Image
@@ -151,7 +151,7 @@ function myaccount() {
 
           <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
             <h3 className="mb-2">Mes catégories</h3>
-            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
+            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%]" />
             <ul className="mt-5 space-y-2">
               {myCategories?.map((category) =>
                 category.ownerId === user.id ? (
