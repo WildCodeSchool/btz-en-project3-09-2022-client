@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import Loader from "../../src/components/Loader";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
 import {
@@ -26,7 +28,7 @@ function myaccount() {
 
   const { data: usersInMyTeam } = useQuery(
     ["users", `team-${user?.teamId}`],
-    () => userFetcher.getAllMembersOneTeam(user?.teamId, user?.id)
+    () => userFetcher.getAllByTeam(user?.teamId)
   );
 
   const { data: myCategories } = useQuery(
@@ -35,7 +37,7 @@ function myaccount() {
   );
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (error) {
@@ -52,20 +54,22 @@ function myaccount() {
               alt="profil"
               className="w-[126px] h-[126px] rounded-[50%] my-[5%] object-cover"
             />
-            <button
-              type="button"
-              className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-md(CTA+input) flex justify-around items-center "
-            >
-              <Image
-                src="/assets/picto-set 1.png"
-                width={25}
-                height={25}
-                alt="picto enedis"
-                className="w-[25px] h-[25px]"
-              />
-              Modifier
-              <br /> mes infos
-            </button>
+            <Link href="/myaccount/settings">
+              <button
+                type="button"
+                className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-md(CTA+input) flex justify-around items-center "
+              >
+                <Image
+                  src="/assets/picto-set 1.png"
+                  width={25}
+                  height={25}
+                  alt="picto enedis"
+                  className="w-[25px] h-[25px]"
+                />
+                Modifier
+                <br /> mes infos
+              </button>
+            </Link>
           </div>
           <div className=" space-y-2  w-1/2  text-left mt-8 ">
             <p className="font-bold text-[32px] pb-2">{user?.firstname}</p>
