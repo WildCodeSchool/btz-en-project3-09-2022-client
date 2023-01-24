@@ -34,7 +34,7 @@ function Navbar() {
           <button
             type="button"
             className="text-white-enedis"
-            onClick={() => router.push("/myaccount")}
+            onClick={() => router.push("/myaccount/myaccount")}
           >
             Mon profil
           </button>
