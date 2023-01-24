@@ -49,5 +49,9 @@ export const siteFetcher = {
 
 export const commentFetcher = {
   getAllByPostId: async (postId: string) =>
-    (await axiosInstance.get<TComment[]>(`/comments?postId=${postId}`)).data,
+    (
+      await axiosInstance.get<TComment[]>(
+        `/comments?postId=${postId}&author=true`
+      )
+    ).data,
 };
