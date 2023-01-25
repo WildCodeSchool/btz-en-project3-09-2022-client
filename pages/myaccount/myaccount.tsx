@@ -120,7 +120,7 @@ function myaccount() {
           </div>
         </div>
         <div className="flex lg:w-[60%]">
-          <div className="w-1/2 flex flex-col items-center pt-4">
+          <div className="w-1/2 flex flex-col items-center pt-4 pl-4">
             <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
               Mon équipe
             </h3>
