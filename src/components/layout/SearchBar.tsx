@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { userFetcher } from "../../utils/fetcher";
+import { useAuth } from "../../context/UserContext";
+import useOnClickOutside from "../hooks/useOnClickOutside";
 
 type TUser = {
   id: string;
@@ -20,14 +22,18 @@ type TUser = {
 
 type TProps = {
   width: number;
-  isSearchBarOpen: boolean;
-  setIsSearchBarOpen: (isSearchBarOpen: boolean) => void;
 };
 
-function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
+function SearchBar({ width }: TProps) {
   const [selectedUser, setSelectedUser] = useState("");
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
+  const { user: userConnected } = useAuth();
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => setIsUSersListOpen(false));
+
+  if (typeof window === "undefined") return null;
   // Fetch all users
 
   const { data, isLoading } = useQuery(["users"], () => userFetcher.getAll());
@@ -38,11 +44,9 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
 
   // handlers
   const handleUsersList = () => {
-    setIsUSersListOpen(!isUsersListOpen);
-  };
-
-  const handleSearchBarOpen = () => {
-    setIsSearchBarOpen(!isSearchBarOpen);
+    if (!isUsersListOpen) {
+      setIsUSersListOpen(true);
+    }
   };
 
   return (
@@ -50,31 +54,19 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
       {/* Mobile */}
 
       {width < 760 ? (
-        <div className="relative  min-w-[50%] flex justify-between items-center mr-6">
-          <div className="bg-white-enedis w-[45px] h-[45px] rounded-full flex justify-center items-center absolute left-16 ">
-            <button
-              type="button"
-              className="bg-green-enedis w-[37px] h-[37px] rounded-full flex justify-center items-center "
-              onClick={handleSearchBarOpen}
-            >
-              <Image
-                src="/assets/ENEDIS_PICTO_003_Search_BLANC_EXE.png"
-                width={1000}
-                height={1000}
-                alt="search-picto"
-                className="w-[80%] h-[80%]"
-              />
-            </button>
-          </div>
+        <div
+          className="relative w-full flex justify-between items-center mr-6"
+          ref={ref}
+        >
           <input
             type="select"
-            className=" w-full  h-[45px] rounded-full text-center  placeholder "
+            className=" w-full  h-[45px] rounded-full text-center placeholder "
             placeholder="Rechercher..."
             onChange={(e) => setSelectedUser(e.target.value)}
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-14  py-6 border-4 border-green-enedis w-full px-4">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[400px] overflow-auto ">
               {data.length > 0 &&
                 data
                   .filter(
@@ -82,26 +74,40 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
                       user.lastname.toLowerCase().includes(selectedUser) ||
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
-                  .map((user: TUser) => (
-                    <div className="flex ">
-                      <Image
-                        src={user.imageUrl || "/profile_image.png"}
-                        width={100}
-                        height={100}
-                        alt="profile"
-                        className="rounded-full w-[30px] h-[30px]  border-white-enedis space-5-5"
-                      />
-                      <span className="text-dark-enedis w-full">
-                        {user.firstname} {user.lastname}
-                      </span>
-                    </div>
-                  ))}
+                  .map(
+                    (user: TUser) =>
+                      user.id !== userConnected?.id && (
+                        <div className="flex w-full items-center mb-2">
+                          <Image
+                            src={user.imageUrl || "/profile_image.png"}
+                            width={40}
+                            height={40}
+                            alt={
+                              `${
+                                user.firstname
+                              } ${user.lastname.toUpperCase()}` || "nom prénom"
+                            }
+                            className="rounded-full  border-white-enedis"
+                          />
+                          <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                            {user.firstname} {user.lastname.toUpperCase()}
+                            <br />
+                            <span className="text-desk-sm(textPost+multiuse)">
+                              {user.workLocation}
+                            </span>
+                          </p>
+                        </div>
+                      )
+                  )}
             </div>
           )}
         </div>
       ) : (
         // Desktop
-        <div className="relative  min-w-[50%] flex justify-between items-center  ">
+        <div
+          className="relative  min-w-[50%] flex justify-between items-center  "
+          ref={ref}
+        >
           <input
             className="w-[86%] h-[40px] rounded-full text-center "
             placeholder="Rechercher sur Enedis Share..."
@@ -109,7 +115,7 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-14 py-6 border-4 border-green-enedis w-full px-4">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[400px] overflow-auto ">
               {data.length > 0 &&
                 data
                   .filter(
@@ -117,20 +123,25 @@ function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
                       user.lastname.toLowerCase().includes(selectedUser) ||
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
-                  .map((user: TUser) => (
-                    <div className="flex items-center">
-                      <Image
-                        src={user.imageUrl || "/profile_image.png"}
-                        width={100}
-                        height={100}
-                        alt="profile"
-                        className="rounded-full w-[30px] h-[30px] border border-white-enedis space-5-5"
-                      />
-                      <span className="text-dark-enedis w-full">
-                        {user.firstname} {user.lastname}
-                      </span>
-                    </div>
-                  ))}
+                  .map(
+                    (user: TUser) =>
+                      user.id !== userConnected?.id && (
+                        <div className="flex items-center w-2/3 m-auto  pb-2">
+                          <Image
+                            src={user.imageUrl || "/profile_image.png"}
+                            width={40}
+                            height={40}
+                            alt="profile"
+                            className="rounded-full  border border-white-enedis "
+                          />
+                          <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                            {user.firstname} {user.lastname.toUpperCase()}
+                            <br />
+                            <span>{user.workLocation}</span>
+                          </p>
+                        </div>
+                      )
+                  )}
             </div>
           )}
 
