@@ -23,6 +23,7 @@ module.exports = {
       medium: "500",
       "semi-bold": "600",
       bold: "700",
+      black: "900",
     },
     fontSize: {
       "desk-xxs(mention)": ["10px", "12px"],

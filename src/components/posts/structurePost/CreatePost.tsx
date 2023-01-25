@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../context/UserContext";
-import { postPoster } from "../../../utils/poster";
+import { imageFetcher, postFetcher } from "../../../utils/poster";
 import CTA from "../../structure/CTA";
 import CategoryChoosing from "./CategoryChoosing";
 import PostTitle from "./PostTitle";
@@ -12,23 +12,37 @@ import WysiwygTextArea from "./WysiwygTextArea";
 function CreatePost() {
   const { user } = useAuth();
 
-  const [categoryChosen, setCategoryChosen] = useState("");
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [triedToSubmit, setTriedToSubmit] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [categoryChosen, setCategoryChosen] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
+  const [image, setImage] = useState<File | null>(null);
+  const [triedToSubmit, setTriedToSubmit] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   if (!user) {
     return <div>Please connect first</div>;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!categoryChosen || !title || !body) {
       return setTriedToSubmit(true);
     }
-    return (
-      postPoster.post(title, body, user.id, categoryChosen), setSubmitted(true)
+
+    const postSubmitted = await postFetcher.post(
+      title,
+      body,
+      user.id,
+      categoryChosen
     );
+
+    if (image) {
+      const formData = new FormData();
+      formData.append("postImage", image as File);
+      formData.append("postId", postSubmitted.data.id);
+      await imageFetcher.post(formData);
+    }
+
+    return setSubmitted(true);
   };
 
   return (
@@ -49,7 +63,11 @@ function CreatePost() {
             </div>
           </div>
           <WysiwygTextArea setBody={setBody} />
-          <UploadArea />
+          <UploadArea
+            handleSubmit={handleSubmit}
+            image={image}
+            setImage={setImage}
+          />
           {triedToSubmit && (
             <p className="w-full text-mob-sm(multiuse) mt-4 font-regular text-redError-enedis">
               <span className="font-bold">ATTENTION :</span> vérifiez que votre
