@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { userFetcher } from "../../utils/fetcher";
+import { useAuth } from "../../context/UserContext";
 
 type TUser = {
   id: string;
@@ -25,6 +26,7 @@ type TProps = {
 function SearchBar({ width }: TProps) {
   const [selectedUser, setSelectedUser] = useState("");
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
+  const { user: userConnected } = useAuth();
 
   // Fetch all users
 
@@ -53,7 +55,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 border-x-4 border-b-4 border-green-enedis">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[400px] overflow-auto ">
               {data.length > 0 &&
                 data
                   .filter(
@@ -61,20 +63,31 @@ function SearchBar({ width }: TProps) {
                       user.lastname.toLowerCase().includes(selectedUser) ||
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
-                  .map((user: TUser) => (
-                    <div className="flex w-full items-center justify-center mb-2">
-                      <Image
-                        src={user.imageUrl || "/profile_image.png"}
-                        width={100}
-                        height={100}
-                        alt="profile"
-                        className="rounded-full w-[30px] h-[30px]  border-white-enedis space-5-5"
-                      />
-                      <span className="text-white-enedis w-full">
-                        {user.firstname} {user.lastname.toUpperCase()}
-                      </span>
-                    </div>
-                  ))}
+                  .map(
+                    (user: TUser) =>
+                      user.id !== userConnected?.id && (
+                        <div className="flex w-full items-center  mb-2  ">
+                          <Image
+                            src={user.imageUrl || "/profile_image.png"}
+                            width={40}
+                            height={40}
+                            alt={
+                              `${
+                                user.firstname
+                              } ${user.lastname.toUpperCase()}` || "nom prénom"
+                            }
+                            className="rounded-full  border-white-enedis"
+                          />
+                          <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                            {user.firstname} {user.lastname.toUpperCase()}
+                            <br />
+                            <span className="text-desk-sm(textPost+multiuse)">
+                              {user.workLocation}
+                            </span>
+                          </p>
+                        </div>
+                      )
+                  )}
             </div>
           )}
         </div>
@@ -88,7 +101,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50 border-x-4 border-b-4 border-green-enedis">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[400px] overflow-auto ">
               {data.length > 0 &&
                 data
                   .filter(
@@ -96,20 +109,25 @@ function SearchBar({ width }: TProps) {
                       user.lastname.toLowerCase().includes(selectedUser) ||
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
-                  .map((user: TUser) => (
-                    <div className="flex items-center w-2/3 m-auto  pb-2">
-                      <Image
-                        src={user.imageUrl || "/profile_image.png"}
-                        width={100}
-                        height={100}
-                        alt="profile"
-                        className="rounded-full w-[30px] h-[30px] border border-white-enedis "
-                      />
-                      <span className="text-white-enedis w-full">
-                        {user.firstname} {user.lastname.toUpperCase()}
-                      </span>
-                    </div>
-                  ))}
+                  .map(
+                    (user: TUser) =>
+                      user.id !== userConnected?.id && (
+                        <div className="flex items-center w-2/3 m-auto  pb-2">
+                          <Image
+                            src={user.imageUrl || "/profile_image.png"}
+                            width={40}
+                            height={40}
+                            alt="profile"
+                            className="rounded-full  border border-white-enedis "
+                          />
+                          <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                            {user.firstname} {user.lastname.toUpperCase()}
+                            <br />
+                            <span>{user.workLocation}</span>
+                          </p>
+                        </div>
+                      )
+                  )}
             </div>
           )}
 
