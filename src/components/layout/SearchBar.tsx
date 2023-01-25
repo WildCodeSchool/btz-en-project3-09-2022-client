@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { userFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
+import useOnClickOutside from "../hooks/useOnClickOutside";
 
 type TUser = {
   id: string;
@@ -28,6 +29,11 @@ function SearchBar({ width }: TProps) {
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
   const { user: userConnected } = useAuth();
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => setIsUSersListOpen(false));
+
+  if (typeof window === "undefined") return null;
   // Fetch all users
 
   const { data, isLoading } = useQuery(["users"], () => userFetcher.getAll());
@@ -38,7 +44,9 @@ function SearchBar({ width }: TProps) {
 
   // handlers
   const handleUsersList = () => {
-    setIsUSersListOpen(!isUsersListOpen);
+    if (!isUsersListOpen) {
+      setIsUSersListOpen(true);
+    }
   };
 
   return (
@@ -66,7 +74,10 @@ function SearchBar({ width }: TProps) {
                   .map(
                     (user: TUser) =>
                       user.id !== userConnected?.id && (
-                        <div className="flex w-full items-center  mb-2  ">
+                        <div
+                          className="flex w-full items-center mb-2"
+                          ref={ref}
+                        >
                           <Image
                             src={user.imageUrl || "/profile_image.png"}
                             width={40}
