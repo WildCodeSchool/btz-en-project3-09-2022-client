@@ -54,7 +54,10 @@ function SearchBar({ width }: TProps) {
       {/* Mobile */}
 
       {width < 760 ? (
-        <div className="relative w-full flex justify-between items-center mr-6">
+        <div
+          className="relative w-full flex justify-between items-center mr-6"
+          ref={ref}
+        >
           <input
             type="select"
             className=" w-full  h-[45px] rounded-full text-center placeholder "
@@ -74,10 +77,7 @@ function SearchBar({ width }: TProps) {
                   .map(
                     (user: TUser) =>
                       user.id !== userConnected?.id && (
-                        <div
-                          className="flex w-full items-center mb-2"
-                          ref={ref}
-                        >
+                        <div className="flex w-full items-center mb-2">
                           <Image
                             src={user.imageUrl || "/profile_image.png"}
                             width={40}
@@ -104,7 +104,10 @@ function SearchBar({ width }: TProps) {
         </div>
       ) : (
         // Desktop
-        <div className="relative  min-w-[50%] flex justify-between items-center  ">
+        <div
+          className="relative  min-w-[50%] flex justify-between items-center  "
+          ref={ref}
+        >
           <input
             className="w-[86%] h-[40px] rounded-full text-center "
             placeholder="Rechercher sur Enedis Share..."
