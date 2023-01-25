@@ -25,9 +25,12 @@ function CommentList({ postId }: IProps) {
       {isLoading ? "Loading..." : null}
       {!data ? "No comment" : null}
       {data &&
-        data.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
-        ))}
+        data
+          .sort(
+            (a, b) =>
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          )
+          .map((comment) => <CommentItem key={comment.id} comment={comment} />)}
       <CreateComment onSubmit={handleSubmit} />
     </div>
   );
