@@ -44,14 +44,5 @@ export const teamFetcher = {
 
 export const siteFetcher = {
   getSitesByMember: async (idMember: string) =>
-    (await axiosInstance.get<TSite[]>(`/sites?members=${idMember}`)).data,
-};
-
-export const commentFetcher = {
-  getAllByPostId: async (postId: string) =>
-    (
-      await axiosInstance.get<TComment[]>(
-        `/comments?postId=${postId}&author=true`
-      )
-    ).data,
+    (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
 };
