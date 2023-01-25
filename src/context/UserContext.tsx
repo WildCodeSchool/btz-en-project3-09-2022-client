@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useRouter } from "next/router";
@@ -70,7 +71,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       const token = headers["authorization"];
       axiosInstance.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("token", token || "");
-
+      console.log(axiosInstance.defaults.headers.common);
       setAuthState(() => ({
         isAuth: true,
         user: data,
@@ -107,7 +108,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         },
       })
       .then((res) => {
-        // eslint-disable-next-line no-console
         console.log("PAS AUTH ERROR");
 
         setAuthState({
@@ -130,6 +130,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
   useEffect(() => {
     authMe();
+    console.log(axiosInstance.defaults.headers.common);
   }, []);
 
   return (

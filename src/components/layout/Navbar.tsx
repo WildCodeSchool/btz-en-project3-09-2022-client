@@ -114,7 +114,7 @@ function Navbar() {
           <p className="font-enedis font-bold text-desk-xl(section)">
             {user?.firstname}
             <br />
-            {user?.lastname}
+            {user?.lastname.toUpperCase()}
           </p>
           <button type="button" onClick={toggle}>
             <Image
