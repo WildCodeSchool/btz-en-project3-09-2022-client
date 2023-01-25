@@ -20,11 +20,9 @@ type TUser = {
 
 type TProps = {
   width: number;
-  isSearchBarOpen: boolean;
-  setIsSearchBarOpen: (isSearchBarOpen: boolean) => void;
 };
 
-function SearchBar({ width, isSearchBarOpen, setIsSearchBarOpen }: TProps) {
+function SearchBar({ width }: TProps) {
   const [selectedUser, setSelectedUser] = useState("");
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
 

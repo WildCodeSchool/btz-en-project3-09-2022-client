@@ -58,11 +58,7 @@ function Navbar() {
             <div className="flex justify-between min-w-[100px]  ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
                 {isSearchBarOpen ? (
-                  <SearchBar
-                    width={width}
-                    isSearchBarOpen={isSearchBarOpen}
-                    setIsSearchBarOpen={setIsSearchBarOpen}
-                  />
+                  <SearchBar width={width} />
                 ) : (
                   <div className="bg-white-enedis  w-[45px] h-[45px] rounded-full flex justify-center items-center">
                     <button
@@ -95,11 +91,7 @@ function Navbar() {
             </div>
           ) : (
             <div className="w-2/3 flex justify-between ">
-              <SearchBar
-                width={width}
-                isSearchBarOpen={isSearchBarOpen}
-                setIsSearchBarOpen={setIsSearchBarOpen}
-              />
+              <SearchBar width={width} />
 
               <button
                 type="button"
