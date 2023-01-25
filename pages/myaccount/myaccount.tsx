@@ -1,27 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import Loader from "../../src/components/Loader";
+import TeamMembersList from "../../src/components/teams/TeamMembersList";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
-import {
-  categoryFetcher,
-  teamFetcher,
-  userFetcher,
-} from "../../src/utils/fetcher";
+import { categoryFetcher, teamFetcher } from "../../src/utils/fetcher";
 
 function myaccount() {
-  const [isAllMembers, setIsAllMembers] = useState(false);
-
   const { user } = useAuth();
-
-  const handleAllMembers = () => {
-    if (user) {
-      userFetcher.getAllByTeam(user.teamId);
-      setIsAllMembers(!isAllMembers);
-    }
-  };
 
   if (!user) {
     return <p>No user</p>;
@@ -33,11 +21,6 @@ function myaccount() {
     error,
   } = useQuery(["teams", `user-${user?.teamId}`], () =>
     teamFetcher.getOne(`${user?.teamId}`)
-  );
-
-  const { data: usersInMyTeam } = useQuery(
-    ["users", `team-${user?.teamId}`],
-    () => userFetcher.getAllByTeam(user?.teamId)
   );
 
   const { data: myCategories } = useQuery(
@@ -52,8 +35,6 @@ function myaccount() {
   if (error) {
     <p>No error</p>;
   }
-
-  console.log(usersInMyTeam.length);
 
   return (
     <div>
@@ -95,7 +76,7 @@ function myaccount() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse) ">
                 {team?.name}
               </p>
             </div>
@@ -107,7 +88,7 @@ function myaccount() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse)">
                 {user?.workLocation}
               </p>
             </div>
@@ -119,7 +100,7 @@ function myaccount() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse)">
                 {user?.email}
               </p>
             </div>
@@ -132,7 +113,7 @@ function myaccount() {
                 className="mr-4 w-[25px] h-[25px]"
               />
 
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) ">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse)">
                 {formatDate(user?.birthday as Date)}
               </p>
             </div>
@@ -140,45 +121,24 @@ function myaccount() {
         </div>
         <div className="flex md:w-[60%]">
           <div className="w-1/2 flex flex-col items-center pt-4">
-            <h3 className="mb-2">Mon équipe</h3>
-            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%]" />
-            <ul className="mt-5 ml-5">
-              {usersInMyTeam
-                ?.filter((_, index: number) => index < 5)
-                .map((item) => (
-                  <li className="flex items-center" key={item.id}>
-                    <Image
-                      src={item.imageUrl || "/image_profile.png"}
-                      width={30}
-                      height={30}
-                      alt="profile"
-                      className="w-[30px] h-[30px] rounded-[50%] my-[4px] mr-2 object-cover"
-                    />
-                    <p className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate ">
-                      {item.firstname} {item.lastname}
-                    </p>
-                  </li>
-                ))}
-            </ul>
-
-            <button
-              type="button"
-              onClick={handleAllMembers}
-              className="text-desk-sm(textPost+multiuse) font-publicSans font-regular mt-3 md:text-mob-sm(multiuse) md:mt-4"
-            >
-              {isAllMembers ? "Voir moins..." : "Voir plus..."}
-            </button>
+            <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+              Mon équipe
+            </h3>
+            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%] mb-5" />
+            <TeamMembersList />
           </div>
 
           <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
-            <h3 className="mb-2">Mes catégories</h3>
+            <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+              Mes catégories
+            </h3>
             <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%]" />
             <ul className="mt-5 space-y-2">
               {myCategories?.map((category) =>
                 category.ownerId === user.id ? (
-                  <div className="flex ">
+                  <div className="flex relative">
                     <li
-                      className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
+                      className="border text-mob-sm(multiuse) md:text-desk-md(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
                       key={category.id}
                     >
                       {category.name}
@@ -189,12 +149,12 @@ function myaccount() {
                       width={30}
                       height={30}
                       alt="owner"
-                      className="h-[30px] w-[30px] ml-10"
+                      className="h-[30px] w-[30px] ml-10 absolute"
                     />
                   </div>
                 ) : (
                   <li
-                    className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate "
+                    className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate text-mob-sm(multiuse) md:text-desk-md(titlePubli+multiuse)"
                     key={category.id}
                   >
                     {category.name}
@@ -206,13 +166,16 @@ function myaccount() {
         </div>
       </div>
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">
-        <h3 className="mb-2">Mon activité</h3>
+        <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+          Mon activité
+        </h3>
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
       </div>
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">
-        <h3 className="mb-2">Mes dernières publications</h3>
+        <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+          Mes dernières publications
+        </h3>
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-        <div>MES DERNIERES PUBLICATIONS</div>
       </div>
     </div>
   );
