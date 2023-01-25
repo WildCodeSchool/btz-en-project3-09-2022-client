@@ -44,16 +44,16 @@ function SearchBar({ width }: TProps) {
       {/* Mobile */}
 
       {width < 760 ? (
-        <div className="relative  min-w-[50%] flex justify-between items-center mr-6">
+        <div className="relative w-full flex justify-between items-center mr-6">
           <input
             type="select"
-            className=" w-full  h-[45px] rounded-full text-center  placeholder "
+            className=" w-full  h-[45px] rounded-full text-center placeholder "
             placeholder="Rechercher..."
             onChange={(e) => setSelectedUser(e.target.value)}
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-14  py-6 border-4 border-green-enedis w-full px-4">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 border-x-4 border-b-4 border-green-enedis">
               {data.length > 0 &&
                 data
                   .filter(
@@ -62,7 +62,7 @@ function SearchBar({ width }: TProps) {
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
                   .map((user: TUser) => (
-                    <div className="flex ">
+                    <div className="flex w-full items-center justify-center mb-2">
                       <Image
                         src={user.imageUrl || "/profile_image.png"}
                         width={100}
@@ -70,8 +70,8 @@ function SearchBar({ width }: TProps) {
                         alt="profile"
                         className="rounded-full w-[30px] h-[30px]  border-white-enedis space-5-5"
                       />
-                      <span className="text-dark-enedis w-full">
-                        {user.firstname} {user.lastname}
+                      <span className="text-white-enedis w-full">
+                        {user.firstname} {user.lastname.toUpperCase()}
                       </span>
                     </div>
                   ))}
@@ -88,7 +88,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-14 py-6 border-4 border-green-enedis w-full px-4">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50 border-x-4 border-b-4 border-green-enedis">
               {data.length > 0 &&
                 data
                   .filter(
@@ -97,16 +97,16 @@ function SearchBar({ width }: TProps) {
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
                   .map((user: TUser) => (
-                    <div className="flex items-center">
+                    <div className="flex items-center w-2/3 m-auto  pb-2">
                       <Image
                         src={user.imageUrl || "/profile_image.png"}
                         width={100}
                         height={100}
                         alt="profile"
-                        className="rounded-full w-[30px] h-[30px] border border-white-enedis space-5-5"
+                        className="rounded-full w-[30px] h-[30px] border border-white-enedis "
                       />
-                      <span className="text-dark-enedis w-full">
-                        {user.firstname} {user.lastname}
+                      <span className="text-white-enedis w-full">
+                        {user.firstname} {user.lastname.toUpperCase()}
                       </span>
                     </div>
                   ))}
