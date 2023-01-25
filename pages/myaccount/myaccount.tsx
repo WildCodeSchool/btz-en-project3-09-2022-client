@@ -38,8 +38,8 @@ function myaccount() {
 
   return (
     <div>
-      <div className="bg-background-enedis w-[95%] m-auto mt-10 pb-10 md:flex md:justify-between md:w-[80%]">
-        <div className="flex md:w-[40%]">
+      <div className="bg-background-enedis w-[95%] m-auto mt-10 pb-10 lg:flex lg:justify-between lg:w-[80%]">
+        <div className="flex lg:w-[40%]">
           <div className=" w-1/2 m-4">
             <img
               src={user?.imageUrl || "/profile_image.png"}
@@ -49,7 +49,7 @@ function myaccount() {
             <Link href="/myaccount/settings">
               <button
                 type="button"
-                className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-md(CTA+input) flex justify-around items-center "
+                className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-lg(CTA+input) flex justify-around items-center "
               >
                 <Image
                   src="/assets/picto-set 1.png"
@@ -76,7 +76,7 @@ function myaccount() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse) ">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse) ">
                 {team?.name}
               </p>
             </div>
@@ -88,7 +88,7 @@ function myaccount() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse)">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
                 {user?.workLocation}
               </p>
             </div>
@@ -100,7 +100,7 @@ function myaccount() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse)">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
                 {user?.email}
               </p>
             </div>
@@ -113,32 +113,32 @@ function myaccount() {
                 className="mr-4 w-[25px] h-[25px]"
               />
 
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) md:text-desk-md(titlePubli+multiuse)">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
                 {formatDate(user?.birthday as Date)}
               </p>
             </div>
           </div>
         </div>
-        <div className="flex md:w-[60%]">
+        <div className="flex lg:w-[60%]">
           <div className="w-1/2 flex flex-col items-center pt-4">
-            <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+            <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
               Mon équipe
             </h3>
-            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%] mb-5" />
+            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%] mb-5" />
             <TeamMembersList />
           </div>
 
           <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
-            <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+            <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
               Mes catégories
             </h3>
-            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis md:w-[80%]" />
+            <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%]" />
             <ul className="mt-5 space-y-2">
               {myCategories?.map((category) =>
                 category.ownerId === user.id ? (
                   <div className="flex relative">
                     <li
-                      className="border text-mob-sm(multiuse) md:text-desk-md(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
+                      className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
                       key={category.id}
                     >
                       {category.name}
@@ -154,7 +154,7 @@ function myaccount() {
                   </div>
                 ) : (
                   <li
-                    className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate text-mob-sm(multiuse) md:text-desk-md(titlePubli+multiuse)"
+                    className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse)"
                     key={category.id}
                   >
                     {category.name}
@@ -166,13 +166,13 @@ function myaccount() {
         </div>
       </div>
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">
-        <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+        <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
           Mon activité
         </h3>
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
       </div>
       <div className=" flex flex-col items-center pt-4 pb-4a w-full">
-        <h3 className="mb-2 text-mob-lg(multiuse) md:text-desk-xl(section)">
+        <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
           Mes dernières publications
         </h3>
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
