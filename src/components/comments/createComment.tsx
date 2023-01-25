@@ -2,7 +2,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { FormEvent, useState } from "react";
-import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/UserContext";
 import { TComment } from "../../types/main";
 import axiosInstance from "../../utils/axiosInstance";
