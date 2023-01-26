@@ -8,8 +8,9 @@ import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
 import { teamFetcher } from "../../src/utils/fetcher";
 import Loader from "../../src/components/Loader";
+import Layout from "../../src/components/layout/Layout";
 
-function SettingsMobile() {
+function Settings() {
   const { user } = useAuth();
   const { width } = useWindowSize();
   // states
@@ -38,8 +39,8 @@ function SettingsMobile() {
   return (
     <div>
       {width > 640 ? (
-        <div>
-          <div className="bg-background-enedis w-[60%] m-auto mt-2 pb-10 ">
+        <div className="w-screen ">
+          <div className="bg-background-enedis w-[90%]  mt-2 pb-10 m-auto">
             <div className="flex flex-col items-center pt-6">
               <h3 className="mb-2 text-desk-xl(section)">Mon profil</h3>
               <hr className="h-[6px] w-1/4 rounded-full bg-blue-enedis mb-4" />
@@ -53,7 +54,7 @@ function SettingsMobile() {
                 />
                 <button
                   type="button"
-                  className=" absolute top-60  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-desk-lg(CTA+input)"
+                  className=" absolute top-80  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-desk-lg(CTA+input)"
                 >
                   Changer ma photo de profil
                 </button>
@@ -90,7 +91,7 @@ function SettingsMobile() {
                   {formatDate(user?.birthday)}
                 </p>
                 <div className="flex justify-between items-center pt-5">
-                  <p className="text-desk-sm(textPost+multiuse)">
+                  <p className="text-desk-md(titlePubli+multiuse)">
                     Montrer ma date de naissance
                   </p>
 
@@ -100,7 +101,7 @@ function SettingsMobile() {
                   </label>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-desk-sm(textPost+multiuse)">
+                  <p className="text-desk-md(titlePubli+multiuse)">
                     Montrer mon adresse email
                   </p>
 
@@ -121,7 +122,7 @@ function SettingsMobile() {
                 </div>
 
                 <div className="flex flex-col items-center space-y-3">
-                  <p className="text-left w-5/6 pt-4 text-desk-sm(textPost+multiuse)">
+                  <p className="text-left w-5/6 pt-4 text-desk-md(titlePubli+multiuse)">
                     J&apos;utilise l&apos;adresse email :
                   </p>
                   <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
@@ -134,7 +135,7 @@ function SettingsMobile() {
                     />{" "}
                     {user?.email}
                   </p>
-                  <p className="text-left w-5/6 pt-6 text-desk-sm(textPost+multiuse)">
+                  <p className="text-left w-5/6 pt-6 text-desk-md(titlePubli+multiuse)">
                     Je change mon mot de passe :
                   </p>
                   <input
@@ -161,7 +162,7 @@ function SettingsMobile() {
                   <h3 className="mb-2 text-desk-xl(section)">Mon équipe</h3>
                   <hr className="h-[6px] w-1/2 rounded-full bg-blue-enedis" />
                 </div>
-                <p className="text-left w-5/6  mb-4 text-desk-sm(textPost+multiuse)">
+                <p className="text-left w-5/6  mb-4 text-desk-md(titlePubli+multiuse)">
                   Je travaille dans l&apos;équipe :
                 </p>
                 <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
@@ -198,7 +199,7 @@ function SettingsMobile() {
                 />
                 <button
                   type="button"
-                  className=" absolute top-60  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis"
+                  className=" absolute top-80  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis"
                 >
                   Changer <br /> ma photo de profil
                 </button>
@@ -324,5 +325,6 @@ function SettingsMobile() {
     </div>
   );
 }
+Settings.getLayout = (page: never) => <Layout>{page}</Layout>;
 
-export default SettingsMobile;
+export default Settings;
