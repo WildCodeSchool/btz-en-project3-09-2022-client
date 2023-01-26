@@ -16,6 +16,7 @@ import UserContextProvider from "../src/context/UserContext";
 import { ModalWrapper } from "../src/context/ModalContext";
 import "nprogress/nprogress.css";
 import Welcome from "../src/components/Welcome";
+import { ModalWrapperSpace } from "../src/context/ModalContextCategory";
 
 export const reactQueryClient = new QueryClient();
 
@@ -49,12 +50,14 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <UserContextProvider>
       <title>Enedis Share VDL</title>
       <ModalWrapper>
-        <QueryClientProvider client={reactQueryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <Welcome />
-            {getLayout(<Component {...pageProps} />)}
-          </Hydrate>
-        </QueryClientProvider>
+        <ModalWrapperSpace>
+          <QueryClientProvider client={reactQueryClient}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <Welcome />
+              {getLayout(<Component {...pageProps} />)}
+            </Hydrate>
+          </QueryClientProvider>
+        </ModalWrapperSpace>
       </ModalWrapper>
     </UserContextProvider>
   );

@@ -2,7 +2,7 @@
 import useOnClickOutside from "@jidayyy/useonclickoutside";
 import { forwardRef, ReactNode, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useModalContextCategory } from "../../context/ModalContextCategory";
+import { useModalContextSpace } from "../../context/ModalContextCategory";
 
 interface Iprops {
   Opener: ({ onClick }: any) => React.ReactElement;
@@ -13,7 +13,7 @@ interface Props {
   children: ReactNode;
 }
 
-const ModalCategoryBody = forwardRef<HTMLDivElement, Props>(
+const ModalSpaceBody = forwardRef<HTMLDivElement, Props>(
   ({ children }, ref) => {
     return createPortal(
       <div className="fixed h-screen w-screen flex justify-center align-middle items-center bg-opacity-90 bg-dark-enedis top-0 left-0 z-[100]">
@@ -29,8 +29,8 @@ const ModalCategoryBody = forwardRef<HTMLDivElement, Props>(
   }
 );
 
-export default function ModalCategory({ Opener, Content }: Iprops) {
-  const modalContext = useModalContextCategory();
+export default function ModalSpace({ Opener, Content }: Iprops) {
+  const modalContext = useModalContextSpace();
   const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => modalContext?.handleClose());
@@ -41,9 +41,9 @@ export default function ModalCategory({ Opener, Content }: Iprops) {
     <>
       <Opener onClick={modalContext?.handleOpen} />
       {modalContext?.isOpen && (
-        <ModalCategoryBody ref={ref}>
+        <ModalSpaceBody ref={ref}>
           <Content />
-        </ModalCategoryBody>
+        </ModalSpaceBody>
       )}
     </>
   );

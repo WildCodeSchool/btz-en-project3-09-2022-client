@@ -1,4 +1,4 @@
-import { TImage, TPost } from "../types/main";
+import { TCategory, TImage, TPost, TSpace } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
@@ -25,5 +25,37 @@ export const imageFetcher = {
       headers: {
         "Content-type": "multipart/form-data",
       },
+    }),
+};
+
+export const categoryFetcher = {
+  post: async (
+    nameCategory: string,
+    imageUrlCategory: string,
+    spaceIdCategory: string,
+    ownerIdCategory: string
+  ) =>
+    await axiosInstance.post<TCategory>("/categories", {
+      name: nameCategory,
+      imageUrl: imageUrlCategory,
+      spaceId: spaceIdCategory,
+      ownerId: ownerIdCategory,
+    }),
+};
+
+export const spaceFetcher = {
+  post: async (
+    nameSpace: string,
+    imageUrlSpace: string,
+    descriptionSpace: string,
+    siteIdSpace: string,
+    ownerIdSpace: string
+  ) =>
+    await axiosInstance.post<TSpace>("/spaces", {
+      name: nameSpace,
+      imageUrl: imageUrlSpace,
+      description: descriptionSpace,
+      siteId: siteIdSpace,
+      ownerId: ownerIdSpace,
     }),
 };

@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
-interface ModalContextCategoryType {
+interface ModalContextSpaceType {
   isOpen: boolean;
   handleOpen: () => void;
   handleClose: () => void;
@@ -10,11 +10,9 @@ interface IProps {
   children: ReactNode;
 }
 
-const ModalContextCategory = createContext<ModalContextCategoryType | null>(
-  null
-);
+const ModalContextSpace = createContext<ModalContextSpaceType | null>(null);
 
-export function ModalWrapper({ children }: IProps) {
+export function ModalWrapperSpace({ children }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -26,15 +24,15 @@ export function ModalWrapper({ children }: IProps) {
   };
 
   return (
-    <ModalContextCategory.Provider
+    <ModalContextSpace.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{ isOpen, handleOpen, handleClose }}
     >
       {children}
-    </ModalContextCategory.Provider>
+    </ModalContextSpace.Provider>
   );
 }
 
-export function useModalContextCategory() {
-  return useContext(ModalContextCategory);
+export function useModalContextSpace() {
+  return useContext(ModalContextSpace);
 }
