@@ -8,7 +8,7 @@ import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
 
 const Home: NextPageWithLayout = () => {
-  const postId = "5d603f90-ab0b-4ec2-99cf-01c6b768232d";
+  // const postId = à fetcher;
 
   return (
     <div className="w-screen">

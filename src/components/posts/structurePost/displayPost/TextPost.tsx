@@ -13,7 +13,7 @@ interface IProps {
 export default function TextPost({ text }: IProps) {
   return (
     <div className="min-w-[55%] max-w-[70%] h-52 overflow-y-scroll rounded-app-bloc bg-white-enedis">
-      <QuillNoSSRWrapper readOnly value={text} theme="bubble" className="p-0" />
+      <QuillNoSSRWrapper readOnly value={text} theme="bubble" />
     </div>
   );
 }
