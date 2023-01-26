@@ -48,6 +48,7 @@ function TeamMembersList() {
             .map((member: TUser) => (
               <TextTeamMemberCapsuleBlueStroked
                 key={member.id}
+                id={member.id}
                 firstname={member.firstname}
                 lastname={member.lastname}
                 imageUrl={member.imageUrl}

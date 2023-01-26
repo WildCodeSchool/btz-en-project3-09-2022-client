@@ -1,9 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-type Props = { firstname: string; lastname: string; imageUrl: string };
+type Props = {
+  firstname: string;
+  lastname: string;
+  imageUrl: string;
+  id: string;
+};
 
 function TextTeamMemberCapsuleBlueStroked({
+  id,
   firstname,
   lastname,
   imageUrl,
@@ -18,11 +25,13 @@ function TextTeamMemberCapsuleBlueStroked({
           className="object-cover"
         />
       </div>
-      <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis px-4 py-[6px]">
-        <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
-          {firstname} {lastname.toUpperCase()}
-        </p>
-      </div>
+      <Link href={`/account/${id}`}>
+        <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis px-4 py-[6px]">
+          <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
+            {firstname} {lastname.toUpperCase()}
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }
