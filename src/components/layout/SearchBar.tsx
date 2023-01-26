@@ -54,7 +54,7 @@ function SearchBar({ width }: TProps) {
     <div className="flex items-center w-full">
       {/* Mobile */}
 
-      {width < 760 ? (
+      {width < 768 ? (
         <div
           className="relative w-full flex justify-between items-center mr-6"
           ref={ref}
@@ -67,7 +67,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[410px] overflow-y-scroll truncate">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[410px] overflow-y-scroll">
               {data.length > 0 &&
                 data
                   .filter(
@@ -120,7 +120,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[410px] overflow-y-scroll truncate">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[410px] overflow-y-scroll ">
               {data.length > 0 &&
                 data
                   .filter(

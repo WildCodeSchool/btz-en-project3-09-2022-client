@@ -42,9 +42,9 @@ function SettingsMobile() {
 
   return (
     <div>
-      {width > 760 ? (
+      {width > 640 ? (
         <div>
-          <div className="bg-background-enedis w-[45%] m-auto mt-2 pb-10 ">
+          <div className="bg-background-enedis w-[60%] m-auto mt-2 pb-10 ">
             <div className="flex flex-col items-center pt-6">
               <h3 className="mb-2 text-desk-xl(section)">Mon profil</h3>
               <hr className="h-[6px] w-1/4 rounded-full bg-blue-enedis mb-4" />
