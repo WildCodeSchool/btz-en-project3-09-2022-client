@@ -10,10 +10,7 @@ function TeamMembersList() {
   const { user } = useAuth();
 
   const handleAllMembers = () => {
-    if (user) {
-      userFetcher.getAllByTeam(user.teamId);
-      setIsAllMembers(!isAllMembers);
-    }
+    setIsAllMembers(!isAllMembers);
   };
 
   const {
@@ -35,6 +32,7 @@ function TeamMembersList() {
           {dataUserByTeam.map((member) => (
             <TextTeamMemberCapsuleBlueStroked
               key={member.id}
+              id={member.id}
               firstname={member.firstname}
               lastname={member.lastname}
               imageUrl={member.imageUrl}
@@ -48,6 +46,7 @@ function TeamMembersList() {
             .map((member: TUser) => (
               <TextTeamMemberCapsuleBlueStroked
                 key={member.id}
+                id={member.id}
                 firstname={member.firstname}
                 lastname={member.lastname}
                 imageUrl={member.imageUrl}

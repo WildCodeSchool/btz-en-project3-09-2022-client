@@ -50,7 +50,7 @@ function Profil() {
             </p>
           </div>
           <button
-            onClick={() => router.push("/myaccount")}
+            onClick={() => router.push("/profile")}
             type="button"
             className="text-white-enedis bg-green-enedis rounded-full px-2 w-32 py-1 text-mob-md(CTA+input) font-bold"
           >

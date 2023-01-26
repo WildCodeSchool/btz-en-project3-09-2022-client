@@ -31,7 +31,7 @@ function Navbar() {
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
         <div className=" space-y-3">
-          <Link href="/myaccount/myaccount">
+          <Link href={`/profile/${user?.id}`}>
             {" "}
             <p className="text-white-enedis">Mon profil</p>
           </Link>
@@ -43,14 +43,16 @@ function Navbar() {
 
       <div className="h-[70px] bg-blue-enedis flex justify-center relative md:w-5/6 md:rounded-r-full  w-full">
         <div className="w-[95%] flex justify-between items-center">
-          <Image
-            src="/assets/logo-enedis-share_blanc.png"
-            width={1000}
-            height={1000}
-            quality={100}
-            alt="enedis-share-logo"
-            className=" max-w-[10%] min-w-[200px] "
-          />
+          <Link href="/">
+            <Image
+              src="/assets/logo-enedis-share_blanc.png"
+              width={1000}
+              height={1000}
+              quality={100}
+              alt="enedis-share-logo"
+              className=" max-w-[10%] min-w-[200px] "
+            />
+          </Link>
           {width < 768 ? (
             <div className="flex justify-between min-w-[100px]  ">
               <div className=" flex flex-row-reverse  justify-around items-center ">

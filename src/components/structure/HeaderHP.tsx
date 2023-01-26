@@ -4,6 +4,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { siteFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
+import Loader from "../Loader";
 
 function HeaderHP() {
   const { user } = useAuth();
@@ -21,7 +22,7 @@ function HeaderHP() {
   );
 
   if (error) return <div>Une erreur s&apos;est produite</div>;
-  if (isLoading || !dataSite) return <div>En chargement</div>;
+  if (isLoading || !dataSite) return <Loader />;
 
   return (
     <div className="w-full relative z-0 h-[142px] md:h-[210px]">
