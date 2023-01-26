@@ -2,7 +2,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useAuth } from "../../../../context/UserContext";
-import { TCategory } from "../../../../types/main";
 import { imageFetcher, postFetcher } from "../../../../utils/poster";
 import CTA from "../../../structure/CTA";
 import ProfilePicMini from "../../../structure/ProfilePicMini";

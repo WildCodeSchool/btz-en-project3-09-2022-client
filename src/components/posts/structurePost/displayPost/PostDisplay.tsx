@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TPost, TSpace } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
 import ProfilePicMini from "../../../structure/ProfilePicMini";
