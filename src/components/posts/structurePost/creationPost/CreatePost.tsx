@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useAuth } from "../../../../context/UserContext";
+import { TCategory } from "../../../../types/main";
 import { imageFetcher, postFetcher } from "../../../../utils/poster";
 import CTA from "../../../structure/CTA";
 import ProfilePicMini from "../../../structure/ProfilePicMini";
@@ -11,8 +14,8 @@ import WysiwygTextArea from "./WysiwygTextArea";
 
 function CreatePost() {
   const { user } = useAuth();
-
-  const [categoryChosen, setCategoryChosen] = useState<string>("");
+  const queryClient = useQueryClient();
+  const [categoryChosen, setCategoryChosen] = useState<string[]>([]);
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
@@ -32,7 +35,7 @@ function CreatePost() {
       title,
       body,
       user.id,
-      categoryChosen
+      categoryChosen[0]!
     );
 
     if (image) {
@@ -41,7 +44,7 @@ function CreatePost() {
       formData.append("postId", postSubmitted.data.id);
       await imageFetcher.post(formData);
     }
-
+    queryClient.invalidateQueries(["latestPost", `${categoryChosen[1]}`]);
     return setSubmitted(true);
   };
 

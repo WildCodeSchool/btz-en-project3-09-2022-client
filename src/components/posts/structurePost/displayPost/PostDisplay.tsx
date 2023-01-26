@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { TPost, TSpace } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
@@ -14,21 +15,32 @@ interface IProps {
 }
 
 function PostDisplay({ oneSpace }: IProps) {
-  const [isLoading, setIsLoading] = useState(true);
   const [postAllCategories, setPostAllCategories] = useState<TPost>();
+  const { isLoading } = useQuery(
+    ["latestPost", `${oneSpace.id}`],
+    () =>
+      postFetcher.getLatestPostBySpaceWithImage({
+        spaceId: oneSpace.id,
+      }),
+    {
+      onSuccess: (d) => {
+        setPostAllCategories(d[0]);
+      },
+    }
+  );
 
-  const getLatestPostByCategory = async () => {
-    setIsLoading(true);
-    const latestPost = await postFetcher.getLatestPostBySpaceWithImage({
-      spaceId: oneSpace.id,
-    });
-    setPostAllCategories(latestPost[0]);
-    setIsLoading(false);
-  };
+  // const getLatestPostByCategory = async () => {
+  //   setIsLoading(true);
+  //   const latestPost = await postFetcher.getLatestPostBySpaceWithImage({
+  //     spaceId: oneSpace.id,
+  //   });
+  //   setPostAllCategories(latestPost[0]);
+  //   setIsLoading(false);
+  // };
 
-  useEffect(() => {
-    getLatestPostByCategory();
-  }, []);
+  // useEffect(() => {
+  //   getLatestPostByCategory();
+  // }, []);
 
   if (isLoading) {
     return <div>En chargement</div>;

@@ -11,6 +11,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
 // eslint-disable-next-line import/no-named-as-default
 import UserContextProvider from "../src/context/UserContext";
@@ -54,6 +55,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             <Welcome />
             {getLayout(<Component {...pageProps} />)}
           </Hydrate>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ModalWrapper>
     </UserContextProvider>

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useAuth } from "../../../../context/UserContext";
 import { categoryFetcher, spaceFetcher } from "../../../../utils/fetcher";
 
 interface IProps {
-  setCategoryChosen: (category: string) => void;
+  setCategoryChosen: (category: string[]) => void;
 }
 
 function CategoryChoosing({ setCategoryChosen }: IProps) {
@@ -44,7 +45,12 @@ function CategoryChoosing({ setCategoryChosen }: IProps) {
         name="category"
         id="category-select"
         required
-        onChange={(e) => setCategoryChosen(e.target.value)}
+        onChange={(e) =>
+          setCategoryChosen([
+            e.target.value.split(",")[0]!,
+            e.target.value.split(",")[1]!,
+          ])
+        }
         className="w-full outline-none text-mob-sm(multiuse) text-left font-enedis font-regular bg-blue-enedis text-white-enedis truncate scrollbar-hide hover:text-clip
     hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)"
         placeholder="Titre de ma publication"
@@ -55,7 +61,7 @@ function CategoryChoosing({ setCategoryChosen }: IProps) {
             {dataCategoriesByUserAuth.map(
               (category) =>
                 category.spaceId === space.id && (
-                  <option key={category.id} value={category.id}>
+                  <option key={category.id} value={[category.id, space.id]}>
                     {category.name}
                   </option>
                 )
