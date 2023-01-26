@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import "../styles/globals.css";
 import "../styles/quill.snow.css";
+import "../styles/quill.bubble.css";
 import { ReactElement, ReactNode, useEffect } from "react";
 import type { AppProps } from "next/app";
 import Router from "next/router";
@@ -10,6 +11,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { NextPage } from "next";
 // eslint-disable-next-line import/no-named-as-default
 import UserContextProvider from "../src/context/UserContext";
@@ -54,6 +56,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             <Welcome />
             {getLayout(<Component {...pageProps} />)}
           </Hydrate>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ModalWrapper>
     </UserContextProvider>

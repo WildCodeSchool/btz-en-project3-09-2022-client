@@ -1,5 +1,5 @@
 import React from "react";
-import { useModalContext } from "../../../context/ModalContext";
+import { useModalContext } from "../../../../context/ModalContext";
 
 function SubmittedPost() {
   const modalContext = useModalContext();
