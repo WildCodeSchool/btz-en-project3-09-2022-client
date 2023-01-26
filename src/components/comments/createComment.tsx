@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
