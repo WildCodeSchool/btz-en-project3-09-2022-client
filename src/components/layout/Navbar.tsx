@@ -31,7 +31,7 @@ function Navbar() {
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
         <div className=" space-y-3">
-          <Link href="/myaccount/myaccount">
+          <Link href={`/account/${user?.id}`}>
             {" "}
             <p className="text-white-enedis">Mon profil</p>
           </Link>

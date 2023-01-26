@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import { userFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
 import useOnClickOutside from "../hooks/useOnClickOutside";
@@ -89,13 +90,15 @@ function SearchBar({ width }: TProps) {
                             }
                             className="rounded-full  border-white-enedis"
                           />
-                          <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
-                            {user.firstname} {user.lastname.toUpperCase()}
-                            <br />
-                            <span className="text-desk-sm(textPost+multiuse)">
-                              {user.workLocation}
-                            </span>
-                          </p>
+                          <Link href={`/account/${user.id}`}>
+                            <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                              {user.firstname} {user.lastname.toUpperCase()}
+                              <br />
+                              <span className="text-desk-sm(textPost+multiuse)">
+                                {user.workLocation}
+                              </span>
+                            </p>
+                          </Link>
                         </div>
                       )
                   )}

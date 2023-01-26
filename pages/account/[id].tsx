@@ -1,39 +1,47 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import Loader from "../../src/components/Loader";
 import TeamMembersList from "../../src/components/teams/TeamMembersList";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
-import { categoryFetcher, teamFetcher } from "../../src/utils/fetcher";
+import {
+  categoryFetcher,
+  teamFetcher,
+  userFetcher,
+} from "../../src/utils/fetcher";
 
 function myaccount() {
-  const { user } = useAuth();
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { user: userConnected } = useAuth();
+
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery(["users", `user-${id}`], () => userFetcher.getOne(`${id}`));
+
+  const { data: team } = useQuery(["teams", `user-${user?.teamId}`], () =>
+    teamFetcher.getOne(`${user?.teamId}`)
+  );
+  const { data: myCategories } = useQuery(
+    ["categories", `user-${user?.teamId}`],
+    () => categoryFetcher.getAllByUser(`${id}`)
+  );
 
   if (!user) {
     return <p>No user</p>;
   }
-
-  const {
-    data: team,
-    isLoading,
-    error,
-  } = useQuery(["teams", `user-${user?.teamId}`], () =>
-    teamFetcher.getOne(`${user?.teamId}`)
-  );
-
-  const { data: myCategories } = useQuery(
-    ["categories", `user-${user?.teamId}`],
-    () => categoryFetcher.getAllByUser(user?.id)
-  );
-
   if (isLoading) {
     return <Loader />;
   }
 
   if (error) {
-    <p>No error</p>;
+    <p>Error</p>;
   }
 
   return (
@@ -42,31 +50,33 @@ function myaccount() {
         <div className="flex lg:w-[40%]">
           <div className=" w-1/2 m-4">
             <img
-              src={user?.imageUrl || "/profile_image.png"}
+              src={user.imageUrl || "/profile_image.png"}
               alt="profil"
               className="w-[126px] h-[126px] rounded-[50%] my-[5%] object-cover"
             />
-            <Link href="/myaccount/settings">
-              <button
-                type="button"
-                className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-lg(CTA+input) flex justify-around items-center "
-              >
-                <Image
-                  src="/assets/picto-set 1.png"
-                  width={25}
-                  height={25}
-                  alt="picto enedis"
-                  className="w-[25px] h-[25px]"
-                />
-                Modifier
-                <br /> mes infos
-              </button>
-            </Link>
+            {userConnected?.id === id && (
+              <Link href="/account/settings">
+                <button
+                  type="button"
+                  className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-lg(CTA+input) flex justify-around items-center "
+                >
+                  <Image
+                    src="/assets/picto-set 1.png"
+                    width={25}
+                    height={25}
+                    alt="picto enedis"
+                    className="w-[25px] h-[25px]"
+                  />
+                  Modifier
+                  <br /> mes infos
+                </button>
+              </Link>
+            )}
           </div>
           <div className=" space-y-2  w-1/2  text-left mt-8 ">
-            <p className="font-bold text-[32px] pb-2">{user?.firstname}</p>
+            <p className="font-bold text-[32px] pb-2">{user.firstname}</p>
             <p className="font-bold text-[32px]  pb-4">
-              {user?.lastname.toUpperCase()}
+              {user.lastname.toUpperCase()}
             </p>
             <div className="flex ">
               <Image
@@ -89,7 +99,7 @@ function myaccount() {
                 className="mr-4 w-[25px] h-[25px]"
               />
               <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
-                {user?.workLocation}
+                {user.workLocation}
               </p>
             </div>
             <div className=" flex">
@@ -101,7 +111,7 @@ function myaccount() {
                 className="mr-4 w-[25px] h-[25px]"
               />
               <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
-                {user?.email}
+                {user.email}
               </p>
             </div>
             <div className=" flex">
@@ -114,7 +124,7 @@ function myaccount() {
               />
 
               <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
-                {formatDate(user?.birthday as Date)}
+                {formatDate(new Date(user.birthday || "null"))}
               </p>
             </div>
           </div>
