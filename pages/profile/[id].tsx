@@ -86,7 +86,7 @@ function Profile() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse) ">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px]  text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse) ">
                 {team?.name}
               </p>
             </div>
@@ -98,7 +98,7 @@ function Profile() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px]  text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
                 {user.workLocation}
               </p>
             </div>
@@ -110,7 +110,7 @@ function Profile() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse) truncate">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px]  text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse) truncate ">
                 {user.email}
               </p>
             </div>
@@ -123,7 +123,7 @@ function Profile() {
                 className="mr-4 w-[25px] h-[25px]"
               />
 
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
                 {formatDate(new Date(user.birthday || "null"))}
               </p>
             </div>
