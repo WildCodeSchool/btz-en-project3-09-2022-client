@@ -55,7 +55,7 @@ function MyProfileLeftBar() {
       {width >= 768 && (
         <CTA
           text="Voir mon profil"
-          action={() => router.push("/myaccount/settings")}
+          action={() => router.push("/profile/settings")}
         />
       )}
     </div>

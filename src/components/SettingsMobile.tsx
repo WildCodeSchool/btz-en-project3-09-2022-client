@@ -7,7 +7,7 @@ import { useAuth } from "../context/UserContext";
 import { formatDate } from "../utils/constants";
 import { teamFetcher } from "../utils/fetcher";
 
-function MyAccountMobile() {
+function SettingsMobile() {
   const { user } = useAuth();
   // states
   const [showBirthday, setShowBirthday] = useState(false);
@@ -174,4 +174,4 @@ function MyAccountMobile() {
   );
 }
 
-export default MyAccountMobile;
+export default SettingsMobile;

@@ -51,7 +51,7 @@ function SearchBar({ width }: TProps) {
   };
 
   return (
-    <div className="flex items-center w-full ">
+    <div className="flex items-center w-full">
       {/* Mobile */}
 
       {width < 760 ? (
@@ -67,7 +67,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[400px] overflow-auto ">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[410px] overflow-auto ">
               {data.length > 0 &&
                 data
                   .filter(
@@ -90,7 +90,7 @@ function SearchBar({ width }: TProps) {
                             }
                             className="rounded-full  border-white-enedis"
                           />
-                          <Link href={`/account/${user.id}`}>
+                          <Link href={`/profile/${user.id}`}>
                             <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
                               {user.firstname} {user.lastname.toUpperCase()}
                               <br />
@@ -137,11 +137,13 @@ function SearchBar({ width }: TProps) {
                             alt="profile"
                             className="rounded-full  border border-white-enedis "
                           />
-                          <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
-                            {user.firstname} {user.lastname.toUpperCase()}
-                            <br />
-                            <span>{user.workLocation}</span>
-                          </p>
+                          <Link href={`/profile/${user.id}`}>
+                            <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                              {user.firstname} {user.lastname.toUpperCase()}
+                              <br />
+                              <span>{user.workLocation}</span>
+                            </p>
+                          </Link>
                         </div>
                       )
                   )}

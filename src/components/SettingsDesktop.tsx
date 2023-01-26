@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { useAuth } from "../context/UserContext";
 
-function MyAccountDesktop() {
+function SettingsDesktop() {
   const { user } = useAuth();
 
   return (
@@ -158,4 +158,4 @@ function MyAccountDesktop() {
   );
 }
 
-export default MyAccountDesktop;
+export default SettingsDesktop;

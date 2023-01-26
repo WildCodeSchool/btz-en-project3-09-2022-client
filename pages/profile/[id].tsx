@@ -13,7 +13,7 @@ import {
   userFetcher,
 } from "../../src/utils/fetcher";
 
-function myaccount() {
+function Profile() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -55,7 +55,7 @@ function myaccount() {
               className="w-[126px] h-[126px] rounded-[50%] my-[5%] object-cover"
             />
             {userConnected?.id === id && (
-              <Link href="/account/settings">
+              <Link href="/profile/settings">
                 <button
                   type="button"
                   className="  text-left px-2  w-[131px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-mob-lg(CTA+input) flex justify-around items-center "
@@ -135,7 +135,9 @@ function myaccount() {
               Mon équipe
             </h3>
             <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%] mb-5" />
-            <TeamMembersList />
+            <div className=" pl-12">
+              <TeamMembersList />
+            </div>
           </div>
 
           <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
@@ -191,4 +193,4 @@ function myaccount() {
   );
 }
 
-export default myaccount;
+export default Profile;
