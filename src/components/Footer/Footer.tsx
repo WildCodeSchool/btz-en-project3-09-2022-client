@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -141,13 +142,13 @@ function Footer() {
         }
       />
       <div className="bg-blue-enedis  z-0 relative flex items-center h-16">
-        <div className="flex justify-around w-full h-full border border-black">
-          <div className="relative flex  w-1/6  bg-background-enedis ">
+        <div className="flex justify-around w-full h-full ">
+          <div className="relative flex justify-center w-1/6  bg-background-enedis ">
             {openProfil ? (
-              <div className="relative flex justify-center ">
+              <div className="relative flex justify-center">
                 <Image
                   src="/logo_enedis/picto_profil_white.svg"
-                  width={32}
+                  width={40}
                   height={40}
                   alt="logo du profil"
                   className="relative z-20 "
@@ -168,18 +169,25 @@ function Footer() {
               </div>
             )}
           </div>
-
-          <div className="">
-            <OpenEspaceDescription
-              openOrCloseEspaceDescription={openOrCloseEspaceDescription}
-              handleClickEspaceDescription={handleClickEspaceDescription}
-            />
-
-            <OpenCategoryDescription
-              openCategorieDescription={openCategorieDescription}
-              HandleClickCategorieDescription={HandleClickCategorieDescription}
-            />
-          </div>
+          {window.location.href.includes("espace") ? (
+            <div className="relative flex justify-center w-1/6">
+              <OpenEspaceDescription
+                openOrCloseEspaceDescription={openOrCloseEspaceDescription}
+                handleClickEspaceDescription={handleClickEspaceDescription}
+              />
+            </div>
+          ) : window.location.href.includes("category") ? (
+            <div className="relative flex justify-center w-1/6">
+              <OpenCategoryDescription
+                openCategorieDescription={openCategorieDescription}
+                HandleClickCategorieDescription={
+                  HandleClickCategorieDescription
+                }
+              />
+            </div>
+          ) : (
+            ""
+          )}
 
           <div className="relative flex justify-center w-1/6  bg-background-enedis ">
             {openEspace ? (
