@@ -67,7 +67,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[410px] overflow-auto ">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[300px] rounded-b-app-bloc px-4 z-50 shadow-xl border h-[410px] overflow-y-scroll truncate">
               {data.length > 0 &&
                 data
                   .filter(
@@ -79,19 +79,21 @@ function SearchBar({ width }: TProps) {
                     (user: TUser) =>
                       user.id !== userConnected?.id && (
                         <div className="flex w-full items-center mb-2">
-                          <Image
-                            src={user.imageUrl || "/profile_image.png"}
-                            width={40}
-                            height={40}
-                            alt={
-                              `${
-                                user.firstname
-                              } ${user.lastname.toUpperCase()}` || "nom prénom"
-                            }
-                            className="rounded-full  border-white-enedis"
-                          />
+                          <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] relative">
+                            <Image
+                              src={user.imageUrl || "/profile_image.png"}
+                              fill
+                              alt={
+                                `${
+                                  user.firstname
+                                } ${user.lastname.toUpperCase()}` ||
+                                "nom prénom"
+                              }
+                              className="rounded-full object-cover border-white-enedis"
+                            />
+                          </div>
                           <Link href={`/profile/${user.id}`}>
-                            <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                            <p className="text-white-enedis w-full font-enedis text-left ml-5 ">
                               {user.firstname} {user.lastname.toUpperCase()}
                               <br />
                               <span className="text-desk-sm(textPost+multiuse)">
@@ -118,7 +120,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[400px] overflow-auto ">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[410px] overflow-y-scroll truncate">
               {data.length > 0 &&
                 data
                   .filter(
@@ -130,15 +132,21 @@ function SearchBar({ width }: TProps) {
                     (user: TUser) =>
                       user.id !== userConnected?.id && (
                         <div className="flex items-center w-2/3 m-auto  pb-2">
-                          <Image
-                            src={user.imageUrl || "/profile_image.png"}
-                            width={40}
-                            height={40}
-                            alt="profile"
-                            className="rounded-full  border border-white-enedis "
-                          />
+                          <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] relative">
+                            <Image
+                              src={user.imageUrl || "/profile_image.png"}
+                              fill
+                              alt={
+                                `${
+                                  user.firstname
+                                } ${user.lastname.toUpperCase()}` ||
+                                "nom prénom"
+                              }
+                              className="rounded-full object-cover border-white-enedis"
+                            />
+                          </div>
                           <Link href={`/profile/${user.id}`}>
-                            <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                            <p className="text-white-enedis w-full  font-enedis text-left ml-5 ">
                               {user.firstname} {user.lastname.toUpperCase()}
                               <br />
                               <span>{user.workLocation}</span>
