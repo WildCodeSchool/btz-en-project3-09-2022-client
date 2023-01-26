@@ -12,7 +12,7 @@ import {
 import axiosInstance from "./axiosInstance";
 
 export const userFetcher = {
-  getAll: async () => (await axiosInstance.get("/users")).data,
+  getAll: async () => (await axiosInstance.get<TUser[]>("/users")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TUser>(`/users/${id}`)).data,
   getAllByTeam: async (teamId: string) =>

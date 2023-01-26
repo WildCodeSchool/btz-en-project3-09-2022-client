@@ -71,25 +71,24 @@ function SearchBar({ width }: TProps) {
               {data.length > 0 &&
                 data
                   .filter(
-                    (user: TUser) =>
+                    (user) =>
                       user.lastname.toLowerCase().includes(selectedUser) ||
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
                   .map(
-                    (user: TUser) =>
+                    (user) =>
                       user.id !== userConnected?.id && (
-                        <div className="flex w-full items-center mb-2">
-                          <Image
+                        <div className="flex overflow-hidden w-[40px] h-[40px] relative  items-center mb-2">
+                          {/* <Image
                             src={user.imageUrl || "/profile_image.png"}
-                            width={40}
-                            height={40}
+                            fill
                             alt={
                               `${
                                 user.firstname
                               } ${user.lastname.toUpperCase()}` || "nom prénom"
                             }
-                            className="rounded-full  border-white-enedis"
-                          />
+                            className="rounded-full object-cover border-white-enedis"
+                          /> */}
                           <Link href={`/profile/${user.id}`}>
                             <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
                               {user.firstname} {user.lastname.toUpperCase()}
@@ -122,27 +121,33 @@ function SearchBar({ width }: TProps) {
               {data.length > 0 &&
                 data
                   .filter(
-                    (user: TUser) =>
+                    (user) =>
                       user.lastname.toLowerCase().includes(selectedUser) ||
                       user.firstname.toLowerCase().includes(selectedUser)
                   )
                   .map(
-                    (user: TUser) =>
+                    (user) =>
                       user.id !== userConnected?.id && (
-                        <div className="flex items-center w-2/3 m-auto  pb-2">
-                          <Image
-                            src={user.imageUrl || "/profile_image.png"}
-                            width={40}
-                            height={40}
-                            alt="profile"
-                            className="rounded-full  border border-white-enedis "
-                          />
-                          <Link href={`/profile/${user.id}`}>
-                            <p className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
-                              {user.firstname} {user.lastname.toUpperCase()}
+                        <div className="flex text-left relative justify-between w-2/3 m-auto  pb-2">
+                          <div className="relative  bg-black min-w-[40px] w-[40px] h-[40px]">
+                            <Image
+                              src={user.imageUrl || "/profile_image.png"}
+                              fill
+                              alt="profile"
+                              className=" object-fill  rounded-full  border border-white-enedis "
+                            />
+                          </div>
+                          <Link
+                            className="w-full justify-center flex items-center align-middle"
+                            href={`/profile/${user.id}`}
+                          >
+                            <span className="text-white-enedis w-full truncate font-enedis text-left ml-5 ">
+                              <p>
+                                {user.firstname} {user.lastname.toUpperCase()}
+                              </p>
                               <br />
-                              <span>{user.workLocation}</span>
-                            </p>
+                              <p>{user.workLocation}</p>
+                            </span>
                           </Link>
                         </div>
                       )
