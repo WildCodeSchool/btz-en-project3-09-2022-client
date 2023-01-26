@@ -2,6 +2,7 @@ export type TSpace = {
   name: string;
   imageUrl: string;
   id: string;
+  categories?: TCategory[];
 };
 export type TUser = {
   id: string;
@@ -45,6 +46,7 @@ export type TCategory = {
   name: string;
   imageUrl: string;
   spaceId: string;
+  space?: TSpace;
   ownerId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -55,7 +57,10 @@ export type TPost = {
   title: string;
   content: string;
   categoryId: string;
+  category?: TCategory;
   authorId: string | null;
+  author?: TUser;
+  images?: TImage[];
   createdAt: Date;
   updatedAt: Date;
 };
