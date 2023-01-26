@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import Layout from "../../src/components/layout/Layout";
 import Loader from "../../src/components/Loader";
 import TeamMembersList from "../../src/components/teams/TeamMembersList";
 import { useAuth } from "../../src/context/UserContext";
@@ -41,8 +42,8 @@ function Profile() {
   }
 
   return (
-    <div>
-      <div className="bg-background-enedis w-[95%] m-auto mt-10 pb-10 lg:flex lg:justify-between lg:w-[80%]">
+    <div className="w-full">
+      <div className="bg-background-enedis w-[95%] m-auto mt-5  pb-10 lg:flex lg:justify-between lg:w-[80%]">
         <div className="flex lg:w-[40%]">
           <div className=" w-1/2 m-4 flex flex-col items-center">
             <img
@@ -188,5 +189,7 @@ function Profile() {
     </div>
   );
 }
+
+Profile.getLayout = (page: never) => <Layout>{page}</Layout>;
 
 export default Profile;
