@@ -76,7 +76,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <Espace />
@@ -91,7 +91,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="bg-background-enedis"
             >
               <Profil />
@@ -106,7 +106,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <EspaceDescription />
@@ -121,7 +121,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <CategorieDescription />
@@ -141,13 +141,17 @@ function Footer() {
         }
       />
       <div className="bg-blue-enedis  z-0 relative flex items-center h-16">
-        <div className="flex justify-around w-full h-full border border-black">
-          <div className="relative flex  w-1/6  bg-background-enedis ">
+        <div className="flex justify-around w-full h-full ">
+          <div
+            className={`relative flex justify-center w-1/6 ${
+              openProfil && "bg-background-enedis"
+            }`}
+          >
             {openProfil ? (
-              <div className="relative flex justify-center ">
+              <div className="relative flex justify-center">
                 <Image
                   src="/logo_enedis/picto_profil_white.svg"
-                  width={32}
+                  width={40}
                   height={40}
                   alt="logo du profil"
                   className="relative z-20 "
@@ -168,29 +172,46 @@ function Footer() {
               </div>
             )}
           </div>
-
-          <div className="">
+          <div
+            className={
+              window.location.href.includes("espace") &&
+              !window.location.href.includes("category")
+                ? "relative flex justify-center w-1/6"
+                : "hidden"
+            }
+          >
             <OpenEspaceDescription
               openOrCloseEspaceDescription={openOrCloseEspaceDescription}
               handleClickEspaceDescription={handleClickEspaceDescription}
             />
+          </div>
 
+          <div
+            className={
+              window.location.href.includes("category")
+                ? "relative flex justify-center w-1/6"
+                : "hidden"
+            }
+          >
             <OpenCategoryDescription
               openCategorieDescription={openCategorieDescription}
               HandleClickCategorieDescription={HandleClickCategorieDescription}
             />
           </div>
-
-          <div className="relative flex justify-center w-1/6  bg-background-enedis ">
+          <div
+            className={`relative flex justify-center w-1/6 ${
+              openEspace && "bg-background-enedis"
+            }`}
+          >
             {openEspace ? (
               <div className="relative flex justify-center">
                 <Image
                   src="/logo_enedis/picto_espace_white.svg"
-                  width={40}
+                  width={44}
                   height={40}
                   alt="logo carte des espaces"
                   onClick={handleClickEspace}
-                  className="relative z-20 "
+                  className="relative z-20"
                 />
                 <div className="h-full bg-background-enedis w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 " />
               </div>
