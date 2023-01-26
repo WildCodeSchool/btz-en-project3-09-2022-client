@@ -74,8 +74,8 @@ function Profile() {
             )}
           </div>
           <div className=" space-y-2  w-1/2  text-left mt-8 ">
-            <p className="font-bold text-[32px] pb-2">{user.firstname}</p>
-            <p className="font-bold text-[32px]  pb-4">
+            <p className="font-bold text-[28px] pb-2">{user.firstname}</p>
+            <p className="font-bold text-[28px] w-fit pb-4">
               {user.lastname.toUpperCase()}
             </p>
             <div className="flex ">
@@ -110,7 +110,7 @@ function Profile() {
                 alt="picto enedis"
                 className="mr-4 w-[25px] h-[25px]"
               />
-              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)">
+              <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px] cursor-not-allowed text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse) truncate">
                 {user.email}
               </p>
             </div>
