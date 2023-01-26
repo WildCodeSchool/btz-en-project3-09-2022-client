@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useRouter } from "next/router";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import { useAuth } from "../../../context/UserContext";
 import { teamFetcher, userFetcher } from "../../../utils/fetcher";
 import { TUser } from "../../../types/main";
@@ -29,21 +31,23 @@ function Profil() {
       <div className="bg-green-enedis h-1 top-0 " />
 
       <div className="">
-        <div
-          key={user?.id}
-          className="flex justify-between items-center px-2 pt-6 "
-        >
-          <img
-            src={user?.imageUrl}
-            alt=" de profil de l'utilisateur"
-            // width={60}
-            // height={0}
-            className=" w-20 h-20 rounded-full object-cover"
-          />
-          <div className="flex flex-col items-start space-y-1">
-            <p className="font-bold">{user?.firstname}</p>
-            <p className="font-bold ">{user?.lastname.toUpperCase()}</p>
-            <p className="text-desk-xxs(mention) pt-2">Equipe {data?.name}</p>
+        <div className="flex justify-between items-center px-2 pt-6 ">
+          <div className="w-20 h-20 min-h-20 min-w-20 rounded-full relative overflow-hidden">
+            <Image
+              src={user!.imageUrl}
+              alt="Profil de l'utilisateur"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="w-fit flex flex-col items-start space-y-1 ml-2 ">
+            <p className="text-mob-lg(multiuse) font-bold">{user?.firstname}</p>
+            <p className="text-mob-lg(multiuse) font-bold">
+              {user?.lastname.toUpperCase()}
+            </p>
+            <p className="text-mob-sm(multiuse) text-left pt-1">
+              Equipe {data?.name}
+            </p>
           </div>
           <button
             onClick={() => router.push("/profile")}
@@ -60,7 +64,7 @@ function Profil() {
             <div className="font-bold text-mob-xl(headers+titles) ">
               Mon Site
             </div>
-            <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
+            <div className="bg-blue-enedis h-1 rounded-full w-3/4 mb-4" />
             <p className="border border-blue-enedis rounded-full h-fit px-2 text-mob-sm(multiuse)">
               {user?.workLocation}
             </p>

@@ -79,7 +79,10 @@ function SearchBar({ width }: TProps) {
                   .map(
                     (user: TUser) =>
                       user.id !== userConnected?.id && (
-                        <div className="flex w-full items-center mb-2">
+                        <div
+                          className="flex w-full items-center mb-2 "
+                          key={user.id}
+                        >
                           <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] relative">
                             <Image
                               src={user.imageUrl || "/profile_image.png"}
@@ -111,7 +114,7 @@ function SearchBar({ width }: TProps) {
       ) : (
         // Desktop
         <div
-          className="relative  min-w-[50%] flex justify-between items-center  "
+          className="relative  min-w-[50%] flex justify-between items-center"
           ref={ref}
         >
           <input
@@ -132,7 +135,10 @@ function SearchBar({ width }: TProps) {
                   .map(
                     (user: TUser) =>
                       user.id !== userConnected?.id && (
-                        <div className="flex items-center w-2/3 m-auto  pb-2">
+                        <div
+                          className="flex items-center w-2/3 m-auto pb-2"
+                          key={user.id}
+                        >
                           <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] relative">
                             <Image
                               src={user.imageUrl || "/profile_image.png"}
