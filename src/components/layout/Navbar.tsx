@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { useWindowSize } from "usehooks-ts";
+import Link from "next/link";
 import { useAuth } from "../../context/UserContext";
 
 import useModal from "../modal/useModal";
@@ -11,7 +11,7 @@ import { useModalContext } from "../../context/ModalContext";
 
 function Navbar() {
   const { user } = useAuth();
-  const router = useRouter();
+
   const modalContext = useModalContext();
   // Window size
   const { width } = useWindowSize();
@@ -31,13 +31,10 @@ function Navbar() {
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
         <div className=" space-y-3">
-          <button
-            type="button"
-            className="text-white-enedis"
-            onClick={() => router.push("/myaccount")}
-          >
-            Mon profil
-          </button>
+          <Link href="/myaccount/myaccount">
+            {" "}
+            <p className="text-white-enedis">Mon profil</p>
+          </Link>
           <p className="text-white-enedis">Paramètres</p>
           <p className="text-white-enedis">Aide</p>
           <p className="text-white-enedis">Me déconnecter</p>
@@ -58,11 +55,7 @@ function Navbar() {
             <div className="flex justify-between min-w-[100px]  ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
                 {isSearchBarOpen ? (
-                  <SearchBar
-                    width={width}
-                    isSearchBarOpen={isSearchBarOpen}
-                    setIsSearchBarOpen={setIsSearchBarOpen}
-                  />
+                  <SearchBar width={width} />
                 ) : (
                   <div className="bg-white-enedis  w-[45px] h-[45px] rounded-full flex justify-center items-center">
                     <button
@@ -84,7 +77,7 @@ function Navbar() {
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 <button type="button" onClick={toggle}>
                   <Image
-                    src="/assets/john-min.JPG"
+                    src={user?.imageUrl || "/profile_picture.png"}
                     width={1000}
                     height={1000}
                     alt="profile"
@@ -95,11 +88,7 @@ function Navbar() {
             </div>
           ) : (
             <div className="w-2/3 flex justify-between ">
-              <SearchBar
-                width={width}
-                isSearchBarOpen={isSearchBarOpen}
-                setIsSearchBarOpen={setIsSearchBarOpen}
-              />
+              <SearchBar width={width} />
 
               <button
                 type="button"
@@ -125,7 +114,7 @@ function Navbar() {
           <p className="font-enedis font-bold text-desk-xl(section)">
             {user?.firstname}
             <br />
-            {user?.lastname}
+            {user?.lastname.toUpperCase()}
           </p>
           <button type="button" onClick={toggle}>
             <Image

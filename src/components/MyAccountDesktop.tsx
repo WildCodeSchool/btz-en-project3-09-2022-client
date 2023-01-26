@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-console */
 
 import React from "react";
@@ -36,7 +37,7 @@ function MyAccountDesktop() {
                 height={25}
                 alt="picto enedis"
                 className="mx-4"
-              />{" "}
+              />
               {user?.firstname}
             </p>
             <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
@@ -46,7 +47,7 @@ function MyAccountDesktop() {
                 height={25}
                 alt="picto enedis"
                 className="mx-4"
-              />{" "}
+              />
               {user?.lastname}
             </p>
             <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input) ">
@@ -56,8 +57,8 @@ function MyAccountDesktop() {
                 height={25}
                 alt="picto enedis"
                 className="mx-4"
-              />{" "}
-              {user?.birthday}
+              />
+              {new Date(user!.birthday).toLocaleDateString()}
             </p>
             <div className="flex justify-between items-center pt-5">
               <p className="text-desk-sm(textPost+multiuse)">
