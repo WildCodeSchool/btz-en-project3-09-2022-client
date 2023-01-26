@@ -24,14 +24,15 @@ export default function Layout({ children, sideBar }: IProps) {
   }
 
   return (
-    <div className="h-screen w-screen flex justify-start items-center align-middle flex-col">
+    <div className="h-screen w-screen flex justify-between items-center flex-col">
       <Navbar />
-      <div className="h-full flex justify-between w-full">
+      <div className="flex justify-between w-full min-h-fit">
         {sideBar && sideBar}
         {children}
       </div>
-
-      <Footer />
+      <div className="w-full sticky bottom-0">
+        <Footer />
+      </div>
     </div>
   );
 }

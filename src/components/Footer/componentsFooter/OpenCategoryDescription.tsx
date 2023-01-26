@@ -17,8 +17,8 @@ function OpenCategoryDescription({
           <div className="flex items-center justify-center">
             <Image
               src="/logo_enedis/Picto_Bleu_info_catégorie.svg"
-              width={32}
-              height={42}
+              width={40}
+              height={40}
               alt="logo des info-espaces"
               className="z-20"
               onClick={HandleClickCategorieDescription}
@@ -30,7 +30,7 @@ function OpenCategoryDescription({
               <Image
                 src="/logo_enedis/Picto_Vert_info_catégorie.svg"
                 width={32}
-                height={42}
+                height={40}
                 alt="logo des info-espaces"
                 onClick={HandleClickCategorieDescription}
               />

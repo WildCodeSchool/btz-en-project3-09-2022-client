@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -77,7 +76,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <Espace />
@@ -92,7 +91,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="bg-background-enedis"
             >
               <Profil />
@@ -107,7 +106,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <EspaceDescription />
@@ -122,7 +121,7 @@ function Footer() {
               exit={{ y: 280 }}
               initial={{ y: 280 }}
               animate={{ y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
             >
               <CategorieDescription />
@@ -169,32 +168,38 @@ function Footer() {
               </div>
             )}
           </div>
-          {window.location.href.includes("espace") ? (
-            <div className="relative flex justify-center w-1/6">
-              <OpenEspaceDescription
-                openOrCloseEspaceDescription={openOrCloseEspaceDescription}
-                handleClickEspaceDescription={handleClickEspaceDescription}
-              />
-            </div>
-          ) : window.location.href.includes("category") ? (
-            <div className="relative flex justify-center w-1/6">
-              <OpenCategoryDescription
-                openCategorieDescription={openCategorieDescription}
-                HandleClickCategorieDescription={
-                  HandleClickCategorieDescription
-                }
-              />
-            </div>
-          ) : (
-            ""
-          )}
+          <div
+            className={
+              window.location.href.includes("espace") &&
+              !window.location.href.includes("category")
+                ? "relative flex justify-center w-1/6"
+                : "hidden"
+            }
+          >
+            <OpenEspaceDescription
+              openOrCloseEspaceDescription={openOrCloseEspaceDescription}
+              handleClickEspaceDescription={handleClickEspaceDescription}
+            />
+          </div>
 
+          <div
+            className={
+              window.location.href.includes("category")
+                ? "relative flex justify-center w-1/6"
+                : "hidden"
+            }
+          >
+            <OpenCategoryDescription
+              openCategorieDescription={openCategorieDescription}
+              HandleClickCategorieDescription={HandleClickCategorieDescription}
+            />
+          </div>
           <div className="relative flex justify-center w-1/6  bg-background-enedis ">
             {openEspace ? (
               <div className="relative flex justify-center">
                 <Image
                   src="/logo_enedis/picto_espace_white.svg"
-                  width={40}
+                  width={44}
                   height={40}
                   alt="logo carte des espaces"
                   onClick={handleClickEspace}
