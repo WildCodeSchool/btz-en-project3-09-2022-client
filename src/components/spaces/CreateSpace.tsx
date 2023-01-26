@@ -10,5 +10,5 @@ export default function CreateSpace() {
     return <div>Please connect first</div>;
   }
 
-  return <div>CreateSpace</div>;
+  return <div>Créer un espace test</div>;
 }

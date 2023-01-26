@@ -1,7 +1,7 @@
 import React from "react";
-import ModalPost from "../modal/ModalPost";
-import CTA from "../structure/CTA";
 import CreateSpace from "./CreateSpace";
+import ModalCategory from "../modal/ModalCategory";
+import CtaTextArea from "./CTA";
 
 export default function Space() {
   return (
@@ -11,7 +11,9 @@ export default function Space() {
           Souhaitez-vous créer un espace ?
         </p>
       </div>
-      <ModalPost Opener={CTA} Content={CreateSpace} />
+      <div className="w-full">
+        <ModalCategory Opener={CtaTextArea} Content={CreateSpace} />
+      </div>
     </div>
   );
 }
