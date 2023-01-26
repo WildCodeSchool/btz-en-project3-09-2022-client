@@ -10,7 +10,7 @@ import Layout from "../src/components/layout/Layout";
 const Home: NextPageWithLayout = () => {
   return (
     <div className="w-screen">
-      <div className="w-full flex-x-center">
+      <div className="w-full flex-x-center bg-white-enedis">
         <HeaderHP />
         <div className="w-[95%] md:w-[91%]">
           <PublicationFirstArea />

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useAuth } from "../../../context/UserContext";
-import { categoryFetcher, spaceFetcher } from "../../../utils/fetcher";
+import { useAuth } from "../../../../context/UserContext";
+import { categoryFetcher, spaceFetcher } from "../../../../utils/fetcher";
 
 interface IProps {
   setCategoryChosen: (category: string) => void;
@@ -39,7 +39,7 @@ function CategoryChoosing({ setCategoryChosen }: IProps) {
     return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div className="w-full flex-y-center overflow-hidden rounded-full border bg-blue-enedis px-4 py-3">
+    <div className="w-full flex-y-center overflow-hidden rounded-full bg-blue-enedis px-4 py-3">
       <select
         name="category"
         id="category-select"

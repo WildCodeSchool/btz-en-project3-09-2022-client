@@ -13,7 +13,7 @@ function ListSpaceCardsForHP() {
     data: dataSpacesByUserAuth,
   } = useQuery(
     ["dataSpacesByUserAuth", user?.id],
-    () => user && spaceFetcher.getAll()
+    () => user && spaceFetcher.getAllWithCategories()
   );
 
   if (isLoadingSpaces || !dataSpacesByUserAuth || !user)
@@ -21,10 +21,17 @@ function ListSpaceCardsForHP() {
   if (errorSpaces) return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div>
-      {dataSpacesByUserAuth.map((space) => (
-        <SpaceCardForHP oneSpace={space} />
-      ))}
+    <div className="flex flex-wrap lg:justify-between">
+      {dataSpacesByUserAuth
+        .filter((space) => space.name === "Général")
+        .map((space) => (
+          <SpaceCardForHP oneSpace={space} key={space.id} />
+        ))}
+      {dataSpacesByUserAuth
+        .filter((space) => space.name !== "Général")
+        .map((space) => (
+          <SpaceCardForHP oneSpace={space} key={space.id} />
+        ))}
     </div>
   );
 }

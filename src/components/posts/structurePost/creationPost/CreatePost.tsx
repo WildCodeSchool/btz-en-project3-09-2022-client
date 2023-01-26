@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../context/UserContext";
-import { imageFetcher, postFetcher } from "../../../utils/poster";
-import CTA from "../../structure/CTA";
+import { useAuth } from "../../../../context/UserContext";
+import { imageFetcher, postFetcher } from "../../../../utils/poster";
+import CTA from "../../../structure/CTA";
+import ProfilePicMini from "../../../structure/ProfilePicMini";
 import CategoryChoosing from "./CategoryChoosing";
 import PostTitle from "./PostTitle";
-import ProfilePic from "./ProfilePic";
 import SubmittedPost from "./SubmittedPost";
 import UploadArea from "./UploadArea";
 import WysiwygTextArea from "./WysiwygTextArea";
@@ -51,7 +51,7 @@ function CreatePost() {
         <>
           <div className="h-fit md:flex md:mb-4 md:space-x-3">
             <div className="min-w-[37%] flex items-center justify-between mb-[10px] space-x-3 md:mb-0">
-              <ProfilePic
+              <ProfilePicMini
                 firstname={user.firstname}
                 lastname={user.lastname}
                 imageUrl={user.imageUrl}
