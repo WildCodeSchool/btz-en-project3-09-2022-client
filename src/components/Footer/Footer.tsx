@@ -142,7 +142,11 @@ function Footer() {
       />
       <div className="bg-blue-enedis  z-0 relative flex items-center h-16">
         <div className="flex justify-around w-full h-full ">
-          <div className="relative flex justify-center w-1/6  bg-background-enedis ">
+          <div
+            className={`relative flex justify-center w-1/6 ${
+              openProfil && "bg-background-enedis"
+            }`}
+          >
             {openProfil ? (
               <div className="relative flex justify-center">
                 <Image
@@ -194,7 +198,11 @@ function Footer() {
               HandleClickCategorieDescription={HandleClickCategorieDescription}
             />
           </div>
-          <div className="relative flex justify-center w-1/6  bg-background-enedis ">
+          <div
+            className={`relative flex justify-center w-1/6 ${
+              openEspace && "bg-background-enedis"
+            }`}
+          >
             {openEspace ? (
               <div className="relative flex justify-center">
                 <Image
@@ -203,7 +211,7 @@ function Footer() {
                   height={40}
                   alt="logo carte des espaces"
                   onClick={handleClickEspace}
-                  className="relative z-20 "
+                  className="relative z-20"
                 />
                 <div className="h-full bg-background-enedis w-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 z-10 " />
               </div>

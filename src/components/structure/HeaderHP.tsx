@@ -22,7 +22,6 @@ function HeaderHP() {
 
   if (error) return <div>Une erreur s&apos;est produite</div>;
   if (isLoading || !dataSite) return <div>En chargement</div>;
-  if (dataSite!.length === 0) return <p>No data</p>;
 
   return (
     <div className="w-full relative z-0 h-[142px] md:h-[210px]">

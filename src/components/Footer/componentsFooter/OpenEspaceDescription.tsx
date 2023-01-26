@@ -12,7 +12,11 @@ function OpenEspaceDescription({
 }: Props) {
   return (
     <div className="w-full">
-      <div className="relative flex justify-center w-full  h-full  bg-background-enedis ">
+      <div
+        className={`relative flex justify-center w-full  h-full  ${
+          openOrCloseEspaceDescription && "bg-background-enedis"
+        } `}
+      >
         {openOrCloseEspaceDescription ? (
           <div className="flex items-center justify-center ">
             <Image

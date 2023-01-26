@@ -12,7 +12,11 @@ function OpenCategoryDescription({
 }: Props) {
   return (
     <div className="w-full">
-      <div className="relative flex justify-center w-full h-full bg-background-enedis ">
+      <div
+        className={`relative flex justify-center w-full  h-full  ${
+          openCategorieDescription && "bg-background-enedis"
+        } `}
+      >
         {openCategorieDescription ? (
           <div className="flex items-center justify-center">
             <Image
