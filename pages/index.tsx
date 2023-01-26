@@ -4,7 +4,7 @@ import ListSpaceCardsForHP from "../src/components/spaces/ListSpaceCardsForHP";
 import HeaderHP from "../src/components/structure/HeaderHP";
 import TitleSection from "../src/components/structure/TitleSection";
 import LeftBar from "../src/components/leftBar/leftBar";
-import { NextPageWithLayout } from "./_app";
+import { NextPageWithLayout } from "./app/_app";
 import Layout from "../src/components/layout/Layout";
 import CommentList from "../src/components/comments/commentList";
 

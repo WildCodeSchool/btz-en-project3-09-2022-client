@@ -25,20 +25,15 @@ function SettingsMobile() {
   };
 
   // fetch user connected data includes team
-  if (!user) {
-    return <Loader />;
-  }
 
   const { data: team, isLoading } = useQuery(
     ["teams", `user-${user?.teamId}`],
     () => teamFetcher.getOne(`${user?.teamId}`)
   );
 
-  if (isLoading) {
-    return <p>Loading...</p>;
+  if (!user || isLoading) {
+    return <Loader />;
   }
-
-  console.log(width);
 
   return (
     <div>

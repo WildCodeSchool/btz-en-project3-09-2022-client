@@ -16,7 +16,6 @@ import {
 function Profile() {
   const router = useRouter();
   const { id } = router.query;
-
   const { user: userConnected } = useAuth();
 
   const {
@@ -33,10 +32,7 @@ function Profile() {
     () => categoryFetcher.getAllByUser(`${id}`)
   );
 
-  if (!user) {
-    return <p>No user</p>;
-  }
-  if (isLoading) {
+  if (!user || isLoading) {
     return <Loader />;
   }
 

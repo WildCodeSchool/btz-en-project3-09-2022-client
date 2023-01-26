@@ -5,6 +5,7 @@ import Link from "next/link";
 import { userFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
 import useOnClickOutside from "../hooks/useOnClickOutside";
+import Loader from "../Loader";
 
 type TUser = {
   id: string;
@@ -40,7 +41,7 @@ function SearchBar({ width }: TProps) {
   const { data, isLoading } = useQuery(["users"], () => userFetcher.getAll());
 
   if (isLoading || !data) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   // handlers
