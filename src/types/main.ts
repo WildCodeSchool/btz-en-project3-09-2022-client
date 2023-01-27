@@ -2,6 +2,7 @@ export type TSpace = {
   name: string;
   imageUrl: string;
   id: string;
+  description: string;
   categories?: TCategory[];
 };
 export type TUser = {

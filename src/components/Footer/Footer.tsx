@@ -174,7 +174,7 @@ function Footer() {
           </div>
           <div
             className={
-              window.location.href.includes("espace") &&
+              window.location.href.includes("space") &&
               !window.location.href.includes("category")
                 ? "relative flex justify-center w-1/6"
                 : "hidden"
