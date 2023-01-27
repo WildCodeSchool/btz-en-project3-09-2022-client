@@ -13,7 +13,7 @@ function CategoryTitle({ setTitle }: IProps) {
         onChange={(e) => setTitle(e.target.value)}
         className="w-full outline-none text-mob-sm(multiuse) text-left font-enedis font-medium truncate scrollbar-hide hover:text-clip
         hover:overflow-x-visible md:text-desk-md(titlePubli+multiuse)"
-        placeholder="Titre de ma publication"
+        placeholder="Titre de ma catégorie"
       />
     </div>
   );

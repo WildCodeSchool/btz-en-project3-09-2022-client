@@ -41,9 +41,7 @@ function UploadArea({ handleSubmit, image, setImage }: IProps) {
         rounded-upload-area md:h-[170px]"
     >
       <p className="font-enedis font-bold text-mob-sm(multiuse) md:text-desk-lg(CTA+input)">
-        Je joins une image
-        <br />
-        <span className="font-regular">(option)</span>
+        J&apos;ajoute une image de couverture
       </p>
       <form
         encType="multipart/form-data"

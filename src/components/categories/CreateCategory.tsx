@@ -6,7 +6,7 @@ import UploadArea from "./UploadArea";
 import CTA from "../structure/CTA";
 import SubmittedCategory from "./SubmittedCategory";
 import ProfilePic from "./ProfilePic";
-import SiteChoosing from "./SpaceChoosing";
+import SpaceChoosing from "./SpaceChoosing";
 
 function CreateCategory() {
   const { user } = useAuth();
@@ -53,7 +53,7 @@ function CreateCategory() {
                 lastname={user.lastname}
                 imageUrl={user.imageUrl}
               />
-              <SiteChoosing setSpaceChosen={setSpaceChosen} />
+              <SpaceChoosing setSpaceChosen={setSpaceChosen} />
             </div>
             <div className="w-full mb-[15px] md:mb-0">
               <CategoryTitle setTitle={setTitle} />
@@ -70,8 +70,8 @@ function CreateCategory() {
               espace a au moins un site, un titre et une description
             </p>
           )}
-          <div className="absolute w-full centered-x-absolute -bottom-20">
-            <CTA text="Je publie" action={handleSubmit} />
+          <div className="w-full pt-3">
+            <CTA text="Je crée mon espace" action={handleSubmit} />
           </div>
         </>
       ) : (

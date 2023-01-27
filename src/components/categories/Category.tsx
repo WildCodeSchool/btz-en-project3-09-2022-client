@@ -11,7 +11,7 @@ export default function Category() {
           Souhaitez-vous créer une catégorie ?
         </p>
       </div>
-      <div className="w-full h-full bg-redError-enedis">
+      <div className="w-full h-full">
         <ModalCategory Opener={CtaTextArea} Content={CreateCategory} />
       </div>
     </div>

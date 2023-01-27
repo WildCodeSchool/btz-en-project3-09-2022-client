@@ -34,9 +34,11 @@ function SpaceChoosing({ setSpaceChosen }: IProps) {
     hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)"
         placeholder="Titre de ma publication"
       >
-        <option value="">Space</option>
+        <option value="">Sélectionner un espace</option>
         {dataSpacesByUserAuth.map((space) => (
-          <optgroup key={space.id} label={space.name} />
+          <option key={space.id} value={space.name}>
+            {space.name}
+          </option>
         ))}
       </select>
     </div>
