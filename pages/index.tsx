@@ -20,7 +20,7 @@ const Home: NextPageWithLayout = () => {
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />
-          <CommentList postId={postId} />
+          {/* <CommentList postId={postId} /> */}
           <Space />
         </div>
       </div>
