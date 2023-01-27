@@ -1,35 +1,38 @@
-import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useAuth } from "../../context/UserContext";
 import { TUser } from "../../types/main";
 import { userFetcher } from "../../utils/fetcher";
-import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked";
+import TextTeamMemberCapsuleBlueStroked from "../teams/TextTeamMemberCapsuleBlueStroked";
 
-function TeamMembersList() {
-  const [isAllMembers, setIsAllMembers] = useState(false);
+function ListMembersSpace() {
   const { user } = useAuth();
+  const router = useRouter();
+  const { spaceId } = router.query;
+  const [isAllMembers, setIsAllMembers] = useState(false);
 
   const handleAllMembers = () => {
     setIsAllMembers(!isAllMembers);
   };
 
   const {
-    isLoading,
-    error,
-    data: dataUserByTeam,
-  } = useQuery(
-    ["getAllByTeam", user?.teamId],
-    () => user && userFetcher.getAllByTeam(user.teamId)
+    data: dataSpaceMembers,
+    error: errorSpaceMembers,
+    isLoading: isLoadingSpaceMembers,
+  } = useQuery([`membersInSpace`, spaceId], () =>
+    userFetcher.getAllBySpace({ spaceId: spaceId as string })
   );
 
-  if (isLoading || !dataUserByTeam || !user) return <div>En chargement</div>;
-  if (error) return <div>Une erreur s&apos;est produite</div>;
+  if (isLoadingSpaceMembers || !dataSpaceMembers || !user)
+    return <div>En chargement</div>;
+  if (errorSpaceMembers) return <div>Une erreur s&apos;est produite</div>;
 
   return (
     <>
       {isAllMembers ? (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataUserByTeam.map((member) => (
+          {dataSpaceMembers.map((member) => (
             <TextTeamMemberCapsuleBlueStroked
               key={member.id}
               id={member.id}
@@ -41,7 +44,7 @@ function TeamMembersList() {
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataUserByTeam
+          {dataSpaceMembers
             .filter((_, index: number) => index < 5)
             .map((member: TUser) => (
               <TextTeamMemberCapsuleBlueStroked
@@ -54,7 +57,7 @@ function TeamMembersList() {
             ))}
         </div>
       )}
-      {dataUserByTeam.length > 5 && (
+      {dataSpaceMembers.length > 5 && (
         <button
           type="button"
           onClick={handleAllMembers}
@@ -67,4 +70,4 @@ function TeamMembersList() {
   );
 }
 
-export default TeamMembersList;
+export default ListMembersSpace;

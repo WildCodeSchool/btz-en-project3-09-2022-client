@@ -26,7 +26,7 @@ function Espace() {
       <div className="bg-blue-enedis h-1 w-2/3 rounded-full mb-3" />
       <div className="w-full flex-x-center space-y-2 max-h-56 overflow-auto ">
         {data.map((space: TSpace) => (
-          <div key={space.id} className=" w-2/3  ">
+          <div key={space.id} className=" w-2/3">
             <div className="w-full relative z-10 ">
               <img
                 src={space.imageUrl}
