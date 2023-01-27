@@ -184,6 +184,9 @@ function Profile() {
         <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
           Mes dernières publications
         </h3>
+        <div>
+          {userConnected?.id === id ? <p>Connected</p> : <p>not connected</p>}
+        </div>
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
       </div>
     </div>

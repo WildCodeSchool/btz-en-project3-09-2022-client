@@ -121,7 +121,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl border h-[410px] overflow-y-scroll ">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-full px-4 rounded-b-app-bloc z-50  shadow-xl  h-[410px] overflow-y-scroll ">
               {data.length > 0 &&
                 data
                   .filter(

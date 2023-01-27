@@ -110,7 +110,7 @@ function Navbar() {
               <button
                 type="button"
                 onClick={modalContext?.handleOpen}
-                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px] absolute right-8 top-4"
+                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[120px] h-[40px] absolute right-8 top-4"
               >
                 Je publie
               </button>
