@@ -20,6 +20,8 @@ export const userFetcher = {
     (await axiosInstance.get<TUser[]>(`/users?team=${teamId}`)).data,
   getAllBySpace: async (spaceId: string) =>
     (await axiosInstance.get<TUser[]>(`/users?spaceId=${spaceId}`)).data,
+  getAllByCategory: async (CategoryId: string) =>
+    (await axiosInstance.get<TUser[]>(`/users?categoryId=${CategoryId}`)).data,
 };
 
 export const spaceFetcher = {

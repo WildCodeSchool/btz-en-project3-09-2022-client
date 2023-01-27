@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/return-await */
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import ModifyUser from "./ModifyUser";
@@ -38,17 +40,18 @@ function EspaceDescription() {
   if (membersLoading || !members) {
     return <h2>Loading...</h2>;
   }
-  console.log(members);
   return (
     <div className="bg-background-enedis flex-all-center w-full">
       <div className="bg-green-enedis h-1 top-0 w-full mb-6" />
-      <div className="w-3/4">
-        <div className="flex-all-center">
-          <div className="text-mob-xl(headers+titles) font-bold mb-1">
+      <div className="w-2/3">
+        <div className="flex-all-center w-full">
+          <div className="text-mob-xl(headers+titles) font-bold mb-1 ">
             Description de l&apos;espace
           </div>
           <div className="bg-blue-enedis h-1 top-0 w-full rounded-full" />
-          <p className="text-mob-xs(textPost) m-3 w-full">{data.description}</p>
+          <p className="text-mob-xs(textPost) m-3 w-full text-left">
+            {data.description}
+          </p>
           <div>
             {modify && (
               <AnimatePresence>
@@ -80,19 +83,39 @@ function EspaceDescription() {
             )}
           </div>
 
-          <div className={`space-y-2 ${modify || addUser ? "hidden" : ""}`}>
+          <div
+            className={`space-y-2 w-full ${modify || addUser ? "hidden" : ""}`}
+          >
             <div className="text-mob-xl(headers+titles) font-bold mb-1">
               Membres de l&apos;espace
             </div>
-            <div className="bg-blue-enedis h-1 top-0 w-full rounded-full " />
+            <div className="bg-blue-enedis h-1 top-0 w-full rounded-full" />
             <div className="space-y-2">
               {members.map((member: TUser) => (
-                <p
+                <div
                   key={member.id}
-                  className="border border-blue-enedis rounded-full h-fit  w-fit text-mob-sm(multiuse) px-2 "
+                  className="w-fit flex justify-start items-center overflow-hidden mb-2 mr-2"
                 >
-                  {member.firstname} {member.lastname}
-                </p>
+                  <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
+                    <Image
+                      alt={
+                        `${
+                          member.firstname
+                        } ${member.lastname.toUpperCase()}` || "nom prénom"
+                      }
+                      src={member.imageUrl || "/profile_image.png"}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <Link href={`/profile/${member.id}`}>
+                    <div className="w-fit  rounded-full border border-blue-enedis px-4 py-[6px]">
+                      <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
+                        {member.firstname} {member.lastname.toUpperCase()}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
               ))}
             </div>
           </div>
