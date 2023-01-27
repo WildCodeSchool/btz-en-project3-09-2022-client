@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { useWindowSize } from "usehooks-ts";
 import Link from "next/link";
+import useOnClickOutside from "@jidayyy/useonclickoutside";
 import { useAuth } from "../../context/UserContext";
 
 import useModal from "../modal/useModal";
@@ -26,11 +27,13 @@ function Navbar() {
   // Modal
   const { isShowing, toggle } = useModal();
 
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => toggle());
   return (
     <div className="w-full flex justify-between ">
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
-        <div className=" space-y-3">
+        <div className=" space-y-3" ref={ref}>
           <Link href={`/profile/${user?.id}`}>
             {" "}
             <p className="text-white-enedis">Mon profil</p>
@@ -46,11 +49,10 @@ function Navbar() {
           <Link href="/">
             <Image
               src="/assets/logo-enedis-share_blanc.png"
-              width={1000}
-              height={1000}
+              fill
               quality={100}
               alt="enedis-share-logo"
-              className=" max-w-[10%] min-w-[200px] "
+              className=" max-w-[10%] min-w-[200px] object-cover  "
             />
           </Link>
           {width < 768 ? (
