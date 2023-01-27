@@ -52,11 +52,11 @@ function SearchBar({ width }: TProps) {
   };
 
   return (
-    <div className=" w-full">
+    <div className="flex items-center w-full">
       {/* Mobile */}
 
       {width < 768 ? (
-        <div className="relative left-16 w-2/3" ref={ref}>
+        <div className="relative w-2/3 left-16 " ref={ref}>
           <input
             type="select"
             className=" w-full  h-[45px] rounded-full text-center placeholder "

@@ -128,7 +128,7 @@ function Navbar() {
             className="rounded-[60%] h-[40px] w-[40px] object-cover"
           />
 
-          <p className="font-enedis font-bold text-desk-xl(section)">
+          <p className="font-enedis font-bold text-desk-lg(CTA+input)">
             {user?.firstname}
             <br />
             {user?.lastname.toUpperCase()}

@@ -145,7 +145,7 @@ function Profile() {
             <ul className="mt-5 space-y-2">
               {myCategories?.map((category) =>
                 category.ownerId === user.id ? (
-                  <div className="flex relative">
+                  <div className="flex ">
                     <li
                       className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
                       key={category.id}
@@ -158,7 +158,7 @@ function Profile() {
                       width={30}
                       height={30}
                       alt="owner"
-                      className="h-[30px] w-[30px] ml-10 absolute"
+                      className="h-[30px] w-[30px] -ml-1"
                     />
                   </div>
                 ) : (
