@@ -29,19 +29,6 @@ function PostDisplay({ oneSpace }: IProps) {
     }
   );
 
-  // const getLatestPostByCategory = async () => {
-  //   setIsLoading(true);
-  //   const latestPost = await postFetcher.getLatestPostBySpaceWithImage({
-  //     spaceId: oneSpace.id,
-  //   });
-  //   setPostAllCategories(latestPost[0]);
-  //   setIsLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   getLatestPostByCategory();
-  // }, []);
-
   if (isLoading) {
     return <div>En chargement</div>;
   }

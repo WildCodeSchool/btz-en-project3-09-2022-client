@@ -14,7 +14,7 @@ const Home: NextPageWithLayout = () => {
     <div className="w-screen">
       <div className="w-full flex-x-center bg-white-enedis">
         <HeaderHP />
-        <div className="w-[95%] md:w-[91%]">
+        <div className="w-[95%] md:w-[91%] mb-24">
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />

@@ -30,7 +30,7 @@ function EspaceDescription() {
 
   const { data: members, isLoading: membersLoading } = useQuery(
     ["users", spaceId],
-    () => userFetcher.getAllBySpace(spaceId as string)
+    () => userFetcher.getAllBySpace({ spaceId: spaceId as string })
   );
 
   if (isLoading || !data) {

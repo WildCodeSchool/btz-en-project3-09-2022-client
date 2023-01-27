@@ -1,6 +1,5 @@
 import {
   TCategory,
-  TComment,
   TOneTeam,
   TSite,
   TSpace,
@@ -18,7 +17,7 @@ export const userFetcher = {
     (await axiosInstance.get<TUser>(`/users/${id}`)).data,
   getAllByTeam: async (teamId: string) =>
     (await axiosInstance.get<TUser[]>(`/users?team=${teamId}`)).data,
-  getAllBySpace: async (spaceId: string) =>
+  getAllBySpace: async ({ spaceId }: { spaceId: string }) =>
     (await axiosInstance.get<TUser[]>(`/users?spaceId=${spaceId}`)).data,
   getAllByCategory: async (CategoryId: string) =>
     (await axiosInstance.get<TUser[]>(`/users?categoryId=${CategoryId}`)).data,

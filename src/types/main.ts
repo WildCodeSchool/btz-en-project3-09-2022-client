@@ -1,6 +1,7 @@
 export type TSpace = {
   name: string;
   imageUrl: string;
+  description: string;
   id: string;
   description: string;
   categories?: TCategory[];
