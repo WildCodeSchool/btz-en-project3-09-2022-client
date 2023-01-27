@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { useWindowSize } from "usehooks-ts";
 import Link from "next/link";
+import useOnClickOutside from "@jidayyy/useonclickoutside";
 import { useAuth } from "../../context/UserContext";
 
 import useModal from "../modal/useModal";
@@ -26,14 +27,29 @@ function Navbar() {
   // Modal
   const { isShowing, toggle } = useModal();
 
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => toggle());
+
+  const handleSearchBar = () => {
+    setTimeout(() => {
+      toggle();
+    }, 1000);
+  };
+
   return (
     <div className="w-full flex justify-between ">
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
-        <div className=" space-y-3">
-          <Link href="/myaccount/myaccount">
+        <div className=" space-y-3" ref={ref}>
+          <Link href={`/profile/${user?.id}`}>
             {" "}
-            <p className="text-white-enedis">Mon profil</p>
+            <button
+              type="button"
+              className="text-white-enedis"
+              onClick={handleSearchBar}
+            >
+              Mon profil
+            </button>
           </Link>
           <p className="text-white-enedis">Paramètres</p>
           <p className="text-white-enedis">Aide</p>
@@ -43,14 +59,15 @@ function Navbar() {
 
       <div className="h-[70px] bg-blue-enedis flex justify-center relative md:w-5/6 md:rounded-r-full  w-full">
         <div className="w-[95%] flex justify-between items-center">
-          <Image
-            src="/assets/logo-enedis-share_blanc.png"
-            width={1000}
-            height={1000}
-            quality={100}
-            alt="enedis-share-logo"
-            className=" max-w-[10%] min-w-[200px] "
-          />
+          <Link href="/">
+            <Image
+              src="/assets/logo-enedis-share_blanc.png"
+              fill
+              quality={100}
+              alt="enedis-share-logo"
+              className=" max-w-[10%] min-w-[200px] object-cover  "
+            />
+          </Link>
           {width < 768 ? (
             <div className="flex justify-between min-w-[100px]  ">
               <div className=" flex flex-row-reverse  justify-around items-center ">
@@ -93,7 +110,7 @@ function Navbar() {
               <button
                 type="button"
                 onClick={modalContext?.handleOpen}
-                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[140px] h-[40px] absolute right-8 top-4"
+                className="bg-green-enedis text-desk-lg(CTA+input) font-bold text-white-enedis rounded-full w-[120px] h-[40px] absolute right-8 top-4"
               >
                 Je publie
               </button>
@@ -111,7 +128,7 @@ function Navbar() {
             className="rounded-[60%] h-[40px] w-[40px] object-cover"
           />
 
-          <p className="font-enedis font-bold text-desk-xl(section)">
+          <p className="font-enedis font-bold text-desk-lg(CTA+input)">
             {user?.firstname}
             <br />
             {user?.lastname.toUpperCase()}

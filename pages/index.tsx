@@ -10,11 +10,11 @@ import CommentList from "../src/components/comments/commentList";
 import Space from "../src/components/categories/Category";
 
 const Home: NextPageWithLayout = () => {
-  const postId = "5d603f90-ab0b-4ec2-99cf-01c6b768232d";
+  // const postId = à fetcher;
 
   return (
     <div className="w-screen">
-      <div className="w-full flex-x-center">
+      <div className="w-full flex-x-center bg-white-enedis">
         <HeaderHP />
         <div className="w-[95%] md:w-[91%]">
           <PublicationFirstArea />

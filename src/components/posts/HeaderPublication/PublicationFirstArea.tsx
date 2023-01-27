@@ -1,6 +1,6 @@
 import React from "react";
 import ModalPost from "../../modal/ModalPost";
-import CreatePost from "../structurePost/CreatePost";
+import CreatePost from "../structurePost/creationPost/CreatePost";
 import CtaTextArea from "./CtaTextArea";
 
 function PublicationFirstArea() {

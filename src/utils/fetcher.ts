@@ -5,6 +5,7 @@ import {
   TSpace,
   TTeam,
   TUser,
+  TPost,
 } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
@@ -19,7 +20,9 @@ export const userFetcher = {
 };
 
 export const spaceFetcher = {
-  getAll: async () => (await axiosInstance.get<TSpace[]>("/spaces")).data,
+  getAll: async () => (await axiosInstance.get<[TSpace]>("/spaces")).data,
+  getAllWithCategories: async () =>
+    (await axiosInstance.get<[TSpace]>("/spaces?categories=true")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TSpace>(`/spaces/${id}`)).data,
 };
@@ -45,4 +48,13 @@ export const siteFetcher = {
   getAll: async () => (await axiosInstance.get<TSite>("/sites")).data,
   getSitesByMember: async (idMember: string) =>
     (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
+};
+
+export const postFetcher = {
+  getLatestPostBySpaceWithImage: async ({ spaceId }: { spaceId: string }) =>
+    (
+      await axiosInstance.get<TPost[]>(
+        `/posts?spaceId=${spaceId}&author=true&category=true&image=true&limit=1`
+      )
+    ).data,
 };

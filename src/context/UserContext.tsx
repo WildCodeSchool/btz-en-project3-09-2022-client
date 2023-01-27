@@ -71,7 +71,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       const token = headers["authorization"];
       axiosInstance.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("token", token || "");
-      console.log(axiosInstance.defaults.headers.common);
+
       setAuthState(() => ({
         isAuth: true,
         user: data,
@@ -108,8 +108,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         },
       })
       .then((res) => {
-        console.log("PAS AUTH ERROR");
-
         setAuthState({
           isAuth: true,
           user: res.data,
@@ -130,7 +128,6 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
   useEffect(() => {
     authMe();
-    console.log(axiosInstance.defaults.headers.common);
   }, []);
 
   return (
