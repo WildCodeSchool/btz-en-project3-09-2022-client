@@ -29,6 +29,13 @@ function Navbar() {
 
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => toggle());
+
+  const handleSearchBar = () => {
+    setTimeout(() => {
+      toggle();
+    }, 1000);
+  };
+
   return (
     <div className="w-full flex justify-between ">
       {/* Modal component */}
@@ -36,7 +43,13 @@ function Navbar() {
         <div className=" space-y-3" ref={ref}>
           <Link href={`/profile/${user?.id}`}>
             {" "}
-            <p className="text-white-enedis">Mon profil</p>
+            <button
+              type="button"
+              className="text-white-enedis"
+              onClick={handleSearchBar}
+            >
+              Mon profil
+            </button>
           </Link>
           <p className="text-white-enedis">Paramètres</p>
           <p className="text-white-enedis">Aide</p>
