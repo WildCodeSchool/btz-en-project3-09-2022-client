@@ -1,13 +1,11 @@
 import React from "react";
-import Footer from "../../../../../src/components/Footer/Footer";
+import Layout from "../../../../../src/components/layout/Layout";
+import { NextPageWithLayout } from "../../../../_app";
 
-function index() {
-  return (
-    <div className="flex flex-col justify-end h-screen">
-      acceuil catégorie
-      <Footer />
-    </div>
-  );
-}
+const indexCategory: NextPageWithLayout = () => {
+  return <div>indexCategory</div>;
+};
 
-export default index;
+indexCategory.getLayout = (page) => <Layout>{page}</Layout>;
+
+export default indexCategory;
