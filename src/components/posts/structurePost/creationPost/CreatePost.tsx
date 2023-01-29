@@ -5,7 +5,8 @@ import { useAuth } from "../../../../context/UserContext";
 import { imageFetcher, postFetcher } from "../../../../utils/poster";
 import CTA from "../../../structure/CTA";
 import ProfilePicMini from "../../../structure/ProfilePicMini";
-import CategoryChoosing from "./CategoryChoosing";
+import CategoryChoosingHP from "./CategoryChoosingHP";
+import CategoryChoosingInSpace from "./CategoryChoosingInSpace";
 import PostTitle from "./PostTitle";
 import SubmittedPost from "./SubmittedPost";
 import UploadArea from "./UploadArea";
@@ -58,7 +59,19 @@ function CreatePost() {
                 lastname={user.lastname}
                 imageUrl={user.imageUrl}
               />
-              <CategoryChoosing setCategoryChosen={setCategoryChosen} />
+              {window.location.href.includes("category") && (
+                <CategoryChoosingHP setCategoryChosen={setCategoryChosen} />
+              )}
+              {window.location.href.includes("space") &&
+                !window.location.href.includes("category") && (
+                  <CategoryChoosingInSpace
+                    setCategoryChosen={setCategoryChosen}
+                  />
+                )}
+              {!window.location.href.includes("space") &&
+                !window.location.href.includes("category") && (
+                  <CategoryChoosingHP setCategoryChosen={setCategoryChosen} />
+                )}
             </div>
             <div className="w-full mb-[15px] md:mb-0">
               <PostTitle setTitle={setTitle} />

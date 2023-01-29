@@ -7,8 +7,13 @@ interface IProps {
 function TitlePost({ title }: IProps) {
   return (
     <div
-      className="w-full flex-y-center overflow-hidden rounded-full border 
-    border-blue-enedis bg-white-enedis px-4 py-2 ml-2"
+      className={`w-full flex-y-center overflow-hidden rounded-full border 
+    border-blue-enedis bg-white-enedis px-4 py-2 ml-2 ${
+      window.location.href.includes("category") ||
+      window.location.href.includes("space")
+        ? "bg-blue-enedis text-white-enedis"
+        : "border-blue-enedis bg-white-enedis"
+    }`}
     >
       <h3
         className="w-full text-mob-sm(multiuse) text-left font-enedis font-regular truncate overflow-x-scroll scrollbar-hide hover:text-clip

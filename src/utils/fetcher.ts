@@ -29,6 +29,8 @@ export const spaceFetcher = {
     (await axiosInstance.get<[TSpace]>("/spaces?categories=true")).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TSpace>(`/spaces/${id}`)).data,
+  getOneWithCategories: async (id: string) =>
+    (await axiosInstance.get<TSpace>(`/spaces/${id}?categories=true`)).data,
 };
 
 export const categoryFetcher = {
@@ -58,6 +60,12 @@ export const postFetcher = {
     (
       await axiosInstance.get<TPost[]>(
         `/posts?spaceId=${spaceId}&author=true&category=true&image=true&limit=1`
+      )
+    ).data,
+  getAllByCategory: async ({ categoryId }: { categoryId: string }) =>
+    (
+      await axiosInstance.get<TPost[]>(
+        `/posts?categoryId=${categoryId}&author=true&image=true`
       )
     ).data,
 };

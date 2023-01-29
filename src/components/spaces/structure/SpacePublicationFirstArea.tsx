@@ -10,8 +10,8 @@ interface IProps {
 
 function SpacePublicationFirstArea({ dataSpace }: IProps) {
   return (
-    <div className="flex justify-between mt-6">
-      <div className="w-1/4 min-w-[110px] max-w-[200px] h-fit max-h-32 bg-blue-enedis rounded-app-bloc flex-all-center p-3">
+    <div className="w-full flex justify-between mt-6">
+      <div className="w-1/3 min-w-[140px] max-w-[200px] h-fit max-h-32 bg-blue-enedis rounded-app-bloc flex-all-center p-3">
         <p className="text-mob-md(CTA+input) font-enedis font-bold text-white-enedis">
           Envie de partager à tous sur l&apos;espace {dataSpace.name}?
         </p>

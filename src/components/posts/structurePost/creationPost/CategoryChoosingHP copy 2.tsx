@@ -8,7 +8,7 @@ interface IProps {
   setCategoryChosen: (category: string[]) => void;
 }
 
-function CategoryChoosing({ setCategoryChosen }: IProps) {
+function CategoryChoosingHP({ setCategoryChosen }: IProps) {
   const { user } = useAuth();
 
   const {
@@ -73,4 +73,4 @@ function CategoryChoosing({ setCategoryChosen }: IProps) {
   );
 }
 
-export default CategoryChoosing;
+export default CategoryChoosingHP;

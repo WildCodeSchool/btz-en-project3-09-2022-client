@@ -3,10 +3,13 @@ import useOnClickOutside from "@jidayyy/useonclickoutside";
 import { forwardRef, ReactNode, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModalContext } from "../../context/ModalContext";
+import { TCategory, TSpace } from "../../types/main";
 
 interface Iprops {
   Opener: ({ onClick }: any) => React.ReactElement;
   Content: ({ handleClose }: any) => JSX.Element;
+  dataSpace?: TSpace;
+  dataCategory?: TCategory;
 }
 
 interface Props {
@@ -27,7 +30,12 @@ const ModalBody = forwardRef<HTMLDivElement, Props>(({ children }, ref) => {
   );
 });
 
-export default function ModalPost({ Opener, Content }: Iprops) {
+export default function ModalPost({
+  Opener,
+  Content,
+  dataSpace,
+  dataCategory,
+}: Iprops) {
   const modalContext = useModalContext();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -40,7 +48,7 @@ export default function ModalPost({ Opener, Content }: Iprops) {
       <Opener onClick={modalContext?.handleOpen} />
       {modalContext?.isOpen && (
         <ModalBody ref={ref}>
-          <Content />
+          <Content dataSpace={dataSpace} dataCategory={dataCategory} />
         </ModalBody>
       )}
     </>
