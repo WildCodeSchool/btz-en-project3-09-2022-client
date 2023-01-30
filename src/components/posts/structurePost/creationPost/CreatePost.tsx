@@ -45,6 +45,7 @@ function CreatePost() {
       await imageFetcher.post(formData);
     }
     queryClient.invalidateQueries(["latestPost", `${categoryChosen[1]}`]);
+    queryClient.invalidateQueries(["AllGeneralPostsInSpace"]);
     return setSubmitted(true);
   };
 
