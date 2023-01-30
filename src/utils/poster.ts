@@ -29,17 +29,11 @@ export const imageFetcher = {
 };
 
 export const categoryFetcher = {
-  post: async (
-    nameCategory: string,
-    imageUrlCategory: string,
-    spaceIdCategory: string,
-    ownerIdCategory: string
-  ) =>
-    await axiosInstance.post<TCategory>("/categories", {
-      name: nameCategory,
-      imageUrl: imageUrlCategory,
-      spaceId: spaceIdCategory,
-      ownerId: ownerIdCategory,
+  post: async (formData: FormData) =>
+    await axiosInstance.post<TCategory>("/categories", formData, {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
     }),
 };
 

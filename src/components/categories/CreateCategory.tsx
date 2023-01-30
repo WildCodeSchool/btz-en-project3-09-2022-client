@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/UserContext";
-import { imageFetcher, categoryFetcher } from "../../utils/poster";
+import { categoryFetcher } from "../../utils/poster";
 import CategoryTitle from "./CategoryTitle";
 import UploadArea from "./UploadArea";
 import CTA from "../structure/CTA";
@@ -11,8 +11,8 @@ import SpaceChoosing from "./SpaceChoosing";
 function CreateCategory() {
   const { user } = useAuth();
 
-  const [spaceChosen, setSpaceChosen] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+  const [spaceChosen, setSpaceChosen] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
   const [triedToSubmit, setTriedToSubmit] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -25,20 +25,12 @@ function CreateCategory() {
     if (!title || !image || !spaceChosen) {
       return setTriedToSubmit(true);
     }
-    const spaceSubmitted = await categoryFetcher.post(
-      title,
-      image,
-      user.id,
-      spaceChosen
-    );
-
-    if (image) {
-      const formData = new FormData();
-      formData.append("categoryImage", image as File);
-      formData.append("categoryId", spaceSubmitted.data.id);
-      await imageFetcher.post(formData);
-    }
-
+    const formData = new FormData();
+    formData.append("categoryImage", image as File);
+    formData.append("spaceId", spaceChosen);
+    formData.append("ownerId", user.id);
+    formData.append("name", title);
+    await categoryFetcher.post(formData);
     return setSubmitted(true);
   };
 

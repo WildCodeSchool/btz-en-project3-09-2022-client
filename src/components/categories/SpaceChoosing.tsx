@@ -36,7 +36,7 @@ function SpaceChoosing({ setSpaceChosen }: IProps) {
       >
         <option value="">Sélectionner un espace</option>
         {dataSpacesByUserAuth.map((space) => (
-          <option key={space.id} value={space.name}>
+          <option key={space.id} value={space.id}>
             {space.name}
           </option>
         ))}
