@@ -6,8 +6,6 @@ import TitleSection from "../src/components/structureShared/TitleSection";
 import LeftBar from "../src/components/leftBar/inHP/LeftBar";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
-import CommentList from "../src/components/comments/commentList";
-import Space from "../src/components/categories/Category";
 
 const Home: NextPageWithLayout = () => {
   // const postId = à fetcher;
@@ -21,7 +19,6 @@ const Home: NextPageWithLayout = () => {
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />
           {/* <CommentList postId={postId} /> */}
-          <Space />
         </div>
       </div>
     </div>

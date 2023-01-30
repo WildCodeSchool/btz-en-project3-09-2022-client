@@ -29,7 +29,7 @@ const ModalSpaceBody = forwardRef<HTMLDivElement, Props>(
   }
 );
 
-export default function ModalSpace({ Opener, Content }: Iprops) {
+export default function ModalCategory({ Opener, Content }: Iprops) {
   const modalContext = useModalContextSpace();
   const ref = useRef<HTMLDivElement>(null);
 
