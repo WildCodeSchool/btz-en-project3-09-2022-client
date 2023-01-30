@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../src/components/layout/Layout";
 import Loader from "../../src/components/structureShared/Loader";
 import PostContent from "../../src/components/profil/PostContent";
@@ -48,8 +48,6 @@ function Profile() {
   if (error) {
     <p>Error</p>;
   }
-
-  console.log(id);
 
   return (
     <div className="w-full">
