@@ -3,7 +3,7 @@ import PublicationFirstArea from "../src/components/posts/HeaderPublication/Publ
 import ListSpaceCardsForHP from "../src/components/spaces/ListSpaceCardsForHP";
 import HeaderHP from "../src/components/structure/HeaderHP";
 import TitleSection from "../src/components/structure/TitleSection";
-import LeftBar from "../src/components/leftBar/leftBar";
+import LeftBar from "../src/components/leftBar/LeftBar";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
 
