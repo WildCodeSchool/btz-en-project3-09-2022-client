@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuth } from "../../context/UserContext";
-import { TUser } from "../../types/main";
+import { TSpace, TUser } from "../../types/main";
 import { userFetcher } from "../../utils/fetcher";
 import TextTeamMemberCapsuleBlueStroked from "../teams/TextTeamMemberCapsuleBlueStroked";
 
-function ListMembersSpace() {
+interface IProps {
+  dataSpace: TSpace;
+}
+
+function ListMembersSpace({ dataSpace }: IProps) {
   const { user } = useAuth();
-  const router = useRouter();
-  const { spaceId } = router.query;
   const [isAllMembers, setIsAllMembers] = useState(false);
+  const { id: spaceId, ownerId } = dataSpace;
 
   const handleAllMembers = () => {
     setIsAllMembers(!isAllMembers);
@@ -39,6 +42,7 @@ function ListMembersSpace() {
               firstname={member.firstname}
               lastname={member.lastname}
               imageUrl={member.imageUrl}
+              ownerId={ownerId}
             />
           ))}
         </div>
@@ -53,6 +57,7 @@ function ListMembersSpace() {
                 firstname={member.firstname}
                 lastname={member.lastname}
                 imageUrl={member.imageUrl}
+                ownerId={ownerId}
               />
             ))}
         </div>

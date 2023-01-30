@@ -1,14 +1,14 @@
 /* eslint-disable react/function-component-definition */
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import ListSpaceCardsForHP from "../../../src/components/spaces/ListSpaceCardsForHP";
-import TitleSection from "../../../src/components/structure/TitleSection";
 import { NextPageWithLayout } from "../../_app";
 import Layout from "../../../src/components/layout/Layout";
 import LeftBarSpace from "../../../src/components/leftBar/LeftBarSpace";
 import { spaceFetcher } from "../../../src/utils/fetcher";
 import BigHeaderSpace from "../../../src/components/spaces/structure/BigHeaderSpace";
-import SpacePublicationFirstArea from "../../../src/components/spaces/structure/SpacePublicationFirstArea";
+import NewsCategory from "../../../src/components/spaces/structure/NewsCategory";
+import FeedGeneral from "../../../src/components/spaces/structure/FeedGeneralSpace/FeedGeneral";
+import Loader from "../../../src/components/Loader";
 
 const Espace: NextPageWithLayout = () => {
   const router = useRouter();
@@ -18,31 +18,24 @@ const Espace: NextPageWithLayout = () => {
     data: dataSpace,
     error: errorSpace,
     isLoading: isLoadingSpace,
-  } = useQuery([`theSpace`, spaceId], () =>
-    spaceFetcher.getOne(spaceId as string)
+  } = useQuery(["theSpaceWithCategories", spaceId], () =>
+    spaceFetcher.getOneWithCategories(spaceId as string)
   );
 
-  if (isLoadingSpace || !dataSpace) return <div>En chargement</div>;
+  if (isLoadingSpace || !dataSpace) return <Loader />;
   if (errorSpace) return <div>Une erreur s&apos;est produite</div>;
 
   return (
     <div className="w-screen">
-      <div className="w-full flex-x-center bg-white-enedis h-full">
+      <div className="w-full h-full flex-x-center bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
-        <div className="flex justify-between items-start">
-          <div className="w-[60%] flex-x-center">
+        <div className="w-full h-full flex justify-between items-start">
+          <div className="w-full flex-x-center lg:w-[60%]">
             <div className="w-[95%] md:w-[91%] mb-2">
-              <SpacePublicationFirstArea dataSpace={dataSpace} />
-              <TitleSection
-                titleText={`À la Une sur l'espace
-          ${dataSpace.name}`}
-              />
-              <ListSpaceCardsForHP />
+              <FeedGeneral dataSpace={dataSpace} />
             </div>
           </div>
-          <div className="w-[40%] h-full bg-green-enedis">
-            <TitleSection titleText="News de mes catégories" whiteText />
-          </div>
+          <NewsCategory />
         </div>
       </div>
     </div>

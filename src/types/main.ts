@@ -3,8 +3,9 @@ export type TSpace = {
   imageUrl: string;
   description: string;
   id: string;
-  description: string;
   categories?: TCategory[];
+  ownerId: string;
+  owner?: TUser;
 };
 export type TUser = {
   id: string;
