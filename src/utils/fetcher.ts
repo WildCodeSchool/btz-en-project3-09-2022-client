@@ -57,6 +57,7 @@ export const teamFetcher = {
 };
 
 export const siteFetcher = {
+  getAll: async () => (await axiosInstance.get<TSite>("/sites")).data,
   getSitesByMember: async (idMember: string) =>
     (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
 };
