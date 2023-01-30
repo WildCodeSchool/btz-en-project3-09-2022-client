@@ -1,8 +1,8 @@
 import React from "react";
-import { TSpace } from "../../../types/main";
-import ModalPost from "../../modal/ModalPost";
-import CtaTextArea from "../../posts/HeaderPublication/CtaTextArea";
-import CreatePost from "../../posts/structurePost/creationPost/CreatePost";
+import { TSpace } from "../../../../types/main";
+import ModalPost from "../../../modal/ModalPost";
+import CtaTextArea from "../../../posts/HeaderPublication/CtaTextArea";
+import CreatePost from "../../../posts/structurePost/creationPost/CreatePost";
 
 interface IProps {
   dataSpace: TSpace;

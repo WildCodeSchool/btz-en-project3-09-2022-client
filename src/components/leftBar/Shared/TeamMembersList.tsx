@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../../context/UserContext";
-import { TUser } from "../../types/main";
-import { userFetcher } from "../../utils/fetcher";
+import { useAuth } from "../../../context/UserContext";
+import { TUser } from "../../../types/main";
+import { userFetcher } from "../../../utils/fetcher";
 import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked";
 
 function TeamMembersList() {

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../../src/components/layout/Layout";
-import Loader from "../../src/components/Loader";
-import TeamMembersList from "../../src/components/teams/TeamMembersList";
+import Loader from "../../src/components/structureShared/Loader";
+import TeamMembersList from "../../src/components/leftBar/Shared/TeamMembersList";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
 import {

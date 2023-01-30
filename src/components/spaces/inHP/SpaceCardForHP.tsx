@@ -1,7 +1,7 @@
 import React from "react";
 import { TSpace } from "../../../types/main";
 import PostDisplay from "../../posts/structurePost/displayPost/PostDisplay";
-import CTA from "../../structure/CTA";
+import CTA from "../../structureShared/CTA";
 import HeaderSpaceHP from "./HeaderSpaceHP";
 
 interface IProps {

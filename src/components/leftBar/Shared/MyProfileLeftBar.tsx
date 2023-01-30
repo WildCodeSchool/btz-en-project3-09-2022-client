@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useWindowSize } from "usehooks-ts";
-import { useAuth } from "../../context/UserContext";
-import { teamFetcher } from "../../utils/fetcher";
-import CTA from "../structure/CTA";
+import { useAuth } from "../../../context/UserContext";
+import { teamFetcher } from "../../../utils/fetcher";
+import CTA from "../../structureShared/CTA";
 
 function MyProfileLeftBar() {
   const router = useRouter();

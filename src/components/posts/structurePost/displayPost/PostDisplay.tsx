@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { TPost, TSpace } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
-import ProfilePicMini from "../../../structure/ProfilePicMini";
+import ProfilePicMini from "../../../structureShared/ProfilePicMini";
 import CategoryPost from "./CategoryPost";
 import DatePost from "./DatePost";
 import ImagePost from "./ImagePost";

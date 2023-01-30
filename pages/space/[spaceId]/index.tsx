@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
 import { NextPageWithLayout } from "../../_app";
 import Layout from "../../../src/components/layout/Layout";
-import LeftBarSpace from "../../../src/components/leftBar/LeftBarSpace";
+import LeftBarSpace from "../../../src/components/leftBar/inSpace/LeftBarSpace";
 import { spaceFetcher } from "../../../src/utils/fetcher";
 import BigHeaderSpace from "../../../src/components/spaces/structure/BigHeaderSpace";
-import NewsCategory from "../../../src/components/spaces/structure/NewsCategory";
+import NewsCategory from "../../../src/components/spaces/structure/newsCategory/NewsCategory";
 import FeedGeneral from "../../../src/components/spaces/structure/FeedGeneralSpace/FeedGeneral";
-import Loader from "../../../src/components/Loader";
+import Loader from "../../../src/components/structureShared/Loader";
 
 const Espace: NextPageWithLayout = () => {
   const router = useRouter();
@@ -29,6 +29,9 @@ const Espace: NextPageWithLayout = () => {
     <div className="w-screen">
       <div className="w-full h-full flex-x-center bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
+        <div className="hidden w-full h-36 p-5 text-white-enedis bg-redError-enedis md:block md:">
+          carousel choix catégorie à venir (Damien)
+        </div>
         <div className="w-full h-full flex justify-between items-start">
           <div className="w-full flex-x-center lg:w-[60%]">
             <div className="w-[95%] md:w-[91%] mb-2">

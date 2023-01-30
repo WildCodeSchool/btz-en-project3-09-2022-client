@@ -1,5 +1,5 @@
 import React from "react";
-import TitleSection from "../../structure/TitleSection";
+import TitleSection from "../../../structureShared/TitleSection";
 
 function NewsCategory() {
   return (
