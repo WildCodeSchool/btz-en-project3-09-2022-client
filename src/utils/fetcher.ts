@@ -57,4 +57,6 @@ export const postFetcher = {
         `/posts?spaceId=${spaceId}&author=true&category=true&image=true&limit=1`
       )
     ).data,
+  getAllPostUserConnected: async () =>
+    (await axiosInstance.get<TPost[]>(`/posts?category=true&author=true`)).data,
 };
