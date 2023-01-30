@@ -106,6 +106,8 @@ export const postFetcher = {
         `/posts?categoryId=${categoryId}&author=true&image=true`
       )
     ).data,
+  getAllPostUserConnected: async () =>
+    (await axiosInstance.get<TPost[]>(`/posts?category=true&author=true`)).data,
 };
 
 export const commentFetcher = {
