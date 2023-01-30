@@ -1,8 +1,11 @@
 export type TSpace = {
   name: string;
   imageUrl: string;
+  description: string;
   id: string;
   categories?: TCategory[];
+  ownerId: string;
+  owner?: TUser;
 };
 export type TUser = {
   id: string;

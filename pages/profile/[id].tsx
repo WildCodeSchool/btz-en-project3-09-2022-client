@@ -147,7 +147,7 @@ function Profile() {
                 category.ownerId === user.id ? (
                   <div className="flex ">
                     <li
-                      className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2  "
+                      className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center"
                       key={category.id}
                     >
                       {category.name}
@@ -163,7 +163,7 @@ function Profile() {
                   </div>
                 ) : (
                   <li
-                    className="border border-blue-enedis rounded-full h-[30px] w-fit pt-1 px-2 truncate text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse)"
+                    className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse)"
                     key={category.id}
                   >
                     {category.name}

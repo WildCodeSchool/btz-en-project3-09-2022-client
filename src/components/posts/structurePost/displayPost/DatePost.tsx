@@ -39,7 +39,7 @@ function DatePost({ datePost }: Props) {
   };
 
   return (
-    <p className="whitespace-nowrap text-mob-xxs(mention+date) md:text-desk-xs(date) ml-2">
+    <p className="whitespace-nowrap text-mob-xxs(mention+date) md:text-desk-xs(date) ml-2 flex-y-center">
       {getRelativeDate()}
       <br /> à {hourPostClean}
     </p>

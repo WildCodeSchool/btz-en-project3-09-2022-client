@@ -1,47 +1,54 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import { useAuth } from "../../context/UserContext";
-import { TUser } from "../../types/main";
+import { TSpace, TUser } from "../../types/main";
 import { userFetcher } from "../../utils/fetcher";
-import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked";
+import TextTeamMemberCapsuleBlueStroked from "../teams/TextTeamMemberCapsuleBlueStroked";
 
-function TeamMembersList() {
-  const [isAllMembers, setIsAllMembers] = useState(false);
+interface IProps {
+  dataSpace: TSpace;
+}
+
+function ListMembersSpace({ dataSpace }: IProps) {
   const { user } = useAuth();
+  const [isAllMembers, setIsAllMembers] = useState(false);
+  const { id: spaceId, ownerId } = dataSpace;
 
   const handleAllMembers = () => {
     setIsAllMembers(!isAllMembers);
   };
 
   const {
-    isLoading,
-    error,
-    data: dataUserByTeam,
-  } = useQuery(
-    ["getAllByTeam", user?.teamId],
-    () => user && userFetcher.getAllByTeam(user.teamId)
+    data: dataSpaceMembers,
+    error: errorSpaceMembers,
+    isLoading: isLoadingSpaceMembers,
+  } = useQuery([`membersInSpace`, spaceId], () =>
+    userFetcher.getAllBySpace({ spaceId: spaceId as string })
   );
 
-  if (isLoading || !dataUserByTeam || !user) return <div>En chargement</div>;
-  if (error) return <div>Une erreur s&apos;est produite</div>;
+  if (isLoadingSpaceMembers || !dataSpaceMembers || !user)
+    return <div>En chargement</div>;
+  if (errorSpaceMembers) return <div>Une erreur s&apos;est produite</div>;
 
   return (
     <>
       {isAllMembers ? (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataUserByTeam.map((member) => (
+          {dataSpaceMembers.map((member) => (
             <TextTeamMemberCapsuleBlueStroked
               key={member.id}
               id={member.id}
               firstname={member.firstname}
               lastname={member.lastname}
               imageUrl={member.imageUrl}
+              ownerId={ownerId}
             />
           ))}
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataUserByTeam
+          {dataSpaceMembers
             .filter((_, index: number) => index < 5)
             .map((member: TUser) => (
               <TextTeamMemberCapsuleBlueStroked
@@ -50,11 +57,12 @@ function TeamMembersList() {
                 firstname={member.firstname}
                 lastname={member.lastname}
                 imageUrl={member.imageUrl}
+                ownerId={ownerId}
               />
             ))}
         </div>
       )}
-      {dataUserByTeam.length > 5 && (
+      {dataSpaceMembers.length > 5 && (
         <button
           type="button"
           onClick={handleAllMembers}
@@ -67,4 +75,4 @@ function TeamMembersList() {
   );
 }
 
-export default TeamMembersList;
+export default ListMembersSpace;

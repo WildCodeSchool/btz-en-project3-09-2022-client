@@ -29,19 +29,6 @@ function PostDisplay({ oneSpace }: IProps) {
     }
   );
 
-  // const getLatestPostByCategory = async () => {
-  //   setIsLoading(true);
-  //   const latestPost = await postFetcher.getLatestPostBySpaceWithImage({
-  //     spaceId: oneSpace.id,
-  //   });
-  //   setPostAllCategories(latestPost[0]);
-  //   setIsLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   getLatestPostByCategory();
-  // }, []);
-
   if (isLoading) {
     return <div>En chargement</div>;
   }
@@ -74,7 +61,7 @@ function PostDisplay({ oneSpace }: IProps) {
       </div>
       <div className="w-full flex justify-between">
         <TextPost text={postAllCategories.content} />
-        <div className="w-[38%] min-w-[130px] h-[208px] flex flex-col justify-between ml-3">
+        <div className="w-[38%] min-w-[130px] lg:min-w-[145px] xl:min-w-[160px] h-[208px] flex flex-col justify-between ml-3">
           <div className="flex items-center justify-between">
             <CategoryPost categoryName={postAllCategories.category.name} />
             <DatePost datePost={postAllCategories.createdAt} />
