@@ -31,6 +31,12 @@ export const spaceFetcher = {
     (await axiosInstance.get<TSpace>(`/spaces/${id}`)).data,
   getOneWithCategories: async (id: string) =>
     (await axiosInstance.get<TSpace>(`/spaces/${id}?categories=true`)).data,
+  getOneWithCategoriesAndOwner: async (id: string) =>
+    (
+      await axiosInstance.get<TSpace>(
+        `/spaces/${id}?categories=true&owner=true`
+      )
+    ).data,
 };
 
 export const categoryFetcher = {

@@ -15,8 +15,8 @@ function LeftBarSpace() {
     data: dataSpace,
     error: errorSpace,
     isLoading: isLoadingSpace,
-  } = useQuery([`theSpace`, spaceId], () =>
-    spaceFetcher.getOne(spaceId as string)
+  } = useQuery(["theSpace", spaceId], () =>
+    spaceFetcher.getOneWithCategories(spaceId as string)
   );
 
   if (isLoadingSpace || !dataSpace) return <div>En chargement</div>;
@@ -34,7 +34,7 @@ function LeftBarSpace() {
         </div>
         <div className="mb-10">
           <TitleSection titleText="Membres de l'espace" />
-          <ListMembersSpace />
+          <ListMembersSpace dataSpace={dataSpace} />
         </div>
         <div className="mb-10">
           <TitleSection titleText="Mes espaces" />

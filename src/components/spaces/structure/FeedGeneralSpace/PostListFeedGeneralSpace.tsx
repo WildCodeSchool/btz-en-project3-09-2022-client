@@ -27,7 +27,7 @@ function PostListFeedGeneralSpace({ generalCategory }: IProps) {
   return (
     <>
       {dataAllGeneralPostsInSpace.map((post) => (
-        <div key={post.id} className="mb-7">
+        <div key={post.id} className="mb-7 h-fit sm:mb-14">
           <PostGeneralSpace dataPost={post} />
         </div>
       ))}
