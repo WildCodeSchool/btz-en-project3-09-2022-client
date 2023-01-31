@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
-import Loader from "../components/Loader";
+import Loader from "../components/structureShared/Loader";
 import { TSpace } from "../types/main";
 import axiosInstance from "../utils/axiosInstance";
 

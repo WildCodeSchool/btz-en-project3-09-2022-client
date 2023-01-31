@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useAuth } from "../../context/UserContext";
-import { TSpace } from "../../types/main";
-import { spaceFetcher } from "../../utils/fetcher";
-import Loader from "../Loader";
+import { useAuth } from "../../../context/UserContext";
+import { TSpace } from "../../../types/main";
+import { spaceFetcher } from "../../../utils/fetcher";
+import Loader from "../../structureShared/Loader";
 
 function NavigationSpaces() {
   const { user } = useAuth();

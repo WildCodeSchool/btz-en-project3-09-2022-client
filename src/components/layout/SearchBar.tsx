@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { userFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
-import useOnClickOutside from "../hooks/useOnClickOutside";
-import Loader from "../Loader";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
+import Loader from "../structureShared/Loader";
 
 type TUser = {
   id: string;

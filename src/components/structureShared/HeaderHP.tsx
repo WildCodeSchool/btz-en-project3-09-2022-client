@@ -4,7 +4,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { siteFetcher } from "../../utils/fetcher";
 import { useAuth } from "../../context/UserContext";
-import Loader from "../Loader";
+import Loader from "./Loader";
 
 function HeaderHP() {
   const { user } = useAuth();

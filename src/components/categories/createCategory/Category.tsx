@@ -1,5 +1,5 @@
 import React from "react";
-import ModalCategory from "../modal/ModalCategory";
+import ModalCategory from "../../modal/ModalCategory";
 import CreateCategory from "./CreateCategory";
 import CtaTextArea from "./CTA";
 

@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Footer from "../Footer/Footer";
 import Navbar from "./Navbar";
-import Loader from "../Loader";
+import Loader from "../structureShared/Loader";
 
 interface IProps {
   children: ReactNode;

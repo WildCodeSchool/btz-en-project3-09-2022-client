@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React from "react";
-import { spaceFetcher } from "../../utils/fetcher";
-import MyProfileLeftBar from "../profil/MyProfileLeftBar";
-import ListMembersSpace from "../spaces/ListMembersSpace";
-import NavigationSpaces from "../spaces/NavigationSpaces";
-import TitleSection from "../structure/TitleSection";
+import { spaceFetcher } from "../../../utils/fetcher";
+import MyProfileLeftBar from "../Shared/MyProfileLeftBar";
+import ListMembersSpace from "./ListMembersSpace";
+import NavigationSpaces from "../../spaces/structure/NavigationSpaces";
+import TitleSection from "../../structureShared/TitleSection";
 
 function LeftBarSpace() {
   const router = useRouter();

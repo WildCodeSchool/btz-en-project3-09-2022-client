@@ -1,7 +1,7 @@
 import React from "react";
 import { TCategory, TSpace } from "../../../../types/main";
-import TitleSection from "../../../structure/TitleSection";
-import SpacePublicationFirstArea from "../SpacePublicationFirstArea";
+import TitleSection from "../../../structureShared/TitleSection";
+import SpacePublicationFirstArea from "./SpacePublicationFirstArea";
 import PostListFeedGeneralSpace from "./PostListFeedGeneralSpace";
 
 interface IProps {

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useAuth } from "../../context/UserContext";
-import { TSpace, TUser } from "../../types/main";
-import { userFetcher } from "../../utils/fetcher";
-import TextTeamMemberCapsuleBlueStroked from "../teams/TextTeamMemberCapsuleBlueStroked";
+import { useAuth } from "../../../context/UserContext";
+import { TSpace, TUser } from "../../../types/main";
+import { userFetcher } from "../../../utils/fetcher";
+import TextTeamMemberCapsuleBlueStroked from "../Shared/TextTeamMemberCapsuleBlueStroked";
 
 interface IProps {
   dataSpace: TSpace;
