@@ -117,4 +117,10 @@ export const commentFetcher = {
         `/comments?postId=${postId}&author=true`
       )
     ).data,
+  getCommentsByPostId: async (postId: string) =>
+    await (
+      await axiosInstance.get<TComment[]>(
+        `/comments?postId=${postId}&author=true`
+      )
+    ).data,
 };
