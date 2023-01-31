@@ -2,13 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../../src/components/layout/Layout";
 import Loader from "../../src/components/Loader";
-import CategoryPost from "../../src/components/posts/structurePost/displayPost/CategoryPost";
-import DatePost from "../../src/components/posts/structurePost/displayPost/DatePost";
-import TitlePost from "../../src/components/posts/structurePost/displayPost/TitlePost";
-import ProfilePicMini from "../../src/components/structure/ProfilePicMini";
+import PostContent from "../../src/components/profil/PostContent";
+
 import TeamMembersList from "../../src/components/teams/TeamMembersList";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
@@ -19,15 +17,10 @@ import {
   userFetcher,
 } from "../../src/utils/fetcher";
 
-interface ShowContent {
-  [postId: string]: boolean;
-}
-
 function Profile() {
   const router = useRouter();
   const { id } = router.query;
   const { user: userConnected } = useAuth();
-  const [showContent, setShowContent] = useState<ShowContent>({});
 
   const {
     data: user,
@@ -54,15 +47,6 @@ function Profile() {
   if (error) {
     <p>Error</p>;
   }
-
-  const handleContentClick = (postId: string) => {
-    setShowContent((prevState) => {
-      return {
-        ...prevState,
-        [postId]: !prevState[postId],
-      };
-    });
-  };
 
   return (
     <div className="w-full">
@@ -210,34 +194,7 @@ function Profile() {
         <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
 
         {posts?.map((post) => (
-          <div className="my-5 px-5  min-w-[90%] max-w-[90%] border-l-8 border-green-enedis">
-            <div className="flex  justify-between mb-2 m-auto">
-              <div className="flex">
-                <ProfilePicMini
-                  firstname={`${post.author?.firstname}`}
-                  imageUrl={`${post.author?.imageUrl}`}
-                  lastname={`${post.author?.lastname}`}
-                  key={post.id}
-                />
-                <div className=" ml-2 ">
-                  <CategoryPost categoryName={`${post.category?.name}`} />
-                </div>
-              </div>
-              <DatePost datePost={post.createdAt} />
-            </div>
-            <button
-              type="button"
-              className="w-5/6 ml-10"
-              onClick={() => handleContentClick(post.id)}
-            >
-              <TitlePost title={post.title} />
-              {showContent[post.id] && (
-                <div className="text-left p-3 ml-2 w-full  rounded-app-bloc mt-2 break-all bg-white-enedis">
-                  <p>{post.content}</p>
-                </div>
-              )}
-            </button>
-          </div>
+          <PostContent post={post} />
         ))}
       </div>
     </div>
