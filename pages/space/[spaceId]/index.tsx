@@ -46,7 +46,9 @@ const Espace: NextPageWithLayout = () => {
               <FeedGeneral dataSpace={dataSpace} />
             </div>
           </div>
-          <NewsCategory />
+          <div className="hidden w-[40%] h-full bg-green-enedis lg:flex-x-center">
+            <NewsCategory dataSpace={dataSpace} />
+          </div>
         </div>
       </div>
     </div>

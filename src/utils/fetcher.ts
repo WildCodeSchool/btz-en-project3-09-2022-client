@@ -69,6 +69,16 @@ export const postFetcher = {
         `/posts?spaceId=${spaceId}&author=true&category=true&image=true&limit=1`
       )
     ).data,
+  getLatestPostByCategoryWithImage: async ({
+    categoryId,
+  }: {
+    categoryId: string;
+  }) =>
+    (
+      await axiosInstance.get<[TPost]>(
+        `/posts?categoryId=${categoryId}&author=true&category=true&image=true&limit=1`
+      )
+    ).data,
   getAllByCategory: async ({ categoryId }: { categoryId: string }) =>
     (
       await axiosInstance.get<TPost[]>(

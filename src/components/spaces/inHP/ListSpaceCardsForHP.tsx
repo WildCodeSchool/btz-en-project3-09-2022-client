@@ -23,12 +23,24 @@ function ListSpaceCardsForHP() {
   return (
     <div className="flex flex-wrap lg:justify-between">
       {dataSpacesByUserAuth
-        .filter((space) => space.name === "Général")
+        .filter(
+          (space) =>
+            space.name
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "") === "general"
+        )
         .map((space) => (
           <SpaceCardForHP oneSpace={space} key={space.id} />
         ))}
       {dataSpacesByUserAuth
-        .filter((space) => space.name !== "Général")
+        .filter(
+          (space) =>
+            space.name
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "") !== "general"
+        )
         .map((space) => (
           <SpaceCardForHP oneSpace={space} key={space.id} />
         ))}
