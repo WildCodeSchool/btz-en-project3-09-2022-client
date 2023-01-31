@@ -8,6 +8,7 @@ import DatePost from "./DatePost";
 import ImagePost from "./ImagePost";
 import NameAuthorPost from "./NameAuthorPost";
 import TextPostFullWidth from "./TextPostFullWidth";
+import TitlePostBorder from "./TitlePostBorder";
 
 interface IProps {
   oneCategory: TCategory;
@@ -57,8 +58,13 @@ function PostDisplayNewsCategory({ oneCategory }: IProps) {
         />
         <DatePost datePost={latestPost.createdAt} />
       </div>
-      <div className="w-full h-fit mb-4">
-        <TextPostFullWidth text={latestPost.content} />
+      <div className="w-full h-fit mb-4 relative">
+        <div className="relative z-20">
+          <TitlePostBorder title={latestPost.title} />
+        </div>
+        <div className="-mt-3">
+          <TextPostFullWidth text={latestPost.content} />
+        </div>
       </div>
       <div className="w-full flex-x-center">
         {latestPost.images?.length === 1 && (
