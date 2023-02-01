@@ -6,7 +6,6 @@ import TitleSection from "../src/components/structure/TitleSection";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
 import LeftBar from "../src/components/leftBar/leftBar";
-import CarouselCategory from "../src/components/carouselCategory/Carousel";
 
 const Home: NextPageWithLayout = () => {
   // const postId = à fetcher;
@@ -16,7 +15,6 @@ const Home: NextPageWithLayout = () => {
       <div className="w-full flex-x-center bg-white-enedis">
         <HeaderHP />
         <div className="w-[95%] md:w-[91%] mb-24">
-          <CarouselCategory />
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />

@@ -7,7 +7,7 @@ type Props = {
 
 function ImageCategory({ category }: Props) {
   return (
-    <div className="relative z-0 lg:w-48 w-36 md:w-40  h-[48px] md:h-[64px] lg:px-0">
+    <div className="relative z-0 w-[calc(100%-8px)] h-[48px] md:h-[64px] lg:px-0 mb-1">
       <img
         src={category.imageUrl}
         alt={category.id}
@@ -16,7 +16,7 @@ function ImageCategory({ category }: Props) {
       <p className="absolute centered-absolute text-white-enedis text-desk-xs(date) md:text-desk-md(titlePubli+multiuse) z-40 font-enedis font-bold ">
         {category.name}
       </p>
-      <div className=" bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-30 rounded-app-bloc w-full lg:w-48 md:w-40 h-full" />
+      <div className=" bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-30 rounded-app-bloc w-full h-full" />
     </div>
   );
 }

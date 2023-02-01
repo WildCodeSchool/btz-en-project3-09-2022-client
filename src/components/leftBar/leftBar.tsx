@@ -9,8 +9,8 @@ function LeftBar() {
   const { user } = useAuth();
 
   return (
-    <div className="w-1/3 h- hidden md:flex-x-center min-w-[200px] bg-background-enedis flex-x-center mx-auto">
-      <div className="w-[85%] mb-20">
+    <div className="w-[25%] hidden md:flex-x-center min-w-[200px] bg-background-enedis mx-auto">
+      <div className="w-[80%] mb-20">
         <MyProfileLeftBar />
         <TitleSection titleText="Mon site" />
         <TextCampusCapsuleBlueStroked
