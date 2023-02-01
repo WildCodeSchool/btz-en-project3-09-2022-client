@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/function-component-definition */
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
@@ -12,6 +13,8 @@ import Loader from "../../../src/components/structureShared/Loader";
 import ModalCategory from "../../../src/components/modal/ModalCategory";
 import CtaTextArea from "../../../src/components/categories/createCategory/CTA";
 import CreateCategory from "../../../src/components/categories/createCategory/CreateCategory";
+import CarouselCategory from "../../../src/components/spaces/structure/carouselCategory/CarouselCategory";
+import { TSpace } from "../../../src/types/main";
 
 const Espace: NextPageWithLayout = () => {
   const router = useRouter();
@@ -28,20 +31,35 @@ const Espace: NextPageWithLayout = () => {
   if (isLoadingSpace || !dataSpace) return <Loader />;
   if (errorSpace) return <div>Une erreur s&apos;est produite</div>;
 
+  const { categories } = dataSpace as TSpace;
+
+  const checkIfCategoryExceptGeneral = () => {
+    if (
+      categories!.length === 0 ||
+      (categories!.length === 1 &&
+        categories![0]!.name
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "") === "general")
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full md:max-w-[75%]">
       <div className="w-full h-full flex-x-center bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
-        <div
-          className="flex flex-col-reverse justify-center w-full h-[210px] min-h-[210px] p-5 text-white-enedis bg-background-enedis
-        md:h-[140px] md:min-h-[140px] md:flex-row md:items-center"
-        >
-          <div className="w-full min-w-[155px] flex-all-center md:mr-4 md:w-1/5">
+        <div className="flex flex-col-reverse justify-center w-full h-[210px] min-h-[210px] p-5 text-white-enedis bg-background-enedis md:h-[140px] md:min-h-[140px] md:flex-row md:items-center">
+          <div className="w-1/5 min-w-[155px] flex-all-center mr-4">
             <ModalCategory Opener={CtaTextArea} Content={CreateCategory} />
           </div>
-          <div className="w-full h-full mb-6 bg-redError-enedis flex-all-center md:w-4/5 md:mb-0">
-            carousel choix catégorie à venir (Damien)
-          </div>
+          {!checkIfCategoryExceptGeneral() && (
+            <div className="w-full h-full mb-6 flex-all-center md:w-2/3 md:mb-0">
+              <CarouselCategory dataSpace={dataSpace} />
+            </div>
+          )}
         </div>
         <div className="w-full h-full flex justify-between items-start">
           <div className="w-full flex-x-center lg:w-[60%]">
