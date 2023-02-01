@@ -7,7 +7,7 @@ import { useWindowSize } from "usehooks-ts";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
 import { teamFetcher } from "../../src/utils/fetcher";
-import Loader from "../../src/components/Loader";
+import Loader from "../../src/components/structureShared/Loader";
 import Layout from "../../src/components/layout/Layout";
 
 function Settings() {

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useAuth } from "../../context/UserContext";
-import { spaceFetcher } from "../../utils/fetcher";
-import SpaceCardForHP from "./structure/SpaceCardForHP";
+import { useAuth } from "../../../context/UserContext";
+import { spaceFetcher } from "../../../utils/fetcher";
+import SpaceCardForHP from "./SpaceCardForHP";
 
 function ListSpaceCardsForHP() {
   const { user } = useAuth();
@@ -23,12 +23,24 @@ function ListSpaceCardsForHP() {
   return (
     <div className="flex flex-wrap lg:justify-between">
       {dataSpacesByUserAuth
-        .filter((space) => space.name === "Général")
+        .filter(
+          (space) =>
+            space.name
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "") === "general"
+        )
         .map((space) => (
           <SpaceCardForHP oneSpace={space} key={space.id} />
         ))}
       {dataSpacesByUserAuth
-        .filter((space) => space.name !== "Général")
+        .filter(
+          (space) =>
+            space.name
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "") !== "general"
+        )
         .map((space) => (
           <SpaceCardForHP oneSpace={space} key={space.id} />
         ))}

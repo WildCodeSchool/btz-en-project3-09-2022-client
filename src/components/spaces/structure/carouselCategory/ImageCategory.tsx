@@ -1,5 +1,5 @@
 import React from "react";
-import { TCategory } from "../../types/main";
+import { TCategory } from "../../../../types/main";
 
 type Props = {
   category: TCategory;

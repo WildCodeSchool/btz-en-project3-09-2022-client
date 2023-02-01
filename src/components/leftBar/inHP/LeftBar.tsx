@@ -1,9 +1,9 @@
 import React from "react";
-import { useAuth } from "../../context/UserContext";
-import TextCampusCapsuleBlueStroked from "../campus/TextCampusCapsuleBlueStroked";
-import MyProfileLeftBar from "../profil/MyProfileLeftBar";
-import TitleSection from "../structure/TitleSection";
-import TeamMembersList from "../teams/TeamMembersList";
+import { useAuth } from "../../../context/UserContext";
+import TextCampusCapsuleBlueStroked from "./TextCampusCapsuleBlueStroked";
+import MyProfileLeftBar from "../Shared/MyProfileLeftBar";
+import TitleSection from "../../structureShared/TitleSection";
+import TeamMembersList from "../Shared/TeamMembersList";
 
 function LeftBar() {
   const { user } = useAuth();

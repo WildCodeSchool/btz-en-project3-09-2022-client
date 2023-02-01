@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { TCategory } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
-import Loader from "../../../Loader";
+import Loader from "../../../structureShared/Loader";
 import PostGeneralSpace from "./PostGeneralSpace";
 
 interface IProps {

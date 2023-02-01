@@ -57,6 +57,7 @@ export const teamFetcher = {
 };
 
 export const siteFetcher = {
+  getAll: async () => (await axiosInstance.get<TSite>("/sites")).data,
   getSitesByMember: async (idMember: string) =>
     (await axiosInstance.get<[TSite]>(`/sites?members=${idMember}`)).data,
 };
@@ -66,6 +67,16 @@ export const postFetcher = {
     (
       await axiosInstance.get<TPost[]>(
         `/posts?spaceId=${spaceId}&author=true&category=true&image=true&limit=1`
+      )
+    ).data,
+  getLatestPostByCategoryWithImage: async ({
+    categoryId,
+  }: {
+    categoryId: string;
+  }) =>
+    (
+      await axiosInstance.get<[TPost]>(
+        `/posts?categoryId=${categoryId}&author=true&category=true&image=true&limit=1`
       )
     ).data,
   getAllByCategory: async ({ categoryId }: { categoryId: string }) =>

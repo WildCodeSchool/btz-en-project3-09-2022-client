@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import Slider, { Settings } from "react-slick";
-import { useAuth } from "../../context/UserContext";
-import { categoryFetcher } from "../../utils/fetcher";
+import { useAuth } from "../../../../context/UserContext";
+import { categoryFetcher } from "../../../../utils/fetcher";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ImageCategory from "./ImageCategory";
-import CTA from "../structure/CTA";
+import CTA from "../../../structureShared/CTA";
 
 function CarouselCategory() {
   const { user } = useAuth();
