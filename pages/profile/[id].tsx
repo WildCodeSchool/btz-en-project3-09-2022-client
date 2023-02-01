@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import Link from "next/link";
+
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../../src/components/layout/Layout";
@@ -9,7 +9,7 @@ import PostContent from "../../src/components/profil/PostContent";
 
 import TeamMembersList from "../../src/components/leftBar/Shared/TeamMembersList";
 import { useAuth } from "../../src/context/UserContext";
-import { formatDate } from "../../src/utils/constants";
+
 import {
   categoryFetcher,
   postFetcher,
@@ -17,6 +17,7 @@ import {
   userFetcher,
 } from "../../src/utils/fetcher";
 import PersonalInfos from "../../src/components/profil/PersonalInfos";
+import TeamMembersListUsers from "../../src/components/profil/TeamMembersListUsers";
 
 function Profile() {
   const router = useRouter();
@@ -32,13 +33,12 @@ function Profile() {
   const { data: team } = useQuery(["teams", `user-${user?.teamId}`], () =>
     teamFetcher.getOne(`${user?.teamId}`)
   );
-  const { data: myCategories } = useQuery(
-    ["categories", `user-${user?.teamId}`],
-    () => categoryFetcher.getAllByUser(`${id}`)
+  const { data: categories } = useQuery(["categories", `user-${id}`], () =>
+    categoryFetcher.getAllByUser(`${id}`)
   );
 
   const { data: posts } = useQuery(["posts"], () =>
-    postFetcher.getAllPostbyUser()
+    postFetcher.getAllPostUserConnected()
   );
 
   if (!user || !userConnected || !team || isLoading) {
@@ -55,8 +55,8 @@ function Profile() {
         <PersonalInfos
           id={id}
           team={team}
-          user={user}
           userConnected={userConnected}
+          user={user}
         />
         {userConnected?.id === id ? (
           <div>
@@ -77,13 +77,10 @@ function Profile() {
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%]" />
                 <ul className="mt-5 space-y-2">
-                  {myCategories?.map((category) =>
+                  {categories?.map((category) =>
                     category.ownerId === user.id ? (
-                      <div className="flex ">
-                        <li
-                          className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center"
-                          key={category.id}
-                        >
+                      <div className="flex " key={category.id}>
+                        <li className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center">
                           {category.name}
                         </li>
 
@@ -121,7 +118,7 @@ function Profile() {
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
 
               {posts?.map((post) => (
-                <PostContent post={post} />
+                <PostContent post={post} key={post.id} />
               ))}
             </div>
           </div>
@@ -130,21 +127,21 @@ function Profile() {
             <div className="flex lg:w-[60%]">
               <div className="w-1/2 flex flex-col items-center pt-4 pl-4">
                 <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
-                  Mon équipe
+                  Son équipe
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%] mb-5" />
                 <div className=" pl-12">
-                  <TeamMembersList />
+                  <TeamMembersListUsers user={user} />
                 </div>
               </div>
 
               <div className="w-1/2 flex flex-col items-center pt-4 pb-4">
                 <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
-                  Mes catégories
+                  Ses catégories
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%]" />
                 <ul className="mt-5 space-y-2">
-                  {myCategories?.map((category) =>
+                  {categories?.map((category) =>
                     category.ownerId === user.id ? (
                       <div className="flex ">
                         <li
@@ -177,19 +174,15 @@ function Profile() {
 
             <div className=" flex flex-col items-center pt-4 pb-4a w-full">
               <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
-                Mon activité
+                Son activité
               </h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
             </div>
             <div className=" flex flex-col items-center pt-4 pb-4a w-full">
               <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
-                Mes dernières publications
+                Ses dernières publications en commun
               </h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-
-              {posts?.map((post) => (
-                <PostContent post={post} />
-              ))}
             </div>
           </div>
         )}

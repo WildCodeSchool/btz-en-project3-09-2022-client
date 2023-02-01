@@ -65,7 +65,7 @@ export default function PostContent({ post }: Props) {
               <QuillNoSSRWrapper readOnly value={post.content} theme="bubble" />
             </div>
             {comments?.map((comment) => (
-              <Comments comment={comment} />
+              <Comments comment={comment} key={comment.id} />
             ))}
           </>
         )}
