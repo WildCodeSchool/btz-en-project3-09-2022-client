@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import CategoryTitle from "./CategoryTitle";
 import UploadArea from "./UploadArea";
 import SubmittedCategory from "./SubmittedCategory";
@@ -15,6 +15,7 @@ function CreateCategory() {
   const { user } = useAuth();
   const router = useRouter();
   const { spaceId } = router.query;
+  const queryClient = useQueryClient();
 
   const [title, setTitle] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
@@ -35,6 +36,7 @@ function CreateCategory() {
     formData.append("ownerId", user.id);
     formData.append("name", title);
     await categoryFetcher.post(formData);
+    queryClient.invalidateQueries(["theSpaceWithCategories", spaceId]);
     return setSubmitted(true);
   };
 

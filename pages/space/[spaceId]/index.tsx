@@ -29,14 +29,17 @@ const Espace: NextPageWithLayout = () => {
   if (errorSpace) return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div className="w-screen">
+    <div className="w-full">
       <div className="w-full h-full flex-x-center bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
-        <div className="hidden w-full h-36 p-5 text-white-enedis bg-background-enedis md:flex md:items-center">
-          <div className="w-1/5 min-w-[155px] flex-all-center mr-4">
+        <div
+          className="flex flex-col-reverse justify-center w-full h-[210px] min-h-[210px] p-5 text-white-enedis bg-background-enedis
+        md:h-[140px] md:min-h-[140px] md:flex-row md:items-center"
+        >
+          <div className="w-full min-w-[155px] flex-all-center md:mr-4 md:w-1/5">
             <ModalCategory Opener={CtaTextArea} Content={CreateCategory} />
           </div>
-          <div className="w-4/5 h-full bg-redError-enedis flex-all-center">
+          <div className="w-full h-full mb-6 bg-redError-enedis flex-all-center md:w-4/5 md:mb-0">
             carousel choix catégorie à venir (Damien)
           </div>
         </div>
