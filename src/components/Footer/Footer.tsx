@@ -7,7 +7,6 @@ import EspaceDescription from "./componentsFooter/EspaceDescription";
 import CategorieDescription from "./componentsFooter/CategorieDescription";
 import OpenEspaceDescription from "./componentsFooter/OpenEspaceDescription";
 import OpenCategoryDescription from "./componentsFooter/OpenCategoryDescription";
-import CarouselCategory from "../carouselCategory/Carousel";
 
 function Footer() {
   const [openEspace, setOpenEspace] = useState(false);
