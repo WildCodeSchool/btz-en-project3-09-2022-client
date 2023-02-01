@@ -80,7 +80,7 @@ function Profil() {
 
             <div className="bg-blue-enedis h-1  rounded-full w-3/4 mb-4" />
             <div className="space-y-2">
-              <div className="space-y-2">
+              <div className="space-y-2 overflow-auto h-40">
                 {members.map((member: TUser) => (
                   <div
                     key={member.id}

@@ -90,7 +90,7 @@ function EspaceDescription() {
               Membres de l&apos;espace
             </div>
             <div className="bg-blue-enedis h-1 top-0 w-full rounded-full" />
-            <div className="space-y-2">
+            <div className="space-y-2 overflow-auto h-36">
               {members.map((member: TUser) => (
                 <div
                   key={member.id}

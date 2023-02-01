@@ -68,33 +68,35 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
           </div>
         </div>
         <FormProvider {...methods}>
-          <div className=" w-full">
-            <table className="w-full">
-              {Alluser.map((user: TUser) => (
-                <tr className="w-full">
-                  <div className="flex justify-between align-middle items-center w-full">
-                    <div className=" flex justify-center items-center overflow-hidden mb-2 mr-2">
-                      <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
-                        <Image
-                          alt={`${
-                            user.firstname
-                          } ${user.lastname.toUpperCase()}`}
-                          src={user.imageUrl || "/profile_image.png"}
-                          fill
-                          className="object-cover"
-                        />
+          <div className=" w-full ">
+            <div className="overflow-auto h-48 mb-2">
+              <table className="w-full ">
+                {Alluser.map((user: TUser) => (
+                  <tr className="w-full">
+                    <div className="flex justify-between align-middle items-center w-full">
+                      <div className=" flex justify-center items-center overflow-hidden mb-2 mr-2">
+                        <div className="w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3">
+                          <Image
+                            alt={`${
+                              user.firstname
+                            } ${user.lastname.toUpperCase()}`}
+                            src={user.imageUrl || "/profile_image.png"}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis bg-blue-enedis px-4 py-[6px]">
+                          <p className="text-mob-xs(textPost) text-white-enedis text-center truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
+                            {user.firstname} {user.lastname.toUpperCase()}
+                          </p>
+                        </div>
                       </div>
-                      <div className="w-fit max-w-[calc(100%-18px)] rounded-full border border-blue-enedis bg-blue-enedis px-4 py-[6px]">
-                        <p className="text-mob-xs(textPost) text-white-enedis text-center truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
-                          {user.firstname} {user.lastname.toUpperCase()}
-                        </p>
-                      </div>
+                      <PermissionsRadio user={user} inputName={inputName} />
                     </div>
-                    <PermissionsRadio user={user} inputName={inputName} />
-                  </div>
-                </tr>
-              ))}
-            </table>
+                  </tr>
+                ))}
+              </table>
+            </div>
             <button
               onClick={methods.handleSubmit(onSubmit)}
               type="button"

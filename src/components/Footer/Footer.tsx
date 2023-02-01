@@ -26,7 +26,7 @@ function Footer() {
     if (openCategorieDescription) {
       setOpenCategorieDescription(false);
     }
-    setTimeout(() => setOpenEspace(!openEspace), 500);
+    setTimeout(() => setOpenEspace(!openEspace), 300);
   };
 
   const handleClickProfil = () => {
@@ -39,7 +39,7 @@ function Footer() {
     if (openCategorieDescription) {
       setOpenCategorieDescription(false);
     }
-    setTimeout(() => setOpenProfil(!openProfil), 500);
+    setTimeout(() => setOpenProfil(!openProfil), 300);
   };
   const handleClickEspaceDescription = () => {
     if (openEspace) {
@@ -50,7 +50,7 @@ function Footer() {
     }
     setTimeout(
       () => setOpenEspaceDescription(!openOrCloseEspaceDescription),
-      500
+      300
     );
   };
 
@@ -63,7 +63,7 @@ function Footer() {
     }
     setTimeout(
       () => setOpenCategorieDescription(!openCategorieDescription),
-      500
+      300
     );
   };
 
@@ -74,10 +74,10 @@ function Footer() {
           <AnimatePresence>
             {openEspace && (
               <motion.div
-                exit={{ y: 280 }}
-                initial={{ y: 280 }}
+                exit={{ y: 480 }}
+                initial={{ y: 480 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
               >
                 <Espace />
@@ -89,10 +89,10 @@ function Footer() {
           <AnimatePresence>
             {openProfil && (
               <motion.div
-                exit={{ y: 280 }}
-                initial={{ y: 280 }}
+                exit={{ y: 480 }}
+                initial={{ y: 480 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className="bg-background-enedis"
               >
                 <Profil />
@@ -104,10 +104,10 @@ function Footer() {
           <AnimatePresence>
             {openOrCloseEspaceDescription && (
               <motion.div
-                exit={{ y: 280 }}
-                initial={{ y: 280 }}
+                exit={{ y: 480 }}
+                initial={{ y: 480 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
               >
                 <EspaceDescription />
