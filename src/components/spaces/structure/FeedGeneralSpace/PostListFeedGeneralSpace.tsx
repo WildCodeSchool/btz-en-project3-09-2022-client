@@ -37,8 +37,8 @@ function PostListFeedGeneralSpace({ generalCategory }: IProps) {
           />
         </div>
         <div className="px-3">
-          <p className="mb-2">Pas encore d&apos;article ici...</p>
-          <p className="font-bold mb-2">Et si vous en écriviez un ?</p>
+          <p className="mb-2">Pas encore de publication ici...</p>
+          <p className="font-bold mb-2">Et si vous en écriviez une ?</p>
         </div>
       </div>
     );

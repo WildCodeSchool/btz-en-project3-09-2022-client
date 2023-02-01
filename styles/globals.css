@@ -221,3 +221,9 @@ input:checked + .slider:before {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* To change color of arrow in the carousel for catehories */
+.slick-prev:before,
+.slick-next:before {
+  color: #1423dc !important;
+}

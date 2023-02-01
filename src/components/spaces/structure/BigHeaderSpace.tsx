@@ -8,7 +8,7 @@ interface IProps {
 
 function BigHeaderSpace({ dataSpace }: IProps) {
   return (
-    <div className="w-full relative z-0 h-[100px] md:h-[160px]">
+    <div className="w-full relative z-0 min-h-[100px] h-[100px] md:min-h-[160px] md:[160px]">
       <div className="w-full h-full bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-20" />
       <Image
         alt={dataSpace.name || "space name"}

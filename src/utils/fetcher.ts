@@ -42,10 +42,12 @@ export const spaceFetcher = {
 export const categoryFetcher = {
   getAll: async () =>
     (await axiosInstance.get<TCategory[]>("/categories")).data,
-  getOne: async (id: string) =>
-    (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
   getAllByUser: async (id: string) =>
     (await axiosInstance.get<TCategory[]>(`/categories?userId=${id}`)).data,
+  getOne: async (id: string) =>
+    (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
+  getOneWithSpace: async (id: string) =>
+    (await axiosInstance.get<TCategory>(`/categories/${id}?space=true`)).data,
 };
 
 export const teamFetcher = {
