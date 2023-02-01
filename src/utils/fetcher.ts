@@ -44,7 +44,7 @@ export const categoryFetcher = {
   getAll: async () =>
     (await axiosInstance.get<TCategory[]>("/categories")).data,
   getAllByUser: async (id: string) =>
-    (await axiosInstance.get<TCategory[]>(`/categories?userId=${id}`)).data,
+    (await axiosInstance.get<TCategory[]>(`/categories?userID=${id}`)).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
   getOneWithSpace: async (id: string) =>
