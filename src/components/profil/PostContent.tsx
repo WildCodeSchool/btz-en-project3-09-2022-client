@@ -37,6 +37,10 @@ export default function PostContent({ post }: Props) {
   if (isLoading) {
     return <Loader />;
   }
+
+  if (error) {
+    return <div>Error</div>;
+  }
   return (
     <div className="my-5 px-5  min-w-[90%] max-w-[90%] border-l-8 border-green-enedis">
       <div className="flex  justify-between mb-2 m-auto">
