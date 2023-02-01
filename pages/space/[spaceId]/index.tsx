@@ -12,6 +12,7 @@ import Loader from "../../../src/components/structureShared/Loader";
 import ModalCategory from "../../../src/components/modal/ModalCategory";
 import CtaTextArea from "../../../src/components/categories/createCategory/CTA";
 import CreateCategory from "../../../src/components/categories/createCategory/CreateCategory";
+import CarouselCategory from "../../../src/components/spaces/structure/carouselCategory/Carousel";
 
 const Espace: NextPageWithLayout = () => {
   const router = useRouter();
@@ -29,9 +30,10 @@ const Espace: NextPageWithLayout = () => {
   if (errorSpace) return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div className="w-screen">
+    <div className="w-full md:max-w-[75%]">
       <div className="w-full h-full flex-x-center bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
+        <CarouselCategory />
         <div className="hidden w-full h-36 p-5 text-white-enedis bg-background-enedis md:flex md:items-center">
           <div className="w-1/5 min-w-[155px] flex-all-center mr-4">
             <ModalCategory Opener={CtaTextArea} Content={CreateCategory} />
