@@ -15,7 +15,7 @@ function CreateComment({ onSubmit }: IProps) {
   const { user } = useAuth();
 
   const [body, setBody] = useState("");
-  const [post, setPost] = useState("5d603f90-ab0b-4ec2-99cf-01c6b768232d");
+  const [post, setPost] = useState("5c1a4f50-8463-493a-83ce-a733d01967fc");
 
   // setPost : props avec le postId
 

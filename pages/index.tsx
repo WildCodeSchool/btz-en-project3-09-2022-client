@@ -8,8 +8,6 @@ import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
 
 const Home: NextPageWithLayout = () => {
-  // const postId = à fetcher;
-
   return (
     <div className="w-screen">
       <div className="w-full flex-x-center bg-white-enedis">
@@ -18,7 +16,6 @@ const Home: NextPageWithLayout = () => {
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />
-          {/* <CommentList postId={postId} /> */}
         </div>
       </div>
     </div>

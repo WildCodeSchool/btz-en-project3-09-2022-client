@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from "react";
 import { TPost } from "../../../../types/main";
+import CommentList from "../../../comments/commentList";
 import ProfilePic from "../../../posts/structurePost/creationPost/ProfilePic";
 import DatePost from "../../../posts/structurePost/displayPost/DatePost";
 import ImagePostFull from "../../../posts/structurePost/displayPost/ImagePostFull";
@@ -13,6 +14,7 @@ interface IProps {
 
 function PostGeneralSpace({ dataPost }: IProps) {
   const { author } = dataPost;
+  const postId = "5c1a4f50-8463-493a-83ce-a733d01967fc";
 
   return (
     <div className="w-full bg-background-enedis flex">
@@ -37,6 +39,7 @@ function PostGeneralSpace({ dataPost }: IProps) {
           )}
         </div>
         <div className="w-full h-52">Module commentaires à venir</div>
+        <CommentList postId={postId} />
       </div>
     </div>
   );
