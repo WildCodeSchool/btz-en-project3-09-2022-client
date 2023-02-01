@@ -2,16 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { TTeam, TUser } from "../../types/main";
-// eslint-disable-next-line import/no-named-as-default
-import formatDate from "../../utils/constants";
-import Loader from "../structureShared/Loader";
 
-type Props = {
+import { formatDate } from "../../utils/constants";
+
+interface Props {
   user: TUser;
   userConnected: any;
-  id: any;
+  id: string | undefined | string[];
   team: TTeam;
-};
+}
 
 export default function PersonalInfos({
   user,
