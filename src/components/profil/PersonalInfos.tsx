@@ -1,23 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useAuth } from "../../context/UserContext";
 import { TTeam, TUser } from "../../types/main";
 
 import { formatDate } from "../../utils/constants";
 
 interface Props {
   user: TUser;
-  userConnected: any;
   id: string | undefined | string[];
   team: TTeam;
 }
 
-export default function PersonalInfos({
-  user,
-  userConnected,
-  id,
-  team,
-}: Props) {
+export default function PersonalInfos({ user, id, team }: Props) {
+  const { user: userConnected } = useAuth();
   return (
     <div>
       <div className="flex lg:w-[40%] ">
