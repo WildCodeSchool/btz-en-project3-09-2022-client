@@ -6,7 +6,7 @@ import { commentFetcher } from "../../utils/fetcher";
 import LoaderFocus from "../structureShared/LoaderFocus";
 import CommentItemMe from "./CommentItemMe";
 import CommentItemOthers from "./CommentItemOthers";
-import CreateComment from "./createComment";
+import CreateComment from "./CreateComment";
 
 interface IProps {
   postID: string;
