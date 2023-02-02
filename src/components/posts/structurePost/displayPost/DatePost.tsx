@@ -1,8 +1,8 @@
 import React from "react";
 
-type Props = { datePost: Date };
+type IProps = { datePost: Date; noMarginLeft?: boolean };
 
-function DatePost({ datePost }: Props) {
+function DatePost({ datePost, noMarginLeft }: IProps) {
   const toCleanDateFormat = (date: Date) => {
     return date.toLocaleDateString("fr-fr", {
       day: "numeric",
@@ -39,7 +39,11 @@ function DatePost({ datePost }: Props) {
   };
 
   return (
-    <p className="whitespace-nowrap text-mob-xxs(mention+date) md:text-desk-xs(date) ml-2 flex-y-center">
+    <p
+      className={`whitespace-nowrap text-mob-xxs(mention+date) md:text-desk-xs(date) ${
+        noMarginLeft ? "" : "ml-2"
+      } flex-y-center`}
+    >
       {getRelativeDate()}
       <br /> à {hourPostClean}
     </p>

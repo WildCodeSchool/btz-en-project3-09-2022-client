@@ -12,7 +12,7 @@ interface IProps {
 
 export default function TextPostFullWidth({ text }: IProps) {
   return (
-    <div className="w-full h-fit min-h-[100px] max-h-[200px] overflow-y-scroll rounded-app-bloc bg-white-enedis pt-4">
+    <div className="w-full h-fit min-h-[100px] max-h-[200px] overflow-y-scroll scrollbar-hide rounded-app-bloc bg-white-enedis pt-4">
       <QuillNoSSRWrapper readOnly value={text} theme="bubble" />
     </div>
   );

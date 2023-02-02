@@ -73,11 +73,7 @@ export type TComment = {
   content: string;
   postId: string;
   authorId: string;
-  author: {
-    firstname: string;
-    lastname: string;
-    imageUrl: string;
-  };
+  author?: TUser;
   createdAt: Date;
   updatedAt: Date;
 };

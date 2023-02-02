@@ -11,7 +11,6 @@ function PublicationFirstArea() {
           Envie de partager à tous ?
         </p>
       </div>
-
       <div className="w-full relative bg-background-enedis ml-2 p-3">
         <ModalPost Opener={CtaTextArea} Content={CreatePost} />
       </div>

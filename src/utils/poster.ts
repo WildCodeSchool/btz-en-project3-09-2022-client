@@ -1,4 +1,4 @@
-import { TCategory, TImage, TPost, TSpace } from "../types/main";
+import { TCategory, TComment, TImage, TPost, TSpace } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
@@ -51,5 +51,18 @@ export const spaceFetcher = {
       description: descriptionSpace,
       siteId: siteIdSpace,
       ownerId: ownerIdSpace,
+    }),
+};
+
+export const commentFetcher = {
+  post: async (
+    commentContent: string,
+    commentAuthorId: string,
+    commentPostId: string
+  ) =>
+    await axiosInstance.post<TComment>("/comments", {
+      content: commentContent,
+      authorId: commentAuthorId,
+      postId: commentPostId,
     }),
 };

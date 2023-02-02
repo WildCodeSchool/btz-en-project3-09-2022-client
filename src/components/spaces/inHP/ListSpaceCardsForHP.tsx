@@ -21,7 +21,7 @@ function ListSpaceCardsForHP() {
   if (errorSpaces) return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div className="flex flex-wrap lg:justify-between">
+    <div className="w-full flex flex-wrap lg:justify-between">
       {dataSpacesByUserAuth
         .filter(
           (space) =>

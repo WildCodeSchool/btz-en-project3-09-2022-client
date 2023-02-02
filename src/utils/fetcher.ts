@@ -6,6 +6,7 @@ import {
   TTeam,
   TUser,
   TPost,
+  TComment,
 } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
@@ -85,6 +86,15 @@ export const postFetcher = {
     (
       await axiosInstance.get<TPost[]>(
         `/posts?categoryId=${categoryId}&author=true&image=true`
+      )
+    ).data,
+};
+
+export const commentFetcher = {
+  getAllByPostWithAuthor: async ({ postId }: { postId: string }) =>
+    (
+      await axiosInstance.get<TComment[]>(
+        `/comments?postId=${postId}&author=true`
       )
     ).data,
 };

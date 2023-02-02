@@ -15,7 +15,7 @@ function NameAuthorPost({ firstname, lastname }: IProps) {
         className="w-full text-mob-sm(multiuse) text-left font-enedis font-regular truncate overflow-x-scroll scrollbar-hide hover:text-clip
         hover:overflow-x-visible md:text-desk-md(titlePubli+multiuse)"
       >
-        {firstname} {lastname}
+        {firstname} {lastname.toUpperCase()}
       </h3>
     </div>
   );

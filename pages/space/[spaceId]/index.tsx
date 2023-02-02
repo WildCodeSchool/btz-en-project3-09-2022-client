@@ -51,7 +51,7 @@ const Espace: NextPageWithLayout = () => {
     <div className="w-full md:max-w-[75%]">
       <div className="w-full h-full flex-x-center bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
-        <div className="flex flex-col-reverse justify-center w-full h-[210px] min-h-[210px] p-5 text-white-enedis bg-background-enedis md:h-[140px] md:min-h-[140px] md:flex-row md:items-center">
+        <div className="flex flex-col-reverse justify-center items-center w-full h-[210px] min-h-[210px] p-5 text-white-enedis bg-background-enedis md:h-[140px] md:min-h-[140px] md:flex-row md:items-center">
           <div className="w-1/5 min-w-[155px] flex-all-center mr-4">
             <ModalCategory Opener={CtaTextArea} Content={CreateCategory} />
           </div>

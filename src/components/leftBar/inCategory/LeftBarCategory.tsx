@@ -6,6 +6,7 @@ import MyProfileLeftBar from "../Shared/MyProfileLeftBar";
 import NavigationSpaces from "../../spaces/structure/NavigationSpaces";
 import TitleSection from "../../structureShared/TitleSection";
 import ListMembersCategory from "./ListMembersCategory";
+import CTA from "../../structureShared/CTA";
 
 function LeftBarCategory() {
   const router = useRouter();
@@ -23,8 +24,8 @@ function LeftBarCategory() {
   if (errorCategory) return <div>Une erreur s&apos;est produite</div>;
 
   return (
-    <div className="w-1/3 h- hidden md:flex-x-center min-w-[200px] bg-background-enedis flex-x-center mx-auto">
-      <div className="w-[85%]">
+    <div className="w-[25%] hidden md:flex-x-center min-w-[230px] bg-background-enedis">
+      <div className="w-[82%] mb-20">
         <MyProfileLeftBar />
         <div className="mb-10">
           <TitleSection titleText="Description de la catégorie" />
@@ -37,6 +38,10 @@ function LeftBarCategory() {
         <div className="mb-10">
           <TitleSection titleText="Membres de la catégorie" />
           <ListMembersCategory dataCategory={dataCategory} />
+          <div className="flex-x-center mt-7 space-y-2">
+            <CTA text="J'ajoute" action={() => {}} />
+            <CTA text="Je modifie" action={() => {}} />
+          </div>
         </div>
         <div className="mb-10">
           <TitleSection titleText="Mes espaces" />

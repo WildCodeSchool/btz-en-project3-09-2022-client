@@ -8,17 +8,14 @@ import { NextPageWithLayout } from "./_app";
 import Layout from "../src/components/layout/Layout";
 
 const Home: NextPageWithLayout = () => {
-  // const postId = à fetcher;
-
   return (
-    <div className="w-screen">
+    <div className="w-full md:max-w-[75%]">
       <div className="w-full flex-x-center bg-white-enedis">
         <HeaderHP />
         <div className="w-[95%] md:w-[91%] mb-24">
           <PublicationFirstArea />
           <TitleSection titleText="À la Une sur mes espaces" />
           <ListSpaceCardsForHP />
-          {/* <CommentList postId={postId} /> */}
         </div>
       </div>
     </div>

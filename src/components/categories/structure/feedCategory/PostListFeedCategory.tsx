@@ -4,28 +4,26 @@ import Image from "next/image";
 import React from "react";
 import { TCategory } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
+import PostDisplayFull from "../../../posts/structurePost/displayPost/PostDisplayFull";
 import Loader from "../../../structureShared/Loader";
-import PostGeneralSpace from "../../../posts/structurePost/displayPost/PostDisplayFull";
 
 interface IProps {
-  generalCategory: TCategory;
+  dataCategory: TCategory;
 }
 
-function PostListFeedGeneralSpace({ generalCategory }: IProps) {
+function PostListFeedCategory({ dataCategory }: IProps) {
   const {
-    data: dataAllGeneralPostsInSpace,
-    error: errorAllGeneralPostsInSpace,
-    isLoading: isLoadingAllGeneralPostsInSpace,
-  } = useQuery(["AllGeneralPostsInSpace", generalCategory.id], () =>
-    postFetcher.getAllByCategory({ categoryId: generalCategory.id })
+    data: dataAllPostsCategory,
+    error: errorAllPostsCategory,
+    isLoading: isLoadingAllPostsCategory,
+  } = useQuery(["AllPostsInCategory", dataCategory.id], () =>
+    postFetcher.getAllByCategory({ categoryId: dataCategory.id })
   );
 
-  if (isLoadingAllGeneralPostsInSpace || !dataAllGeneralPostsInSpace)
-    return <Loader />;
-  if (errorAllGeneralPostsInSpace)
-    return <div>Une erreur s&apos;est produite</div>;
+  if (isLoadingAllPostsCategory || !dataAllPostsCategory) return <Loader />;
+  if (errorAllPostsCategory) return <div>Une erreur s&apos;est produite</div>;
 
-  if (dataAllGeneralPostsInSpace.length === 0) {
+  if (dataAllPostsCategory.length === 0) {
     return (
       <div className="flex items-center h-56 justify-center bg-background-enedis">
         <div className="relative w-1/2 h-5/6">
@@ -46,13 +44,13 @@ function PostListFeedGeneralSpace({ generalCategory }: IProps) {
 
   return (
     <>
-      {dataAllGeneralPostsInSpace.map((post) => (
+      {dataAllPostsCategory.map((post) => (
         <div key={post.id} className="mb-7 h-fit sm:mb-14">
-          <PostGeneralSpace dataPost={post} />
+          <PostDisplayFull dataPost={post} />
         </div>
       ))}
     </>
   );
 }
 
-export default PostListFeedGeneralSpace;
+export default PostListFeedCategory;

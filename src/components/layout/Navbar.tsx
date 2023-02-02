@@ -128,18 +128,21 @@ function Navbar() {
             className="rounded-[60%] h-[40px] w-[40px] object-cover"
           />
 
-          <p className="font-enedis font-bold text-desk-lg(CTA+input)">
+          <p className="font-enedis font-bold text-desk-md(titlePubli+multiuse) mx-2">
             {user?.firstname}
             <br />
             {user?.lastname.toUpperCase()}
           </p>
-          <button type="button" onClick={toggle}>
+          <button
+            type="button"
+            onClick={toggle}
+            className="w-4 h-3 min-w-[16px] min-h-[12px] relative"
+          >
             <Image
               src="/assets/Polygon10.png"
-              width={20}
-              height={20}
+              fill
               alt="icone triangle"
-              className={`${!isShowing && "rotate-90"}`}
+              className={`${!isShowing && "rotate-90"} object-fill`}
             />
           </button>
         </div>
