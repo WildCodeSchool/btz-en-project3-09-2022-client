@@ -14,6 +14,7 @@ export type TUser = {
   firstname: string;
   lastname: string;
   teamId: string;
+  team?: TTeam;
   workLocation: string;
   birthday: string;
   showBirthday: boolean;
