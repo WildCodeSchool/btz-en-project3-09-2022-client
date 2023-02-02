@@ -117,9 +117,11 @@ function Profile() {
               </h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
 
-              {posts?.map((post) => (
-                <PostContent post={post} key={post.id} />
-              ))}
+              {posts
+                ?.filter((post) => post.authorId === userConnected.id)
+                .map((post) => (
+                  <PostContent post={post} key={post.id} />
+                ))}
             </div>
           </div>
         ) : (
