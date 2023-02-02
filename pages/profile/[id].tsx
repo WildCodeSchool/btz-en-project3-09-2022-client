@@ -38,7 +38,7 @@ function Profile() {
   );
 
   const { data: posts } = useQuery(["posts"], () =>
-    postFetcher.getAllPostUserConnected()
+    postFetcher.getAllPostsShared()
   );
 
   if (!user || !userConnected || !team || isLoading) {
@@ -48,6 +48,8 @@ function Profile() {
   if (error) {
     <p>Error</p>;
   }
+
+  console.log(posts);
 
   return (
     <div className="w-full">
@@ -185,6 +187,11 @@ function Profile() {
                 Ses dernières publications en commun
               </h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
+              {posts
+                ?.filter((post) => post.authorId === user.id)
+                .map((post) => (
+                  <PostContent post={post} key={post.id} />
+                ))}
             </div>
           </div>
         )}
