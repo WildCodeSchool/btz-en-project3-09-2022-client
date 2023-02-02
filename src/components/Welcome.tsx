@@ -3,14 +3,12 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
-const isNewUser =
-  typeof window !== "undefined" && localStorage.getItem("isNewCheck")
-    ? true
-    : false;
+interface IProps {
+  isWelcomeScreen: boolean;
+  setIsWelcomeScreen: (value: boolean) => void;
+}
 
-function Welcome() {
-  const [isWelcomeScreen, setIsWelcomeScreen] = useState(isNewUser);
-
+function Welcome({ isWelcomeScreen, setIsWelcomeScreen }: IProps) {
   const setIsNewUser = (value: string) => {
     localStorage.setItem("isNewCheck", value);
     setIsWelcomeScreen(true);
