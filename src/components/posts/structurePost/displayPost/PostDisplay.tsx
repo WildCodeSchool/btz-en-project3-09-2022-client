@@ -63,7 +63,11 @@ function PostDisplay({ oneSpace }: IProps) {
         <TextPost text={postAllCategories.content} />
         <div className="w-[38%] min-w-[130px] lg:min-w-[145px] xl:min-w-[160px] h-[208px] flex flex-col justify-between ml-3">
           <div className="flex items-center justify-between">
-            <CategoryPost categoryName={postAllCategories.category.name} />
+            <CategoryPost
+              categoryName={postAllCategories.category.name}
+              categoryId={postAllCategories.category.id}
+              spaceId={oneSpace.id}
+            />
             <DatePost datePost={postAllCategories.createdAt} />
           </div>
           {postAllCategories.images?.length === 1 && (

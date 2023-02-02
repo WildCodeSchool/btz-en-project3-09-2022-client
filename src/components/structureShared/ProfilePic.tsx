@@ -9,7 +9,7 @@ interface IProps {
 
 function ProfilePic({ firstname, lastname, imageUrl }: IProps) {
   return (
-    <div className="w-[30px] min-w-[40px] h-[40px] relative rounded-full overflow-hidden">
+    <div className="w-[40px] min-w-[40px] h-[40px] relative rounded-full overflow-hidden">
       <Image
         alt={`${firstname} ${lastname.toUpperCase()}`}
         src={imageUrl}

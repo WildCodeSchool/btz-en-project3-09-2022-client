@@ -40,7 +40,7 @@ function NavigationSpaces() {
               fill
               className="object-cover relative z-10 min-h-full"
             />
-            <div className="absolute z-30 centered-absolute w-full font-enedis text-white-enedis">
+            <div className="w-full h-full px-5 py-3 flex-all-center absolute z-30 centered-absolute font-enedis text-white-enedis">
               <h1 className="text-desk-lg(CTA+input) font-bold">
                 {space.name}
               </h1>

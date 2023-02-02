@@ -33,9 +33,8 @@ function FeedGeneral({ dataSpace }: IProps) {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <SpacePublicationFirstArea dataSpace={dataSpace} />
-
       <TitleSection
         titleText={`À la Une sur l'espace
 ${dataSpace.name}`}

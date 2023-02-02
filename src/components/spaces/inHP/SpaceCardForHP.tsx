@@ -13,7 +13,7 @@ function SpaceCardForHP({ oneSpace }: IProps) {
   const router = useRouter();
 
   return (
-    <div className="w-full mb-9 lg:w-[48%]">
+    <div className="w-full mb-9 lg:w-[48%] lg:min-w-[360px]">
       <div className="h-[360px] bg-background-enedis mb-3 md:h-[375px]">
         <HeaderSpaceHP oneSpace={oneSpace} />
         <PostDisplay oneSpace={oneSpace} />

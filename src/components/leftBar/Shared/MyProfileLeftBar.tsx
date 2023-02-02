@@ -27,8 +27,8 @@ function MyProfileLeftBar() {
 
   return (
     <div className="w-full h-fit mt-[52px] mb-14">
-      <div className="flex mb-6">
-        <div className="w-[80px] h-[80px] min-w-[80px] relative overflow-hidden rounded-full">
+      <div className="w-full flex mb-6">
+        <div className="w-[70px] h-[70px] min-w-[70px] min-h-[70px] lg:w-[80px] lg:h-[80px] lg:min-w-[80px] lg:min-h-[80px] relative overflow-hidden rounded-full">
           <Image
             alt={`${user.firstname} ${user.lastname.toUpperCase()}`}
             src={user.imageUrl || "/picture_avatar.png"}
@@ -36,8 +36,8 @@ function MyProfileLeftBar() {
             className="object-cover"
           />
         </div>
-        <div className="text-start ml-4 max-w-[calc(100%-104px)] break-words">
-          <p className="font-enedis font-bold text-mob-xl(headers+titles) md:text-desk-xl(section)">
+        <div className="w-full text-start ml-4 max-w-[calc(100%-85px)] lg:max-w-[calc(100%-96px)] break-words">
+          <p className="font-enedis font-bold text-mob-xl(headers+titles) md:text-desk-lg(CTA+input)">
             {user.firstname}
             <br />
             {user.lastname.toUpperCase()}

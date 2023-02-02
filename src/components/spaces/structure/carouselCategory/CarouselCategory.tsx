@@ -35,7 +35,7 @@ function CarouselCategory({ dataSpace }: IProps) {
                 .replace(/[\u0300-\u036f]/g, "") !== "general"
           )
           .map((category) => (
-            <ImageCategory category={category} />
+            <ImageCategory key={category.id} category={category} />
           ))}
       </Slider>
     </div>

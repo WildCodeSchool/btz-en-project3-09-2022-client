@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from "react";
 import { TPost } from "../../../../types/main";
-import ProfilePic from "../../../posts/structurePost/creationPost/ProfilePic";
-import DatePost from "../../../posts/structurePost/displayPost/DatePost";
-import ImagePostFull from "../../../posts/structurePost/displayPost/ImagePostFull";
-import TextPostFull from "../../../posts/structurePost/displayPost/TextPostFull";
-import TitlePost from "../../../posts/structurePost/displayPost/TitlePost";
+import CommentsList from "../../../comments/CommentsList";
+import ProfilePic from "../../../structureShared/ProfilePic";
+import DatePost from "./DatePost";
+import ImagePostFull from "./ImagePostFull";
+import TextPostFull from "./TextPostFull";
+import TitlePost from "./TitlePost";
 
 interface IProps {
   dataPost: TPost;
 }
 
-function PostGeneralSpace({ dataPost }: IProps) {
+function PostDisplayFull({ dataPost }: IProps) {
   const { author } = dataPost;
 
   return (
@@ -29,17 +30,21 @@ function PostGeneralSpace({ dataPost }: IProps) {
         </div>
         <div className="w-full">
           <TextPostFull text={dataPost.content} />
-          {dataPost.images?.length && dataPost.images[0] && (
-            <ImagePostFull
-              nameImage={dataPost.images[0].name}
-              srcImage={dataPost.images[0].url}
-            />
-          )}
+          {dataPost.images &&
+            dataPost.images?.length > 0 &&
+            dataPost.images[0] && (
+              <ImagePostFull
+                nameImage={dataPost.images[0].name}
+                srcImage={dataPost.images[0].url}
+              />
+            )}
         </div>
-        <div className="w-full h-52">Module commentaires à venir</div>
+        <div className="w-full">
+          <CommentsList postID={dataPost.id} />
+        </div>
       </div>
     </div>
   );
 }
 
-export default PostGeneralSpace;
+export default PostDisplayFull;

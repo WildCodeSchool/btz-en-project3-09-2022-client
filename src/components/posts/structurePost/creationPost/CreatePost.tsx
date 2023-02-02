@@ -5,6 +5,7 @@ import { useAuth } from "../../../../context/UserContext";
 import { imageFetcher, postFetcher } from "../../../../utils/poster";
 import CTA from "../../../structureShared/CTA";
 import ProfilePicMini from "../../../structureShared/ProfilePicMini";
+import CategoryChoosingCategory from "./CategoryChoosingCategory";
 import CategoryChoosingHP from "./CategoryChoosingHP";
 import CategoryChoosingInSpace from "./CategoryChoosingInSpace";
 import PostTitle from "./PostTitle";
@@ -46,6 +47,7 @@ function CreatePost() {
     }
     queryClient.invalidateQueries(["latestPost", `${categoryChosen[1]}`]);
     queryClient.invalidateQueries(["AllGeneralPostsInSpace"]);
+    queryClient.invalidateQueries(["AllPostsInCategory"]);
     return setSubmitted(true);
   };
 
@@ -61,7 +63,9 @@ function CreatePost() {
                 imageUrl={user.imageUrl}
               />
               {window.location.href.includes("category") && (
-                <CategoryChoosingHP setCategoryChosen={setCategoryChosen} />
+                <CategoryChoosingCategory
+                  setCategoryChosen={setCategoryChosen}
+                />
               )}
               {window.location.href.includes("space") &&
                 !window.location.href.includes("category") && (
