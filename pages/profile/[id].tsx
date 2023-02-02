@@ -49,17 +49,10 @@ function Profile() {
     <p>Error</p>;
   }
 
-  console.log(posts);
-
   return (
     <div className="w-full">
       <div className="bg-background-enedis w-[95%] m-auto mt-5  pb-10 lg:flex lg:justify-between lg:w-[80%]">
-        <PersonalInfos
-          id={id}
-          team={team}
-          userConnected={userConnected}
-          user={user}
-        />
+        <PersonalInfos id={id} team={team} user={user} />
         {userConnected?.id === id ? (
           <div>
             <div className="flex lg:w-[60%]">

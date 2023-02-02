@@ -2,9 +2,10 @@ import React from "react";
 
 interface IProps {
   title: string;
+  isProfilPage?: boolean;
 }
 
-function TitlePost({ title }: IProps) {
+function TitlePost({ title, isProfilPage }: IProps) {
   return (
     <div
       className={`w-full flex-y-center overflow-hidden rounded-full border px-4 py-2 ml-2 ${
@@ -12,14 +13,19 @@ function TitlePost({ title }: IProps) {
         window.location.href.includes("space")
           ? "bg-blue-enedis text-white-enedis"
           : "border-blue-enedis bg-white-enedis"
-      }`}
+      } `}
     >
-      <h3
-        className="w-full text-mob-sm(multiuse) text-left font-enedis font-regular truncate overflow-x-scroll scrollbar-hide hover:text-clip
+      <div className="flex items-center">
+        <h3
+          className="w-full text-mob-sm(multiuse) text-left font-enedis font-regular truncate overflow-x-scroll scrollbar-hide hover:text-clip
         hover:overflow-x-visible md:text-desk-md(titlePubli+multiuse)"
-      >
-        {title}
-      </h3>
+        >
+          {title}
+        </h3>
+        {isProfilPage && (
+          <div className="text-blue-enedis text-mob-lg(multiuse)">+</div>
+        )}
+      </div>
     </div>
   );
 }
