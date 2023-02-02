@@ -11,8 +11,8 @@ function Profil() {
   const { user } = useAuth();
 
   const { data, isLoading } = useQuery(
-    ["teams", `user-${user?.teamId}`],
-    () => teamFetcher.getOne(`${user?.teamId}`),
+    ["teams", user?.teamId],
+    () => teamFetcher.getOne(user?.teamId as string),
     {}
   );
 
