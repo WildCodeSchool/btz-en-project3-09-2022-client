@@ -1,3 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #212529;
+    font-size: 16px;
+    line-height: 1.1em;
+    background: #e5f1fb;
+  }
+}
+
+@layer components {
+  .flex-all-center {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .flex-x-center {
+    @apply flex flex-col items-center;
+  }
+
+  .flex-y-center {
+    @apply flex flex-col justify-center;
+  }
+
+  .centered-absolute {
+    @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .centered-x-absolute {
+    @apply left-1/2 transform -translate-x-1/2;
+  }
+
+  .centered-y-absolute {
+    @apply top-1/2 transform -translate-y-1/2;
+  }
+
+  h3 {
+    @apply font-enedis font-bold text-mob-xl(headers+titles);
+  }
+
+  button {
+    @apply font-enedis font-bold text-mob-md(CTA+input);
+  }
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Regular.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Medium.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Bold.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Enedis";
+  src: url("../public/fonts/Enedis-Black.woff2") format("woff2"),
+    url("../public/fonts/Enedis-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Button slider */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 24px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #96cd32;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 40px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 24px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #96cd32;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 40px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* To remove scroll bar in overflow-scroll
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* To remove scroll bar in overflow-scroll
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* To change color of arrow in the carousel for catehories */
+.slick-prev:before,
+.slick-next:before {
+  color: #1423dc !important;
+}
