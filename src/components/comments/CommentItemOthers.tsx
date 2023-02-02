@@ -17,6 +17,7 @@ function CommentItemOthers({ comment }: IProps) {
           firstname={comment.author!.firstname}
           lastname={comment.author!.lastname}
           imageUrl={comment.author!.imageUrl}
+          id={comment.author!.id}
         />
         <DatePost datePost={comment.createdAt} noMarginLeft />
       </div>
@@ -24,10 +25,11 @@ function CommentItemOthers({ comment }: IProps) {
         <NameAuthorComment
           firstname={comment.author!.firstname}
           lastname={comment.author!.lastname}
+          id={comment.author!.id}
         />
         <p
           className="w-full bg-white-enedis relative z-0 text-left rounded-app-bloc text-mob-xs(textPost) break-words px-4 pt-7 pb-3 -mt-3
-        md:text-desk-xs(date)"
+        md:text-desk-sm(textPost+multiuse)"
         >
           {comment.content}
         </p>

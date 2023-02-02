@@ -11,7 +11,7 @@ import SearchBar from "./SearchBar";
 import { useModalContext } from "../../context/ModalContext";
 
 function Navbar() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const modalContext = useModalContext();
   // Window size
@@ -36,24 +36,39 @@ function Navbar() {
     }, 1000);
   };
 
+  const menu: {
+    text: string;
+    link: string;
+    action: () => void;
+  }[] = [
+    {
+      text: "Mon profil",
+      link: `/profile/${user?.id}`,
+      action: handleSearchBar,
+    },
+    { text: "Paramètres", link: `/profile/settings`, action: handleSearchBar },
+    { text: "Aide", link: "", action: handleSearchBar },
+    { text: "Me déconnecter", link: `/auth/sigin`, action: handleSearchBar },
+  ];
+
   return (
     <div className="w-full flex justify-between ">
       {/* Modal component */}
       <Modal isShowing={isShowing} hide={toggle}>
-        <div className=" space-y-3" ref={ref}>
-          <Link href={`/profile/${user?.id}`}>
-            {" "}
-            <button
-              type="button"
-              className="text-white-enedis"
-              onClick={handleSearchBar}
-            >
-              Mon profil
-            </button>
-          </Link>
-          <p className="text-white-enedis">Paramètres</p>
-          <p className="text-white-enedis">Aide</p>
-          <p className="text-white-enedis">Me déconnecter</p>
+        <div className="flex-x-center space-y-3" ref={ref}>
+          {menu.map((item) => (
+            <Link href={item.link}>
+              <button
+                type="button"
+                className={`text-white-enedis ${
+                  item.text === "Mon profil" ? "font-bold" : "font-regular"
+                }`}
+                onClick={item.text === "Me déconnecter" ? signOut : item.action}
+              >
+                {item.text}
+              </button>
+            </Link>
+          ))}
         </div>
       </Modal>
 
@@ -65,7 +80,7 @@ function Navbar() {
               fill
               quality={100}
               alt="enedis-share-logo"
-              className=" max-w-[10%] min-w-[200px] object-cover  "
+              className=" max-w-[10%] min-w-[200px] object-cover"
             />
           </Link>
           {width < 768 ? (

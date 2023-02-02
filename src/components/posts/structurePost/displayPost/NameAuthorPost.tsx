@@ -1,13 +1,16 @@
+import Link from "next/link";
 import React from "react";
 
 interface IProps {
   firstname: string;
   lastname: string;
+  id: string;
 }
 
-function NameAuthorPost({ firstname, lastname }: IProps) {
+function NameAuthorPost({ firstname, lastname, id }: IProps) {
   return (
-    <div
+    <Link
+      href={`/profile/${id}`}
       className="w-full flex-y-center overflow-hidden rounded-full 
       bg-blue-enedis text-white-enedis px-4 py-2 ml-2"
     >
@@ -17,7 +20,7 @@ function NameAuthorPost({ firstname, lastname }: IProps) {
       >
         {firstname} {lastname.toUpperCase()}
       </h3>
-    </div>
+    </Link>
   );
 }
 

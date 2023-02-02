@@ -75,6 +75,7 @@ function CreateCategory() {
                 firstname={user.firstname}
                 lastname={user.lastname}
                 imageUrl={user.imageUrl}
+                id={user.id}
               />
               <div className="w-fit min-w-[30%] flex-y-center overflow-hidden rounded-full border bg-blue-enedis px-4 py-3">
                 <p className=" w-full truncate text-mob-sm(multiuse) text-left font-enedis font-regular text-white-enedis scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-md(titlePubli+multiuse)">

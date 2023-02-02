@@ -19,7 +19,8 @@ function TextTeamMemberCapsuleBlueStroked({
 }: Props) {
   return (
     <div className="w-fit flex justify-start items-center overflow-hidden mb-2 mr-2 relative">
-      <div
+      <Link
+        href={`/profile/${id}`}
         className={`w-[30px] min-w-[30px] h-[30px] relative rounded-full overflow-hidden -mr-3 ${
           ownerId &&
           id === ownerId &&
@@ -32,7 +33,7 @@ function TextTeamMemberCapsuleBlueStroked({
           fill
           className="object-cover"
         />
-      </div>
+      </Link>
       <Link href={`/profile/${id}`} className="w-fit max-w-[calc(100%-18px)]">
         <div className="rounded-full border border-blue-enedis px-4 py-[6px]">
           <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse) relative">

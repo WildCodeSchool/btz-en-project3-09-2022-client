@@ -45,7 +45,7 @@ function PostListFeedCategory({ dataCategory }: IProps) {
   return (
     <>
       {dataAllPostsCategory.map((post) => (
-        <div key={post.id} className="mb-7 h-fit sm:mb-14">
+        <div key={post.id} className="mb-7 h-fit sm:mb-16 flex-x-center">
           <PostDisplayFull dataPost={post} />
         </div>
       ))}

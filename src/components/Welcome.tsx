@@ -24,7 +24,7 @@ function Welcome({ isWelcomeScreen, setIsWelcomeScreen }: IProps) {
             height={10}
             quality={100}
             alt="an electrican man working in the background"
-            className="md:hidden relative"
+            className="md:hidden relative max-h-[600px]"
           />
           <Image
             src="/assets/photo_bienvenue_desktop.png"
@@ -34,44 +34,17 @@ function Welcome({ isWelcomeScreen, setIsWelcomeScreen }: IProps) {
             alt="an man working on a board"
             className="hidden relative md:flex"
           />
-          <div className="absolute top-28">
-            <div className="bg-blue-enedis rounded-connection-bloc space-y-3 mx-10 md:mx-32 lg:mx-20">
-              <div className="flex flex-col items-center lg:grid lg:grid-row-3 lg:grid-flow-col lg:items-start">
-                {/* desktop version */}
-                <Image
-                  src="/assets/bienvenue_mobile.png"
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt="welcome image"
-                  className="hidden lg:grid lg:row-span-3 lg:pt-36 lg:pl-10"
-                />
-                <Image
-                  src="/assets/logo-enedis-share_blanc_lg.png"
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt="logo enedis share"
-                  className="hidden lg:grid lg:col-span-2"
-                />
-                <div className="hidden font-enedis text-white-enedis font-bold text-mob-4xl(welcomeConnect) lg:flex lg:flex-col lg:justify-center lg:align-middle lg:items-center lg:col-span-2">
-                  Bienvenue !
-                  <button
-                    onClick={() => setIsNewUser("false")}
-                    type="button"
-                    className="bg-white-enedis w-1/2 text-blue-enedis rounded-full px-2 py-2 mt-4"
-                  >
-                    Accéder au site
-                  </button>
-                </div>
-                {/* mobile version */}
+          <div className="absolute top-14 md:top-24 h-fit">
+            <div className="bg-blue-enedis rounded-connection-bloc space-y-3 mx-8 max-w-[430px] xs:mx-12 sm:mx-18 md:mx-32">
+              <div className="flex flex-col items-center ">
+                {/* desktop and mobile version */}
                 <Image
                   src="/assets/logo-enedis-share_blanc.png"
                   width={1000}
                   height={1000}
                   quality={100}
                   alt="logo enedis share"
-                  className="md:w-2/3 lg:hidden"
+                  className="w-3/4"
                 />
                 <Image
                   src="/assets/bienvenue_mobile.png"
@@ -79,37 +52,39 @@ function Welcome({ isWelcomeScreen, setIsWelcomeScreen }: IProps) {
                   height={220}
                   quality={100}
                   alt="welcome image"
-                  className="md:w-1/3 lg:hidden"
+                  className="w-1/2 md:w-5/12"
                 />
               </div>
-              <div className="font-enedis text-white-enedis font-bold text-mob-4xl(welcomeConnect) pt-4 pb-36 flex flex-col items-center lg:hidden">
+              <div className="font-enedis text-white-enedis font-bold text-desk-3xl(header+name) xs:text-mob-4xl(welcomeConnect) pt-4 pb-10 flex flex-col items-center">
                 Bienvenue !
                 <button
                   onClick={() => setIsNewUser("false")}
                   type="button"
-                  className="bg-white-enedis w-1/2 text-blue-enedis rounded-full px-2 py-2 mt-4"
+                  className="bg-white-enedis relative z-[80] w-fit text-blue-enedis rounded-full px-5 py-3 mt-4 md:px-10"
                 >
                   Accéder au site
+                  <div className="absolute w-[150%] h-fit centered-x-absolute top-12">
+                    <Image
+                      src="/assets/bienvenue_threads_mobile.png"
+                      width={300}
+                      height={300}
+                      quality={100}
+                      alt="threads"
+                      className=""
+                    />
+                    <Image
+                      src="/assets/bienvenue_threads_desktop.png"
+                      width={300}
+                      height={300}
+                      quality={100}
+                      alt="threads"
+                      className="relative hidden top-80"
+                    />
+                  </div>
                 </button>
               </div>
             </div>
           </div>
-          <Image
-            src="/assets/bienvenue_threads_mobile.png"
-            width={300}
-            height={300}
-            quality={100}
-            alt="threads"
-            className="relative flex top-80 md:top-[450px] lg:hidden"
-          />
-          <Image
-            src="/assets/bienvenue_threads_desktop.png"
-            width={300}
-            height={300}
-            quality={100}
-            alt="threads"
-            className="relative hidden top-80 lg:flex lg:top-[250px] lg:left-56 xl:top-[150px] xl:left-60"
-          />
         </div>,
         document.body
       )
