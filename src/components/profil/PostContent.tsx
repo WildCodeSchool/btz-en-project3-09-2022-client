@@ -43,7 +43,7 @@ export default function PostContent({ post }: Props) {
   }
 
   return (
-    <div className="my-5 px-5  min-w-[90%] max-w-[90%] border-l-8 border-green-enedis">
+    <div className="my-5 px-5 w-[90%] border-l-8 border-green-enedis ">
       <div className="flex  justify-between mb-2 m-auto">
         <div className="flex">
           <ProfilePicMini
@@ -58,12 +58,14 @@ export default function PostContent({ post }: Props) {
         </div>
         <DatePost datePost={post.createdAt} />
       </div>
-      <button type="button" className="w-5/6 ml-10" onClick={handleShowContent}>
-        <TitlePost title={post.title} isProfilPage />
-      </button>
+      <div className="flex">
+        <button type="button" onClick={handleShowContent}>
+          <TitlePost title={post.title} isProfilPage />
+        </button>
+      </div>
       {showContent && (
         <>
-          <div className="bg-white-enedis rounded-app-bloc mt-2 ml-12 p-5 text-left w-5/6">
+          <div className="bg-white-enedis rounded-app-bloc mt-2 ml-12 p-5 text-left w-fit">
             <QuillNoSSRWrapper readOnly value={post.content} theme="bubble" />
           </div>
           {comments?.map((comment) => (

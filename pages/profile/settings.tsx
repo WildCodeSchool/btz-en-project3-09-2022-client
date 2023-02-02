@@ -37,15 +37,15 @@ function Settings() {
   }
 
   return (
-    <div>
+    <div className="lg:bg-white-enedis">
       {width > 640 ? (
-        <div className="w-screen ">
-          <div className="bg-background-enedis w-[90%]  mt-2 pb-10 m-auto">
+        <div className="w-screen">
+          <div className="bg-background-enedis w-[90%] lg:w-2/3  mt-10 pb-10 m-auto">
             <div className="flex flex-col items-center pt-6">
               <h3 className="mb-2 text-desk-xl(section)">Mon profil</h3>
               <hr className="h-[6px] w-1/4 rounded-full bg-blue-enedis mb-4" />
             </div>
-            <div className="flex w-[90%] m-auto justify-around mt-5">
+            <div className="flex w-[90%] m-auto justify-around mt-5 lg:w-1/2">
               <div className="flex">
                 <img
                   src={user?.imageUrl || "/profile_image.svg"}
@@ -54,39 +54,39 @@ function Settings() {
                 />
                 <button
                   type="button"
-                  className=" absolute top-80  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-desk-lg(CTA+input)"
+                  className=" absolute top-96 -mt-5  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-desk-lg(CTA+input)"
                 >
                   Changer ma photo de profil
                 </button>
               </div>
               <div className=" space-y-3  w-1/2">
-                <p className="flex items-center border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) ">
+                <p className="flex items-center border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
                   <Image
                     src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
                     width={25}
                     height={25}
                     alt="picto enedis"
-                    className="mx-4"
+                    className="mr-4"
                   />
                   {user?.firstname}
                 </p>
-                <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
+                <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
                   <Image
                     src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
                     width={25}
                     height={25}
                     alt="picto enedis"
-                    className="mx-4"
+                    className="mr-4"
                   />
                   {user?.lastname}
                 </p>
-                <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input) ">
+                <p className="flex items-center border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
                   <Image
                     src="/assets/picto-birthday 1.png"
                     width={25}
                     height={25}
                     alt="picto enedis"
-                    className="mx-4"
+                    className="mr-4"
                   />
                   {formatDate(user?.birthday)}
                 </p>
@@ -125,13 +125,13 @@ function Settings() {
                   <p className="text-left w-5/6 pt-4 text-desk-md(titlePubli+multiuse)">
                     J&apos;utilise l&apos;adresse email :
                   </p>
-                  <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
+                  <p className="flex items-center   border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
                     <Image
                       src="/assets/ENEDIS_PICTO_018_Contact_BLEU_RVB_EXE 1.png"
                       width={25}
                       height={25}
                       alt="picto enedis"
-                      className="mx-4"
+                      className="mr-4"
                     />{" "}
                     {user?.email}
                   </p>
@@ -165,13 +165,13 @@ function Settings() {
                 <p className="text-left w-5/6  mb-4 text-desk-md(titlePubli+multiuse)">
                   Je travaille dans l&apos;équipe :
                 </p>
-                <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input)">
+                <p className="flex items-center  border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
                   <Image
                     src="/assets/ENEDIS_PICTO_029_SerrageMains_BLEU_RVB_EXE 1.png"
                     width={25}
                     height={25}
                     alt="picto enedis"
-                    className="mx-4"
+                    className="mr-4"
                   />{" "}
                   sdsdf
                 </p>
@@ -204,37 +204,39 @@ function Settings() {
                   Changer <br /> ma photo de profil
                 </button>
               </div>
-              <div className="w-full  flex flex-col items-center  mt-14 space-y-3">
-                <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed ">
-                  <Image
-                    src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
-                    width={25}
-                    height={25}
-                    alt="picto enedis"
-                    className="mx-4"
-                  />{" "}
-                  {user?.firstname}
-                </p>
-                <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed ">
-                  <Image
-                    src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
-                    width={25}
-                    height={25}
-                    alt="picto enedis"
-                    className="mx-4"
-                  />{" "}
-                  {user?.lastname}
-                </p>
-                <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed ">
-                  <Image
-                    src="/assets/picto-birthday 1.png"
-                    width={25}
-                    height={25}
-                    alt="picto enedis"
-                    className="mx-4"
-                  />{" "}
-                  {formatDate(user?.birthday)}
-                </p>
+              <div className="w-full  flex flex-col  items-center  mt-14 space-y-3">
+                <div className="space-y-3 w-fit max-w-full">
+                  <p className="flex items-center  border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed w-fit px-4">
+                    <Image
+                      src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
+                      width={25}
+                      height={25}
+                      alt="picto enedis"
+                      className="mr-4"
+                    />{" "}
+                    {user?.firstname}
+                  </p>
+                  <p className="flex items-center border border-blue-enedis rounded-full w-fit px-4 h-[32px] cursor-not-allowed ">
+                    <Image
+                      src="/assets/ENEDIS_PICTO_020_Homme_BLEU_RVB_EXE 1.png"
+                      width={25}
+                      height={25}
+                      alt="picto enedis"
+                      className="mr-4"
+                    />{" "}
+                    {user?.lastname}
+                  </p>
+                  <p className="flex items-center   border border-blue-enedis rounded-full w-fit px-4  h-[32px] cursor-not-allowed ">
+                    <Image
+                      src="/assets/picto-birthday 1.png"
+                      width={25}
+                      height={25}
+                      alt="picto enedis"
+                      className="mr-4"
+                    />{" "}
+                    {formatDate(user?.birthday)}
+                  </p>
+                </div>
                 <div className="flex pt-4  w-5/6 justify-between items-center ">
                   <p className="">Montrer ma date de naissance</p>
 
@@ -266,13 +268,13 @@ function Settings() {
                 <p className="text-left w-5/6 pt-4">
                   J&apos;utilise l&apos;adresse email :
                 </p>
-                <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed ">
+                <p className="flex items-center  border border-blue-enedis rounded-full w-fit px-4 h-[32px] cursor-not-allowed ">
                   <Image
                     src="/assets/ENEDIS_PICTO_018_Contact_BLEU_RVB_EXE 1.png"
                     width={25}
                     height={25}
                     alt="picto enedis"
-                    className="mx-4"
+                    className="mr-4"
                   />{" "}
                   {user?.email}
                 </p>

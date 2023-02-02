@@ -18,7 +18,7 @@ function TitlePost({ title, isProfilPage }: IProps) {
       <div className="flex items-center">
         <h3
           className="w-full text-mob-sm(multiuse) text-left font-enedis font-regular truncate overflow-x-scroll scrollbar-hide hover:text-clip
-        hover:overflow-x-visible md:text-desk-md(titlePubli+multiuse)"
+        hover:overflow-x-visible md:text-zdesk-md(titlePubli+multiuse)"
         >
           {title}
         </h3>

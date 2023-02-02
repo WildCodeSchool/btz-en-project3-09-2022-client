@@ -3,6 +3,8 @@ import Image from "next/image";
 
 import { useRouter } from "next/router";
 import React from "react";
+
+import Link from "next/link";
 import Layout from "../../src/components/layout/Layout";
 import Loader from "../../src/components/structureShared/Loader";
 import PostContent from "../../src/components/profil/PostContent";
@@ -41,8 +43,12 @@ function Profile() {
     postFetcher.getAllPostsShared()
   );
 
-  if (!user || !userConnected || !team || isLoading) {
+  if (isLoading) {
     return <Loader />;
+  }
+
+  if (!user) {
+    return <div>Veuillez vous connectez.</div>;
   }
 
   if (error) {
@@ -50,12 +56,12 @@ function Profile() {
   }
 
   return (
-    <div className="w-full">
-      <div className="bg-background-enedis w-[95%] m-auto mt-5  pb-10 lg:flex lg:justify-between lg:w-[80%]">
+    <div className="w-full bg-white-enedis">
+      <div className="bg-background-enedis w-[95%] m-auto mt-5 pt-10 pb-10 lg:w-1/2 lg:px-20 ">
         <PersonalInfos id={id} team={team} user={user} />
         {userConnected?.id === id ? (
           <div>
-            <div className="flex lg:w-[60%]">
+            <div className="flex ">
               <div className="w-1/2 flex flex-col items-center pt-4 pl-4">
                 <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
                   Mon équipe
@@ -72,48 +78,64 @@ function Profile() {
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%]" />
                 <ul className="mt-5 space-y-2">
-                  {categories?.map((category) =>
-                    category.ownerId === user.id ? (
-                      <div className="flex " key={category.id}>
-                        <li className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center">
-                          {category.name}
-                        </li>
-
-                        <Image
-                          src="/assets/Group 87.png"
-                          width={30}
-                          height={30}
-                          alt="owner"
-                          className="h-[30px] w-[30px] -ml-1"
-                        />
-                      </div>
-                    ) : (
-                      <li
-                        className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse)"
-                        key={category.id}
-                      >
-                        {category.name}
-                      </li>
+                  {categories
+                    ?.filter(
+                      (category) =>
+                        category.name
+                          .toLowerCase()
+                          .normalize("NFD")
+                          .replace(/[\u0300-\u036f]/g, "") !== "general"
                     )
-                  )}
+                    .map((category) =>
+                      category.ownerId === user.id ? (
+                        <div className="flex " key={category.id}>
+                          <Link
+                            href={`/space/${category.spaceId}/category/${category.id}`}
+                          >
+                            <li className="border text-mob-xs(textPost) lg:text-desk-md(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center">
+                              {category.name}
+                            </li>
+                          </Link>
+
+                          <Image
+                            src="/assets/Group 87.png"
+                            width={30}
+                            height={30}
+                            alt="owner"
+                            className="h-[30px] w-[30px] -ml-1"
+                          />
+                        </div>
+                      ) : (
+                        <Link
+                          href={`/space/${category.spaceId}/category/${category.id}`}
+                        >
+                          <li
+                            className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)"
+                            key={category.id}
+                          >
+                            {category.name}
+                          </li>
+                        </Link>
+                      )
+                    )}
                 </ul>
               </div>
             </div>
 
-            <div className=" flex flex-col items-center pt-4 pb-4a w-full">
+            <div className=" flex flex-col items-center pt-4 pb-4 w-full lg:w-2/3 m-auto">
               <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
                 Mon activité
               </h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
             </div>
-            <div className=" flex flex-col items-center pt-4 pb-4a w-full">
+            <div className=" flex flex-col items-center pt-4 pb-4a w-full lg:w-2/3 m-auto">
               <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
                 Mes dernières publications
               </h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
 
               {posts
-                ?.filter((post) => post.authorId === userConnected.id)
+                ?.filter((post) => post.authorId === userConnected?.id)
                 .map((post) => (
                   <PostContent post={post} key={post.id} />
                 ))}
@@ -138,33 +160,48 @@ function Profile() {
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%]" />
                 <ul className="mt-5 space-y-2">
-                  {categories?.map((category) =>
-                    category.ownerId === user.id ? (
-                      <div className="flex ">
+                  {categories
+                    ?.filter(
+                      (category) =>
+                        category.name
+                          .toLowerCase()
+                          .normalize("NFD")
+                          .replace(/[\u0300-\u036f]/g, "") !== "general"
+                    )
+                    .map((category) =>
+                      category.ownerId === user.id ? (
+                        <div className="flex ">
+                          <Link
+                            href={`/space/${category.spaceId}/category/${category.id}`}
+                          >
+                            <li
+                              className="border text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)  border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center"
+                              key={category.id}
+                            >
+                              {category.name}
+                            </li>
+                          </Link>
+                          <Image
+                            src="/assets/Group 87.png"
+                            width={30}
+                            height={30}
+                            alt="owner"
+                            className="h-[30px] w-[30px] -ml-1"
+                          />
+                        </div>
+                      ) : (
                         <li
-                          className="border text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center"
+                          className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)"
                           key={category.id}
                         >
-                          {category.name}
+                          <Link
+                            href={`/space/${category.spaceId}/category/${category.id}`}
+                          >
+                            {category.name}
+                          </Link>
                         </li>
-
-                        <Image
-                          src="/assets/Group 87.png"
-                          width={30}
-                          height={30}
-                          alt="owner"
-                          className="h-[30px] w-[30px] -ml-1"
-                        />
-                      </div>
-                    ) : (
-                      <li
-                        className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse)"
-                        key={category.id}
-                      >
-                        {category.name}
-                      </li>
-                    )
-                  )}
+                      )
+                    )}
                 </ul>
               </div>
             </div>
