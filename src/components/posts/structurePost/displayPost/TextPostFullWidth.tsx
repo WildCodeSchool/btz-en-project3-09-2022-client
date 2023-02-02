@@ -1,10 +1,13 @@
 import dynamic from "next/dynamic";
 import React from "react";
 
-const QuillNoSSRWrapper = dynamic(import("react-quill"), {
-  ssr: false,
-  loading: () => <p>Loading ...</p>,
-});
+const QuillNoSSRWrapper = dynamic(
+  () => import("react-quill").then((mod) => mod.default),
+  {
+    ssr: false,
+    loading: () => <p>Loading ...</p>,
+  }
+);
 
 interface IProps {
   text: string;
