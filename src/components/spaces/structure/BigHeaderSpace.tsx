@@ -12,7 +12,7 @@ function BigHeaderSpace({ dataSpace }: IProps) {
       <div className="w-full h-full bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-20" />
       <Image
         alt={dataSpace.name || "space name"}
-        src={dataSpace.imageUrl || "/space_image.png"}
+        src={dataSpace.imageUrl || "/site_image.png"}
         fill
         className="object-cover relative z-10 min-h-full"
       />

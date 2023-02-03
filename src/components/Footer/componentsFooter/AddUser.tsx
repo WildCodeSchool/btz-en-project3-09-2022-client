@@ -67,7 +67,7 @@ function AddUser({ HandleOpenAddUser }: THandleOpenAddUser) {
                         >
                           <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] relative ">
                             <Image
-                              src={user.imageUrl || "/profile_image.png"}
+                              src={user.imageUrl || "/profile_image.svg"}
                               fill
                               alt={
                                 `${

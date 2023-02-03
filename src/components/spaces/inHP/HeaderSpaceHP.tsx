@@ -15,7 +15,7 @@ function HeaderSpaceHP({ oneSpace }: IProps) {
         <div className="w-full h-full bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-20" />
         <Image
           alt={name || "space name"}
-          src={imageUrl || "/space_image.png"}
+          src={imageUrl || "/site_image.png"}
           fill
           className="object-cover relative z-10 min-h-full"
         />
