@@ -49,6 +49,14 @@ export const categoryFetcher = {
     (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
   getOneWithSpace: async (id: string) =>
     (await axiosInstance.get<TCategory>(`/categories/${id}?space=true`)).data,
+
+  addUserToCategory: async (categoryId: string, usersToConnect: string[]) =>
+    (
+      await axiosInstance.post(
+        `/categories/${categoryId}/adduser`,
+        usersToConnect
+      )
+    ).data,
 };
 
 export const teamFetcher = {

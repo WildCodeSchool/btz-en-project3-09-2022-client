@@ -50,6 +50,8 @@ function CategorieDescription() {
           <div className="text-mob-xl(headers+titles) font-bold mb-1">
             Description de la categorie
           </div>
+          <div className="bg-blue-enedis h-1 top-0 rounded-full w-full" />
+
           <p className="text-mob-xs(textPost) m-3 w-full text-left">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore ea
             aperiam, quas dicta repellendus quaerat earum in minus cumque?
