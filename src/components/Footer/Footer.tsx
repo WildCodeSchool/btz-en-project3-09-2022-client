@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import Espace from "./componentsFooter/Espace";
 import Profil from "./componentsFooter/Profil";
 import EspaceDescription from "./componentsFooter/EspaceDescription";
@@ -15,6 +16,12 @@ function Footer() {
     useState(false);
   const [openCategorieDescription, setOpenCategorieDescription] =
     useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(ref, () => setOpenEspace(false));
+  useOnClickOutside(ref, () => setOpenProfil(false));
+  useOnClickOutside(ref, () => setOpenCategorieDescription(false));
+  useOnClickOutside(ref, () => setOpenEspaceDescription(false));
 
   const handleClickEspace = () => {
     if (openProfil) {
@@ -70,7 +77,7 @@ function Footer() {
   return (
     <div>
       <div className="w-full block md:hidden">
-        <div>
+        <div ref={ref}>
           <AnimatePresence>
             {openEspace && (
               <motion.div
@@ -85,7 +92,7 @@ function Footer() {
             )}
           </AnimatePresence>
         </div>
-        <div>
+        <div ref={ref}>
           <AnimatePresence>
             {openProfil && (
               <motion.div
@@ -100,7 +107,7 @@ function Footer() {
             )}
           </AnimatePresence>
         </div>
-        <div>
+        <div ref={ref}>
           <AnimatePresence>
             {openOrCloseEspaceDescription && (
               <motion.div
@@ -115,7 +122,7 @@ function Footer() {
             )}
           </AnimatePresence>
         </div>
-        <div>
+        <div ref={ref}>
           <AnimatePresence>
             {openCategorieDescription && (
               <motion.div

@@ -11,7 +11,7 @@ function signIn() {
         height={10}
         quality={100}
         alt="an electrican man working in the background"
-        className="sm:hidden"
+        className="xs:hidden"
       />
       <Image
         src="/assets/photo_connexion_desktop.jpg"
@@ -19,9 +19,9 @@ function signIn() {
         height={1}
         quality={100}
         alt="an electrican man working in the background"
-        className="hidden sm:flex md:absolute"
+        className="hidden xs:flex xs:absolute"
       />
-      <div className="absolute z-50 flex justify-center items-center top-28 md:justify-start md:left-36">
+      <div className="absolute z-50 flex justify-center items-center top-12 xs:top-20 md:justify-start md:left-36">
         <SignIn />
       </div>
       <Image
@@ -30,7 +30,7 @@ function signIn() {
         height={100}
         quality={100}
         alt="decoration threads"
-        className="pt-32 md:hidden"
+        className="mt-10 xs:hidden"
       />
       <Image
         src="/assets/threads_desktop.png"
@@ -38,7 +38,7 @@ function signIn() {
         height={100}
         quality={100}
         alt="decoration threads"
-        className="hidden md:flex z-0 relative md:top-60"
+        className="hidden xs:flex z-0 relative xs:top-60"
       />
     </div>
   );

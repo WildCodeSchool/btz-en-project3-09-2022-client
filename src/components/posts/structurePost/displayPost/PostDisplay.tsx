@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { TPost, TSpace } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
-import ProfilePicMini from "../../../structureShared/ProfilePicMini";
+import ProfilePic from "../../../structureShared/ProfilePic";
 import CategoryPost from "./CategoryPost";
 import DatePost from "./DatePost";
 import ImagePost from "./ImagePost";
@@ -52,10 +52,11 @@ function PostDisplay({ oneSpace }: IProps) {
   return (
     <div className="relative px-4 py-3">
       <div className="flex mb-[10px]">
-        <ProfilePicMini
+        <ProfilePic
           firstname={postAllCategories.author.firstname}
           lastname={postAllCategories.author.lastname}
           imageUrl={postAllCategories.author.imageUrl}
+          id={postAllCategories.author.id}
         />
         <TitlePost title={postAllCategories.title} />
       </div>

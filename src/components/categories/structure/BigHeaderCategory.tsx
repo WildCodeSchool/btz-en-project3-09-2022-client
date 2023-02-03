@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { TCategory } from "../../../types/main";
 
@@ -27,14 +28,15 @@ function BigHeaderCategory({ dataCategory }: IProps) {
           {dataCategory.name}
         </h1>
       </div>
-      <div
+      <Link
+        href={`../../../space/${dataCategory.spaceId}`}
         className="w-fit h-fit max-w-[40%] absolute z-30 bottom-4 md:centered-y-absolute right-0 bg-white-enedis
       rounded-l-full px-3 py-2 md:py-4 md:px-6 flex-y-center md:centered-y-absolute md:right-0"
       >
         <p className="text-left w-full text-mob-sm(multiuse) font-enedis font-medium md:text-desk-lg(CTA+input) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible">
           Espace {dataCategory.space?.name}
         </p>
-      </div>
+      </Link>
     </div>
   );
 }

@@ -48,7 +48,7 @@ function Settings() {
             <div className="flex w-[90%] m-auto justify-around mt-5">
               <div className="flex">
                 <img
-                  src={user?.imageUrl}
+                  src={user?.imageUrl || "/profile_image.svg"}
                   alt="profil"
                   className="w-[165px] h-[165px] rounded-[50%] my-[5%] object-cover"
                 />
@@ -193,7 +193,7 @@ function Settings() {
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis mb-4" />
               <div className="flex">
                 <img
-                  src={user?.imageUrl}
+                  src={user?.imageUrl || "/profile_image.svg"}
                   alt="profil"
                   className="w-[165px] h-[165px] rounded-[50%] my-[5%] object-cover"
                 />

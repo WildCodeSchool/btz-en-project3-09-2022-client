@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import { useAuth } from "../../../context/UserContext";
 import { userFetcher } from "../../../utils/fetcher";
@@ -16,6 +17,9 @@ function AddUser({ HandleOpenAddUser }: THandleOpenAddUser) {
   const [selectedUser, setSelectedUser] = useState("");
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
   const { user: userConnected } = useAuth();
+  const {
+    query: { spaceId },
+  } = useRouter();
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -24,7 +28,9 @@ function AddUser({ HandleOpenAddUser }: THandleOpenAddUser) {
   if (typeof window === "undefined") return null;
   // Fetch all users
 
-  const { data, isLoading } = useQuery(["users"], () => userFetcher.getAll());
+  const { data, isLoading } = useQuery(["users", spaceId], () =>
+    userFetcher.getAllBySpace({ spaceId: spaceId as string })
+  );
 
   if (isLoading || !data) {
     return <Loader />;
@@ -61,7 +67,7 @@ function AddUser({ HandleOpenAddUser }: THandleOpenAddUser) {
                         >
                           <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] relative ">
                             <Image
-                              src={user.imageUrl || "/profile_image.png"}
+                              src={user.imageUrl || "/profile_image.svg"}
                               fill
                               alt={
                                 `${
