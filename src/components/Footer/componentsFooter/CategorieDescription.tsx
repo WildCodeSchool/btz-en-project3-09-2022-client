@@ -81,7 +81,7 @@ function CategorieDescription() {
                   transition={{ duration: 0.4 }}
                   className="h-2/3 w-full bg-green-enedis z-50 flex flex-col justify-center items-center"
                 >
-                  <AddUser HandleOpenAddUser={HandleOpenAddUser} />
+                  <AddUser />
                 </motion.div>
               </AnimatePresence>
             )}
