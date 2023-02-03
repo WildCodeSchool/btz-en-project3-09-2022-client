@@ -8,8 +8,9 @@ import Link from "next/link";
 import Layout from "../../src/components/layout/Layout";
 import Loader from "../../src/components/structureShared/Loader";
 import PostContent from "../../src/components/profil/PostContent";
-
 import TeamMembersList from "../../src/components/leftBar/Shared/TeamMembersList";
+import PersonalInfos from "../../src/components/profil/PersonalInfos";
+import TeamMembersListUsers from "../../src/components/profil/TeamMembersListUsers";
 import { useAuth } from "../../src/context/UserContext";
 
 import {
@@ -18,8 +19,6 @@ import {
   teamFetcher,
   userFetcher,
 } from "../../src/utils/fetcher";
-import PersonalInfos from "../../src/components/profil/PersonalInfos";
-import TeamMembersListUsers from "../../src/components/profil/TeamMembersListUsers";
 
 function Profile() {
   const router = useRouter();
