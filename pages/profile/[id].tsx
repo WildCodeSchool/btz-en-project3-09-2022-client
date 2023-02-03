@@ -47,7 +47,7 @@ function Profile() {
         <div className="flex lg:w-[40%]">
           <div className=" w-1/2 m-4 flex flex-col items-center">
             <img
-              src={user.imageUrl || "/profile_image.png"}
+              src={user.imageUrl || "/profile_image.svg"}
               alt="profil"
               className="w-[126px] h-[126px] rounded-[50%] my-[5%] object-cover"
             />

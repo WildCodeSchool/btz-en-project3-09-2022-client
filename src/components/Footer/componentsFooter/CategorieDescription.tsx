@@ -108,7 +108,7 @@ function CategorieDescription() {
                           member.firstname
                         } ${member.lastname.toUpperCase()}` || "nom prénom"
                       }
-                      src={member.imageUrl || "/profile_image.png"}
+                      src={member.imageUrl || "/profile_image.svg"}
                       fill
                       className="object-cover"
                     />
