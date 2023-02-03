@@ -2,7 +2,7 @@
 import "../styles/globals.css";
 import "../styles/quill.snow.css";
 import "../styles/quill.bubble.css";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import Router from "next/router";
 import NProgress from "nprogress";
@@ -31,7 +31,14 @@ type AppPropsWithLayout = AppProps & {
 };
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const isNewUser =
+    // eslint-disable-next-line no-unneeded-ternary
+    typeof window !== "undefined" && localStorage.getItem("isNewCheck")
+      ? true
+      : false;
+
   const getLayout = Component.getLayout ?? ((page) => page);
+  const [isWelcomeScreen, setIsWelcomeScreen] = useState(isNewUser);
 
   useEffect(() => {
     const handleRouteStart = () => NProgress.start();
@@ -55,7 +62,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         <ModalWrapperSpace>
           <QueryClientProvider client={reactQueryClient}>
             <Hydrate state={pageProps.dehydratedState}>
-              <Welcome />
+              {!isWelcomeScreen && (
+                <Welcome
+                  isWelcomeScreen={isWelcomeScreen}
+                  setIsWelcomeScreen={setIsWelcomeScreen}
+                />
+              )}
               {getLayout(<Component {...pageProps} />)}
             </Hydrate>
             <ReactQueryDevtools initialIsOpen={false} />

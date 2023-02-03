@@ -41,7 +41,7 @@ function CreateComment({ onSubmit, postID }: IProps) {
   };
 
   return (
-    <div className="w-full flex justify-end mt-6">
+    <div className="w-full flex justify-end mt-8">
       <form
         onSubmit={handleSubmit}
         className="w-full md:w-8/12 flex flex-row-reverse"
@@ -54,13 +54,14 @@ function CreateComment({ onSubmit, postID }: IProps) {
             style={{ outline: "none" }}
             placeholder="Mon commentaire à écrire"
             className="bg-white-enedis w-full h-fit max-h-44 rounded-app-bloc text-mob-xs(textPost) pr-8 pl-4 py-3 -mr-4
-            md:text-desk-xs(date) resize-none"
+            md:text-desk-sm(textPost+multiuse) resize-none"
             onChange={(e) => setBody(e.target.value)}
           />
           <ProfilePic
             firstname={user.firstname}
             lastname={user.lastname}
             imageUrl={user.imageUrl}
+            id={user.id}
           />
         </div>
         {body !== "" ? (

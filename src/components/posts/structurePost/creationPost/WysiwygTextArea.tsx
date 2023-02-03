@@ -34,7 +34,7 @@ export default function WysiwygTextArea({ setBody }: IProps) {
         onChange={setBody}
         theme="snow"
         placeholder="J’écris mon texte ici..."
-        className="bg-white-enedis min-h-[250px] max-h-[350px] rounded-app-bloc overflow-y-scroll scrollbar-hide"
+        className="bg-white-enedis min-h-[150px] max-h-[250px] rounded-app-bloc overflow-y-scroll scrollbar-hide"
       />
     </div>
   );

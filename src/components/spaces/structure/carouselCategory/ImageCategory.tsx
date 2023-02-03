@@ -23,7 +23,7 @@ function ImageCategory({ category }: Props) {
           alt={category.id}
           className="rounded-app-bloc object-cover absolute z-10 h-full w-full "
         />
-        <p className="w-full h-full px-4 py-1 flex-all-center absolute centered-absolute text-white-enedis text-desk-xs(date) md:text-desk-md(titlePubli+multiuse) z-40 font-enedis font-bold ">
+        <p className="w-full h-full px-4 py-1 flex-all-center absolute centered-absolute text-white-enedis text-mob-md(CTA+input) md:text-desk-lg(CTA+input) z-40 font-enedis font-bold ">
           {category.name}
         </p>
         <div className=" bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-30 rounded-app-bloc w-full h-full" />

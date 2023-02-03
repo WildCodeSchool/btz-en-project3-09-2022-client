@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { TCategory } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
-import ProfilePicMini from "../../../structureShared/ProfilePicMini";
+import ProfilePic from "../../../structureShared/ProfilePic";
 import DatePost from "./DatePost";
 import ImagePost from "./ImagePost";
 import NameAuthorPost from "./NameAuthorPost";
@@ -47,14 +47,16 @@ function PostDisplayNewsCategory({ oneCategory }: IProps) {
   return (
     <div className="relative px-5 py-4">
       <div className="flex mb-4">
-        <ProfilePicMini
+        <ProfilePic
           firstname={latestPost.author!.firstname}
           lastname={latestPost.author!.lastname}
           imageUrl={latestPost.author!.imageUrl}
+          id={latestPost.author!.id}
         />
         <NameAuthorPost
           firstname={latestPost.author!.firstname}
           lastname={latestPost.author!.lastname.toUpperCase()}
+          id={latestPost.author!.id}
         />
         <DatePost datePost={latestPost.createdAt} />
       </div>

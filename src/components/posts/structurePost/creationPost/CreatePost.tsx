@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { useModalContext } from "../../../../context/ModalContext";
 import { useAuth } from "../../../../context/UserContext";
 import { imageFetcher, postFetcher } from "../../../../utils/poster";
 import CTA from "../../../structureShared/CTA";
-import ProfilePicMini from "../../../structureShared/ProfilePicMini";
+import ProfilePic from "../../../structureShared/ProfilePic";
 import CategoryChoosingCategory from "./CategoryChoosingCategory";
 import CategoryChoosingHP from "./CategoryChoosingHP";
 import CategoryChoosingInSpace from "./CategoryChoosingInSpace";
@@ -16,6 +17,8 @@ import WysiwygTextArea from "./WysiwygTextArea";
 function CreatePost() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
+  const modalContext = useModalContext();
+
   const [categoryChosen, setCategoryChosen] = useState<string[]>([]);
   const [title, setTitle] = useState<string>("");
   const [body, setBody] = useState<string>("");
@@ -57,10 +60,11 @@ function CreatePost() {
         <>
           <div className="h-fit md:flex md:mb-4 md:space-x-3">
             <div className="min-w-[37%] flex items-center justify-between mb-[10px] space-x-3 md:mb-0">
-              <ProfilePicMini
+              <ProfilePic
                 firstname={user.firstname}
                 lastname={user.lastname}
                 imageUrl={user.imageUrl}
+                id={user.id}
               />
               {window.location.href.includes("category") && (
                 <CategoryChoosingCategory
@@ -97,6 +101,13 @@ function CreatePost() {
           <div className="absolute w-full centered-x-absolute -bottom-20">
             <CTA text="Je publie" action={handleSubmit} />
           </div>
+          <button
+            type="button"
+            onClick={modalContext?.handleClose}
+            className="absolute left-0 -top-12 font-regular font-publicSans text-mob-sm(multiuse) text-white-enedis text-opacity-60"
+          >
+            <span className="mr-2 text-white-enedis">╳</span> Je ferme
+          </button>
         </>
       ) : (
         <SubmittedPost />

@@ -9,6 +9,8 @@ import Loader from "./Loader";
 function HeaderHP() {
   const { user } = useAuth();
 
+  if (!user) return <div>Vous devez d&apos;abord vous identifier </div>;
+
   const {
     isLoading,
     error,
@@ -17,12 +19,12 @@ function HeaderHP() {
     ["Site", user?.id],
     () => siteFetcher.getSitesByMember(user!.id),
     {
-      enabled: !!user!.id,
+      enabled: !!user.id,
     }
   );
 
   if (error) return <div>Une erreur s&apos;est produite</div>;
-  if (isLoading || !dataSite) return <Loader />;
+  if (isLoading || !dataSite || !user) return <Loader />;
 
   return (
     <div className="w-full relative z-0 h-[142px] md:h-[210px]">

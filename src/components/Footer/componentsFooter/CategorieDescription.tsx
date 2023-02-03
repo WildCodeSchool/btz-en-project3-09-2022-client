@@ -34,7 +34,6 @@ function CategorieDescription() {
     ["users", categoryId],
     () => userFetcher.getAllByCategory(categoryId as string)
   );
-  console.log(members);
 
   if (isLoading || !data) {
     return <h2>Loading...</h2>;

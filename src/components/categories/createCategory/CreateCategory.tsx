@@ -10,16 +10,18 @@ import { categoryFetcher } from "../../../utils/poster";
 import { useAuth } from "../../../context/UserContext";
 import { spaceFetcher } from "../../../utils/fetcher";
 import Loader from "../../structureShared/Loader";
+import { useModalContextSpace } from "../../../context/ModalContextCategory";
 
 function CreateCategory() {
   const { user } = useAuth();
   const router = useRouter();
   const { spaceId } = router.query;
   const queryClient = useQueryClient();
+  const modalContext = useModalContextSpace();
 
   const [title, setTitle] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
-  const [triedToSubmit, setTriedToSubmit] = useState<boolean>(false);
+  const [triedToSubmit, setTriedToSubmit] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   if (!user) {
@@ -28,7 +30,19 @@ function CreateCategory() {
 
   const handleSubmit = async () => {
     if (!title || !image) {
-      return setTriedToSubmit(true);
+      return setTriedToSubmit("missing");
+    }
+    if (
+      title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "") === "general" ||
+      title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "") === "generale"
+    ) {
+      return setTriedToSubmit("noGeneral");
     }
     const formData = new FormData();
     formData.append("categoryImage", image as File);
@@ -56,18 +70,19 @@ function CreateCategory() {
       {!submitted ? (
         <div className="relative">
           <div className="h-fit w-full md:flex md:mb-4 md:space-x-3">
-            <div className="w-full flex items-center justify-between mb-[10px] space-x-3 md:mb-0">
+            <div className="w-full flex  justify-between mb-[10px] space-x-3 md:mb-0">
               <ProfilePic
                 firstname={user.firstname}
                 lastname={user.lastname}
                 imageUrl={user.imageUrl}
+                id={user.id}
               />
               <div className="w-fit min-w-[30%] flex-y-center overflow-hidden rounded-full border bg-blue-enedis px-4 py-3">
                 <p className=" w-full truncate text-mob-sm(multiuse) text-left font-enedis font-regular text-white-enedis scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-md(titlePubli+multiuse)">
                   Espace {dataSpace.name}
                 </p>
               </div>
-              <div className="w-full mb-[15px] md:mb-0">
+              <div className="w-full md:mb-0">
                 <CategoryTitle setTitle={setTitle} />
               </div>
             </div>
@@ -77,15 +92,28 @@ function CreateCategory() {
             image={image}
             setImage={setImage}
           />
-          {triedToSubmit && (
+          {triedToSubmit === "missing" && (
             <p className="w-full text-mob-sm(multiuse) mt-4 font-regular text-redError-enedis">
               <span className="font-bold">ATTENTION :</span> vérifiez que votre
               catégorie a au moins un titre et une photo.
             </p>
           )}
+          {triedToSubmit === "noGeneral" && (
+            <p className="w-full text-mob-sm(multiuse) mt-4 font-regular text-redError-enedis">
+              <span className="font-bold">ATTENTION :</span> vous ne pouvez pas
+              créer de catégorie &quot;Général&quot; dans un espace.
+            </p>
+          )}
           <div className="absolute centered-x-absolute -bottom-28">
             <CtaTextArea onClick={handleSubmit} />
           </div>
+          <button
+            type="button"
+            onClick={modalContext?.handleClose}
+            className="absolute left-0 -top-12 font-regular font-publicSans text-mob-sm(multiuse) text-white-enedis text-opacity-60"
+          >
+            <span className="mr-2 text-white-enedis">╳</span> Je ferme
+          </button>
         </div>
       ) : (
         <SubmittedCategory />
