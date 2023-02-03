@@ -56,7 +56,7 @@ export default function PersonalInfos({ user, id, team }: Props) {
             alt="picto enedis"
             className="mr-4 w-[25px] h-[25px]"
           />
-          <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px]  text-mob-sm(multiuse) lg:text-desk-lg(titlePubli+multiuse) ">
+          <p className="flex items-center border border-blue-enedis rounded-full w-fit px-2  h-[24px]  text-mob-sm(textPost) lg:text-desk-lg(titlePubli+multiuse) ">
             {team?.name}
           </p>
         </div>

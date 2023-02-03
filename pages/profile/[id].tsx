@@ -31,9 +31,6 @@ function Profile() {
     error,
   } = useQuery(["users", `user-${id}`], () => userFetcher.getOne(`${id}`));
 
-  const { data: team } = useQuery(["teams", `user-${user?.teamId}`], () =>
-    teamFetcher.getOne(`${user?.teamId}`)
-  );
   const { data: categories } = useQuery(["categories", `user-${id}`], () =>
     categoryFetcher.getAllByUser(`${id}`)
   );
@@ -56,8 +53,8 @@ function Profile() {
 
   return (
     <div className="w-full bg-white-enedis">
-      <div className="bg-background-enedis  w-[95%] m-auto mt-5 pt-10 pb-10 lg:w-1/2 lg:px-20 ">
-        <PersonalInfos id={id} team={team} user={user} />
+      <div className="bg-background-enedis lg:m-auto lg:mb-5 lg:mt-5 p-5 pb-10 lg:w-1/2 lg:px-20 ">
+        <PersonalInfos id={id} team={user.team} user={user} />
         {userConnected?.id === id ? (
           <div>
             <div className="flex ">
@@ -66,7 +63,7 @@ function Profile() {
                   Mon équipe
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%] mb-5" />
-                <div className=" pl-12">
+                <div className="w-[90%]">
                   <TeamMembersList />
                 </div>
               </div>
@@ -109,7 +106,7 @@ function Profile() {
                           href={`/space/${category.spaceId}/category/${category.id}`}
                         >
                           <li
-                            className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)"
+                            className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-md(titlePubli+multiuse)"
                             key={category.id}
                           >
                             {category.name}
@@ -148,7 +145,7 @@ function Profile() {
                   Son équipe
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%] mb-5" />
-                <div className=" pl-12">
+                <div className="w-[90%]">
                   <TeamMembersListUsers user={user} />
                 </div>
               </div>
@@ -158,50 +155,52 @@ function Profile() {
                   Ses catégories
                 </h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis lg:w-[80%]" />
-                <ul className="mt-5 space-y-2">
-                  {categories
-                    ?.filter(
-                      (category) =>
-                        category.name
-                          .toLowerCase()
-                          .normalize("NFD")
-                          .replace(/[\u0300-\u036f]/g, "") !== "general"
-                    )
-                    .map((category) =>
-                      category.ownerId === user.id ? (
-                        <div className="flex ">
-                          <Link
-                            href={`/space/${category.spaceId}/category/${category.id}`}
+                <div className="w-[90%] ">
+                  <ul className="mt-5 space-y-2">
+                    {categories
+                      ?.filter(
+                        (category) =>
+                          category.name
+                            .toLowerCase()
+                            .normalize("NFD")
+                            .replace(/[\u0300-\u036f]/g, "") !== "general"
+                      )
+                      .map((category) =>
+                        category.ownerId === user.id ? (
+                          <div className="flex " key={category.id}>
+                            <Link
+                              href={`/space/${category.spaceId}/category/${category.id}`}
+                            >
+                              <li
+                                className="border text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)  border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center"
+                                key={category.id}
+                              >
+                                {category.name}
+                              </li>
+                            </Link>
+                            <Image
+                              src="/assets/Group 87.png"
+                              width={30}
+                              height={30}
+                              alt="owner"
+                              className="h-[30px] w-[30px] -ml-1"
+                            />
+                          </div>
+                        ) : (
+                          <li
+                            className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)"
+                            key={category.id}
                           >
-                            <li
-                              className="border text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)  border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center"
-                              key={category.id}
+                            <Link
+                              href={`/space/${category.spaceId}/category/${category.id}`}
                             >
                               {category.name}
-                            </li>
-                          </Link>
-                          <Image
-                            src="/assets/Group 87.png"
-                            width={30}
-                            height={30}
-                            alt="owner"
-                            className="h-[30px] w-[30px] -ml-1"
-                          />
-                        </div>
-                      ) : (
-                        <li
-                          className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-lg(titlePubli+multiuse)"
-                          key={category.id}
-                        >
-                          <Link
-                            href={`/space/${category.spaceId}/category/${category.id}`}
-                          >
-                            {category.name}
-                          </Link>
-                        </li>
-                      )
-                    )}
-                </ul>
+                            </Link>
+                          </li>
+                        )
+                      )}
+                  </ul>
+                </div>
               </div>
             </div>
 
