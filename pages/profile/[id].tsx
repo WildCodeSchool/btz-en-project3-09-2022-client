@@ -57,7 +57,7 @@ function Profile() {
 
   return (
     <div className="w-full bg-white-enedis">
-      <div className="bg-background-enedis w-[95%] m-auto mt-5 pt-10 pb-10 lg:w-1/2 lg:px-20 ">
+      <div className="bg-background-enedis  w-[95%] m-auto mt-5 pt-10 pb-10 lg:w-1/2 lg:px-20 ">
         <PersonalInfos id={id} team={team} user={user} />
         {userConnected?.id === id ? (
           <div>
