@@ -40,7 +40,7 @@ function Settings() {
     <div className="lg:bg-white-enedis">
       {width > 640 ? (
         <div className="w-screen">
-          <div className="bg-background-enedis w-[90%] lg:w-2/3  mt-10 pb-10 m-auto">
+          <div className="bg-background-enedis w-[90%] lg:w-2/3  mt-5 pb-10 m-auto">
             <div className="flex flex-col items-center pt-6">
               <h3 className="mb-2 text-desk-xl(section)">Mon profil</h3>
               <hr className="h-[6px] w-1/4 rounded-full bg-blue-enedis mb-4" />
@@ -122,7 +122,7 @@ function Settings() {
                 </div>
 
                 <div className="flex flex-col items-center space-y-3">
-                  <p className="text-left w-5/6 pt-4 text-desk-md(titlePubli+multiuse)">
+                  <p className=" w-5/6 pt-4 text-desk-md(titlePubli+multiuse)">
                     J&apos;utilise l&apos;adresse email :
                   </p>
                   <p className="flex items-center   border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
@@ -162,7 +162,7 @@ function Settings() {
                   <h3 className="mb-2 text-desk-xl(section)">Mon équipe</h3>
                   <hr className="h-[6px] w-1/2 rounded-full bg-blue-enedis" />
                 </div>
-                <p className="text-left w-5/6  mb-4 text-desk-md(titlePubli+multiuse)">
+                <p className=" w-5/6  mb-4 text-desk-md(titlePubli+multiuse)">
                   Je travaille dans l&apos;équipe :
                 </p>
                 <p className="flex items-center  border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
@@ -265,7 +265,7 @@ function Settings() {
                   <h3 className="mb-2">Ma connexion</h3>
                   <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
                 </div>
-                <p className="text-left w-5/6 pt-4">
+                <p className="w-5/6 pt-4">
                   J&apos;utilise l&apos;adresse email :
                 </p>
                 <p className="flex items-center  border border-blue-enedis rounded-full w-fit px-4 h-[32px] cursor-not-allowed ">
@@ -278,9 +278,7 @@ function Settings() {
                   />{" "}
                   {user?.email}
                 </p>
-                <p className="text-left w-5/6 pt-6 ">
-                  Je change mon mot de passe :
-                </p>
+                <p className=" w-5/6 pt-6 ">Je change mon mot de passe :</p>
                 <input
                   type="password"
                   placeholder="Mon nouveau mot de passe"
@@ -304,13 +302,13 @@ function Settings() {
               <p className="text-left w-5/6  mb-4">
                 Je travaille dans l&apos;équipe :
               </p>
-              <p className="flex items-center  w-5/6 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed ">
+              <p className="flex items-center  w-fit px-4 border border-blue-enedis rounded-full h-[32px] cursor-not-allowed ">
                 <Image
                   src="/assets/ENEDIS_PICTO_029_SerrageMains_BLEU_RVB_EXE 1.png"
                   width={25}
                   height={25}
                   alt="picto enedis"
-                  className="mx-4"
+                  className="mr-4"
                 />
                 {team?.name}
               </p>

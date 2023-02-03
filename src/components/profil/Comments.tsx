@@ -13,17 +13,19 @@ export default function Comments({ comment }: Props) {
     <div className="flex mt-4">
       <div className=" w-1/6 flex flex-col items-center">
         <ProfilePicMini
-          firstname={comment.author.firstname}
-          lastname={comment.author.lastname}
-          imageUrl={comment.author.imageUrl}
+          id={comment.authorId}
+          firstname={comment.author?.firstname || "firstname"}
+          lastname={comment.author?.lastname || "lastname"}
+          imageUrl={comment.author?.imageUrl || "picture/profile"}
           key={comment.authorId}
         />
         <DatePost datePost={comment.createdAt} key={comment.id} />
       </div>
       <div>
         <NameAuthorPost
-          firstname={comment.author.firstname}
-          lastname={comment.author.lastname}
+          id={comment.authorId}
+          firstname={comment.author?.firstname || "firstname"}
+          lastname={comment.author?.lastname || "lastname"}
           key={comment.id}
         />
         <p className="bg-white-enedis rounded-app-bloc p-4 ml-8">

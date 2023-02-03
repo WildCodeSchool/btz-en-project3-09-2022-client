@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { TPost } from "../../types/main";
-import { commentFetcher } from "../../utils/fetcher";
+import { categoryFetcher, commentFetcher } from "../../utils/fetcher";
 import CategoryPost from "../posts/structurePost/displayPost/CategoryPost";
 import DatePost from "../posts/structurePost/displayPost/DatePost";
 import TitlePost from "../posts/structurePost/displayPost/TitlePost";
@@ -30,9 +31,18 @@ export default function PostContent({ post }: Props) {
     commentFetcher.getCommentsByPostId(`${post.id}`)
   );
 
+  const { data: category } = useQuery(
+    ["category", `categoryId-${post.categoryId}`],
+    () => categoryFetcher.getOne(`${post.categoryId}`)
+  );
+
   const handleShowContent = () => {
     setShowContent(!showContent);
   };
+
+  if (!category) {
+    return <div>Pas de catégories</div>;
+  }
 
   if (isLoading) {
     return <Loader />;
@@ -47,13 +57,18 @@ export default function PostContent({ post }: Props) {
       <div className="flex  justify-between mb-2 m-auto">
         <div className="flex">
           <ProfilePicMini
+            id={post.authorId || "id"}
             firstname={`${post.author?.firstname}`}
             imageUrl={`${post.author?.imageUrl}`}
             lastname={`${post.author?.lastname}`}
             key={post.id}
           />
           <div className=" ml-2 ">
-            <CategoryPost categoryName={`${post.category?.name}`} />
+            <CategoryPost
+              categoryName={`${post.category?.name}`}
+              categoryId={post.categoryId}
+              spaceId={category.spaceId}
+            />
           </div>
         </div>
         <DatePost datePost={post.createdAt} />
