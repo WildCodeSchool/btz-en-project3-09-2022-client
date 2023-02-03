@@ -49,14 +49,14 @@ const Espace: NextPageWithLayout = () => {
 
   return (
     <div className="w-full md:max-w-[75%]">
-      <div className="w-full h-full flex-x-center bg-white-enedis">
+      <div className="w-full h-full flex-x-center  bg-white-enedis">
         <BigHeaderSpace dataSpace={dataSpace} />
         <div className="flex flex-col-reverse justify-center items-center w-full h-[210px] min-h-[210px] p-5 text-white-enedis bg-background-enedis md:h-[140px] md:min-h-[140px] md:flex-row md:items-center">
           <div className="w-1/5 min-w-[155px] flex-all-center md:mr-4">
             <ModalCategory Opener={CtaTextArea} Content={CreateCategory} />
           </div>
           {!checkIfCategoryExceptGeneral() && (
-            <div className="w-full h-full mb-6 flex-all-center md:w-2/3 md:mb-0">
+            <div className="w-full h-full  flex-all-center md:w-2/3 ">
               <CarouselCategory dataSpace={dataSpace} />
             </div>
           )}
