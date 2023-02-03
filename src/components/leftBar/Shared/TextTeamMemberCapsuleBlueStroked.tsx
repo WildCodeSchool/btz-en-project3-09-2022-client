@@ -29,7 +29,7 @@ function TextTeamMemberCapsuleBlueStroked({
       >
         <Image
           alt={`${firstname} ${lastname.toUpperCase()}` || "nom prénom"}
-          src={imageUrl || "/profile_image.png"}
+          src={imageUrl || "/profile_image.svg"}
           fill
           className="object-cover"
         />

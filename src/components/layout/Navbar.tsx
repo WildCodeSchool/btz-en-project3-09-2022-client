@@ -109,7 +109,7 @@ function Navbar() {
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 <button type="button" onClick={toggle}>
                   <Image
-                    src={user?.imageUrl || "/profile_picture.png"}
+                    src={user?.imageUrl || "/profile_image.svg"}
                     width={1000}
                     height={1000}
                     alt="profile"
@@ -136,7 +136,7 @@ function Navbar() {
       {width > 768 && (
         <div className="px-4 min-w-[180px] m-auto flex justify-between items-center h-[70px]">
           <Image
-            src={user?.imageUrl || "/profile_image.png"}
+            src={user?.imageUrl || "/profile_image.svg"}
             width={1000}
             height={1000}
             alt="profile"
