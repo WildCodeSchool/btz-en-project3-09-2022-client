@@ -37,7 +37,7 @@ function Profil() {
         <div className="flex justify-between items-center px-4 pt-6 ">
           <div className="w-20 h-20 min-h-20 min-w-20 rounded-full relative overflow-hidden">
             <Image
-              src={user!.imageUrl}
+              src={user!.imageUrl || "/profile_image.svg"}
               alt="Profil de l'utilisateur"
               fill
               className="object-cover"
@@ -93,7 +93,7 @@ function Profil() {
                             member.firstname
                           } ${member.lastname.toUpperCase()}` || "nom prénom"
                         }
-                        src={member.imageUrl || "/profile_image.png"}
+                        src={member.imageUrl || "/profile_image.svg"}
                         fill
                         className="object-cover"
                       />

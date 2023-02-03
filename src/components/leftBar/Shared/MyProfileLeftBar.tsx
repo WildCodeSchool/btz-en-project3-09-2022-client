@@ -31,7 +31,7 @@ function MyProfileLeftBar() {
         <div className="w-[70px] h-[70px] min-w-[70px] min-h-[70px] lg:w-[80px] lg:h-[80px] lg:min-w-[80px] lg:min-h-[80px] relative overflow-hidden rounded-full">
           <Image
             alt={`${user.firstname} ${user.lastname.toUpperCase()}`}
-            src={user.imageUrl || "/picture_avatar.png"}
+            src={user.imageUrl || "/profile_image.svg"}
             fill
             className="object-cover"
           />

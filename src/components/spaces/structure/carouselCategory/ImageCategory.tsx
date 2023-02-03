@@ -19,7 +19,7 @@ function ImageCategory({ category }: Props) {
     >
       <div className="relative z-0 w-[calc(100%-8px)] h-[48px] md:h-[48px] lg:px-0 mb-1">
         <img
-          src={category.imageUrl}
+          src={category.imageUrl || "/site_image.png"}
           alt={category.id}
           className="rounded-app-bloc object-cover absolute z-10 h-full w-full "
         />

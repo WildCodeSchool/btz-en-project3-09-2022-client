@@ -17,7 +17,7 @@ function ProfilePicMini({ firstname, lastname, imageUrl, id }: IProps) {
     >
       <Image
         alt={`${firstname} ${lastname.toUpperCase()}`}
-        src={imageUrl}
+        src={imageUrl || "/profile_image.svg"}
         fill
         className="object-cover"
       />

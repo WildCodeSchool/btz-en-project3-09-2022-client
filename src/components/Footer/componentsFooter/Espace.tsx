@@ -31,7 +31,7 @@ function Espace() {
             <div>
               <div className="w-full relative z-10">
                 <img
-                  src={space.imageUrl}
+                  src={space.imageUrl || "/site_image.png"}
                   alt={`Logo ${space.name}`}
                   className="rounded-lg object-center h-16 w-full rounded-select-mobile"
                 />
