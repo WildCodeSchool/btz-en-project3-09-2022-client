@@ -7,12 +7,10 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import Loader from "../../structureShared/Loader";
 import { TUser } from "../../../types/main";
 import { categoryFetcher, userFetcher } from "../../../utils/fetcher";
+import { useModalContextMembers } from "../../../context/ModalContextCutUserCategory";
 
-interface IProps {
-  setAddUser: (value: boolean) => void;
-}
-
-function AddUser({ setAddUser }: IProps) {
+function CutUser() {
+  const modalContext = useModalContextMembers();
   const [onSearch, setOnSearch] = useState("");
   const [checkedUsers, setCheckedUsers] = useState<string[]>([]);
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
@@ -23,7 +21,6 @@ function AddUser({ setAddUser }: IProps) {
   const client = useQueryClient();
   useOnClickOutside(ref, () => setIsUSersListOpen(false));
 
-  if (typeof window === "undefined") return null;
   // Fetch all users
 
   const { data: allMembersInSpace, isLoading } = useQuery(
@@ -63,12 +60,12 @@ function AddUser({ setAddUser }: IProps) {
 
   const handleSubmit = async () => {
     await categoryFetcher
-      .addUserToCategory(categoryId as string, checkedUsers)
+      .removeUserToCategory(categoryId as string, checkedUsers)
       .then(() => {
         client.invalidateQueries(["allMembersInCategory", categoryId]);
         client.invalidateQueries(["users", categoryId]);
         client.invalidateQueries([`membersInCategory`, categoryId]);
-        setAddUser(false);
+        modalContext?.handleClose();
       });
   };
 
@@ -94,8 +91,8 @@ function AddUser({ setAddUser }: IProps) {
   };
 
   const dataFiltered = allMembersInSpace
-    .filter(
-      (user) => !allMembersInCategory.some((member) => member.id === user.id)
+    .filter((user) =>
+      allMembersInCategory.some((member) => member.id === user.id)
     )
     .filter((user) => user.id !== dataCategory.ownerId)
     .filter(
@@ -104,11 +101,13 @@ function AddUser({ setAddUser }: IProps) {
         user.firstname.toLowerCase().includes(onSearch)
     );
 
+  if (typeof window === "undefined") return <div>No window on the server</div>;
+
   return (
-    <div className="bg-green-enedis w-screen h-full p-2 ">
+    <div className="bg-green-enedis w-full h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2 ">
-        <p className="text-mob-sm(multiuse) pb-2 mb-5 mt-5">
-          Je veux ajouter un membre :{" "}
+        <p className="text-desk-md(titlePubli+multiuse) pb-2 mb-3 mt-3">
+          Je veux <b className="text-redError-enedis">retirer</b> un membre :{" "}
         </p>
 
         <form className=" w-full left-16 flex-all-center z-50">
@@ -153,6 +152,7 @@ function AddUser({ setAddUser }: IProps) {
                         <input
                           type="checkbox"
                           className="h-4 w-4"
+                          defaultChecked={false}
                           onChange={handleCheckboxes}
                           checked={isChecked(user.id)}
                           value={user.id}
@@ -191,16 +191,13 @@ function AddUser({ setAddUser }: IProps) {
             <button
               onClick={handleSubmit}
               type="button"
-              className="w-fit max-w-full rounded-full bg-green-enedis text-white-enedis text-mob-md(CTA+input) px-5 py-4
+              className="w-fit max-w-full rounded-full bg-redError-enedis text-white-enedis text-mob-md(CTA+input) px-5 py-4
             md:py-3 md:px-5 md:text-desk-lg(CTA+input)"
             >
-              Je valide
+              Je retire
             </button>
             <button
-              onClick={() => {
-                setIsUSersListOpen(false);
-                setAddUser(false);
-              }}
+              onClick={modalContext?.handleClose}
               type="button"
               className="w-fit font-regular text-mob-md(CTA+input)
             md:py-3 md:px-5 md:text-desk-lg(CTA+input)"
@@ -214,4 +211,4 @@ function AddUser({ setAddUser }: IProps) {
   );
 }
 
-export default AddUser;
+export default CutUser;

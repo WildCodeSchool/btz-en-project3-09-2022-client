@@ -49,6 +49,24 @@ export const categoryFetcher = {
     (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
   getOneWithSpace: async (id: string) =>
     (await axiosInstance.get<TCategory>(`/categories/${id}?space=true`)).data,
+
+  addUserToCategory: async (categoryId: string, usersToConnect: string[]) =>
+    (
+      await axiosInstance.put(
+        `/categories/${categoryId}/addUser`,
+        usersToConnect
+      )
+    ).data,
+  removeUserToCategory: async (
+    categoryId: string,
+    usersToDisconnect: string[]
+  ) =>
+    (
+      await axiosInstance.put(
+        `/categories/${categoryId}/removeUser`,
+        usersToDisconnect
+      )
+    ).data,
 };
 
 export const teamFetcher = {

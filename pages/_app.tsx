@@ -19,6 +19,8 @@ import { ModalWrapper } from "../src/context/ModalContext";
 import "nprogress/nprogress.css";
 import Welcome from "../src/components/Welcome";
 import { ModalWrapperSpace } from "../src/context/ModalContextCategory";
+import { ModalWrapperMembers } from "../src/context/ModalContextAddUserCategory";
+import { ModalWrapperCutMembers } from "../src/context/ModalContextCutUserCategory";
 
 export const reactQueryClient = new QueryClient();
 
@@ -60,18 +62,22 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <title>Enedis Share VDL</title>
       <ModalWrapper>
         <ModalWrapperSpace>
-          <QueryClientProvider client={reactQueryClient}>
-            <Hydrate state={pageProps.dehydratedState}>
-              {!isWelcomeScreen && (
-                <Welcome
-                  isWelcomeScreen={isWelcomeScreen}
-                  setIsWelcomeScreen={setIsWelcomeScreen}
-                />
-              )}
-              {getLayout(<Component {...pageProps} />)}
-            </Hydrate>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </QueryClientProvider>
+          <ModalWrapperMembers>
+            <ModalWrapperCutMembers>
+              <QueryClientProvider client={reactQueryClient}>
+                <Hydrate state={pageProps.dehydratedState}>
+                  {!isWelcomeScreen && (
+                    <Welcome
+                      isWelcomeScreen={isWelcomeScreen}
+                      setIsWelcomeScreen={setIsWelcomeScreen}
+                    />
+                  )}
+                  {getLayout(<Component {...pageProps} />)}
+                </Hydrate>
+                <ReactQueryDevtools initialIsOpen={false} />
+              </QueryClientProvider>
+            </ModalWrapperCutMembers>
+          </ModalWrapperMembers>
         </ModalWrapperSpace>
       </ModalWrapper>
     </UserContextProvider>
