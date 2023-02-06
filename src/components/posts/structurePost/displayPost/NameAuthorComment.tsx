@@ -11,7 +11,7 @@ function NameAuthorComment({ firstname, lastname, id }: IProps) {
   return (
     <Link
       href={`/profile/${id}`}
-      className="w-fit relative z-10 max-w-[85%] flex-y-center overflow-hidden rounded-full 
+      className="w-fit z-0 max-w-[85%] flex-y-center overflow-hidden rounded-full 
       bg-blue-enedis text-white-enedis px-4 py-2"
     >
       <h3
