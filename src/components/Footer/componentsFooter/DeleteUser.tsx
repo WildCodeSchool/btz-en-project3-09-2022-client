@@ -9,10 +9,10 @@ import { TUser } from "../../../types/main";
 import { categoryFetcher, userFetcher } from "../../../utils/fetcher";
 
 interface IProps {
-  setAddUser: (value: boolean) => void;
+  setCutUser: (value: boolean) => void;
 }
 
-function AddUser({ setAddUser }: IProps) {
+function DeleteUser({ setCutUser }: IProps) {
   const [onSearch, setOnSearch] = useState("");
   const [checkedUsers, setCheckedUsers] = useState<string[]>([]);
   const [isUsersListOpen, setIsUSersListOpen] = useState(false);
@@ -63,12 +63,12 @@ function AddUser({ setAddUser }: IProps) {
 
   const handleSubmit = async () => {
     await categoryFetcher
-      .addUserToCategory(categoryId as string, checkedUsers)
+      .removeUserToCategory(categoryId as string, checkedUsers)
       .then(() => {
         client.invalidateQueries(["allMembersInCategory", categoryId]);
         client.invalidateQueries(["users", categoryId]);
         client.invalidateQueries([`membersInCategory`, categoryId]);
-        setAddUser(false);
+        setCutUser(false);
       });
   };
 
@@ -94,8 +94,8 @@ function AddUser({ setAddUser }: IProps) {
   };
 
   const dataFiltered = allMembersInSpace
-    .filter(
-      (user) => !allMembersInCategory.some((member) => member.id === user.id)
+    .filter((user) =>
+      allMembersInCategory.some((member) => member.id === user.id)
     )
     .filter((user) => user.id !== dataCategory.ownerId)
     .filter(
@@ -108,7 +108,7 @@ function AddUser({ setAddUser }: IProps) {
     <div className="bg-green-enedis w-screen h-full p-2 ">
       <div className="bg-background-enedis flex-all-center rounded-app-bloc w-full p-2 ">
         <p className="text-mob-sm(multiuse) pb-2 mb-5 mt-5">
-          Je veux ajouter un membre :{" "}
+          Je veux retirer un membre :{" "}
         </p>
 
         <form className=" w-full left-16 flex-all-center z-50">
@@ -162,8 +162,9 @@ function AddUser({ setAddUser }: IProps) {
                   ))
                 ) : (
                   <div className="p-4 text-white-enedis text-mob-sm(multiuse)">
-                    Tous les membres de l&apos;espace sont déjà dans cette
-                    catégorie{" "}
+                    Pour le moment, vous êtes seul dans cette catégorie...{" "}
+                    <br />
+                    ajoutez des membres !{" "}
                   </div>
                 )}
               </motion.div>
@@ -194,12 +195,12 @@ function AddUser({ setAddUser }: IProps) {
               className="w-fit max-w-full rounded-full bg-green-enedis text-white-enedis text-mob-md(CTA+input) px-5 py-4
             md:py-3 md:px-5 md:text-desk-lg(CTA+input)"
             >
-              Je valide
+              Je retire
             </button>
             <button
               onClick={() => {
                 setIsUSersListOpen(false);
-                setAddUser(false);
+                setCutUser(false);
               }}
               type="button"
               className="w-fit font-regular text-mob-md(CTA+input)
@@ -214,4 +215,4 @@ function AddUser({ setAddUser }: IProps) {
   );
 }
 
-export default AddUser;
+export default DeleteUser;

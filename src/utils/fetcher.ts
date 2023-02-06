@@ -52,9 +52,19 @@ export const categoryFetcher = {
 
   addUserToCategory: async (categoryId: string, usersToConnect: string[]) =>
     (
-      await axiosInstance.post(
-        `/categories/${categoryId}/adduser`,
+      await axiosInstance.put(
+        `/categories/${categoryId}/addUser`,
         usersToConnect
+      )
+    ).data,
+  removeUserToCategory: async (
+    categoryId: string,
+    usersToDisconnect: string[]
+  ) =>
+    (
+      await axiosInstance.put(
+        `/categories/${categoryId}/removeUser`,
+        usersToDisconnect
       )
     ).data,
 };
