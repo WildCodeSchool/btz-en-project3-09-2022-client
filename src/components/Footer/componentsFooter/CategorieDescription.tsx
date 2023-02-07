@@ -4,26 +4,37 @@ import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { categoryFetcher, userFetcher } from "../../../utils/fetcher";
 import AddUser from "./AddUser";
 import { TUser } from "../../../types/main";
 import DeleteUser from "./DeleteUser";
 import { useAuth } from "../../../context/UserContext";
+import { categoryUpdater } from "../../../utils/updater";
 
-function CategorieDescription() {
+interface IProps {
+  setOpenCategorieDescription: (value: boolean) => void;
+}
+
+function CategorieDescription({ setOpenCategorieDescription }: IProps) {
   const router = useRouter();
   const { categoryId } = router.query;
   const { user } = useAuth();
+  const queryClient = useQueryClient();
 
   const [cutUser, setCutUser] = useState(false);
   const [addUser, setAddUser] = useState(false);
 
   const handleDeleteCategory = async () => {
-    // route delete category à ajouter avec await, setTimeout à supprimer
+    const categoryDisabled = await categoryUpdater.disable(
+      categoryId as string
+    );
     // eslint-disable-next-line no-alert
-    alert("La catégorie a bien été supprimée");
+    alert(`La catégorie ${categoryDisabled.name} a bien été supprimée`);
+    setOpenCategorieDescription(false);
     router.push("/");
+    queryClient.invalidateQueries(["getLatestPostBySpaceWithImage"]);
+    queryClient.invalidateQueries([categoryDisabled.id]);
   };
 
   const { data, isLoading } = useQuery(["category", categoryId], () =>
