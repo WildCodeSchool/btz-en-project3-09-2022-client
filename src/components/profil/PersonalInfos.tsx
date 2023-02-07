@@ -15,7 +15,7 @@ interface Props {
 export default function PersonalInfos({ user, id, team }: Props) {
   const { user: userConnected } = useAuth();
   return (
-    <div className="flex w-full lg:w-1/2 m-auto">
+    <div className="flex w-full lg:w-2/3 m-auto ">
       <div className=" w-1/2 m-4 flex flex-col items-center">
         <Image
           src={user.imageUrl || "/profile_image.png"}
