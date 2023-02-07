@@ -87,7 +87,7 @@ function Profile() {
                           <Link
                             href={`/space/${category.spaceId}/category/${category.id}`}
                           >
-                            <li className="border text-mob-xs(textPost) lg:text-desk-md(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center">
+                            <li className="border text-mob-xs(textPost) lg:text-desk-md(titlePubli+multiuse) border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center ">
                               {category.name}
                             </li>
                           </Link>
@@ -104,12 +104,14 @@ function Profile() {
                         <Link
                           href={`/space/${category.spaceId}/category/${category.id}`}
                         >
-                          <li
-                            className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-md(titlePubli+multiuse)"
-                            key={category.id}
-                          >
-                            {category.name}
-                          </li>
+                          <div className="my-2">
+                            <li
+                              className="border border-blue-enedis rounded-full h-[30px] w-fit px-2 flex-all-center truncate text-mob-xs(textPost) lg:text-desk-md(titlePubli+multiuse)"
+                              key={category.id}
+                            >
+                              {category.name}
+                            </li>
+                          </div>
                         </Link>
                       )
                     )}
@@ -117,12 +119,6 @@ function Profile() {
               </div>
             </div>
 
-            <div className=" flex flex-col items-center pt-4 pb-4 w-full lg:w-2/3 m-auto">
-              <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
-                Mon activité
-              </h3>
-              <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-            </div>
             <div className=" flex flex-col items-center pt-4 pb-4a w-full lg:w-2/3 m-auto">
               <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
                 Mes dernières publications
@@ -203,12 +199,6 @@ function Profile() {
               </div>
             </div>
 
-            <div className=" flex flex-col items-center pt-4 pb-4a w-full">
-              <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
-                Son activité
-              </h3>
-              <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
-            </div>
             <div className=" flex flex-col items-center pt-4 pb-4a w-full">
               <h3 className="mb-2 text-mob-lg(multiuse) lg:text-desk-xl(section)">
                 Ses dernières publications en commun

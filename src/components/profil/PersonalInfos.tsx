@@ -44,10 +44,12 @@ export default function PersonalInfos({ user, id, team }: Props) {
         )}
       </div>
       <div className=" space-y-2  w-1/2  text-left mt-8 ">
-        <p className="font-bold text-[28px] pb-2">{user.firstname}</p>
-        <p className="font-bold text-[28px] w-fit pb-4">
-          {user.lastname.toUpperCase()}
-        </p>
+        <div className="flex flex-col space-y-2">
+          <p className="font-bold text-[28px] ">{user.firstname}</p>
+          <p className="font-bold text-[28px] truncate md:w-[200px]  h-10 pt-2">
+            {user.lastname.toUpperCase()}
+          </p>
+        </div>
         <div className="flex ">
           <Image
             src="/assets/ENEDIS_PICTO_029_SerrageMains_BLEU_RVB_EXE 1.png"
