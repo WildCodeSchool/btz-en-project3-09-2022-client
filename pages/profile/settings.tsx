@@ -173,7 +173,7 @@ function Settings() {
                     alt="picto enedis"
                     className="mr-4"
                   />{" "}
-                  sdsdf
+                  {team?.name}
                 </p>
               </div>
             </div>
