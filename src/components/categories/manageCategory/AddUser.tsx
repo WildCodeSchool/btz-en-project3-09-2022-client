@@ -162,9 +162,8 @@ function AddUser() {
                   ))
                 ) : (
                   <div className="p-4 text-white-enedis text-mob-sm(multiuse)">
-                    Pour le moment, vous êtes seul dans cette catégorie...{" "}
-                    <br />
-                    ajoutez des membres !{" "}
+                    Tous les membres de l&apos;espace sont déjà dans cette
+                    catégorie{" "}
                   </div>
                 )}
               </motion.div>

@@ -53,8 +53,7 @@ function CategorieDescription() {
           <div className="bg-blue-enedis h-1 top-0 rounded-full w-full" />
 
           <p className="text-mob-xs(textPost) m-3 w-full text-left mb-5">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore ea
-            aperiam, quas dicta repellendus quaerat earum in minus cumque?
+            {data.description}
           </p>
           {user && user.id === data.ownerId && (
             <button

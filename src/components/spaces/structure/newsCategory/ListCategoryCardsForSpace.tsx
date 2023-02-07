@@ -13,11 +13,7 @@ function ListCategoryCardsForSpace({ dataSpace }: IProps) {
 
   if (
     categories!.length === 0 ||
-    (categories!.length === 1 &&
-      categories![0]!.name
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "") === "general")
+    (categories!.length === 1 && categories![0]!.isGeneral)
   ) {
     return (
       <div className="flex items-center h-56 justify-center bg-background-enedis">
@@ -40,13 +36,7 @@ function ListCategoryCardsForSpace({ dataSpace }: IProps) {
   return (
     <>
       {categories!
-        .filter(
-          (category) =>
-            category.name
-              .toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "") !== "general"
-        )
+        .filter((category) => !category.isGeneral)
         .map((category) => (
           <CategoryCardForSpace oneCategory={category} key={category.id} />
         ))}

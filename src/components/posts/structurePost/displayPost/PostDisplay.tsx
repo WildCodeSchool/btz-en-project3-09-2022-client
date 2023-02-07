@@ -65,6 +65,7 @@ function PostDisplay({ oneSpace }: IProps) {
         <div className="w-[38%] min-w-[130px] lg:min-w-[145px] xl:min-w-[160px] h-[208px] flex flex-col justify-between ml-3">
           <div className="flex items-center justify-between">
             <CategoryPost
+              isGeneral={postAllCategories.category.isGeneral}
               categoryName={postAllCategories.category.name}
               categoryId={postAllCategories.category.id}
               spaceId={oneSpace.id}

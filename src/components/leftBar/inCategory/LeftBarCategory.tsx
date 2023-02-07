@@ -44,9 +44,7 @@ function LeftBarCategory() {
         <div className="mb-10">
           <TitleSection titleText="Description de la catégorie" />
           <p className="text-desk-sm(textPost+multiuse) text-left">
-            {/* {dataSpace.description} */}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-            tenetur ipsa. Accusamus blanditiis, enim iusto odit id expedita qui.
+            {dataCategory.description}
           </p>
           {user && user.id === dataCategory.ownerId && (
             <button
