@@ -1,6 +1,6 @@
 export default function LoaderFocus() {
   return (
-    <div className="w-full h-14 flex-all-center">
+    <div className="w-full h-fit flex-all-center">
       <div className="h-[70%] flex-all-center">
         <div role="status">
           <svg

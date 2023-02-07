@@ -4,6 +4,7 @@ import React from "react";
 import { useAuth } from "../../../context/UserContext";
 import { TSpace } from "../../../types/main";
 import { spaceFetcher } from "../../../utils/fetcher";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function Espace() {
   const { user } = useAuth();
@@ -16,7 +17,7 @@ function Espace() {
   if (!user) {
     return <div>Unauthorized</div>;
   }
-  if (isLoading || !data) return <div>No spaces</div>;
+  if (isLoading || !data) return <LoaderFocus />;
 
   return (
     <div className="w-full flex flex-col items-center mb-3 ">

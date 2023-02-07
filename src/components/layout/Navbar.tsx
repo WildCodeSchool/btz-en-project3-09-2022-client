@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Image from "next/image";
 import { useWindowSize } from "usehooks-ts";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 import useOnClickOutside from "@jidayyy/useonclickoutside";
 import { useAuth } from "../../context/UserContext";
 
@@ -9,9 +10,15 @@ import useModal from "../modal/useModal";
 import Modal from "../modal/Modal";
 import SearchBar from "./SearchBar";
 import { useModalContext } from "../../context/ModalContext";
+import { userFetcher } from "../../utils/fetcher";
+import Loader from "../structureShared/Loader";
 
 function Navbar() {
   const { user, signOut } = useAuth();
+
+  if (!user) {
+    return <div> Vous devez vous connecter pour y accéder</div>;
+  }
 
   const modalContext = useModalContext();
   // Window size
@@ -36,6 +43,17 @@ function Navbar() {
     }, 1000);
   };
 
+  const { data: dataFreshUser, isLoading: isLoadingProfilePic } = useQuery(
+    ["freshProfilePic", user.id],
+    () => userFetcher.getOne(user.id)
+  );
+
+  if (isLoadingProfilePic || !dataFreshUser) {
+    return <Loader />;
+  }
+
+  const { imageUrl: freshImageUrl } = dataFreshUser;
+
   const menu: {
     text: string;
     link: string;
@@ -43,7 +61,7 @@ function Navbar() {
   }[] = [
     {
       text: "Mon profil",
-      link: `/profile/${user?.id}`,
+      link: `/profile/${user.id}`,
       action: handleSearchBar,
     },
     { text: "Paramètres", link: `/profile/settings`, action: handleSearchBar },
@@ -109,7 +127,7 @@ function Navbar() {
               <div className="bg-green-enedis min-w-[45px] h-[45px] rounded-full flex justify-center items-center">
                 <button type="button" onClick={toggle}>
                   <Image
-                    src={user?.imageUrl || "/profile_image.svg"}
+                    src={freshImageUrl || "/profile_image.svg"}
                     width={1000}
                     height={1000}
                     alt="profile"
@@ -136,7 +154,7 @@ function Navbar() {
       {width > 768 && (
         <div className="px-4 min-w-[180px] m-auto flex justify-between items-center h-[70px]">
           <Image
-            src={user?.imageUrl || "/profile_image.svg"}
+            src={freshImageUrl || "/profile_image.svg"}
             width={1000}
             height={1000}
             alt="profile"
@@ -144,9 +162,9 @@ function Navbar() {
           />
 
           <p className="font-enedis font-bold text-desk-md(titlePubli+multiuse) mx-2">
-            {user?.firstname}
+            {user.firstname}
             <br />
-            {user?.lastname.toUpperCase()}
+            {user.lastname.toUpperCase()}
           </p>
           <button
             type="button"

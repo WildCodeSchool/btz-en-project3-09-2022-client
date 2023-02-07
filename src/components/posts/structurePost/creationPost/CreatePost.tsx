@@ -63,7 +63,6 @@ function CreatePost() {
               <ProfilePic
                 firstname={user.firstname}
                 lastname={user.lastname}
-                imageUrl={user.imageUrl}
                 id={user.id}
               />
               {window.location.href.includes("category") && (

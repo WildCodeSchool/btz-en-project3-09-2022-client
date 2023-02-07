@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { TPost, TSpace } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
+import LoaderFocus from "../../../structureShared/LoaderFocus";
 import ProfilePic from "../../../structureShared/ProfilePic";
 import CategoryPost from "./CategoryPost";
 import DatePost from "./DatePost";
@@ -30,7 +31,7 @@ function PostDisplay({ oneSpace }: IProps) {
   );
 
   if (isLoading) {
-    return <div>En chargement</div>;
+    return <LoaderFocus />;
   }
 
   if (
@@ -55,7 +56,6 @@ function PostDisplay({ oneSpace }: IProps) {
         <ProfilePic
           firstname={postAllCategories.author.firstname}
           lastname={postAllCategories.author.lastname}
-          imageUrl={postAllCategories.author.imageUrl}
           id={postAllCategories.author.id}
         />
         <TitlePost title={postAllCategories.title} />

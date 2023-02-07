@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useAuth } from "../../../context/UserContext";
 import { teamFetcher, userFetcher } from "../../../utils/fetcher";
 import { TUser } from "../../../types/main";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function Profil() {
   const { user } = useAuth();
@@ -22,11 +23,11 @@ function Profil() {
   );
 
   if (isLoading || !data) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
 
   if (loadMembers || !members) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
 
   return (

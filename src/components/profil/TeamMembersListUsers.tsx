@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { TUser } from "../../types/main";
 import { userFetcher } from "../../utils/fetcher";
 import TextTeamMemberCapsuleBlueStroked from "../leftBar/Shared/TextTeamMemberCapsuleBlueStroked";
+import LoaderFocus from "../structureShared/LoaderFocus";
 
 type Props = {
   user: TUser;
@@ -24,7 +25,7 @@ function TeamMembersListUsers({ user }: Props) {
     () => user && userFetcher.getAllByTeam(user.teamId)
   );
 
-  if (isLoading || !dataUserByTeam || !user) return <div>En chargement</div>;
+  if (isLoading || !dataUserByTeam || !user) return <LoaderFocus />;
   if (error) return <div>Une erreur s&apos;est produite</div>;
 
   return (

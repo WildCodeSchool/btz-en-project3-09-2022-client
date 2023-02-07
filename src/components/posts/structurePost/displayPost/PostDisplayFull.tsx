@@ -23,7 +23,6 @@ function PostDisplayFull({ dataPost }: IProps) {
           <ProfilePic
             firstname={author!.firstname}
             lastname={author!.lastname}
-            imageUrl={author!.imageUrl}
             id={author!.id}
           />
           <TitlePost title={dataPost.title} />
