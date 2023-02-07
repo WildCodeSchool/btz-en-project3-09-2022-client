@@ -16,7 +16,6 @@ import { useAuth } from "../../src/context/UserContext";
 import {
   categoryFetcher,
   postFetcher,
-  teamFetcher,
   userFetcher,
 } from "../../src/utils/fetcher";
 
