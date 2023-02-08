@@ -16,7 +16,6 @@ function CommentItemMe({ comment }: IProps) {
         <ProfilePic
           firstname={comment.author!.firstname}
           lastname={comment.author!.lastname}
-          imageUrl={comment.author!.imageUrl}
           id={comment.author!.id}
         />
         <DatePost datePost={comment.createdAt} noMarginLeft />
@@ -28,7 +27,7 @@ function CommentItemMe({ comment }: IProps) {
           id={comment.author!.id}
         />
         <p
-          className="w-full bg-blue-enedis bg-opacity-20 relative z-0 text-left rounded-app-bloc text-mob-xs(textPost) break-words px-4 pt-7 pb-3 -mt-3
+          className="w-full bg-blue-enedis bg-opacity-20 text-left rounded-app-bloc text-mob-xs(textPost) break-words px-4 pt-7 pb-3 -mt-3
           md:text-desk-sm(textPost+multiuse)"
         >
           {comment.content}

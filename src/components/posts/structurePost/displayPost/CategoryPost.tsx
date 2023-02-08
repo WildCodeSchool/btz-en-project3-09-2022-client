@@ -5,16 +5,19 @@ interface IProps {
   categoryName: string;
   categoryId: string;
   spaceId: string;
+  isGeneral: boolean;
 }
 
-function CategoryPost({ categoryName, categoryId, spaceId }: IProps) {
+function CategoryPost({
+  categoryName,
+  categoryId,
+  spaceId,
+  isGeneral,
+}: IProps) {
   return (
     <Link
       href={
-        categoryName
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "") === "general"
+        isGeneral
           ? `space/${spaceId}`
           : `space/${spaceId}/category/${categoryId}`
       }

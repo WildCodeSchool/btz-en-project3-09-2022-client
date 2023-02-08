@@ -1,55 +1,50 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useAuth } from "../../../context/UserContext";
-import { TCategory, TUser } from "../../../types/main";
-import { userFetcher } from "../../../utils/fetcher";
-import LoaderFocus from "../../structureShared/LoaderFocus";
-import TextTeamMemberCapsuleBlueStroked from "../Shared/TextTeamMemberCapsuleBlueStroked";
+import { useQuery } from "@tanstack/react-query";
+import { TUser } from "../../types/main";
+import { userFetcher } from "../../utils/fetcher";
+import TextTeamMemberCapsuleBlueStroked from "../leftBar/Shared/TextTeamMemberCapsuleBlueStroked";
+import LoaderFocus from "../structureShared/LoaderFocus";
 
-interface IProps {
-  dataCategory: TCategory;
-}
+type Props = {
+  user: TUser;
+};
 
-function ListMembersCategory({ dataCategory }: IProps) {
-  const { user } = useAuth();
+function TeamMembersListUsers({ user }: Props) {
   const [isAllMembers, setIsAllMembers] = useState(false);
-  const { id: categoryId, ownerId } = dataCategory;
 
   const handleAllMembers = () => {
     setIsAllMembers(!isAllMembers);
   };
 
   const {
-    data: dataCategoryMembers,
-    error: errorCategoryMembers,
-    isLoading: isLoadingCategoryMembers,
-  } = useQuery([`membersInCategory`, categoryId], () =>
-    userFetcher.getAllByCategory(dataCategory.id)
+    isLoading,
+    error,
+    data: dataUserByTeam,
+  } = useQuery(
+    ["getAllByTeam", user?.teamId],
+    () => user && userFetcher.getAllByTeam(user.teamId)
   );
 
-  if (isLoadingCategoryMembers || !dataCategoryMembers || !user)
-    return <LoaderFocus />;
-  if (errorCategoryMembers) return <div>Une erreur s&apos;est produite</div>;
+  if (isLoading || !dataUserByTeam || !user) return <LoaderFocus />;
+  if (error) return <div>Une erreur s&apos;est produite</div>;
 
   return (
     <>
       {isAllMembers ? (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataCategoryMembers.map((member) => (
+          {dataUserByTeam.map((member) => (
             <TextTeamMemberCapsuleBlueStroked
               key={member.id}
               id={member.id}
               firstname={member.firstname}
               lastname={member.lastname}
               imageUrl={member.imageUrl}
-              ownerId={ownerId}
             />
           ))}
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-center justify-start">
-          {dataCategoryMembers
+          {dataUserByTeam
             .filter((_, index: number) => index < 5)
             .map((member: TUser) => (
               <TextTeamMemberCapsuleBlueStroked
@@ -58,12 +53,11 @@ function ListMembersCategory({ dataCategory }: IProps) {
                 firstname={member.firstname}
                 lastname={member.lastname}
                 imageUrl={member.imageUrl}
-                ownerId={ownerId}
               />
             ))}
         </div>
       )}
-      {dataCategoryMembers.length > 5 && (
+      {dataUserByTeam.length > 5 && (
         <button
           type="button"
           onClick={handleAllMembers}
@@ -76,4 +70,4 @@ function ListMembersCategory({ dataCategory }: IProps) {
   );
 }
 
-export default ListMembersCategory;
+export default TeamMembersListUsers;

@@ -44,11 +44,29 @@ export const categoryFetcher = {
   getAll: async () =>
     (await axiosInstance.get<TCategory[]>("/categories")).data,
   getAllByUser: async (id: string) =>
-    (await axiosInstance.get<TCategory[]>(`/categories?userId=${id}`)).data,
+    (await axiosInstance.get<TCategory[]>(`/categories?userID=${id}`)).data,
   getOne: async (id: string) =>
     (await axiosInstance.get<TCategory>(`/categories/${id}`)).data,
   getOneWithSpace: async (id: string) =>
     (await axiosInstance.get<TCategory>(`/categories/${id}?space=true`)).data,
+
+  addUserToCategory: async (categoryId: string, usersToConnect: string[]) =>
+    (
+      await axiosInstance.put(
+        `/categories/${categoryId}/addUser`,
+        usersToConnect
+      )
+    ).data,
+  removeUserToCategory: async (
+    categoryId: string,
+    usersToDisconnect: string[]
+  ) =>
+    (
+      await axiosInstance.put(
+        `/categories/${categoryId}/removeUser`,
+        usersToDisconnect
+      )
+    ).data,
 };
 
 export const teamFetcher = {
@@ -88,11 +106,19 @@ export const postFetcher = {
         `/posts?categoryId=${categoryId}&author=true&image=true`
       )
     ).data,
+  getAllPostsShared: async () =>
+    (await axiosInstance.get<TPost[]>(`/posts?category=true&author=true`)).data,
 };
 
 export const commentFetcher = {
   getAllByPostWithAuthor: async ({ postId }: { postId: string }) =>
     (
+      await axiosInstance.get<TComment[]>(
+        `/comments?postId=${postId}&author=true`
+      )
+    ).data,
+  getCommentsByPostId: async (postId: string) =>
+    await (
       await axiosInstance.get<TComment[]>(
         `/comments?postId=${postId}&author=true`
       )

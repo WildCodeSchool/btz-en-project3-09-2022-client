@@ -1,11 +1,12 @@
 import dynamic from "next/dynamic";
 import React from "react";
+import LoaderFocus from "../../../structureShared/LoaderFocus";
 
 const QuillNoSSRWrapper = dynamic(
   () => import("react-quill").then((mod) => mod.default),
   {
     ssr: false,
-    loading: () => <p>Loading ...</p>,
+    loading: () => <LoaderFocus />,
   }
 );
 
@@ -34,7 +35,7 @@ export default function WysiwygTextArea({ setBody }: IProps) {
         onChange={setBody}
         theme="snow"
         placeholder="J’écris mon texte ici..."
-        className="bg-white-enedis min-h-[150px] max-h-[250px] rounded-app-bloc overflow-y-scroll scrollbar-hide"
+        className="bg-white-enedis min-h-[150px] max-h-[250px] rounded-app-bloc overflow-y-scroll scrollbar-hide px-5"
       />
     </div>
   );

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useAuth } from "../../../../context/UserContext";
 import { categoryFetcher, spaceFetcher } from "../../../../utils/fetcher";
+import LoaderFocus from "../../../structureShared/LoaderFocus";
 
 interface IProps {
   setCategoryChosen: (category: string[]) => void;
@@ -35,7 +36,7 @@ function CategoryChoosingHP({ setCategoryChosen }: IProps) {
     !dataSpacesByUserAuth ||
     !user
   )
-    return <div>En chargement</div>;
+    return <LoaderFocus />;
   if (errorCategories || errorSpaces)
     return <div>Une erreur s&apos;est produite</div>;
 

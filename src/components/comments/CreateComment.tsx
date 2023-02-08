@@ -44,7 +44,7 @@ function CreateComment({ onSubmit, postID }: IProps) {
     <div className="w-full flex justify-end mt-8">
       <form
         onSubmit={handleSubmit}
-        className="w-full md:w-8/12 flex flex-row-reverse"
+        className="w-full md:w-10/12 xl:w-8/12 flex flex-row-reverse"
       >
         <div className="flex relative w-full">
           <textarea
@@ -60,7 +60,6 @@ function CreateComment({ onSubmit, postID }: IProps) {
           <ProfilePic
             firstname={user.firstname}
             lastname={user.lastname}
-            imageUrl={user.imageUrl}
             id={user.id}
           />
         </div>

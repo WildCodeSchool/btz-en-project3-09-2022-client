@@ -5,7 +5,7 @@ import logo from "../../../public/assets/logo-enedis-share_blanc.png";
 import { useAuth } from "../../context/UserContext";
 
 function SignIn() {
-  const { signIn } = useAuth();
+  const { signIn, error } = useAuth();
 
   type TCredentials = {
     email: string;
@@ -58,6 +58,16 @@ function SignIn() {
                 type="password"
               />
             </div>
+            {error === "Invalid email" && (
+              <div className=" text-white-enedis w-fit py-2 px-4 text-mob-sm(multiuse) bg-redError-enedis rounded-full">
+                ⚠ L&apos;email n&apos;existe pas
+              </div>
+            )}
+            {error === "Invalid password" && (
+              <div className=" text-white-enedis w-fit py-2 px-4 text-mob-sm(multiuse) bg-redError-enedis rounded-full">
+                ⚠ Mauvais mot de passe
+              </div>
+            )}
           </div>
           <div className="flex flex-col-reverse xs:flex-row items-center justify-center font-bold mt-8">
             <button

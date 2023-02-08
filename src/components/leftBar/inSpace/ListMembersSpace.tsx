@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../../context/UserContext";
 import { TSpace, TUser } from "../../../types/main";
 import { userFetcher } from "../../../utils/fetcher";
+import Loader from "../../structureShared/Loader";
 import TextTeamMemberCapsuleBlueStroked from "../Shared/TextTeamMemberCapsuleBlueStroked";
 
 interface IProps {
@@ -27,8 +28,7 @@ function ListMembersSpace({ dataSpace }: IProps) {
     userFetcher.getAllBySpace({ spaceId: spaceId as string })
   );
 
-  if (isLoadingSpaceMembers || !dataSpaceMembers || !user)
-    return <div>En chargement</div>;
+  if (isLoadingSpaceMembers || !dataSpaceMembers || !user) return <Loader />;
   if (errorSpaceMembers) return <div>Une erreur s&apos;est produite</div>;
 
   return (

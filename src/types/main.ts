@@ -14,6 +14,7 @@ export type TUser = {
   firstname: string;
   lastname: string;
   teamId: string;
+  team?: TTeam;
   workLocation: string;
   birthday: string;
   showBirthday: boolean;
@@ -28,6 +29,7 @@ export type TSite = {
   id: string;
   name: string;
   imageUrl: string;
+  isDisabled: boolean;
   createdAt: string;
   updatedAt: string;
 };
@@ -46,6 +48,9 @@ export type TTeam = {
 
 export type TCategory = {
   id: string;
+  isDisabled: boolean;
+  isGeneral: boolean;
+  description: string;
   name: string;
   imageUrl: string;
   spaceId: string;
@@ -57,6 +62,7 @@ export type TCategory = {
 
 export type TPost = {
   id: string;
+  isDisabled: boolean;
   title: string;
   content: string;
   categoryId: string;
@@ -70,6 +76,7 @@ export type TPost = {
 
 export type TComment = {
   id: string;
+  isDisabled: boolean;
   content: string;
   postId: string;
   authorId: string;
@@ -80,6 +87,7 @@ export type TComment = {
 
 export type TImage = {
   id: string;
+  isDisabled: boolean;
   userId: string;
   postId: string | null;
   name: string;

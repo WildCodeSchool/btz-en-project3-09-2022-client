@@ -1,4 +1,4 @@
-import { TCategory, TComment, TImage, TPost, TSpace } from "../types/main";
+import { TCategory, TComment, TImage, TPost } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
@@ -34,23 +34,6 @@ export const categoryFetcher = {
       headers: {
         "Content-type": "multipart/form-data",
       },
-    }),
-};
-
-export const spaceFetcher = {
-  post: async (
-    nameSpace: string,
-    imageUrlSpace: string,
-    descriptionSpace: string,
-    siteIdSpace: string,
-    ownerIdSpace: string
-  ) =>
-    await axiosInstance.post<TSpace>("/spaces", {
-      name: nameSpace,
-      imageUrl: imageUrlSpace,
-      description: descriptionSpace,
-      siteId: siteIdSpace,
-      ownerId: ownerIdSpace,
     }),
 };
 

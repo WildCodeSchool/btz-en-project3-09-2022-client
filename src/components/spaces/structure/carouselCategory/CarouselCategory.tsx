@@ -27,13 +27,7 @@ function CarouselCategory({ dataSpace }: IProps) {
     <div className="w-11/12 flex flex-col items-center justify-start space-y-3 py-2 lg:flex-row-reverse lg:px-6 lg:space-y-0 lg:py-0 ml-2">
       <Slider {...settings} className="w-full">
         {categories
-          ?.filter(
-            (category) =>
-              category.name
-                .toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "") !== "general"
-          )
+          ?.filter((category) => !category.isGeneral)
           .map((category) => (
             <ImageCategory key={category.id} category={category} />
           ))}

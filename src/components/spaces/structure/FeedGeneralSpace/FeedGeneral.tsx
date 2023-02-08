@@ -10,13 +10,7 @@ interface IProps {
 
 function FeedGeneral({ dataSpace }: IProps) {
   const getTheGeneralCategory = (array: TCategory[]) => {
-    return array.filter(
-      (category) =>
-        category.name
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "") === "general"
-    )[0];
+    return array.filter((category) => category.isGeneral)[0];
   };
 
   const generalCategory = getTheGeneralCategory(

@@ -6,6 +6,7 @@ import MyProfileLeftBar from "../Shared/MyProfileLeftBar";
 import ListMembersSpace from "./ListMembersSpace";
 import NavigationSpaces from "../../spaces/structure/NavigationSpaces";
 import TitleSection from "../../structureShared/TitleSection";
+import Loader from "../../structureShared/Loader";
 
 function LeftBarSpace() {
   const router = useRouter();
@@ -19,7 +20,7 @@ function LeftBarSpace() {
     spaceFetcher.getOneWithCategories(spaceId as string)
   );
 
-  if (isLoadingSpace || !dataSpace) return <div>En chargement</div>;
+  if (isLoadingSpace || !dataSpace) return <Loader />;
   if (errorSpace) return <div>Une erreur s&apos;est produite</div>;
 
   return (

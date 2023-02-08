@@ -23,7 +23,7 @@ export default function Layout({ children, sideBar }: IProps) {
   }
 
   return (
-    <div className="w-screen items-center flex-col">
+    <div className="grow items-center flex-col">
       <Navbar />
       <div className="flex justify-between w-full min-h-screen">
         {sideBar && sideBar}
