@@ -18,10 +18,12 @@ function Footer() {
     useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useOnClickOutside(ref, () => setOpenEspace(false));
-  useOnClickOutside(ref, () => setOpenProfil(false));
-  useOnClickOutside(ref, () => setOpenCategorieDescription(false));
-  useOnClickOutside(ref, () => setOpenEspaceDescription(false));
+  useOnClickOutside(ref, () => {
+    setOpenEspace(false);
+    setOpenProfil(false);
+    setOpenCategorieDescription(false);
+    setOpenEspaceDescription(false);
+  });
 
   const handleClickEspace = () => {
     if (openProfil) {
@@ -75,9 +77,9 @@ function Footer() {
   };
 
   return (
-    <div>
+    <div ref={ref} className="w-full sticky bottom-0">
       <div className="w-full block md:hidden">
-        <div ref={ref}>
+        <div>
           <AnimatePresence>
             {openEspace && (
               <motion.div
@@ -87,12 +89,12 @@ function Footer() {
                 transition={{ duration: 0.2 }}
                 className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
               >
-                <Espace />
+                <Espace setOpenEspace={setOpenEspace} />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-        <div ref={ref}>
+        <div>
           <AnimatePresence>
             {openProfil && (
               <motion.div
@@ -102,12 +104,12 @@ function Footer() {
                 transition={{ duration: 0.2 }}
                 className="bg-background-enedis"
               >
-                <Profil />
+                <Profil setOpenProfil={setOpenProfil} />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-        <div ref={ref}>
+        <div>
           <AnimatePresence>
             {openOrCloseEspaceDescription && (
               <motion.div
@@ -117,12 +119,14 @@ function Footer() {
                 transition={{ duration: 0.2 }}
                 className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
               >
-                <EspaceDescription />
+                <EspaceDescription
+                  setOpenEspaceDescription={setOpenEspaceDescription}
+                />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-        <div ref={ref}>
+        <div>
           <AnimatePresence>
             {openCategorieDescription && (
               <motion.div

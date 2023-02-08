@@ -6,7 +6,11 @@ import { TSpace } from "../../../types/main";
 import { spaceFetcher } from "../../../utils/fetcher";
 import LoaderFocus from "../../structureShared/LoaderFocus";
 
-function Espace() {
+interface IProps {
+  setOpenEspace: (value: boolean) => void;
+}
+
+function Espace({ setOpenEspace }: IProps) {
   const { user } = useAuth();
   const { data, isLoading } = useQuery(
     ["spaces", `user-${user?.id}`],
@@ -28,17 +32,22 @@ function Espace() {
       <div className="bg-blue-enedis h-1 w-2/3 rounded-full mb-3" />
       <div className="w-full flex-x-center space-y-2 max-h-56 overflow-auto ">
         {data.map((space: TSpace) => (
-          <Link href={`/space/${space.id}`} key={space.id} className="w-2/3">
+          <Link
+            href={`/space/${space.id}`}
+            onClick={() => setOpenEspace(false)}
+            key={space.id}
+            className="w-2/3"
+          >
             <div>
               <div className="w-full relative z-10">
                 <img
                   src={space.imageUrl || "/site_image.png"}
                   alt={`Logo ${space.name}`}
-                  className="rounded-lg object-center h-16 w-full rounded-select-mobile"
+                  className="rounded-lg object-center w-full h-16 rounded-select-mobile"
                 />
                 <div className="bg-blue-enedis h-16 w-full absolute z-20 top-0 left-0 mix-blend-hard-light opacity-[0.85] rounded-select-mobile">
                   {" "}
-                  <p className="absolute centered-absolute text-white-enedis font-bold text-sm ">
+                  <p className="absolute centered-absolute text-white-enedis font-bold text-sm">
                     {space.name}
                   </p>
                 </div>
