@@ -33,7 +33,7 @@ function PostDisplayNewsCategory({ oneCategory }: IProps) {
 
   if (dataLatestPostByCategory.length !== 1) {
     return (
-      <div className="w-full h-full p-5 flex-x-center mt-20 text-mob-sm(multiuse)">
+      <div className="w-full h-full p-5 flex-all-center min-h-[200px] text-mob-sm(multiuse)">
         Aucune publication dans cette categorie :
         <br />
         <span className="text-mob-lg(multiuse) font-bold">

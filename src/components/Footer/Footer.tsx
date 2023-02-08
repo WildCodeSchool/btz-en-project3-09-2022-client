@@ -132,7 +132,9 @@ function Footer() {
                 transition={{ duration: 0.3 }}
                 className="h-2/3 bg-background-enedis z-50 flex flex-col justify-center items-center"
               >
-                <CategorieDescription />
+                <CategorieDescription
+                  setOpenCategorieDescription={setOpenCategorieDescription}
+                />
               </motion.div>
             )}
           </AnimatePresence>

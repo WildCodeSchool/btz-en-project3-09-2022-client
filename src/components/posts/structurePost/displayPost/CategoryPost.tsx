@@ -5,18 +5,21 @@ interface IProps {
   categoryName: string;
   categoryId: string;
   spaceId: string;
+  isGeneral: boolean;
 }
 
-function CategoryPost({ categoryName, categoryId, spaceId }: IProps) {
+function CategoryPost({
+  categoryName,
+  categoryId,
+  spaceId,
+  isGeneral,
+}: IProps) {
   return (
     <Link
       href={
-        categoryName
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "") === "general"
-          ? `/space/${spaceId}`
-          : `/space/${spaceId}/category/${categoryId}`
+        isGeneral
+          ? `space/${spaceId}`
+          : `space/${spaceId}/category/${categoryId}`
       }
       className="flex-y-center overflow-hidden rounded-full bg-blue-enedis px-3 py-3"
     >

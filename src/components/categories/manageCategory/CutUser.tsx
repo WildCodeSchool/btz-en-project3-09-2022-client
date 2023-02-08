@@ -162,8 +162,9 @@ function CutUser() {
                   ))
                 ) : (
                   <div className="p-4 text-white-enedis text-mob-sm(multiuse)">
-                    Tous les membres de l&apos;espace sont déjà dans cette
-                    catégorie{" "}
+                    Pour le moment, vous êtes seul dans cette catégorie...{" "}
+                    <br />
+                    ajoutez des membres !{" "}
                   </div>
                 )}
               </motion.div>

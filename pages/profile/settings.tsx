@@ -11,7 +11,7 @@ import { teamFetcher, userFetcher } from "../../src/utils/fetcher";
 import Loader from "../../src/components/structureShared/Loader";
 import Layout from "../../src/components/layout/Layout";
 import CTA from "../../src/components/structureShared/CTA";
-import userUpdater from "../../src/utils/updater";
+import { userUpdater } from "../../src/utils/updater";
 
 function Settings() {
   const { user } = useAuth();

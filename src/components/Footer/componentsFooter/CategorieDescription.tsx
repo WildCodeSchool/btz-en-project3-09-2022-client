@@ -4,27 +4,38 @@ import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { categoryFetcher, userFetcher } from "../../../utils/fetcher";
 import AddUser from "./AddUser";
 import { TUser } from "../../../types/main";
 import DeleteUser from "./DeleteUser";
 import { useAuth } from "../../../context/UserContext";
 import LoaderFocus from "../../structureShared/LoaderFocus";
+import { categoryUpdater } from "../../../utils/updater";
 
-function CategorieDescription() {
+interface IProps {
+  setOpenCategorieDescription: (value: boolean) => void;
+}
+
+function CategorieDescription({ setOpenCategorieDescription }: IProps) {
   const router = useRouter();
   const { categoryId } = router.query;
   const { user } = useAuth();
+  const queryClient = useQueryClient();
 
   const [cutUser, setCutUser] = useState(false);
   const [addUser, setAddUser] = useState(false);
 
   const handleDeleteCategory = async () => {
-    // route delete category à ajouter avec await, setTimeout à supprimer
+    const categoryDisabled = await categoryUpdater.disable(
+      categoryId as string
+    );
     // eslint-disable-next-line no-alert
-    alert("La catégorie a bien été supprimée");
+    alert(`La catégorie ${categoryDisabled.name} a bien été supprimée`);
+    setOpenCategorieDescription(false);
     router.push("/");
+    queryClient.invalidateQueries(["getLatestPostBySpaceWithImage"]);
+    queryClient.invalidateQueries([categoryDisabled.id]);
   };
 
   const { data, isLoading } = useQuery(["category", categoryId], () =>
@@ -54,8 +65,7 @@ function CategorieDescription() {
           <div className="bg-blue-enedis h-1 top-0 rounded-full w-full" />
 
           <p className="text-mob-xs(textPost) m-3 w-full text-left mb-5">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore ea
-            aperiam, quas dicta repellendus quaerat earum in minus cumque?
+            {data.description}
           </p>
           {user && user.id === data.ownerId && (
             <button

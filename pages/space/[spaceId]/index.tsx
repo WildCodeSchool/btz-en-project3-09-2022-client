@@ -36,11 +36,7 @@ const Espace: NextPageWithLayout = () => {
   const checkIfCategoryExceptGeneral = () => {
     if (
       categories!.length === 0 ||
-      (categories!.length === 1 &&
-        categories![0]!.name
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "") === "general")
+      (categories!.length === 1 && categories![0]!.isGeneral)
     ) {
       return true;
     }

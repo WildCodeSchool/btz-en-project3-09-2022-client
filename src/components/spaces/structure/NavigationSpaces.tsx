@@ -31,7 +31,11 @@ function NavigationSpaces() {
   return (
     <div className="w-full flex-x-center space-y-2 overflow-auto">
       {dataSpaces.map((space: TSpace) => (
-        <Link key={space.id} href={`${space.id}`} className="h-full w-full">
+        <Link
+          key={space.id}
+          href={`/space/${space.id}`}
+          className="h-full w-full"
+        >
           <div className="w-full relative z-0 h-[70px] rounded-app-bloc overflow-hidden">
             <div className="w-full h-full bg-blue-enedis mix-blend-hard-light opacity-[85%] relative z-20" />
             <Image

@@ -11,6 +11,7 @@ import { useAuth } from "../../../context/UserContext";
 import { spaceFetcher } from "../../../utils/fetcher";
 import Loader from "../../structureShared/Loader";
 import { useModalContextSpace } from "../../../context/ModalContextCategory";
+import DescriptionCategory from "./DescriptionCategory";
 
 function CreateCategory() {
   const { user } = useAuth();
@@ -20,6 +21,7 @@ function CreateCategory() {
   const modalContext = useModalContextSpace();
 
   const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
   const [triedToSubmit, setTriedToSubmit] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -29,7 +31,7 @@ function CreateCategory() {
   }
 
   const handleSubmit = async () => {
-    if (!title || !image) {
+    if (!title || !description || !image) {
       return setTriedToSubmit("missing");
     }
     if (
@@ -49,6 +51,7 @@ function CreateCategory() {
     formData.append("spaceId", spaceId as string);
     formData.append("ownerId", user.id);
     formData.append("name", title);
+    formData.append("description", description);
     await categoryFetcher.post(formData);
     queryClient.invalidateQueries(["theSpaceWithCategories", spaceId]);
     return setSubmitted(true);
@@ -86,6 +89,7 @@ function CreateCategory() {
               </div>
             </div>
           </div>
+          <DescriptionCategory setDescription={setDescription} />
           <UploadArea
             handleSubmit={handleSubmit}
             image={image}
@@ -94,7 +98,8 @@ function CreateCategory() {
           {triedToSubmit === "missing" && (
             <p className="w-full text-mob-sm(multiuse) mt-4 font-regular text-redError-enedis">
               <span className="font-bold">ATTENTION :</span> vérifiez que votre
-              catégorie a au moins un titre et une photo.
+              catégorie a au moins un titre, une courte description et une
+              photo.
             </p>
           )}
           {triedToSubmit === "noGeneral" && (

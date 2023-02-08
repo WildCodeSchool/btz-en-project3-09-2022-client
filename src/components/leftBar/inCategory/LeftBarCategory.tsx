@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React from "react";
 import { categoryFetcher } from "../../../utils/fetcher";
@@ -14,11 +14,13 @@ import AddUser from "../../categories/manageCategory/AddUser";
 import ModalCutUserInCategory from "../../modal/ModalCutUserInCategory";
 import CutUser from "../../categories/manageCategory/CutUser";
 import LoaderFocus from "../../structureShared/LoaderFocus";
+import { categoryUpdater } from "../../../utils/updater";
 
 function LeftBarCategory() {
   const router = useRouter();
   const { categoryId } = router.query;
   const { user } = useAuth();
+  const queryClient = useQueryClient();
 
   const {
     data: dataCategory,
@@ -31,11 +33,15 @@ function LeftBarCategory() {
   if (isLoadingCategory || !dataCategory) return <LoaderFocus />;
   if (errorCategory) return <div>Une erreur s&apos;est produite</div>;
 
-  const HandleDeleteCategory = async () => {
-    // route delete category à ajouter avec await, setTimeout à supprimer
+  const handleDeleteCategory = async () => {
+    const categoryDisabled = await categoryUpdater.disable(
+      categoryId as string
+    );
     // eslint-disable-next-line no-alert
-    alert("La catégorie a bien été supprimée");
+    alert(`La catégorie ${categoryDisabled.name} a bien été supprimée`);
     router.push("/");
+    queryClient.invalidateQueries(["getLatestPostBySpaceWithImage"]);
+    queryClient.invalidateQueries([categoryDisabled.id]);
   };
 
   return (
@@ -45,13 +51,11 @@ function LeftBarCategory() {
         <div className="mb-10">
           <TitleSection titleText="Description de la catégorie" />
           <p className="text-desk-sm(textPost+multiuse) text-left">
-            {/* {dataSpace.description} */}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-            tenetur ipsa. Accusamus blanditiis, enim iusto odit id expedita qui.
+            {dataCategory.description}
           </p>
           {user && user.id === dataCategory.ownerId && (
             <button
-              onClick={HandleDeleteCategory}
+              onClick={handleDeleteCategory}
               type="button"
               className="border-[1px] border-redError-enedis text-redError-enedis rounded-full px-5 h-10 w-fit text-mob-sm(multiuse) font-regular mt-5"
             >
