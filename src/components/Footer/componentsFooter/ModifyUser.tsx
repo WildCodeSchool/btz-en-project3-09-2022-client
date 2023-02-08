@@ -5,6 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { userFetcher } from "../../../utils/fetcher";
 import { TUser } from "../../../types/main";
 import PermissionsRadio from "./PermissionsRadio";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 const inputName = ["read", "write", "publish", "handle"];
 
@@ -22,7 +23,7 @@ function ModifyUser({ HandleOpenModifyUser }: HandleOpenModifyUser) {
   } = useQuery(["getAllUser"], () => userFetcher.getAll());
 
   if (isLoading || !Alluser) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
   if (error) {
     return <p>Sorry something went wrong</p>;

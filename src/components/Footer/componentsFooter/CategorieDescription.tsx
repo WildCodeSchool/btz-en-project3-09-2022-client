@@ -10,6 +10,7 @@ import AddUser from "./AddUser";
 import { TUser } from "../../../types/main";
 import DeleteUser from "./DeleteUser";
 import { useAuth } from "../../../context/UserContext";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function CategorieDescription() {
   const router = useRouter();
@@ -36,11 +37,11 @@ function CategorieDescription() {
   );
 
   if (isLoading || !data) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
 
   if (membersLoading || !members) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
   return (
     <div className="bg-background-enedis flex-all-center w-full">

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { TCategory } from "../../../../types/main";
 import { postFetcher } from "../../../../utils/fetcher";
+import LoaderFocus from "../../../structureShared/LoaderFocus";
 import ProfilePic from "../../../structureShared/ProfilePic";
 import DatePost from "./DatePost";
 import ImagePost from "./ImagePost";
@@ -24,7 +25,7 @@ function PostDisplayNewsCategory({ oneCategory }: IProps) {
   );
 
   if (isLoadingLatestPostByCategory || !dataLatestPostByCategory) {
-    return <div>En chargement</div>;
+    return <LoaderFocus />;
   }
   if (errorLatestPostByCategory) {
     return <div>Une erreur s&apos;est produite</div>;
@@ -50,7 +51,6 @@ function PostDisplayNewsCategory({ oneCategory }: IProps) {
         <ProfilePic
           firstname={latestPost.author!.firstname}
           lastname={latestPost.author!.lastname}
-          imageUrl={latestPost.author!.imageUrl}
           id={latestPost.author!.id}
         />
         <NameAuthorPost

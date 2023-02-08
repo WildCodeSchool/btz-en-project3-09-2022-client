@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../../context/UserContext";
 import { TCategory, TUser } from "../../../types/main";
 import { userFetcher } from "../../../utils/fetcher";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 import TextTeamMemberCapsuleBlueStroked from "../Shared/TextTeamMemberCapsuleBlueStroked";
 
 interface IProps {
@@ -28,7 +29,7 @@ function ListMembersCategory({ dataCategory }: IProps) {
   );
 
   if (isLoadingCategoryMembers || !dataCategoryMembers || !user)
-    return <div>En chargement</div>;
+    return <LoaderFocus />;
   if (errorCategoryMembers) return <div>Une erreur s&apos;est produite</div>;
 
   return (

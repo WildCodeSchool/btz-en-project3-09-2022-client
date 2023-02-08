@@ -11,24 +11,25 @@ type Props = {
 export default function Comments({ comment }: Props) {
   return (
     <div className="flex mt-4">
-      <div className=" w-1/6 flex flex-col items-center">
+      <div className=" w-1/6 flex flex-col items-center space-y-2 mt-2">
         <ProfilePicMini
           id={comment.authorId}
           firstname={comment.author?.firstname || "firstname"}
           lastname={comment.author?.lastname || "lastname"}
-          imageUrl={comment.author?.imageUrl || "picture/profile"}
           key={comment.authorId}
         />
         <DatePost datePost={comment.createdAt} key={comment.id} />
       </div>
-      <div>
-        <NameAuthorPost
-          id={comment.authorId}
-          firstname={comment.author?.firstname || "firstname"}
-          lastname={comment.author?.lastname || "lastname"}
-          key={comment.id}
-        />
-        <p className="bg-white-enedis rounded-app-bloc p-4 ml-8">
+      <div className="flex flex-col items-start ml-2">
+        <div className="w-fit">
+          <NameAuthorPost
+            id={comment.authorId}
+            firstname={comment.author?.firstname || "firstname"}
+            lastname={comment.author?.lastname || "lastname"}
+            key={comment.id}
+          />
+        </div>
+        <p className="bg-white-enedis rounded-app-bloc text-desk-sm(textPost+multiuse) px-6 py-5 text-left">
           {comment.content}
         </p>
       </div>

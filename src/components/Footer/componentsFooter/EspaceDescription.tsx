@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { spaceFetcher, userFetcher } from "../../../utils/fetcher";
 import { TUser } from "../../../types/main";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function EspaceDescription() {
   const router = useRouter();
@@ -22,11 +23,11 @@ function EspaceDescription() {
   );
 
   if (isLoading || !data) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
 
   if (membersLoading || !members) {
-    return <h2>Loading...</h2>;
+    return <LoaderFocus />;
   }
   return (
     <div className="bg-background-enedis flex-all-center w-full py-4">

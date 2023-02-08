@@ -13,6 +13,7 @@ import CTAAddForCategoryModals from "../../structureShared/CTAAddForCategoryModa
 import AddUser from "../../categories/manageCategory/AddUser";
 import ModalCutUserInCategory from "../../modal/ModalCutUserInCategory";
 import CutUser from "../../categories/manageCategory/CutUser";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function LeftBarCategory() {
   const router = useRouter();
@@ -27,7 +28,7 @@ function LeftBarCategory() {
     categoryFetcher.getOneWithSpace(categoryId as string)
   );
 
-  if (isLoadingCategory || !dataCategory) return <div>En chargement</div>;
+  if (isLoadingCategory || !dataCategory) return <LoaderFocus />;
   if (errorCategory) return <div>Une erreur s&apos;est produite</div>;
 
   const HandleDeleteCategory = async () => {

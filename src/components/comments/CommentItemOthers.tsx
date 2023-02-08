@@ -16,7 +16,6 @@ function CommentItemOthers({ comment }: IProps) {
         <ProfilePic
           firstname={comment.author!.firstname}
           lastname={comment.author!.lastname}
-          imageUrl={comment.author!.imageUrl}
           id={comment.author!.id}
         />
         <DatePost datePost={comment.createdAt} noMarginLeft />
