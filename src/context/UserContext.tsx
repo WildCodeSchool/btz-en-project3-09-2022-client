@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable @typescript-eslint/dot-notation */
+import { isAxiosError } from "axios";
 import { useRouter } from "next/router";
 import { createContext, useContext, useEffect, useState } from "react";
 import Loader from "../components/structureShared/Loader";
@@ -28,6 +29,7 @@ interface IUserContext {
   isAuth: boolean;
   signIn: (credentials: TCredentials) => Promise<void>;
   signOut: () => Promise<void>;
+  error: string | null;
 }
 
 type TUserContextProviderProps = {
@@ -43,6 +45,7 @@ type AuthState = {
   user: TUser | null;
   isAuth: boolean;
   isLoading: boolean;
+  error: null | string;
 };
 
 const UserContext = createContext<IUserContext | null>(null);
@@ -56,8 +59,10 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
     user: null,
     isAuth: false,
     isLoading: true,
+    error: null,
   });
 
+  // eslint-disable-next-line consistent-return
   const signIn = async ({ email, password }: TCredentials) => {
     setAuthState((state) => ({
       ...state,
@@ -68,11 +73,13 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         email,
         password,
       });
+
       const token = headers["authorization"];
       axiosInstance.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("token", token || "");
 
-      setAuthState(() => ({
+      setAuthState((state) => ({
+        ...state,
         isAuth: true,
         user: data,
         isLoading: false,
@@ -80,8 +87,17 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
 
       router.push("/");
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      if (isAxiosError(error)) {
+        if (error.response) {
+          const { message } = error.response.data;
+
+          setAuthState((state) => ({
+            ...state,
+            error: message,
+            isLoading: false,
+          }));
+        }
+      }
     }
   };
 
@@ -90,6 +106,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
       user: null,
       isAuth: false,
       isLoading: false,
+      error: null,
     });
     localStorage.removeItem("token");
     axiosInstance.defaults.headers.common["Authorization"] = "";
@@ -112,6 +129,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
           isAuth: true,
           user: res.data,
           isLoading: false,
+          error: null,
         });
       })
       .catch(() => {
@@ -137,6 +155,7 @@ function UserContextProvider({ children }: TUserContextProviderProps) {
         isAuth: authState.isAuth,
         signIn,
         signOut,
+        error: authState.error,
       }}
     >
       {authState.isLoading ? <Loader /> : children}
