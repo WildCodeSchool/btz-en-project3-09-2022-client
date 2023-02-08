@@ -30,6 +30,9 @@ function LeftBarCategory() {
     categoryFetcher.getOneWithSpace(categoryId as string)
   );
 
+  if (!user) {
+    return <div>Vous devez vous identifier d&apos;abord</div>;
+  }
   if (isLoadingCategory || !dataCategory) return <LoaderFocus />;
   if (errorCategory) return <div>Une erreur s&apos;est produite</div>;
 
@@ -66,16 +69,19 @@ function LeftBarCategory() {
         <div className="mb-10">
           <TitleSection titleText="Membres de la catégorie" />
           <ListMembersCategory dataCategory={dataCategory} />
-          <div className="flex items-center justify-center mt-5 space-x-2">
-            <ModalAddUserInCategory
-              Content={AddUser}
-              Opener={CTAAddForCategoryModals}
-            />
-            <ModalCutUserInCategory
-              Content={CutUser}
-              Opener={CTACutForCategoryModals}
-            />
-          </div>
+
+          {user?.id === dataCategory.ownerId && (
+            <div className="flex items-center justify-center mt-5 space-x-2">
+              <ModalAddUserInCategory
+                Content={AddUser}
+                Opener={CTAAddForCategoryModals}
+              />
+              <ModalCutUserInCategory
+                Content={CutUser}
+                Opener={CTACutForCategoryModals}
+              />
+            </div>
+          )}
         </div>
         <div className="mb-10">
           <TitleSection titleText="Mes espaces" />

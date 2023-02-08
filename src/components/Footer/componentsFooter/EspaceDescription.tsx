@@ -9,7 +9,11 @@ import { spaceFetcher, userFetcher } from "../../../utils/fetcher";
 import { TUser } from "../../../types/main";
 import LoaderFocus from "../../structureShared/LoaderFocus";
 
-function EspaceDescription() {
+interface IProps {
+  setOpenEspaceDescription: (value: boolean) => void;
+}
+
+function EspaceDescription({ setOpenEspaceDescription }: IProps) {
   const router = useRouter();
   const { spaceId } = router.query;
 
@@ -63,7 +67,10 @@ function EspaceDescription() {
                     className="object-cover"
                   />
                 </div>
-                <Link href={`/profile/${member.id}`}>
+                <Link
+                  href={`/profile/${member.id}`}
+                  onClick={() => setOpenEspaceDescription(false)}
+                >
                   <div className="w-fit  rounded-full border border-blue-enedis px-4 py-[6px]">
                     <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
                       {member.firstname} {member.lastname.toUpperCase()}

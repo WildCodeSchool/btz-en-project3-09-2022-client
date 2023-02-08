@@ -8,7 +8,11 @@ import { teamFetcher, userFetcher } from "../../../utils/fetcher";
 import { TUser } from "../../../types/main";
 import LoaderFocus from "../../structureShared/LoaderFocus";
 
-function Profil() {
+interface IProps {
+  setOpenProfil: (value: boolean) => void;
+}
+
+function Profil({ setOpenProfil }: IProps) {
   const { user } = useAuth();
 
   const { data, isLoading } = useQuery(
@@ -53,7 +57,10 @@ function Profil() {
               Equipe {data?.name}
             </p>
           </div>
-          <Link href="/profile">
+          <Link
+            href={`/profile/${user?.id}`}
+            onClick={() => setOpenProfil(false)}
+          >
             <button
               type="button"
               className="text-white-enedis bg-green-enedis rounded-full px-2 w-32 py-1 text-mob-md(CTA+input) font-bold"
@@ -99,7 +106,10 @@ function Profil() {
                         className="object-cover"
                       />
                     </div>
-                    <Link href={`/profile/${member.id}`}>
+                    <Link
+                      href={`/profile/${member.id}`}
+                      onClick={() => setOpenProfil(false)}
+                    >
                       <div className="w-fit max-w-[130px]  rounded-full border border-blue-enedis px-4 py-[6px]">
                         <p className="text-mob-xs(textPost) truncate scrollbar-hide hover:text-clip hover:overflow-x-visible md:text-desk-sm(textPost+multiuse)">
                           {member.firstname} {member.lastname.toUpperCase()}
