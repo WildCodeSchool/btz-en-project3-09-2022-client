@@ -57,7 +57,7 @@ function Navbar() {
       <Modal isShowing={isShowing} hide={toggle}>
         <div className="flex-x-center space-y-3" ref={ref}>
           {menu.map((item) => (
-            <Link href={item.link}>
+            <Link href={item.link} key={item.link}>
               <button
                 type="button"
                 className={`text-white-enedis ${
