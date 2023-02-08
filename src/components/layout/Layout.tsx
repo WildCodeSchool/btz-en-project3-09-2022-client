@@ -29,9 +29,7 @@ export default function Layout({ children, sideBar }: IProps) {
         {sideBar && sideBar}
         {children}
       </div>
-      <div className="w-full sticky bottom-0">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
