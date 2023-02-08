@@ -68,6 +68,7 @@ export default function PostContent({ post }: Props) {
               categoryName={`${post.category?.name}`}
               categoryId={post.categoryId}
               spaceId={category.spaceId}
+              isGeneral={category.isGeneral}
             />
           </div>
         </div>
