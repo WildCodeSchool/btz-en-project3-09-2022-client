@@ -58,7 +58,7 @@ function SearchBar({ width }: TProps) {
       {width < 768 ? (
         <div className="relative w-2/3 left-16" ref={ref}>
           <input
-            type="select"
+            type="text"
             className="w-10/12 xs:w-full h-[45px] rounded-full text-center placeholder:text-desk-sm(textPost+multiuse) xs:mr-7"
             placeholder="Rechercher..."
             style={{ outline: "none" }}
@@ -66,7 +66,7 @@ function SearchBar({ width }: TProps) {
             onClick={handleUsersList}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[280px] sm:max-w-[320px] rounded-b-app-bloc px-4 z-50 shadow-xl  h-[410px] overflow-y-scroll overflow-x-hidden">
+            <div className="flex flex-col absolute top-16 -right-5 py-6 bg-blue-enedis w-[300%] max-w-[280px] sm:max-w-[320px] rounded-b-app-bloc px-4 z-50 shadow-xl  h-[410px] overflow-y-scroll scrollbar-hide overflow-x-hidden">
               {data.length > 0 &&
                 data
                   .filter(
@@ -119,6 +119,7 @@ function SearchBar({ width }: TProps) {
           ref={ref}
         >
           <input
+            type="text"
             className="w-[86%] h-[40px] rounded-full text-center placeholder:text-desk-sm(textPost+multiuse) px-4 truncate"
             placeholder="Rechercher sur Enedis Share..."
             onChange={(e) => setSelectedUser(e.target.value)}
@@ -126,7 +127,7 @@ function SearchBar({ width }: TProps) {
             style={{ outline: "none" }}
           />
           {isUsersListOpen && (
-            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-[130%] px-6 rounded-b-app-bloc z-50  shadow-xl  h-[410px] overflow-y-scroll overflow-x-hidden">
+            <div className="flex flex-col absolute top-16 py-6 bg-blue-enedis w-[130%] px-6 rounded-b-app-bloc z-50  shadow-xl  h-[410px] overflow-y-scroll scrollbar-hide overflow-x-hidden">
               {data.length > 0 &&
                 data
                   .filter(

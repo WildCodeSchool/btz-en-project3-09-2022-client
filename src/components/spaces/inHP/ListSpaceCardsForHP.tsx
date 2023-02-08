@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useAuth } from "../../../context/UserContext";
 import { spaceFetcher } from "../../../utils/fetcher";
+import Loader from "../../structureShared/Loader";
 import SpaceCardForHP from "./SpaceCardForHP";
 
 function ListSpaceCardsForHP() {
@@ -16,8 +17,7 @@ function ListSpaceCardsForHP() {
     () => user && spaceFetcher.getAllWithCategories()
   );
 
-  if (isLoadingSpaces || !dataSpacesByUserAuth || !user)
-    return <div>En chargement</div>;
+  if (isLoadingSpaces || !dataSpacesByUserAuth || !user) return <Loader />;
   if (errorSpaces) return <div>Une erreur s&apos;est produite</div>;
 
   return (

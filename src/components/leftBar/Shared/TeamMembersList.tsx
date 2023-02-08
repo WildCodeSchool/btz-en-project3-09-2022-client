@@ -4,6 +4,7 @@ import { useAuth } from "../../../context/UserContext";
 import { TUser } from "../../../types/main";
 import { userFetcher } from "../../../utils/fetcher";
 import TextTeamMemberCapsuleBlueStroked from "./TextTeamMemberCapsuleBlueStroked";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function TeamMembersList() {
   const [isAllMembers, setIsAllMembers] = useState(false);
@@ -22,7 +23,7 @@ function TeamMembersList() {
     () => user && userFetcher.getAllByTeam(user.teamId)
   );
 
-  if (isLoading || !dataUserByTeam || !user) return <div>En chargement</div>;
+  if (isLoading || !dataUserByTeam || !user) return <LoaderFocus />;
   if (error) return <div>Une erreur s&apos;est produite</div>;
 
   return (

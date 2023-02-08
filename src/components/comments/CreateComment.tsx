@@ -60,7 +60,6 @@ function CreateComment({ onSubmit, postID }: IProps) {
           <ProfilePic
             firstname={user.firstname}
             lastname={user.lastname}
-            imageUrl={user.imageUrl}
             id={user.id}
           />
         </div>

@@ -77,7 +77,6 @@ function CreateCategory() {
               <ProfilePic
                 firstname={user.firstname}
                 lastname={user.lastname}
-                imageUrl={user.imageUrl}
                 id={user.id}
               />
               <div className="w-fit min-w-[30%] flex-y-center overflow-hidden rounded-full border bg-blue-enedis px-4 py-3">

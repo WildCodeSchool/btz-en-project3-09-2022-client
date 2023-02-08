@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-console */
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useWindowSize } from "usehooks-ts";
 import { useAuth } from "../../src/context/UserContext";
 import { formatDate } from "../../src/utils/constants";
-import { teamFetcher } from "../../src/utils/fetcher";
+import { teamFetcher, userFetcher } from "../../src/utils/fetcher";
 import Loader from "../../src/components/structureShared/Loader";
 import Layout from "../../src/components/layout/Layout";
+import CTA from "../../src/components/structureShared/CTA";
+import { userUpdater } from "../../src/utils/updater";
 
 function Settings() {
   const { user } = useAuth();
@@ -16,6 +19,10 @@ function Settings() {
   // states
   const [showBirthday, setShowBirthday] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [infoChanged, setInfoChanged] = useState(false);
+  const queryClient = useQueryClient();
 
   const handleShowBirthday = () => {
     setShowBirthday(!showBirthday);
@@ -27,37 +34,74 @@ function Settings() {
 
   // fetch user connected data includes team
 
+  if (!user) {
+    return <div> Vous devez vous connecter pour y accéder</div>;
+  }
+
   const { data: team, isLoading } = useQuery(
     ["teams", `user-${user?.teamId}`],
     () => teamFetcher.getOne(`${user?.teamId}`)
   );
 
-  if (!user || isLoading) {
+  const { data: dataFreshUser, isLoading: isLoadingProfilePic } = useQuery(
+    ["freshProfilePic", user.id],
+    () => userFetcher.getOne(user.id)
+  );
+
+  if (isLoading || isLoadingProfilePic || !dataFreshUser) {
     return <Loader />;
   }
+
+  const { imageUrl: freshImageUrl } = dataFreshUser;
+
+  const handleSubmit = async () => {
+    if (!image) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append("profileImage", image as File);
+    await userUpdater.updateProfilePic(user.id, formData);
+    setImage(null);
+    setInfoChanged(true);
+    queryClient.invalidateQueries(["freshProfilePic", user.id]);
+  };
 
   return (
     <div className="lg:bg-white-enedis">
       {width > 640 ? (
-        <div className="w-screen">
-          <div className="bg-background-enedis w-[90%] lg:w-2/3  mt-5 pb-10 m-auto">
+        <div className="w-screen min-h-screen pb-10">
+          <div className="bg-background-enedis w-[90%] lg:w-2/3 mt-5 pb-10 mx-auto">
             <div className="flex flex-col items-center pt-6">
               <h3 className="mb-2 text-desk-xl(section)">Mon profil</h3>
               <hr className="h-[6px] w-1/4 rounded-full bg-blue-enedis mb-4" />
             </div>
-            <div className="flex w-[90%] m-auto justify-around mt-5 lg:w-1/2">
-              <div className="flex">
+            <div className="flex w-[90%] m-auto justify-around mt-5 mb-5 lg:w-2/3">
+              <div className="flex-x-center">
                 <img
-                  src={user?.imageUrl || "/profile_image.svg"}
+                  src={
+                    (image ? imagePreview : freshImageUrl) ||
+                    "/profile_image.svg"
+                  }
                   alt="profil"
-                  className="w-[165px] h-[165px] rounded-[50%] my-[5%] object-cover"
+                  className="w-[165px] h-[165px] rounded-[50%] mt-[5%] -mb-3 object-cover"
                 />
-                <button
-                  type="button"
-                  className=" absolute top-96 -mt-5  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis text-desk-lg(CTA+input)"
+                <form
+                  encType="multipart/form-data"
+                  onSubmit={handleSubmit}
+                  className={`w-fit h-fit max-w-[180px] relative ${
+                    image && "grayscale"
+                  }`}
                 >
-                  Changer ma photo de profil
-                </button>
+                  <CTA action={() => {}} text="Changer ma photo de profil" />
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      setImage(e.target.files![0]!);
+                      setImagePreview(URL.createObjectURL(e.target.files![0]!));
+                    }}
+                    className="absolute centered-absolute w-full h-full opacity-0 hover:cursor-pointer"
+                  />
+                </form>
               </div>
               <div className=" space-y-3  w-1/2">
                 <p className="flex items-center border border-blue-enedis rounded-full h-[32px] cursor-not-allowed text-desk-lg(CTA+input) w-fit px-4">
@@ -158,7 +202,7 @@ function Settings() {
               {/*  */}
 
               <div className="flex flex-col w-1/2 items-center">
-                <div className="w-full flex flex-col items-center pt-4 pb-4 ">
+                <div className="w-full flex flex-col items-center pt-6 pb-4 ">
                   <h3 className="mb-2 text-desk-xl(section)">Mon équipe</h3>
                   <hr className="h-[6px] w-1/2 rounded-full bg-blue-enedis" />
                 </div>
@@ -178,12 +222,26 @@ function Settings() {
               </div>
             </div>
           </div>
-          <button
-            type="button"
-            className="mt-4 text-center px-2 w-1/3 rounded-full h-[35px] bg-green-enedis text-white-enedis text-desk-lg(CTA+input) "
-          >
-            J&apos;enregistre les modifications
-          </button>
+          {infoChanged ? (
+            <div className="flex justify-center space-x-5 mt-5">
+              <div className="h-16 w-16 flex-all-center rounded-full bg-green-enedis text-mob-4xl(welcomeConnect) text-white-enedis">
+                ✓
+              </div>
+              <p className="text-mob-lg(multiuse) mt-6">
+                La photo a bien été changée !
+              </p>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className={`mt-4 text-center px-5 py-3 w-fit rounded-full h-fit bg-green-enedis text-white-enedis text-desk-lg(CTA+input) ${
+                !image && "grayscale"
+              }`}
+            >
+              J&apos;enregistre les modifications
+            </button>
+          )}
         </div>
       ) : (
         <div className="flex flex-col items-center pb-8">
@@ -191,20 +249,38 @@ function Settings() {
             <div className="flex flex-col items-center pt-6">
               <h3 className="mb-2">Mon profil</h3>
               <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis mb-4" />
-              <div className="flex">
+              <div className="flex items-center">
                 <img
-                  src={user?.imageUrl || "/profile_image.svg"}
+                  src={
+                    (image ? imagePreview : freshImageUrl) ||
+                    "/profile_image.svg"
+                  }
                   alt="profil"
-                  className="w-[165px] h-[165px] rounded-[50%] my-[5%] object-cover"
+                  className="w-[150px] h-[150px] rounded-[50%] my-[5%] object-cover"
                 />
-                <button
-                  type="button"
-                  className=" absolute top-80  text-center px-2  w-[165px] rounded-full h-[53px] bg-green-enedis text-white-enedis"
+                <form
+                  encType="multipart/form-data"
+                  onSubmit={handleSubmit}
+                  className={`w-fit h-fit max-w-[180px] flex-all-center  ${
+                    image && "grayscale"
+                  }`}
                 >
-                  Changer <br /> ma photo de profil
-                </button>
+                  <div className="w-[85%] h-full relative">
+                    <CTA action={() => {}} text="Changer ma photo de profil" />
+                    <input
+                      type="file"
+                      onChange={(e) => {
+                        setImage(e.target.files![0]!);
+                        setImagePreview(
+                          URL.createObjectURL(e.target.files![0]!)
+                        );
+                      }}
+                      className="absolute centered-absolute w-full h-full opacity-0 hover:cursor-pointer"
+                    />
+                  </div>
+                </form>
               </div>
-              <div className="w-full  flex flex-col  items-center  mt-14 space-y-3">
+              <div className="w-full  flex flex-col  items-center  mt-8 space-y-3">
                 <div className="space-y-3 w-fit max-w-full">
                   <p className="flex items-center  border border-blue-enedis rounded-full  h-[32px] cursor-not-allowed w-fit px-4">
                     <Image
@@ -295,7 +371,7 @@ function Settings() {
                   et 1 caractère spécial.
                 </p>
               </div>
-              <div className="w-full flex flex-col items-center pt-4 pb-4">
+              <div className="w-full flex flex-col items-center pt-8 pb-4">
                 <h3 className="mb-2">Mon équipe</h3>
                 <hr className="h-[6px] w-2/3 rounded-full bg-blue-enedis" />
               </div>
@@ -314,12 +390,26 @@ function Settings() {
               </p>
             </div>
           </div>
-          <button
-            type="button"
-            className="mt-4 text-center px-2 w-5/6 rounded-full h-[35px] bg-green-enedis text-white-enedis "
-          >
-            J&apos;enregistre les modifications
-          </button>
+          {infoChanged ? (
+            <div className="flex justify-center space-x-5">
+              <div className="h-16 w-16 flex-all-center rounded-full bg-green-enedis text-mob-4xl(welcomeConnect) text-white-enedis">
+                ✓
+              </div>
+              <p className="text-mob-md(CTA+input) mt-6">
+                La photo a bien été changée !
+              </p>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className={`mt-4 text-center px-5 py-3 w-fit rounded-full h-fit bg-green-enedis text-white-enedis text-desk-lg(CTA+input) ${
+                !image && "grayscale"
+              }`}
+            >
+              J&apos;enregistre les modifications
+            </button>
+          )}
         </div>
       )}
     </div>

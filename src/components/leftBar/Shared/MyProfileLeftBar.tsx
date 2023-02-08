@@ -5,13 +5,18 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useWindowSize } from "usehooks-ts";
 import { useAuth } from "../../../context/UserContext";
-import { teamFetcher } from "../../../utils/fetcher";
+import { teamFetcher, userFetcher } from "../../../utils/fetcher";
 import CTA from "../../structureShared/CTA";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 function MyProfileLeftBar() {
   const router = useRouter();
   const { user } = useAuth();
   const { width } = useWindowSize();
+
+  if (!user) {
+    return <div> Vous devez vous connecter pour y accéder</div>;
+  }
 
   const {
     isLoading,
@@ -22,8 +27,16 @@ function MyProfileLeftBar() {
     () => user && teamFetcher.getOne(user.teamId)
   );
 
-  if (isLoading || !myTeam || !user) return <div>En chargement</div>;
+  const { data: dataFreshUser, isLoading: isLoadingProfilePic } = useQuery(
+    ["freshProfilePic", user.id],
+    () => userFetcher.getOne(user.id)
+  );
+
+  if (isLoading || !myTeam || isLoadingProfilePic || !dataFreshUser)
+    return <LoaderFocus />;
   if (error) return <div>Une erreur s&apos;est produite</div>;
+
+  const { imageUrl: freshImageUrl } = dataFreshUser;
 
   return (
     <div className="w-full h-fit mt-[52px] mb-14">
@@ -31,7 +44,7 @@ function MyProfileLeftBar() {
         <div className="w-[70px] h-[70px] min-w-[70px] min-h-[70px] lg:w-[80px] lg:h-[80px] lg:min-w-[80px] lg:min-h-[80px] relative overflow-hidden rounded-full">
           <Image
             alt={`${user.firstname} ${user.lastname.toUpperCase()}`}
-            src={user.imageUrl || "/profile_image.svg"}
+            src={freshImageUrl || "/profile_image.svg"}
             fill
             className="object-cover"
           />

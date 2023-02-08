@@ -1,15 +1,26 @@
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { userFetcher } from "../../../utils/fetcher";
+import LoaderFocus from "../../structureShared/LoaderFocus";
 
 interface IProps {
   firstname: string;
   lastname: string;
-  imageUrl: string;
   id: string;
 }
 
-function ProfilePic({ firstname, lastname, imageUrl, id }: IProps) {
+function ProfilePic({ firstname, lastname, id }: IProps) {
+  const { data: dataFreshUser, isLoading: isLoadingProfilePic } = useQuery(
+    ["freshProfilePic", id],
+    () => userFetcher.getOne(id)
+  );
+
+  if (isLoadingProfilePic || !dataFreshUser) return <LoaderFocus />;
+
+  const { imageUrl: freshImageUrl } = dataFreshUser;
+
   return (
     <Link
       href={`/profile/${id}`}
@@ -17,7 +28,7 @@ function ProfilePic({ firstname, lastname, imageUrl, id }: IProps) {
     >
       <Image
         alt={`${firstname} ${lastname.toUpperCase()}`}
-        src={imageUrl || "/profile_image.svg"}
+        src={freshImageUrl || "/profile_image.svg"}
         fill
         className="object-cover"
       />

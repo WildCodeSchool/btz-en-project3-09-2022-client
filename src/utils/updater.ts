@@ -1,9 +1,17 @@
-import { TCategory } from "../types/main";
+import { TUser, TCategory } from "../types/main";
 
 /* eslint-disable @typescript-eslint/return-await */
 import axiosInstance from "./axiosInstance";
 
-// eslint-disable-next-line import/prefer-default-export
+export const userUpdater = {
+  updateProfilePic: async (userId: string, formData: FormData) =>
+    await axiosInstance.put<TUser>(`/users/${userId}`, formData, {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+    }),
+};
+
 export const categoryUpdater = {
   disable: async (categoryId: string) =>
     (await axiosInstance.put<TCategory>(`/categories/${categoryId}/disable`))
